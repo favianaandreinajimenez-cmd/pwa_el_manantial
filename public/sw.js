@@ -16,6 +16,7 @@ const urlsToCache = [
   '/css/input.css',
   '/local-db-fallback.js',
   '/js/sync.js',
+  '/js/db-sqlite.js',
   '/js/app.js',
   '/manifest.json'
 ];
