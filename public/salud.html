@@ -4,13 +4,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-<!-- Configuración PWA corregida para coincidir con el Service Worker -->
-<link rel="manifest" href="/manifest.json"/>
+</head>
+<!-- Configuración PWA -->
+<link rel="manifest" href="/public/manifest.json"/>
 <meta name="theme-color" content="#154212"/>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<!-- Respaldo local para funcionar sin internet -->
+  <!-- Respaldo local para funcionar sin internet -->
 <script src="local-db-fallback.js"></script>
 <!-- Lógica de sincronización cuando vuelve la red -->
 <script src="js/sync.js"></script>
@@ -19,11 +20,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-
-<!-- Archivos CSS externos -->
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
-
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -147,25 +145,22 @@
             background-color: #25354e !important;
         }
         html.dark .bg-emerald-100 {
-            background-color: #064e3b !important;
+            background-color: rgba(6, 78, 59, 0.8) !important;
         }
         html.dark .text-emerald-800 {
             color: #a7f3d0 !important;
         }
         html.dark .bg-amber-100 {
-            background-color: #78350f !important;
+            background-color: rgba(120, 53, 15, 0.8) !important;
         }
         html.dark .text-amber-800 {
             color: #fde68a !important;
         }
-        html.dark .bg-blue-100 {
-            background-color: #1e3a8a !important;
+        html.dark .bg-rose-100 {
+            background-color: rgba(159, 18, 57, 0.8) !important;
         }
-        html.dark .text-blue-800 {
-            color: #bfdbfe !important;
-        }
-        html.dark .bg-green-100\/90 {
-            background-color: rgba(6, 78, 59, 0.9) !important;
+        html.dark .text-rose-800 {
+            color: #fecdd3 !important;
         }
         html.dark body {
             background-color: #0b0f19 !important;
@@ -373,7 +368,7 @@
         <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
       </a>
-      <a v-if="currentUser && currentUser.role !== 'Obrero'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -382,7 +377,7 @@
         <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
       </a>
-      <a v-if="currentUser && currentUser.role !== 'Obrero'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -391,7 +386,7 @@
         <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -446,28 +441,28 @@
 <header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
     <div class="flex items-center h-full min-w-0 flex-1">
         <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
-            <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary flex items-center justify-center text-on-primary cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm">
-                <span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
-            </div>
+                  <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-white dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active shadow-sm">
+                    <span class="material-symbols-outlined text-[#f8f9ff] dark:text-[#0b0f19]" data-icon="agriculture">agriculture</span>    
+                  </div>
         </div>
-        <h2 class="font-headline-md text-base md:text-2xl font-bold text-primary ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
-
+        <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
     </div>
-    <div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
-        <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
-            <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
-        </button>
-        
-        <button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
-            <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+  <div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
+  <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
+    <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
   </button>
-   <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-      <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar" />
-      <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+
+<button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
+    <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+  </button>
+  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
+    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
+    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
   </a>
-  </div>
-  </header>
+</div>
+</header>
 <div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
+    
 <!-- Health Summary Section -->
 <section class="mb-10">
 <div class="flex justify-between items-end mb-6">
@@ -586,7 +581,7 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant">
-<tr v-for="cow in paginatedAnimals" :key="cow.id" class="hover:bg-surface-bright transition-colors">
+<tr v-for="cow in paginatedMilkingRecords" :key="cow.id" class="hover:bg-surface-bright transition-colors">
 <!-- ID Animal separado con formato #letra-XXX -->
 <td class="px-6 py-4">
 <a :href="'historial.html?id=' + cow.id" class="px-3 py-1.5 rounded-lg bg-surface-container-high inline-flex items-center justify-center font-bold text-primary text-xs active:scale-95 transition-transform hover:underline">
@@ -604,7 +599,20 @@
   <span class="px-2.5 py-1 bg-surface-container text-on-surface rounded-full text-xs font-bold">{{ cow.lot }}</span>
 </td>
 <td class="px-6 py-4">
-<span :class="cow.status === 'Saludable' ? 'bg-primary/20 text-on-primary-fixed-variant' : (cow.status === 'En Tratamiento' ? 'bg-error-container text-on-error-container' : 'bg-secondary-container text-on-secondary-container')" class="inline-flex items-center px-3 py-1 rounded-full font-label-md text-label-md">{{ cow.status }}</span>
+<span :class="[
+  'inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label-md text-label-md border',
+  cow.status === 'Saludable' ? 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border-emerald-700' :
+  cow.status === 'Bajo Observación' ? 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/80 dark:text-amber-300 dark:border-amber-700' :
+  'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950/80 dark:text-rose-300 dark:border-rose-700'
+]">
+  <span :class="[
+    'w-1.5 h-1.5 rounded-full',
+    cow.status === 'Saludable' ? 'bg-emerald-500' :
+    cow.status === 'Bajo Observación' ? 'bg-amber-500' :
+    'bg-rose-500'
+  ]"></span>
+  {{ cow.status }}
+</span>
 </td>
 <td class="px-6 py-4 text-right">
 <a :href="'historial.html?id=' + cow.id" class="text-primary hover:bg-primary-fixed p-2 rounded-full inline-block transition-colors cursor-pointer" :title="'Ver historial de ' + cow.name">
@@ -612,19 +620,18 @@
 </a>
 </td>
 </tr>
-<tr v-if="paginatedAnimals.length === 0">
+<tr v-if="paginatedMilkingRecords.length === 0">
 <td colspan="6" class="px-6 py-8 text-center text-on-surface-variant italic">No se encontraron animales.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
-<p class="font-body-sm text-body-sm text-on-surface-variant">Mostrando {{ paginatedAnimals.length ? (currentPage - 1) * pageSize + 1 : 0 }} - {{ Math.min(currentPage * pageSize, filteredAnimals.length) }} de {{ filteredAnimals.length }} registros (Total: 40 vacas)</p>
-<div class="flex gap-2">
-<button @click="prevPage" :disabled="currentPage === 1" class="px-3 py-1 border border-outline rounded text-label-md hover:bg-white transition-colors disabled:opacity-50 cursor-pointer">Anterior</button>
-<span class="px-3 py-1 text-label-md font-bold flex items-center">Página {{ currentPage }} de {{ totalPages || 1 }}</span>
-<button @click="nextPage" :disabled="currentPage >= totalPages" class="px-3 py-1 border border-outline rounded text-label-md hover:bg-white transition-colors disabled:opacity-50 cursor-pointer">Siguiente</button>
-</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+    <span class="text-sm text-on-surface-variant">Página {{ milkingPage }} de {{ maxMilkingPages }}</span>
+    <div class="flex gap-2">
+        <button @click="milkingPage > 1 ? milkingPage-- : null" :disabled="milkingPage === 1" class="px-3 py-1 border border-outline rounded text-label-md hover:bg-white transition-colors disabled:opacity-50 cursor-pointer">Anterior</button>
+        <button @click="milkingPage < maxMilkingPages ? milkingPage++ : null" :disabled="milkingPage === maxMilkingPages" class="px-3 py-1 rounded text-label-md transition-colors disabled:opacity-50 cursor-pointer bg-[#154212] dark:bg-[#10b981] text-white dark:text-[#0b0f19] hover:brightness-110">Siguiente</button>
+    </div>
 </div>
 </div>
 </section>
@@ -633,7 +640,7 @@
 </main>
 
 <!-- Floating Action Button -->
-<button v-if="currentUser && currentUser.role !== 'Obrero' && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showAddModal = true" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
+<button v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showAddModal = true" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
 <span class="material-symbols-outlined" data-icon="add">add</span>
 </button>
 
@@ -696,31 +703,31 @@
       <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
     </a>
     <!-- Ordeño -->
-    <a v-if="currentUser && currentUser.role !== 'Obrero'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
       <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
     </a>
     <!-- Finca -->
-    <a v-if="currentUser && currentUser.role !== 'Obrero'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
       <span class="text-[10px] mt-0.5 leading-none">Finca</span>
     </a>
-    <!-- inventario (Oculto para obrero) -->
-    <a v-if="currentUser && currentUser.role !== 'Obrero' && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <!-- inventario -->
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
       <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
     </a>
-    <!-- Salud (Oculto para obrero) -->
-    <a v-if="currentUser && currentUser.role !== 'Obrero' && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <!-- Salud -->
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('salud.html') || isActive('historial.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
       <span class="text-[10px] mt-0.5 leading-none">Salud</span>
     </a>
-    <!-- Reportes (Oculto para obrero) -->
-    <a v-if="currentUser && currentUser.role !== 'Obrero' && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <!-- Reportes -->
+    <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
       <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
@@ -734,14 +741,14 @@
   </nav>
 
 <script>
-        // Registro del Service Worker para la PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-                    .catch(err => console.log('Error al registrar el Service Worker:', err));
-            });
-        }
+    // Registro del Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+                .catch(err => console.error('Error al registrar el Service Worker:', err));
+        });
+    }
 
         const { createApp } = Vue;
         createApp({
@@ -751,17 +758,581 @@
                     currentUser: null,
                     searchQuery: '',
                     selectedLot: '',
-                    currentPage: 1,
-                    pageSize: 5,
+                    milkingPage: 1,
+                    isDesktop: window.innerWidth >= 1024,
                     showAddModal: false,
                     submitting: false,
                     healthyPercentage: 94,
-                    inTreatment: 0,
-                    underObservation: 0,
-                    birthsThisMonth: 0,
+                    inTreatment: 1,
+                    underObservation: 1,
+                    birthsThisMonth: 2,
                     selectedStatusFilter: '',
-                    checkups: [],
-                    animals: [],
+                    checkups: [
+                        { id: 1, date: '02 Oct', title: 'Vacunación Aftosa', target: 'Lote A y B', priority: 'Urgente' },
+                        { id: 2, date: '05 Oct', title: 'Palpación Rutinaria', target: 'Vacas Seleccionadas', priority: 'Normal' }
+                    ],
+                    animals: [
+                        {
+                            id: "#A-101",
+                            name: "Lucero",
+                            breed: "Carora",
+                            age: 4.0,
+                            weight: 460,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 12450,
+                            lastVaccination: "10 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Animal muestra excelente recuperación post-parto. Se recomienda mantener suplementación mineral tipo B hasta el próximo ciclo de ordeño. Observar pezón posterior izquierdo por sensibilidad mínima."
+                        },
+                        {
+                            id: "#A-102",
+                            name: "Mariposa",
+                            breed: "Holstein",
+                            age: 5.0,
+                            weight: 550,
+                            status: "En Tratamiento",
+                            lot: "A",
+                            productionTotal: 9200,
+                            lastVaccination: "14 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Animal muestra excelente recuperación post-parto. Se recomienda mantener suplementación mineral tipo B hasta el próximo ciclo de ordeño. Observar pezón posterior izquierdo por sensibilidad mínima."
+                        },
+                        {
+                            id: "#A-103",
+                            name: "Gitana",
+                            breed: "Brahman",
+                            age: 3.5,
+                            weight: 500,
+                            status: "Bajo Observación",
+                            lot: "A",
+                            productionTotal: 6500,
+                            lastVaccination: "01 Oct 2023",
+                            pregnancyStatus: "Confirmado (4m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Chequeo mensual de gestación y monitoreo de cojera leve."
+                        },
+                        {
+                            id: "#A-104",
+                            name: "Estrella",
+                            breed: "Pardo Suizo",
+                            age: 4.2,
+                            weight: 530,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 8400,
+                            lastVaccination: "11 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Comportamiento dócil en sala de ordeño."
+                        },
+                        {
+                            id: "#A-105",
+                            name: "Luna",
+                            breed: "Jersey",
+                            age: 3.0,
+                            weight: 440,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 6100,
+                            lastVaccination: "19 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Vaca joven con excelente persistencia."
+                        },
+                        {
+                            id: "#A-106",
+                            name: "Paloma",
+                            breed: "Mestiza",
+                            age: 4.8,
+                            weight: 490,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 7300,
+                            lastVaccination: "22 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Adaptada perfectamente al sistema del Lote A."
+                        },
+                        {
+                            id: "#A-107",
+                            name: "Rosilla",
+                            breed: "Carora",
+                            age: 3.8,
+                            weight: 450,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 6800,
+                            lastVaccination: "05 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Controles sanitarios al día."
+                        },
+                        {
+                            id: "#A-108",
+                            name: "Morena",
+                            breed: "Holstein",
+                            age: 5.5,
+                            weight: 570,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 9600,
+                            lastVaccination: "12 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Buen volumen de producción."
+                        },
+                        {
+                            id: "#A-109",
+                            name: "Margarita",
+                            breed: "Brahman",
+                            age: 4.1,
+                            weight: 510,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 7100,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Sin observaciones especiales."
+                        },
+                        {
+                            id: "#A-110",
+                            name: "Princesa",
+                            breed: "Pardo Suizo",
+                            age: 3.9,
+                            weight: 520,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 7900,
+                            lastVaccination: "25 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Excelente temperamento."
+                        },
+                        {
+                            id: "#A-111",
+                            name: "Flor",
+                            breed: "Jersey",
+                            age: 3.2,
+                            weight: 430,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 5900,
+                            lastVaccination: "08 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Leche con alta concentración de sólidos."
+                        },
+                        {
+                            id: "#A-112",
+                            name: "Reina",
+                            breed: "Mestiza",
+                            age: 4.6,
+                            weight: 480,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 7400,
+                            lastVaccination: "13 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Estable en los controles de rutina."
+                        },
+                        {
+                            id: "#A-113",
+                            name: "Bonita",
+                            breed: "Carora",
+                            age: 3.5,
+                            weight: 465,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 7100,
+                            lastVaccination: "17 Sep 2023",
+                            pregnancyStatus: "Confirmado (5m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Sin problemas sanitarios."
+                        },
+                        {
+                            id: "#A-114",
+                            name: "Mora",
+                            breed: "Holstein",
+                            age: 5.1,
+                            weight: 560,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 9100,
+                            lastVaccination: "21 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Buen rendimiento."
+                        },
+                        {
+                            id: "#A-115",
+                            name: "Canela",
+                            breed: "Brahman",
+                            age: 4.3,
+                            weight: 515,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 7200,
+                            lastVaccination: "29 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Monitoreo periódico."
+                        },
+                        {
+                            id: "#A-116",
+                            name: "Pinta",
+                            breed: "Pardo Suizo",
+                            age: 4.0,
+                            weight: 525,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 8100,
+                            lastVaccination: "03 Oct 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Comportamiento normal."
+                        },
+                        {
+                            id: "#A-117",
+                            name: "Negrita",
+                            breed: "Jersey",
+                            age: 3.3,
+                            weight: 435,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 6000,
+                            lastVaccination: "09 Sep 2023",
+                            pregnancyStatus: "Confirmado (4m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Sin incidencias."
+                        },
+                        {
+                            id: "#A-118",
+                            name: "Blanca",
+                            breed: "Mestiza",
+                            age: 4.7,
+                            weight: 495,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 7500,
+                            lastVaccination: "15 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Salud general excelente."
+                        },
+                        {
+                            id: "#A-119",
+                            name: "Perla",
+                            breed: "Carora",
+                            age: 3.6,
+                            weight: 460,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 6900,
+                            lastVaccination: "20 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Desarrollo óptimo."
+                        },
+                        {
+                            id: "#A-120",
+                            name: "Esperanza",
+                            breed: "Holstein",
+                            age: 5.2,
+                            weight: 565,
+                            status: "Saludable",
+                            lot: "A",
+                            productionTotal: 9400,
+                            lastVaccination: "26 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Cierre del lote A con alta producción láctea."
+                        },
+                        {
+                            id: "#B-201",
+                            name: "Rosa",
+                            breed: "Carora",
+                            age: 3.7,
+                            weight: 455,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 6700,
+                            lastVaccination: "11 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Comienzo del Lote B en óptimas condiciones."
+                        },
+                        {
+                            id: "#B-202",
+                            name: "Hermosa",
+                            breed: "Holstein",
+                            age: 4.8,
+                            weight: 540,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 8900,
+                            lastVaccination: "16 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Estable y sin novedades."
+                        },
+                        {
+                            id: "#B-203",
+                            name: "Diamante",
+                            breed: "Brahman",
+                            age: 4.0,
+                            weight: 505,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7000,
+                            lastVaccination: "21 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Buen desarrollo corporal."
+                        },
+                        {
+                            id: "#B-204",
+                            name: "Zamurita",
+                            breed: "Pardo Suizo",
+                            age: 4.3,
+                            weight: 535,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 8300,
+                            lastVaccination: "27 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Sin observaciones especiales."
+                        },
+                        {
+                            id: "#B-205",
+                            name: "Gaviota",
+                            breed: "Jersey",
+                            age: 3.1,
+                            weight: 445,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 6200,
+                            lastVaccination: "02 Oct 2023",
+                            pregnancyStatus: "Confirmado (3m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Comportamiento dócil."
+                        },
+                        {
+                            id: "#B-206",
+                            name: "Lucerito",
+                            breed: "Mestiza",
+                            age: 4.5,
+                            weight: 485,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7200,
+                            lastVaccination: "06 Oct 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Buena adaptación en el grupo B."
+                        },
+                        {
+                            id: "#B-207",
+                            name: "Tormenta",
+                            breed: "Carora",
+                            age: 3.6,
+                            weight: 450,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 6600,
+                            lastVaccination: "12 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Controles sanitarios completos."
+                        },
+                        {
+                            id: "#B-208",
+                            name: "Manea",
+                            breed: "Holstein",
+                            age: 5.0,
+                            weight: 555,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 9000,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Estable en su producción."
+                        },
+                        {
+                            id: "#B-209",
+                            name: "Consentida",
+                            breed: "Brahman",
+                            age: 4.2,
+                            weight: 510,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7300,
+                            lastVaccination: "24 Sep 2023",
+                            pregnancyStatus: "Confirmado (4m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Sin inconvenientes."
+                        },
+                        {
+                            id: "#B-210",
+                            name: "Altagracia",
+                            breed: "Pardo Suizo",
+                            age: 3.8,
+                            weight: 515,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7800,
+                            lastVaccination: "30 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Buen ritmo de ordeño."
+                        },
+                        {
+                            id: "#B-211",
+                            name: "Sombra",
+                            breed: "Jersey",
+                            age: 3.4,
+                            weight: 440,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 6100,
+                            lastVaccination: "04 Oct 2023",
+                            pregnancyStatus: "Confirmado (2m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Salud estable."
+                        },
+                        {
+                            id: "#B-212",
+                            name: "Parda",
+                            breed: "Mestiza",
+                            age: 4.4,
+                            weight: 475,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7300,
+                            lastVaccination: "10 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Sin observaciones médicas."
+                        },
+                        {
+                            id: "#B-213",
+                            name: "Chiquinquirá",
+                            breed: "Carora",
+                            age: 3.9,
+                            weight: 470,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7200,
+                            lastVaccination: "14 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Excelente respuesta a la suplementación."
+                        },
+                        {
+                            id: "#B-214",
+                            name: "Lunaria",
+                            breed: "Holstein",
+                            age: 4.9,
+                            weight: 550,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 8800,
+                            lastVaccination: "19 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Producción constante."
+                        },
+                        {
+                            id: "#B-215",
+                            name: "Reliquia",
+                            breed: "Brahman",
+                            age: 4.1,
+                            weight: 500,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 6900,
+                            lastVaccination: "25 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Buen estado físico general."
+                        },
+                        {
+                            id: "#B-216",
+                            name: "Pintada",
+                            breed: "Pardo Suizo",
+                            age: 3.8,
+                            weight: 520,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7900,
+                            lastVaccination: "01 Oct 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Sin anomalías."
+                        },
+                        {
+                            id: "#B-217",
+                            name: "Pavita",
+                            breed: "Jersey",
+                            age: 3.2,
+                            weight: 425,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 5900,
+                            lastVaccination: "07 Oct 2023",
+                            pregnancyStatus: "Confirmado (4m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                            notes: "Respuesta positiva a planes sanitarios."
+                        },
+                        {
+                            id: "#B-218",
+                            name: "Milagrosa",
+                            breed: "Mestiza",
+                            age: 4.6,
+                            weight: 490,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 7400,
+                            lastVaccination: "13 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+                            notes: "Comportamiento normal en corral."
+                        },
+                        {
+                            id: "#B-219",
+                            name: "Zamana",
+                            breed: "Carora",
+                            age: 3.5,
+                            weight: 455,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 6800,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+                            notes: "Monitoreo veterinario al día."
+                        },
+                        {
+                            id: "#B-220",
+                            name: "Florinda",
+                            breed: "Holstein",
+                            age: 5.1,
+                            weight: 560,
+                            status: "Saludable",
+                            lot: "B",
+                            productionTotal: 9200,
+                            lastVaccination: "23 Sep 2023",
+                            pregnancyStatus: "No preñada",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+                            notes: "Cierre exitoso del registro completo del Lote B."
+                        }
+                    ],
                     showSidebar: false,
                     newEvent: {
                         animalId: '',
@@ -796,27 +1367,36 @@
                         return true;
                     });
                 },
-                totalPages() {
-                    return Math.ceil(this.filteredAnimals.length / this.pageSize);
+                milkingRecords() {
+                    return this.filteredAnimals;
                 },
-                paginatedAnimals() {
-                    const start = (this.currentPage - 1) * this.pageSize;
-                    const end = start + this.pageSize;
-                    return this.filteredAnimals.slice(start, end);
+                pageSize() {
+                    return this.isDesktop ? 10 : 5;
+                },
+                maxMilkingPages() {
+                    return Math.max(1, Math.ceil(this.milkingRecords.length / this.pageSize));
+                },
+                paginatedMilkingRecords() {
+                    const start = (this.milkingPage - 1) * this.pageSize;
+                    return this.milkingRecords.slice(start, start + this.pageSize);
                 }
             },
             watch: {
                 searchQuery() {
-                    this.currentPage = 1;
+                    this.milkingPage = 1;
                 },
                 selectedLot() {
-                    this.currentPage = 1;
+                    this.milkingPage = 1;
                 },
                 selectedStatusFilter() {
-                    this.currentPage = 1;
+                    this.milkingPage = 1;
                 }
             },
             mounted() {
+                window.addEventListener('resize', () => {
+                    this.isDesktop = window.innerWidth >= 1024;
+                });
+
                 const theme = localStorage.getItem('theme') || 'light';
                 this.isDarkMode = theme === 'dark';
                 if (this.isDarkMode) {
@@ -834,8 +1414,8 @@
                         return;
                     }
 
-                    // Validación de roles permitidos en esta vista (Obreros no pueden entrar a salud.html)
-                    if (this.currentUser.role === 'Obrero') {
+                    // Si es Operario u Obrero, redirigir automáticamente al panel de ordeño si intentan entrar aquí
+                    if (this.currentUser.role === 'Operario' || this.currentUser.role === 'Obrero') {
                         window.location.href = 'ordeno.html';
                         return;
                     }
@@ -844,8 +1424,6 @@
                     window.location.href = 'login.html';
                     return;
                 }
-
-                this.fetchData();
             },
             methods: {
                 toggleTheme() {
@@ -868,111 +1446,26 @@
                     const path = window.location.pathname;
                     return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
                 },
-                nextPage() {
-                    if (this.currentPage < this.totalPages) {
-                        this.currentPage++;
-                    }
-                },
-                prevPage() {
-                    if (this.currentPage > 1) {
-                        this.currentPage--;
-                    }
-                },
-                async fetchData() {
-                    try {
-                        const res = await fetch('/api/health-summary');
-                        const data = await res.json();
-                        this.healthyPercentage = data.healthyPercentage;
-                        this.inTreatment = data.inTreatment;
-                        this.underObservation = data.underObservation;
-                        this.birthsThisMonth = data.birthsThisMonth;
-                        this.checkups = data.checkups;
-                        
-                        let fetchedAnimals = data.animals || [];
-                        if (fetchedAnimals.length < 40) {
-                            const breeds = ['Holstein', 'Jersey', 'Brahman', 'Carora', 'Pardo Suizo'];
-                            const statuses = ['Saludable', 'Saludable', 'Saludable', 'Saludable', 'En Tratamiento', 'Bajo Observación'];
-                            const namesBase = ['Margarita', 'Luna', 'Estrella', 'Gitana', 'Rosilla', 'Lucero', 'Paloma', 'Flor', 'Bonita', 'Negrita', 'Pinta', 'Rosa', 'Lola', 'Blanca', 'Diana', 'Morena', 'Canela', 'Princesa', 'Hermosa', 'Diamante'];
-                            
-                            for (let i = fetchedAnimals.length + 1; i <= 40; i++) {
-                                const idStr = 'V-' + (100 + i);
-                                const name = namesBase[(i - 1) % namesBase.length];
-                                const breed = breeds[(i - 1) % breeds.length];
-                                const status = statuses[(i - 1) % statuses.length];
-                                const lot = i <= 20 ? 'A' : 'B';
-                                fetchedAnimals.push({
-                                    id: idStr,
-                                    name: name,
-                                    breed: breed,
-                                    age: Math.floor(Math.random() * 5) + 2,
-                                    status: status,
-                                    lot: lot
-                                });
-                            }
-                        } else {
-                            fetchedAnimals.forEach((cow, idx) => {
-                                if (!cow.lot || cow.lot.includes('Lote')) {
-                                    cow.lot = idx < 20 ? 'A' : 'B';
-                                }
-                            });
-                        }
-                        this.animals = fetchedAnimals;
-                    } catch (err) {
-                        console.error("Error fetching health summary data", err);
-                        let fallbackAnimals = [];
-                        const breeds = ['Holstein', 'Jersey', 'Brahman', 'Carora'];
-                        const statuses = ['Saludable', 'En Tratamiento', 'Bajo Observación'];
-                        const namesBase = ['Margarita', 'Luna', 'Estrella', 'Gitana', 'Rosilla', 'Lucero', 'Paloma', 'Flor', 'Bonita', 'Negrita'];
-                        for (let i = 1; i <= 40; i++) {
-                            fallbackAnimals.push({
-                                id: 'V-' + (100 + i),
-                                name: namesBase[(i - 1) % namesBase.length],
-                                breed: breeds[i % breeds.length],
-                                age: 3,
-                                status: statuses[i % statuses.length],
-                                lot: i <= 20 ? 'A' : 'B'
-                            });
-                        }
-                        this.animals = fallbackAnimals;
-                    }
-                },
                 async submitEvent() {
                     if (!this.newEvent.animalId) return;
                     this.submitting = true;
                     try {
-                        // Se mantiene estrictamente el método GET solicitado, pasando los datos por query params 
-                        // para evitar el error nativo del navegador (TypeError) que ocurre al intentar poner un body en un GET.
-                        const params = new URLSearchParams({
-                            type: this.newEvent.type,
-                            details: this.newEvent.details,
-                            veterinarian: this.newEvent.veterinarian,
-                            status: this.newEvent.status || ''
-                        });
-                        
-                        const res = await fetch(`/api/animals/${this.newEvent.animalId}/events?${params.toString()}`, {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        });
-                        if (res.ok) {
-                            alert("Evento veterinario registrado con éxito.");
-                            this.showAddModal = false;
-                            this.newEvent = {
-                                animalId: '',
-                                type: 'Vacunación',
-                                details: '',
-                                veterinarian: 'Dra. Mendoza',
-                                status: ''
-                            };
-                            await this.fetchData();
-                        } else {
-                            const errData = await res.json().catch(() => ({}));
-                            alert("Error al registrar evento: " + (errData.error || res.statusText));
+                        const targetCow = this.animals.find(c => c.id === this.newEvent.animalId);
+                        if (targetCow && this.newEvent.status) {
+                            targetCow.status = this.newEvent.status;
                         }
+                        alert("Evento veterinario registrado con éxito.");
+                        this.showAddModal = false;
+                        this.newEvent = {
+                            animalId: '',
+                            type: 'Vacunación',
+                            details: '',
+                            veterinarian: 'Dra. Mendoza',
+                            status: ''
+                        };
                     } catch (err) {
                         console.error("Error submitting health event", err);
-                        alert("Error de red al registrar el evento.");
+                        alert("Error al registrar el evento.");
                     } finally {
                         this.submitting = false;
                     }
