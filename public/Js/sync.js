@@ -113,4 +113,3 @@ async function enviarDatosConRespaldo(endpoint, datos) {
     alert("Sin conexión. El registro se guardó localmente y se sincronizará al recuperar el internet.");
   }
 }
-
