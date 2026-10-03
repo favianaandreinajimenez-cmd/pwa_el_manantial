@@ -201,6 +201,13 @@
             background-color: #10b981 !important;
             color: #0b0f19 !important;
         }
+        html.dark .bg-\[\#154212\] {
+            background-color: #10b981 !important;
+            color: #0b0f19 !important;
+        }
+        html.dark .border-\[\#154212\] {
+            border-color: #10b981 !important;
+        }
     </style>
   </head>
 <body class="text-on-surface" id="app">
@@ -279,9 +286,8 @@
        showSidebar ? 'p-1 hover:bg-surface-container-highest gap-3 justify-start' : 'p-0 w-12 h-12 mx-auto justify-center hover:bg-surface-container-highest',
        isActive('usuarios.html') ? 'bg-primary-container text-on-primary-container font-bold' : ''
      ]">
-    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User avatar" class="w-10 h-10 min-w-[40px] rounded-full bg-secondary-container object-cover" :src="currentUser.avatar"/>
-    <div v-else class="w-10 h-10 min-w-[40px] rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
-      {{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}
+    <div class="w-10 h-10 min-w-[40px] aspect-square rounded-full bg-[#154212] text-[#ffffff] dark:bg-[#10b981] dark:text-[#101726] flex items-center justify-center font-bold text-sm">
+      {{ currentUser ? currentUser.avatar : 'F' }}
     </div>
     <div :class="showSidebar ? 'opacity-100 max-w-[120px] ml-2' : 'opacity-0 max-w-0 overflow-hidden lg:hidden'" class="transition-all duration-300 ease-in-out whitespace-nowrap">
       <p class="font-label-lg text-label-lg truncate font-bold" :class="isActive('usuarios.html') ? 'text-on-primary-container' : 'text-on-surface'">{{ currentUser ? currentUser.name : 'User' }}</p>
@@ -314,9 +320,8 @@
 <button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
-  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 aspect-square rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
+    <span>{{ currentUser ? currentUser.avatar : 'F' }}</span>
   </a>
 </div>
 </header>
@@ -324,10 +329,12 @@
 <!-- Tarjeta de Usuario Actual -->
     <div class="bg-white border border-outline-variant rounded-2xl p-6 mb-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div class="flex items-center gap-4">
-            <img :src="profileForm.avatar" alt="User" class="w-16 h-16 rounded-full object-cover border-2 border-primary">
+            <div class="w-16 h-16 min-w-[4rem] aspect-square rounded-full bg-[#154212] text-[#ffffff] dark:bg-[#10b981] dark:text-[#101726] flex items-center justify-center font-bold text-xl border-2 border-[#154212] dark:border-[#10b981]">
+                {{ currentUser ? currentUser.avatar : 'F' }}
+            </div>
             <div>
                 <div class="flex items-center gap-2">
-                    <h3 class="font-headline-md text-xl font-bold text-primary">{{ profileForm.name }}</h3>
+                    <h3 class="font-headline-md text-xl font-bold text-primary whitespace-nowrap">{{ profileForm.name }}</h3>
                 </div>
                 <p class="text-on-surface-variant text-sm mt-0.5">{{ profileForm.role }} • {{ profileForm.email }}</p>
                 <span class="inline-block mt-2 bg-primary/20 text-primary px-2.5 py-0.5 rounded-full text-xs font-semibold">Sesión Activa</span>
@@ -402,7 +409,10 @@
         <div class="space-y-4">
             <div class="bg-white border border-outline-variant rounded-2xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm hover:shadow-md transition-all">
                 <div class="flex items-center gap-4">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&auto=format&fit=crop" alt="Dra. Maria Mendoza" class="w-16 h-16 rounded-full object-cover border-2 border-primary">
+                    <!-- Modificado MM por VET -->
+                    <div class="w-16 h-16 min-w-[4rem] aspect-square rounded-full bg-[#154212] text-[#ffffff] dark:bg-emerald-950 dark:text-emerald-300 flex items-center justify-center font-bold text-xl border-2 border-[#154212]">
+                        VET
+                    </div>
                     <div>
                         <h3 class="font-headline-md text-xl font-bold text-on-surface">Dra. Maria Mendoza</h3>
                         <div class="flex items-center gap-3 mt-1.5">
@@ -425,7 +435,7 @@
 
             <div class="bg-white border border-outline-variant rounded-2xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm hover:shadow-md transition-all">
                 <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold text-xl border-2 border-primary">
+                    <div class="w-16 h-16 min-w-[4rem] aspect-square rounded-full bg-[#154212] text-[#ffffff] dark:bg-emerald-950 dark:text-emerald-300 flex items-center justify-center font-bold text-xl border-2 border-[#154212]">
                         JS
                     </div>
                     <div>
@@ -607,7 +617,7 @@
                         email: 'admin@elmanantial.com',
                         role: 'Administrador',
                         password: '',
-                        avatar: 'FM'
+                        avatar: 'F'
                     }
                 };
             },
@@ -623,15 +633,30 @@
                 const userStr = localStorage.getItem('loggedInUser');
                 if (userStr) {
                     this.currentUser = JSON.parse(userStr);
-                    this.profileForm.name = this.currentUser.name || ' admin';
+                    if (this.currentUser.name === 'FranciscoMolina') {
+                        this.currentUser.name = 'Francisco Molina';
+                    }
+                    this.profileForm.name = this.currentUser.name || 'Francisco Molina';
                     this.profileForm.email = this.currentUser.email || 'admin@elmanantial.com';
                     this.profileForm.role = this.currentUser.role || 'Administrador';
-                    this.profileForm.avatar = this.currentUser.avatar || 'FM';
+                    
+                    // Asignar el avatar correspondiente según el usuario activo
+                    if (this.currentUser.email === 'admin@elmanantial.com') {
+                        this.currentUser.avatar = 'F';
+                    } else if (this.currentUser.email === 'veterinario@elmanantial.com') {
+                        this.currentUser.avatar = 'VET';
+                    } else if (this.currentUser.email === 'jose@elmanantial.com') {
+                        this.currentUser.avatar = 'JS';
+                    } else {
+                        this.currentUser.avatar = this.currentUser.avatar || 'F';
+                    }
+                    this.profileForm.avatar = this.currentUser.avatar;
                 } else {
                     this.currentUser = {
                         name: 'Francisco Molina',
                         email: 'admin@elmanantial.com',
-                        role: 'Administrador'
+                        role: 'Administrador',
+                        avatar: 'F'
                     };
                 }
             },
