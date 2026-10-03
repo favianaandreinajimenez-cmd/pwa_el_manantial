@@ -17,7 +17,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Archivos CSS externos -->
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
 <script id="tailwind-config">
@@ -359,7 +358,7 @@
         <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -368,7 +367,7 @@
         <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -377,7 +376,7 @@
         <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -430,15 +429,15 @@
 <main class="lg:ml-20 pt-16 pb-24 md:pb-8">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
-<div class="flex items-center h-full min-w-0 flex-1">
-    <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
-        <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary flex items-center justify-center text-on-primary cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm">
-            <span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+    <div class="flex items-center h-full min-w-0 flex-1">
+        <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
+                  <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-white dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active shadow-sm">
+                    <span class="material-symbols-outlined text-[#f8f9ff] dark:text-[#0b0f19]" data-icon="agriculture">agriculture</span>    
+                  </div>
         </div>
+        <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
     </div>
-    <h2 class="font-headline-md text-base md:text-2xl font-bold text-primary ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
-</div>
-<div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
+  <div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
   <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
     <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
   </button>
@@ -447,13 +446,15 @@
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
   <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-      <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar" />
-      <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
+    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
   </a>
-  </div>
-  </header>
+</div>
+</header>
 
-<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto space-y-md">
+<!-- CONTENEDOR PRINCIPAL CON ESPACIADO VERTICAL ADECUADO ENTRE PANELES -->
+<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto flex flex-col gap-6">
+
 <!-- Filters & Actions -->
 <section class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
 <div class="flex flex-wrap gap-sm">
@@ -554,7 +555,10 @@
 <section class="grid grid-cols-1 lg:grid-cols-3 gap-md">
 <div class="lg:col-span-2 bg-white p-md rounded-xl border border-outline-variant shadow-sm flex flex-col">
 <div class="flex justify-between items-center mb-lg">
-<h4 class="font-headline-md text-headline-md font-bold text-on-surface">Producción Diaria (Litros)</h4>
+<div>
+    <h4 class="font-headline-md text-headline-md font-bold text-on-surface">Producción Diaria (Litros)</h4>
+    <p class="text-xs text-primary font-bold mt-1">Lote con mayor producción hoy: {{ topBatchToday }}</p>
+</div>
 <div class="flex items-center gap-sm">
 <div class="flex items-center gap-xs">
 <span class="w-3 h-3 bg-primary rounded-full"></span>
@@ -575,7 +579,7 @@
 <div class="bg-white p-md rounded-xl border border-outline-variant shadow-sm flex flex-col">
 <h4 class="font-headline-md text-headline-md font-bold text-on-surface mb-md">Ranking de Unidades</h4>
 <div class="space-y-sm">
-<div v-for="item in ranking" :key="item.rank" :class="item.rank === 1 ? 'bg-surface-container-low border border-transparent hover:border-outline-variant' : 'hover:bg-surface-container-low'" class="flex items-center gap-md p-sm rounded-lg transition-colors group">
+<div v-for="item in calculatedRanking" :key="item.rank" :class="item.rank === 1 ? 'bg-surface-container-low border border-transparent hover:border-outline-variant' : 'hover:bg-surface-container-low'" class="flex items-center gap-md p-sm rounded-lg transition-colors group">
 <div :class="item.rank === 1 ? 'bg-primary text-on-primary' : 'bg-outline-variant text-on-surface'" class="w-8 h-8 rounded-full flex items-center justify-center font-bold">{{ item.rank }}</div>
 <div class="flex-grow">
 <p class="font-label-lg text-label-lg font-bold text-on-surface">{{ item.name }}</p>
@@ -612,36 +616,37 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant font-data-tabular text-data-tabular">
-<tr v-for="record in records" :key="record.id" class="hover:bg-surface-container-low transition-colors">
+<tr v-for="record in paginatedRecords" :key="record.animalId" class="hover:bg-surface-container-low transition-colors">
 <td class="px-md py-4">{{ record.date }}</td>
-<td class="px-md py-4 font-bold">{{ record.animalId || record.unitName }}</td>
-<td class="px-md py-4">{{ record.animalName || record.shift }}</td>
-<td class="px-md py-4">{{ record.lote || 'Lote A' }}</td>
+<td class="px-md py-4 font-bold">{{ record.animalId }}</td>
+<td class="px-md py-4">{{ record.name }}</td>
+<td class="px-md py-4">{{ record.unitName }}</td>
 <td class="px-md py-4">{{ record.shift }}</td>
 <td class="px-md py-4">{{ record.time }}</td>
 <td class="px-md py-4 font-bold">{{ record.liters }} L</td>
 <td class="px-md py-4">
-<span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d]' : 'bg-error-container text-on-error-container'" class="px-2 py-1 rounded-full text-label-md font-bold">{{ record.status }}</span>
+<span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-[#064e3b] dark:text-[#a7f3d0]' : 'bg-error-container text-on-error-container'" class="px-2 py-1 rounded-full text-label-md font-bold">{{ record.status }}</span>
 </td>
 </tr>
-<tr v-if="records.length === 0">
+<tr v-if="paginatedRecords.length === 0">
 <td colspan="8" class="px-md py-8 text-center text-on-surface-variant italic">No hay registros de producción.</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="p-md flex justify-between items-center bg-[#eff4ff] dark:bg-[#0f172a] text-on-surface dark:text-white">
-<span class="font-label-md text-label-md text-on-surface-variant dark:text-gray-400">Mostrando 4 de 40 registros</span>
-<div class="flex gap-base">
-<button class="p-1 rounded hover:bg-outline-variant/30 disabled:opacity-50" disabled="">
-<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+<span class="font-label-md text-label-md text-on-surface-variant dark:text-gray-400">Página {{ currentPage }} de {{ totalPages }}</span>
+<div class="flex gap-base items-center">
+<button @click="prevPage" :disabled="currentPage === 1" class="px-4 py-2 border border-outline-variant rounded-lg text-sm font-medium hover:bg-surface-container-high disabled:opacity-50 transition-colors cursor-pointer">
+Anterior
 </button>
-<button class="p-1 rounded hover:bg-outline-variant/30">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+<button @click="nextPage" :disabled="currentPage === totalPages" class="px-4 py-2 rounded-lg text-sm font-medium bg-[#154212] dark:bg-[#10b981] text-white dark:text-[#0b0f19] hover:opacity-90 disabled:opacity-50 transition-colors cursor-pointer shadow-sm">
+Siguiente
 </button>
 </div>
 </div>
 </section>
+
 </div>
 </main>
 
@@ -680,7 +685,7 @@
       </button>
     </div>
     <div class="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-      <div v-for="item in ranking" :key="item.rank" class="border border-outline-variant/60 rounded-xl p-4 flex flex-col gap-3 hover:border-primary/50 transition-colors bg-surface-container-lowest dark:bg-[#1e293b]">
+      <div v-for="item in calculatedRanking" :key="item.rank" class="border border-outline-variant/60 rounded-xl p-4 flex flex-col gap-3 hover:border-primary/50 transition-colors bg-surface-container-lowest dark:bg-[#1e293b]">
         <div class="flex justify-between items-center">
           <div class="flex items-center gap-3">
             <span :class="item.rank === 1 ? 'bg-primary text-on-primary' : 'bg-outline-variant/30 text-on-surface'" class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">{{ item.rank }}</span>
@@ -712,17 +717,17 @@
       <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
       <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
       <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
       <span class="text-[10px] mt-0.5 leading-none">Finca</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
       <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
@@ -771,14 +776,104 @@
                 modalTitle: '',
                 modalDescription: '',
                 modalIcon: '',
-                totalLiters: 0,
-                avgLitersPerCow: 18.4,
-                projectionNextMonth: 0,
-                chartData: [],
-                ranking: [],
-                records: [],
-                showRankingModal: false
+                totalLiters: 1254.5,
+                avgLitersPerCow: 32.4,
+                projectionNextMonth: 38500,
+                chartData: [
+                    { day: '1', liters: 1100 }, { day: '2', liters: 1250 }, { day: '3', liters: 1180 },
+                    { day: '4', liters: 1300 }, { day: '5', liters: 1220 }, { day: '6', liters: 1350 },
+                    { day: '7', liters: 1280 }
+                ],
+                showRankingModal: false,
+                showAddModal: false,
+                currentPage: 1,
+                milkingRecords: [
+                    { date: "2026-05-23", animalId: "#A-101", name: "Lucero", unitName: "Lote A", shift: "Mañana", time: "06:00 AM", liters: 34.5, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-102", name: "Mariposa", unitName: "Lote A", shift: "Mañana", time: "06:08 AM", liters: 38.2, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-103", name: "Gitana", unitName: "Lote A", shift: "Mañana", time: "06:15 AM", liters: 29.0, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-104", name: "Estrella", unitName: "Lote A", shift: "Mañana", time: "06:22 AM", liters: 33.6, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-105", name: "Luna", unitName: "Lote A", shift: "Mañana", time: "06:30 AM", liters: 28.4, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-106", name: "Paloma", unitName: "Lote A", shift: "Mañana", time: "06:37 AM", liters: 31.1, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-107", name: "Rosilla", unitName: "Lote A", shift: "Mañana", time: "06:45 AM", liters: 30.2, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-108", name: "Morena", unitName: "Lote A", shift: "Mañana", time: "06:52 AM", liters: 39.5, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-109", name: "Margarita", unitName: "Lote A", shift: "Mañana", time: "07:00 AM", liters: 31.8, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-110", name: "Princesa", unitName: "Lote A", shift: "Mañana", time: "07:07 AM", liters: 35.0, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-111", name: "Flor", unitName: "Lote A", shift: "Mañana", time: "07:15 AM", liters: 27.6, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-112", name: "Reina", unitName: "Lote A", shift: "Mañana", time: "07:22 AM", liters: 32.4, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-113", name: "Bonita", unitName: "Lote A", shift: "Mañana", time: "07:30 AM", liters: 31.0, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-114", name: "Mora", unitName: "Lote A", shift: "Mañana", time: "07:37 AM", liters: 37.9, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-115", name: "Canela", unitName: "Lote A", shift: "Mañana", time: "07:45 AM", liters: 31.5, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-116", name: "Pinta", unitName: "Lote A", shift: "Mañana", time: "07:52 AM", liters: 34.2, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-117", name: "Negra", unitName: "Lote A", shift: "Mañana", time: "08:00 AM", liters: 28.0, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-118", name: "Blanca", unitName: "Lote A", shift: "Mañana", time: "08:07 AM", liters: 33.1, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-119", name: "Perla", unitName: "Lote A", shift: "Mañana", time: "08:15 AM", liters: 30.4, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#A-120", name: "Esperanza", unitName: "Lote A", shift: "Mañana", time: "08:22 AM", liters: 38.8, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-201", name: "Rosa", unitName: "Lote B", shift: "Mañana", time: "08:35 AM", liters: 29.8, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-202", name: "Hermosa", unitName: "Lote B", shift: "Mañana", time: "08:42 AM", liters: 37.1, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-203", name: "Diamante", unitName: "Lote B", shift: "Mañana", time: "08:50 AM", liters: 31.2, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-204", name: "Zamurita", unitName: "Lote B", shift: "Mañana", time: "08:57 AM", liters: 34.0, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-205", name: "Gaviota", unitName: "Lote B", shift: "Mañana", time: "09:05 AM", liters: 28.5, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-206", name: "Lucerito", unitName: "Lote B", shift: "Mañana", time: "09:12 AM", liters: 32.0, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-207", name: "Tormenta", unitName: "Lote B", shift: "Mañana", time: "09:20 AM", liters: 29.5, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-208", name: "Manea", unitName: "Lote B", shift: "Mañana", time: "09:27 AM", liters: 38.0, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-209", name: "Consentida", unitName: "Lote B", shift: "Mañana", time: "09:35 AM", liters: 32.2, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-210", name: "Altagracia", unitName: "Lote B", shift: "Mañana", time: "09:42 AM", liters: 34.6, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-211", name: "Sombra", unitName: "Lote B", shift: "Mañana", time: "09:50 AM", liters: 27.9, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-212", name: "Parda", unitName: "Lote B", shift: "Mañana", time: "09:57 AM", liters: 32.1, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-213", name: "Chiquinquirá", unitName: "Lote B", shift: "Mañana", time: "10:05 AM", liters: 31.8, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-214", name: "Lunaria", unitName: "Lote B", shift: "Mañana", time: "10:12 AM", liters: 36.9, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-215", name: "Reliquia", unitName: "Lote B", shift: "Mañana", time: "10:20 AM", liters: 30.5, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-216", name: "Pintada", unitName: "Lote B", shift: "Mañana", time: "10:27 AM", liters: 34.3, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-217", name: "Pavita", unitName: "Lote B", shift: "Mañana", time: "10:35 AM", liters: 27.8, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-218", name: "Milagrosa", unitName: "Lote B", shift: "Mañana", time: "10:42 AM", liters: 32.7, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-219", name: "Zamana", unitName: "Lote B", shift: "Mañana", time: "10:50 AM", liters: 30.1, status: "VERIFICADO" },
+                    { date: "2026-05-23", animalId: "#B-220", name: "Florinda", unitName: "Lote B", shift: "Mañana", time: "10:57 AM", liters: 38.5, status: "VERIFICADO" }
+                ]
             };
+        },
+        computed: {
+            pageSize() {
+                return window.innerWidth < 768 ? 5 : 10;
+            },
+            totalPages() {
+                return Math.ceil(this.milkingRecords.length / this.pageSize) || 1;
+            },
+            paginatedRecords() {
+                const start = (this.currentPage - 1) * this.pageSize;
+                return this.milkingRecords.slice(start, start + this.pageSize);
+            },
+            topBatchToday() {
+                if (!this.milkingRecords || this.milkingRecords.length === 0) return 'Sin registros';
+                const totals = {};
+                this.milkingRecords.forEach(record => {
+                    if (!totals[record.unitName]) totals[record.unitName] = 0;
+                    totals[record.unitName] += record.liters;
+                });
+                let topBatch = '';
+                let maxLiters = -1;
+                for (const [batch, liters] of Object.entries(totals)) {
+                    if (liters > maxLiters) {
+                        maxLiters = liters;
+                        topBatch = batch;
+                    }
+                }
+                return `${topBatch} (${maxLiters.toLocaleString()} L)`;
+            },
+            calculatedRanking() {
+                const totals = {};
+                this.milkingRecords.forEach(record => {
+                    if (!totals[record.unitName]) totals[record.unitName] = 0;
+                    totals[record.unitName] += record.liters;
+                });
+                const sorted = Object.entries(totals)
+                    .map(([name, liters]) => ({ name, liters }))
+                    .sort((a, b) => b.liters - a.liters);
+                return sorted.map((item, index) => ({
+                    rank: index + 1,
+                    name: item.name,
+                    liters: item.liters.toLocaleString()
+                }));
+            }
         },
         mounted() {
                 const theme = localStorage.getItem('theme') || 'light';
@@ -822,16 +917,12 @@
                         window.location.href = 'ordeno.html';
                         return;
                     }
-                    if (this.currentUser.role === 'Obrero') {
-                        window.location.href = 'ordeno.html';
-                        return;
-                    }
+
                 } else {
                     window.location.href = 'login.html';
                     return;
                 }
 
-            this.fetchReports();
             document.querySelectorAll('button, a').forEach(el => {
                 el.addEventListener('mousedown', () => { el.style.transform = 'scale(0.96)'; });
                 el.addEventListener('mouseup', () => { el.style.transform = 'scale(1)'; });
@@ -849,29 +940,24 @@
                     localStorage.setItem('theme', 'light');
                 }
             },
-
             logout() {
                 localStorage.removeItem('loggedInUser');
                 window.location.href = 'login.html';
             },
-
             isActive(page) {
                 const path = window.location.pathname;
                 return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
             },
-
             shareWhatsApp() {
                 this.showShareMenu = false;
                 const text = `📊 *Reporte de Producción - El Manantial*\nTotal Litros: ${this.totalLiters.toLocaleString()} L\nPromedio por Vaca: ${this.avgLitersPerCow} L/día\nEnlace: ${window.location.href}`;
                 const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
                 window.open(whatsappUrl, '_blank');
             },
-
             shareEmail() {
                 this.showShareMenu = false;
                 const subject = 'Reporte de Producción - Finca El Manantial';
                 const body = `Hola,\n\nAquí tienes el resumen actual de la producción lechera:\n\n- Total Litros Mensuales: ${this.totalLiters.toLocaleString()} L\n- Promedio por Vaca: ${this.avgLitersPerCow} L/día\n- Proyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L\n\nPuedes ver el detalle completo en el sistema: ${window.location.href}`;
-                
                 try {
                     const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     window.location.href = mailtoUrl;
@@ -879,11 +965,9 @@
                     alert('No se pudo abrir el cliente de correo.');
                 }
             },
-
             exportPDF() {
                 window.print();
             },
-
             openMetricModal(type) {
                 if (type === 'liters') {
                     this.modalTitle = 'Total Litros Mensuales';
@@ -900,29 +984,14 @@
                 }
                 this.showModal = true;
             },
-            async fetchReports() {
-                try {
-                    const res = await fetch('/api/reports');
-                    const data = await res.json();
-                    this.totalLiters = data.totalLiters;
-                    this.avgLitersPerCow = data.avgLitersPerCow;
-                    this.projectionNextMonth = data.projectionNextMonth;
-                    this.chartData = data.chartData;
-                    this.ranking = data.ranking;
-                    this.records = data.records;
-                } catch (err) {
-                    console.error("Error fetching reports data", err);
-                } finally {
-                    this.$nextTick(() => {
-                        const bars = document.querySelectorAll('.custom-chart-bar');
-                        bars.forEach(bar => {
-                            const targetHeight = bar.style.height;
-                            bar.style.height = '0%';
-                            setTimeout(() => {
-                                bar.style.height = targetHeight;
-                            }, 100);
-                        });
-                    });
+            nextPage() {
+                if (this.currentPage < this.totalPages) {
+                    this.currentPage++;
+                }
+            },
+            prevPage() {
+                if (this.currentPage > 1) {
+                    this.currentPage--;
                 }
             },
             getChartBarHeight(liters) {
@@ -933,12 +1002,12 @@
                 return `${Math.max(10, pct)}%`;
             },
             getRankingPercentage(litersStr) {
-                if (!this.ranking || this.ranking.length === 0) return 0;
+                if (!this.calculatedRanking || this.calculatedRanking.length === 0) return 0;
                 const cleanLiters = (str) => {
                     let cleaned = String(str).replace(/\./g, '').replace(',', '.');
                     return parseFloat(cleaned) || 0;
                 };
-                const maxLiters = cleanLiters(this.ranking[0].liters);
+                const maxLiters = cleanLiters(this.calculatedRanking[0].liters);
                 if (maxLiters === 0) return 0;
                 const currentLiters = cleanLiters(litersStr);
                 return Math.round((currentLiters / maxLiters) * 100);
