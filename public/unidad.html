@@ -4,11 +4,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
+</head>
 <!-- Enlace al manifiesto de la PWA -->
 <link rel="manifest" href="/manifest.json">
-<!-- Hojas de estilos personalizadas de la carpeta css -->
-<link rel="stylesheet" href="css/custom.css">
-<link rel="stylesheet" href="css/input.css">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Respaldo local para funcionar sin internet -->
@@ -20,6 +18,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/input.css">
+<link rel="stylesheet" href="css/custom.css">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -160,13 +160,13 @@
         <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Panel Control</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role?.startsWith('Obrero'))" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('ordeno.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="ordeno.html">
         <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Registro Ordeño</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role?.startsWith('Obrero'))" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('unidad.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="unidad.html">
         <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
@@ -218,16 +218,16 @@
 <button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
- <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar" />
-     <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
- </a>
- </div>
- </header>
+  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
+    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
+    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+  </a>
+</div>
+</header>
 <div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
-    
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-    <div v-if="!loteSeleccionado">
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <div v-if="!loteSeleccionado" class="col-span-12">
         <div class="flex items-center justify-between mb-lg">
             <div>
                 <h1 class="font-headline-lg text-2xl font-bold text-[#154212] dark:text-[#10b981] mb-2"> Lotes De La Unidad </h1>
@@ -236,8 +236,7 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-            <!-- Lote A Visible para Administrador, Operario, Miguel (Obrero1) y Juan (Obrero2) -->
-            <div v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.email === 'miguel@elmanantial.com' || currentUser.email === 'juan@elmanantial.com')" class="bg-white dark:bg-[#162032] border border-slate-200 dark:border-[#162032] rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <div class="bg-white dark:bg-[#162032] border border-slate-200 dark:border-[#162032] rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300">
                 <div class="h-40 w-full relative">
                     <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=600&auto=format&fit=crop" alt="Lote A" />
                     <div class="absolute top-sm right-sm">
@@ -262,8 +261,7 @@
                 </div>
             </div>
             
-            <!-- Lote B Visible para Administrador, Operario, Pedro (Obrero3) y Luis (Obrero4) -->
-            <div v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.email === 'pedro@elmanantial.com' || currentUser.email === 'luis@elmanantial.com')" class="bg-white dark:bg-[#162032] border border-slate-200 dark:border-[#162032] rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <div class="bg-white dark:bg-[#162032] border border-slate-200 dark:border-[#162032] rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300">
                 <div class="h-40 w-full relative">
                     <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?q=80&w=600&auto=format&fit=crop" alt="Lote B" />
                     <div class="absolute top-sm right-sm">
@@ -290,14 +288,14 @@
         </div>
     </div>
 
-    <div v-else>
+    <div v-else class="col-span-12">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-4">
             <div>
                 <button @click="loteSeleccionado = null" class="flex items-center gap-2 text-[#154212] dark:text-[#10b981] hover:underline mb-2 font-label-md">
                     <span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Lotes
                 </button>
                 <h1 class="font-headline-lg text-2xl font-bold text-[#154212] dark:text-[#10b981]">Registro Del Lote {{ loteSeleccionado }}</h1>
-                <p class="font-body-md text-body-md text-slate-600 dark:text-[#94a3b8]">Listado detallado de las cabezas asignadas y su rendimiento lácteo.</p>
+                <p class="font-body-md text-body-md text-slate-600 dark:text-[#94a3b8]">Listado detallado de las 20 cabezas asignadas y su rendimiento lácteo.</p>
             </div>
         </div>
 
@@ -311,26 +309,38 @@
                             <th class="py-3 px-4">ID Animal</th>
                             <th class="py-3 px-4">Nombre</th>
                             <th class="py-3 px-4">Raza</th>
-                            <th class="py-3 px-4">Rendimiento (Lt)</th>
-                            <th class="py-3 px-4">Estado</th>
+                            <th class="py-3 px-4">Producción Total (Lt)</th>
+                            <th class="py-3 px-4">Estado (Semáforo)</th>
                             <th class="py-3 px-4 text-center">Historial</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200 dark:divide-[#162032] text-slate-800 dark:text-white font-body-sm">
-                        <tr v-for="(vaca, index) in listaVacas" :key="vaca.idAnimal" class="hover:bg-slate-50 dark:hover:bg-[#1e293b]/50 transition-colors">
+                        <tr v-for="(vaca, index) in listaVacas" :key="vaca.id" class="hover:bg-slate-50 dark:hover:bg-[#1e293b]/50 transition-colors">
                             <td class="py-3 px-4 text-slate-500 dark:text-[#94a3b8] font-bold">{{ index + 1 }}</td>
                             <td class="py-3 px-4">El Manantial</td>
-                            <td class="py-3 px-4 font-bold text-[#154212] dark:text-[#10b981]">{{ vaca.idAnimal }}</td>
-                            <td class="py-3 px-4">{{ vaca.nombre }}</td>
-                            <td class="py-3 px-4">{{ vaca.raza }}</td>
-                            <td class="py-3 px-4">{{ vaca.rendimiento }} Lt</td>
+                            <td class="py-3 px-4 font-bold text-[#154212] dark:text-[#10b981]">{{ vaca.id }}</td>
+                            <td class="py-3 px-4">{{ vaca.name }}</td>
+                            <td class="py-3 px-4">{{ vaca.breed }}</td>
+                            <td class="py-3 px-4">{{ vaca.productionTotal }} Lt</td>
                             <td class="py-3 px-4">
-                                <span class="px-2 py-1 rounded-full text-xs font-bold bg-[#154212]/10 dark:bg-[#10b981]/20 text-[#154212] dark:text-[#10b981]">
-                                    {{ vaca.estado }}
+                                <!-- Semáforo: Verde ((Semáforo)), Amarillo/Ámbar (Bajo Observación), Rojo (En Tratamiento) -->
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm"
+                                      :class="{
+                                          'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700': vaca.status === 'Saludable',
+                                          'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700': vaca.status === 'Bajo Observación',
+                                          'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700': vaca.status === 'En Tratamiento'
+                                      }">
+                                    <span class="w-2 h-2 rounded-full"
+                                          :class="{
+                                              'bg-emerald-500': vaca.status === 'Saludable',
+                                              'bg-amber-500': vaca.status === 'Bajo Observación',
+                                              'bg-rose-500': vaca.status === 'En Tratamiento'
+                                          }"></span>
+                                    {{ vaca.status }}
                                 </span>
                             </td>
                             <td class="py-3 px-4 text-center">
-                                <a :href="'historial.html?id=' + encodeURIComponent(vaca.idAnimal)" 
+                                <a :href="'historial.html?id=' + encodeURIComponent(vaca.id)" 
                                    class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-[#101727] hover:bg-[#154212] hover:text-white dark:hover:bg-[#10b981] dark:hover:text-[#0b0f19] text-[#154212] dark:text-[#10b981] transition-all border border-slate-200 dark:border-[#162032]"
                                    title="Ver Historial de la Vaca">
                                     <span class="material-symbols-outlined text-[18px]">chevron_right</span>
@@ -343,6 +353,7 @@
         </div>
     </div>
 
+</div>
 </div>
 </main>
 
@@ -437,115 +448,18 @@
           <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
           <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
         </a>
-       </template>
-       
-    <!-- Obrero1 Menu (Miguel Hernández - MH) -->
-    <template v-else-if="currentUser && currentUser.email === 'miguel@elmanantial.com'">
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('index.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="index.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
-          <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('ordeno.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="ordeno.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
-          <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('unidad.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="unidad.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
-          <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('usuarios.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="usuarios.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
-          <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-        </a>
     </template>
-    
-    <!-- Obrero2 Menu (Juan Rodríguez - JR) -->
-    <template v-else-if="currentUser && currentUser.email === 'juan@elmanantial.com'">
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('index.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="index.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
-          <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('ordeno.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="ordeno.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
-          <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('unidad.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="unidad.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
-          <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('usuarios.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="usuarios.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
-          <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-        </a>
-    </template>
-    
-    <!-- Obrero3 Menu (Pedro Rojas - PR) -->
-    <template v-else-if="currentUser && currentUser.email === 'pedro@elmanantial.com'">
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('index.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="index.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
-          <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('ordeno.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="ordeno.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
-          <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('unidad.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="unidad.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
-          <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('usuarios.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="usuarios.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
-          <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-        </a>
-    </template>
-    
-    <!-- Obrero4 Menu (Luis Berrios - LB) -->
-    <template v-else-if="currentUser && currentUser.email === 'luis@elmanantial.com'">
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('index.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="index.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
-          <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('ordeno.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="ordeno.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
-          <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('unidad.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="unidad.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
-          <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-        </a>
-        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-           :class="isActive('usuarios.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="usuarios.html">
-          <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
-          <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-        </a>
-    </template>
-    
 </nav>
 
 <script>
- // Registro del Service Worker para habilitar las funciones PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-                    .catch(err => console.log('Error al registrar el Service Worker:', err));
-            });
-        }
+    // Registro del Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+                .catch(err => console.error('Error al registrar el Service Worker:', err));
+        });
+    }
 
         const { createApp } = Vue;
         createApp({
@@ -555,7 +469,451 @@
                     showSidebar: false,
                     loteSeleccionado: null,
                     listaVacas: [],
-                    isDarkMode: true
+                    isDarkMode: true,
+                    todasLasVacas: [
+                        // --- ANIMALES BASE LOTE A ---
+                        {
+                            id: "#A-101",
+                            name: "Lucero",
+                            breed: "Carora",
+                            age: 4.0,
+                            weight: 460,
+                            status: "Saludable",
+                            productionTotal: 12450,
+                            lastVaccination: "10 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#A-102",
+                            name: "Mariposa",
+                            breed: "Holstein",
+                            age: 5.0,
+                            weight: 550,
+                            status: "En Tratamiento",
+                            productionTotal: 9200,
+                            lastVaccination: "14 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-103",
+                            name: "Gitana",
+                            breed: "Brahman",
+                            age: 3.5,
+                            weight: 500,
+                            status: "Bajo Observación",
+                            productionTotal: 6500,
+                            lastVaccination: "01 Oct 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#A-104",
+                            name: "Estrella",
+                            breed: "Pardo Suizo",
+                            age: 4.2,
+                            weight: 530,
+                            status: "Saludable",
+                            productionTotal: 8400,
+                            lastVaccination: "11 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-105",
+                            name: "Luna",
+                            breed: "Jersey",
+                            age: 3.0,
+                            weight: 440,
+                            status: "Saludable",
+                            productionTotal: 6100,
+                            lastVaccination: "19 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#A-106",
+                            name: "Paloma",
+                            breed: "Mestiza",
+                            age: 4.8,
+                            weight: 490,
+                            status: "Saludable",
+                            productionTotal: 7300,
+                            lastVaccination: "22 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-107",
+                            name: "Rosilla",
+                            breed: "Carora",
+                            age: 3.8,
+                            weight: 450,
+                            status: "Saludable",
+                            productionTotal: 6800,
+                            lastVaccination: "05 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#A-108",
+                            name: "Morena",
+                            breed: "Holstein",
+                            age: 5.5,
+                            weight: 570,
+                            status: "Saludable",
+                            productionTotal: 9600,
+                            lastVaccination: "12 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-109",
+                            name: "Margarita",
+                            breed: "Brahman",
+                            age: 4.1,
+                            weight: 510,
+                            status: "Saludable",
+                            productionTotal: 7100,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#A-110",
+                            name: "Princesa",
+                            breed: "Pardo Suizo",
+                            age: 3.9,
+                            weight: 520,
+                            status: "Saludable",
+                            productionTotal: 7900,
+                            lastVaccination: "25 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-111",
+                            name: "Flor",
+                            breed: "Jersey",
+                            age: 3.2,
+                            weight: 430,
+                            status: "Saludable",
+                            productionTotal: 5900,
+                            lastVaccination: "08 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#A-112",
+                            name: "Reina",
+                            breed: "Mestiza",
+                            age: 4.6,
+                            weight: 480,
+                            status: "Saludable",
+                            productionTotal: 7400,
+                            lastVaccination: "13 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-113",
+                            name: "Bonita",
+                            breed: "Carora",
+                            age: 3.5,
+                            weight: 465,
+                            status: "Saludable",
+                            productionTotal: 7100,
+                            lastVaccination: "17 Sep 2023",
+                            pregnancyStatus: "Confirmado (5m)"
+                        },
+                        {
+                            id: "#A-114",
+                            name: "Mora",
+                            breed: "Holstein",
+                            age: 5.1,
+                            weight: 560,
+                            status: "Saludable",
+                            productionTotal: 9100,
+                            lastVaccination: "21 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-115",
+                            name: "Canela",
+                            breed: "Brahman",
+                            age: 4.3,
+                            weight: 515,
+                            status: "Saludable",
+                            productionTotal: 7200,
+                            lastVaccination: "29 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#A-116",
+                            name: "Pinta",
+                            breed: "Pardo Suizo",
+                            age: 4.0,
+                            weight: 525,
+                            status: "Saludable",
+                            productionTotal: 8100,
+                            lastVaccination: "03 Oct 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-117",
+                            name: "Negrita",
+                            breed: "Jersey",
+                            age: 3.3,
+                            weight: 435,
+                            status: "Saludable",
+                            productionTotal: 6000,
+                            lastVaccination: "09 Sep 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#A-118",
+                            name: "Blanca",
+                            breed: "Mestiza",
+                            age: 4.7,
+                            weight: 495,
+                            status: "Saludable",
+                            productionTotal: 7500,
+                            lastVaccination: "15 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-119",
+                            name: "Perla",
+                            breed: "Carora",
+                            age: 3.6,
+                            weight: 460,
+                            status: "Saludable",
+                            productionTotal: 6900,
+                            lastVaccination: "20 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#A-120",
+                            name: "Esperanza",
+                            breed: "Holstein",
+                            age: 5.2,
+                            weight: 565,
+                            status: "Saludable",
+                            productionTotal: 9400,
+                            lastVaccination: "26 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        // --- LOTE B (Registros #B-201 al #B-220) ---
+                        {
+                            id: "#B-201",
+                            name: "Rosa",
+                            breed: "Carora",
+                            age: 3.7,
+                            weight: 455,
+                            status: "Saludable",
+                            productionTotal: 6700,
+                            lastVaccination: "11 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#B-202",
+                            name: "Hermosa",
+                            breed: "Holstein",
+                            age: 4.8,
+                            weight: 540,
+                            status: "Saludable",
+                            productionTotal: 8900,
+                            lastVaccination: "16 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-203",
+                            name: "Diamante",
+                            breed: "Brahman",
+                            age: 4.0,
+                            weight: 505,
+                            status: "Saludable",
+                            productionTotal: 7000,
+                            lastVaccination: "21 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#B-204",
+                            name: "Zamurita",
+                            breed: "Pardo Suizo",
+                            age: 4.3,
+                            weight: 535,
+                            status: "Saludable",
+                            productionTotal: 8300,
+                            lastVaccination: "27 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-205",
+                            name: "Gaviota",
+                            breed: "Jersey",
+                            age: 3.1,
+                            weight: 445,
+                            status: "Saludable",
+                            productionTotal: 6200,
+                            lastVaccination: "02 Oct 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#B-206",
+                            name: "Lucerito",
+                            breed: "Mestiza",
+                            age: 4.5,
+                            weight: 485,
+                            status: "Saludable",
+                            productionTotal: 7200,
+                            lastVaccination: "06 Oct 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-207",
+                            name: "Tormenta",
+                            breed: "Carora",
+                            age: 3.6,
+                            weight: 450,
+                            status: "Saludable",
+                            productionTotal: 6600,
+                            lastVaccination: "12 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#B-208",
+                            name: "Manea",
+                            breed: "Holstein",
+                            age: 5.0,
+                            weight: 555,
+                            status: "Saludable",
+                            productionTotal: 9000,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-209",
+                            name: "Consentida",
+                            breed: "Brahman",
+                            age: 4.2,
+                            weight: 510,
+                            status: "Saludable",
+                            productionTotal: 7300,
+                            lastVaccination: "24 Sep 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#B-210",
+                            name: "Altagracia",
+                            breed: "Pardo Suizo",
+                            age: 3.8,
+                            weight: 515,
+                            status: "Saludable",
+                            productionTotal: 7800,
+                            lastVaccination: "30 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-211",
+                            name: "Sombra",
+                            breed: "Jersey",
+                            age: 3.4,
+                            weight: 440,
+                            status: "Saludable",
+                            productionTotal: 6100,
+                            lastVaccination: "04 Oct 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#B-212",
+                            name: "Parda",
+                            breed: "Mestiza",
+                            age: 4.4,
+                            weight: 475,
+                            status: "Saludable",
+                            productionTotal: 7300,
+                            lastVaccination: "10 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-213",
+                            name: "Chiquinquirá",
+                            breed: "Carora",
+                            age: 3.9,
+                            weight: 470,
+                            status: "Saludable",
+                            productionTotal: 7200,
+                            lastVaccination: "14 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#B-214",
+                            name: "Lunaria",
+                            breed: "Holstein",
+                            age: 4.9,
+                            weight: 550,
+                            status: "Saludable",
+                            productionTotal: 8800,
+                            lastVaccination: "19 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-215",
+                            name: "Reliquia",
+                            breed: "Brahman",
+                            age: 4.1,
+                            weight: 500,
+                            status: "Saludable",
+                            productionTotal: 6900,
+                            lastVaccination: "25 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#B-216",
+                            name: "Pintada",
+                            breed: "Pardo Suizo",
+                            age: 3.8,
+                            weight: 520,
+                            status: "Saludable",
+                            productionTotal: 7900,
+                            lastVaccination: "01 Oct 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-217",
+                            name: "Pavita",
+                            breed: "Jersey",
+                            age: 3.2,
+                            weight: 425,
+                            status: "Saludable",
+                            productionTotal: 5900,
+                            lastVaccination: "07 Oct 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#B-218",
+                            name: "Milagrosa",
+                            breed: "Mestiza",
+                            age: 4.6,
+                            weight: 490,
+                            status: "Saludable",
+                            productionTotal: 7400,
+                            lastVaccination: "13 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-219",
+                            name: "Zamana",
+                            breed: "Carora",
+                            age: 3.5,
+                            weight: 455,
+                            status: "Saludable",
+                            productionTotal: 6800,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#B-220",
+                            name: "Florinda",
+                            breed: "Holstein",
+                            age: 5.1,
+                            weight: 560,
+                            status: "Saludable",
+                            productionTotal: 9200,
+                            lastVaccination: "23 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        }
+                    ]
                 };
             },
             mounted() {
@@ -563,7 +921,6 @@
                 if (userStr) {
                     try {
                         this.currentUser = JSON.parse(userStr);
-                        // Doble parsing de seguridad ante estructuras serializadas anidadas en PWA multi-dispositivo
                         if (typeof this.currentUser === 'string') {
                             this.currentUser = JSON.parse(this.currentUser);
                         }
@@ -579,18 +936,6 @@
                             this.currentUser.role = 'Veterinario';
                         } else if (this.currentUser.email === 'jose@elmanantial.com') {
                             this.currentUser.role = 'Operario';
-                        } else if (this.currentUser.email === 'miguel@elmanantial.com') {
-                            this.currentUser.role = 'Obrero1';
-                            this.currentUser.name = 'Miguel Hernández';
-                        } else if (this.currentUser.email === 'juan@elmanantial.com') {
-                            this.currentUser.role = 'Obrero2';
-                            this.currentUser.name = 'Juan Rodríguez';
-                        } else if (this.currentUser.email === 'pedro@elmanantial.com') {
-                            this.currentUser.role = 'Obrero3';
-                            this.currentUser.name = 'Pedro Rojas';
-                        } else if (this.currentUser.email === 'luis@elmanantial.com') {
-                            this.currentUser.role = 'Obrero4';
-                            this.currentUser.name = 'Luis Berrios';
                         } else if (this.currentUser.email === 'admin@elmanantial.com') {
                             this.currentUser.role = 'Administrador';
                         }
@@ -620,39 +965,8 @@
                     this.generarVacasLote(lote);
                 },
                 generarVacasLote(lote) {
-                    const razas = ['Carora', 'Holstein', 'Brahman', 'Pardo Suizo', 'Jersey', 'Mestiza'];
-                    const nombres = ['Lucero', 'Mariposa', 'Gitana', 'Estrella', 'Luna', 'Paloma', 'Rosilla', 'Morena', 'Bravia', 'Princesa', 'Flor', 'Reina', 'Gitana', 'Mora', 'Lucero', 'Pinta', 'Negra', 'Blanca', 'Perla', 'Esperanza'];
-                    
-                    let vacas = [];
-                    for (let i = 1; i <= 20; i++) {
-                        let idAnimal = `#${lote}-${100 + i}`;
-                        if(lote === 'B') {
-                            idAnimal = `#B-${200 + i}`;
-                        }
-                        
-                        vacas.push({
-                            idAnimal: idAnimal,
-                            nombre: nombres[(i - 1) % nombres.length] + ' ' + i,
-                            raza: razas[(i - 1) % razas.length],
-                            rendimiento: (12 + (i % 7)).toFixed(1),
-                            estado: 'Activa'
-                        });
-                    }
-
-                    // Filtrado seguro multiplataforma según credenciales de obreros:
-                    if (this.currentUser && this.currentUser.email) {
-                        if (this.currentUser.email === 'miguel@elmanantial.com' && lote === 'A') {
-                            vacas = vacas.slice(0, 10);
-                        } else if (this.currentUser.email === 'juan@elmanantial.com' && lote === 'A') {
-                            vacas = vacas.slice(10, 20);
-                        } else if (this.currentUser.email === 'pedro@elmanantial.com' && lote === 'B') {
-                            vacas = vacas.slice(0, 10);
-                        } else if (this.currentUser.email === 'luis@elmanantial.com' && lote === 'B') {
-                            vacas = vacas.slice(10, 20);
-                        }
-                    }
-
-                    this.listaVacas = vacas;
+                    const prefix = `#${lote}-`;
+                    this.listaVacas = this.todasLasVacas.filter(vaca => vaca.id.startsWith(prefix));
                 },
                 toggleTheme() {
                     this.isDarkMode = !this.isDarkMode;
@@ -674,5 +988,4 @@
             }
         }).mount('#app');
     </script>
-</body>
-</html>
+</body></html>
