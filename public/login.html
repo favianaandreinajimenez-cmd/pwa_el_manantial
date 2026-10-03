@@ -17,8 +17,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  
- <!-- Archivos CSS externos -->
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
   <script id="tailwind-config">
@@ -278,7 +276,7 @@
         html.dark ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
-    </style>
+  </style>
 </head>
 <body class="flex items-center justify-center p-4">
   <div id="app" class="w-full max-w-md bg-white border border-outline-variant/60 rounded-2xl shadow-xl p-8 text-center relative overflow-hidden">
@@ -306,9 +304,10 @@
     <form @submit.prevent="handleLogin" class="text-left space-y-5">
       <div>
         <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Correo Electrónico</label>
-        <div class="relative">
+        <div class="relative overflow-hidden rounded-xl">
           <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="mail">mail</span>
-          <input v-model="email" maxlength="32" required type="email" class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="admin@elmanantial.com"/>
+          <!-- Control estricto de límite de 27 caracteres idéntico al comportamiento de contraseña -->
+          <input v-model="email" @keydown="checkEmailLength" @input="enforceEmailLimit" maxlength="27" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required type="text" class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="admin@elmanantial.com"/>
         </div>
       </div>
 
@@ -343,28 +342,22 @@
           loading: false
         };
       },
-      mounted() {
-        const theme = localStorage.getItem('theme') || 'light';
-        this.isDarkMode = theme === 'dark';
-        if (this.isDarkMode) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        // Clear logged in user if they go to login page
-        localStorage.removeItem('loggedInUser');
-
-        // Registrar Service Worker para la PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service Worker registrado con éxito en login:', reg.scope))
-                    .catch(err => console.error('Error al registrar el Service Worker:', err));
-            });
-        }
-      },
       methods: {
+        // Bloqueo total de nuevas teclas si ya se llegó al límite exacto de 27 caracteres
+        checkEmailLength(e) {
+          if (this.email && this.email.length >= 27 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+          }
+        },
+        // Recorte inmediato tanto en la variable de Vue como directamente en el input nativo del DOM
+        enforceEmailLimit(e) {
+          if (this.email && this.email.length > 27) {
+            this.email = this.email.slice(0, 27);
+          }
+          if (e && e.target && e.target.value.length > 27) {
+            e.target.value = e.target.value.slice(0, 27);
+          }
+        },
         toggleTheme() {
             this.isDarkMode = !this.isDarkMode;
             if (this.isDarkMode) {
@@ -378,6 +371,12 @@
 
         async handleLogin() {
           this.errorMsg = '';
+
+          if (this.email.length > 27) {
+            this.errorMsg = 'El correo electrónico no debe exceder los 27 caracteres.';
+            return;
+          }
+
           this.loading = true;
           try {
             const res = await fetch('/api/login', {
@@ -420,43 +419,25 @@
           let email = this.email;
           let password = this.password;
 
-          // Normalize credentials for tests/alternate login aliases
+          // Normalize credentials for tests/alternate login
           if (email === 'operador1@elmanantial.com' && password === 'operador1') {
             email = 'jose@elmanantial.com';
             password = 'ope123';
-          } else if (email === 'obrero1@elmanantial.com' && password === 'obrero1') {
-            email = 'miguel@elmanantial.com';
-            password = 'obm123';
-          } else if (email === 'obrero2@elmanantial.com' && password === 'obrero2') {
-              email = 'juan@elmanantial.com';
-              password = 'obj123';
-          } else if (email === 'obrero3@elmanantial.com' && password === 'obrero3') {
-              email = 'pedro@elmanantial.com';
-              password = 'obp123';
-          } else if (email === 'obrero4@elmanantial.com' && password === 'obrero4') {
-              email = 'luis@elmanantial.com';
-              password = 'obl123';
+          } else if (email === 'operador2@elmanantial.com' && password === 'operador2') {
+            email = '';
           } else if (email === 'veterinario@elmanantial.com' && password === 'veterinario1') {
             password = 'vet123';
           }
 
-          // Total: 7 usuarios distribuidos en 4 roles (Administrador, Veterinario, Operario, Obrero)
           const fallbackUsers = [
-            { id: 1, name: "FranciscoMolina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "ADMIN" },
+            { id: 1, name: "Francisco Molina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "FM" },
             { id: 2, name: "Dra. Maria Mendoza", role: "Veterinario", status: "Activo", email: "veterinario@elmanantial.com", password: "vet123", avatar: "VET" },
             { id: 3, name: "Jose Sanchez", role: "Operario", status: "Activo", email: "jose@elmanantial.com", password: "ope123", avatar: "JS" },
-            { id: 4, name: "Miguel Hernández", role: "Obrero", status: "Activo", email: "miguel@elmanantial.com", password: "obm123", avatar: "MH" },
-            { id: 5, name: "Juan Rodríguez", role: "Obrero", status: "Activo", email: "juan@elmanantial.com", password: "obj123", avatar: "JR" },
-            { id: 6, name: "Pedro Rojas", role: "Obrero", status: "Activo", email: "pedro@elmanantial.com", password: "obp123", avatar: "PR" },
-            { id: 7, name: "Luis Berrios", role: "Obrero", status: "Activo", email: "luis@elmanantial.com", password: "obl123", avatar: "LB" }
           ];
 
           let usersList = fallbackUsers;
           const storedUsers = localStorage.getItem('localUsersData');
-          
-          if (!storedUsers) {
-            localStorage.setItem('localUsersData', JSON.stringify(fallbackUsers));
-          } else {
+          if (storedUsers) {
             try {
               usersList = JSON.parse(storedUsers);
             } catch (e) {
@@ -475,7 +456,6 @@
           } else {
             this.errorMsg = "Credenciales incorrectas (Modo Local)";
           }
-          this.loading = false;
         }
       }
     }).mount('#app');
