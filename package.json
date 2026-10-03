@@ -1,20 +1,12 @@
 {
-  "name": "@favianaandreinajimenez-cmd/pwa_el_manantial",
+  "name": "@favianaandreinajimenez-cmd/server",
   "version": "1.0.0",
-  "description": "el Manantial Production System",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
-  },
+  "description": "Server app that uses GitHub packages",
+  "main": "index.js",
+  "author": "Faviana Andreina Jimenez",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.19.2"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/favianaandreinajimenez-cmd/pwa_el_manantial.git"
+    "@favianaandreinajimenez-cmd/pwa_el_manantial": "1.0.0"
   }
 }
+
