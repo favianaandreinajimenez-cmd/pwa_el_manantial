@@ -4,10 +4,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-</head>
 <!-- Enlace al manifiesto de la PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#154212">
+
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Respaldo local para funcionar sin internet -->
@@ -16,11 +16,10 @@
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
-<!-- Archivos CSS externos -->
-<link rel="stylesheet" href="css/input.css">
-<link rel="stylesheet" href="css/custom.css">
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/input.css">
+<link rel="stylesheet" href="css/custom.css">
 <style>
         body { font-family: 'Hanken Grotesk', sans-serif; }
         .material-symbols-outlined {
@@ -370,7 +369,7 @@
         <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -388,7 +387,7 @@
         <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -441,15 +440,15 @@
 <main class="lg:ml-20 pt-16 pb-24 md:pb-8">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
-  <div class="flex items-center h-full min-w-0 flex-1">
-    <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
-      <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary flex items-center justify-center text-on-primary cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm">
-        <span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
-      </div>
+    <div class="flex items-center h-full min-w-0 flex-1">
+        <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
+                  <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-white dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active shadow-sm">
+                    <span class="material-symbols-outlined text-[#f8f9ff] dark:text-[#0b0f19]" data-icon="agriculture">agriculture</span>    
+                  </div>
+        </div>
+        <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
     </div>
-    <h2 class="font-headline-md text-base md:text-2xl font-bold text-primary ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
-  </div>
-<div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
+  <div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
   <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
     <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
   </button>
@@ -458,13 +457,13 @@
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
   <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-      <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar" />
-      <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
+    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
   </a>
-  </div>
-  </header>
-
+</div>
+</header>
 <div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
+    
 <!-- Header Section -->
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
 <div>
@@ -487,17 +486,17 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'CRÍTICO' ? '' : 'CRÍTICO')" :class="selectedStatusFilter === 'CRÍTICO' ? 'ring-2 ring-error border-transparent' : 'border-error/20 hover:border-error/50'" class="bg-error-container/20 p-6 rounded-xl border flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-on-error-container font-label-md text-label-md flex items-center gap-1">
-        <span class="material-symbols-outlined text-[16px]" data-icon="error">error</span> CRÍTICO
+    <div @click="selectedStatusFilter = (selectedStatusFilter === 'CRÍTICO' ? '' : 'CRÍTICO')" :class="selectedStatusFilter === 'CRÍTICO' ? 'ring-2 ring-error border-transparent' : 'border-outline-variant hover:border-error/50'" class="bg-rose-100/50 dark:bg-rose-950/40 p-6 rounded-xl border border-rose-300 dark:border-rose-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
+      <span class="text-rose-800 dark:text-rose-300 font-label-md text-label-md flex items-center gap-1">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> CRÍTICO
       </span>
-      <span class="text-4xl font-bold text-on-error-container mt-2">{{ String(criticalCount).padStart(2, '0') }}</span>
+      <span class="text-4xl font-bold text-rose-800 dark:text-rose-300 mt-2">{{ String(criticalCount).padStart(2, '0') }}</span>
     </div>
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'BAJO' ? '' : 'BAJO')" :class="selectedStatusFilter === 'BAJO' ? 'ring-2 ring-tertiary border-transparent' : 'border-tertiary/20 hover:border-tertiary/50'" class="bg-tertiary-container/10 p-6 rounded-xl border flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-tertiary font-label-md text-label-md flex items-center gap-1">
-        <span class="material-symbols-outlined text-[16px]" data-icon="warning">warning</span> BAJO
+    <div @click="selectedStatusFilter = (selectedStatusFilter === 'BAJO' ? '' : 'BAJO')" :class="selectedStatusFilter === 'BAJO' ? 'ring-2 ring-tertiary border-transparent' : 'border-outline-variant hover:border-tertiary/50'" class="bg-amber-100/50 dark:bg-amber-950/40 p-6 rounded-xl border border-amber-300 dark:border-amber-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
+      <span class="text-amber-800 dark:text-amber-300 font-label-md text-label-md flex items-center gap-1">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> BAJO
       </span>
-      <span class="text-4xl font-bold text-tertiary mt-2">{{ String(lowCount).padStart(2, '0') }}</span>
+      <span class="text-4xl font-bold text-amber-800 dark:text-amber-300 mt-2">{{ String(lowCount).padStart(2, '0') }}</span>
     </div>
   </div>
 </div>
@@ -527,10 +526,13 @@
 <td class="px-6 py-4 font-bold">{{ item.name }}</td>
 <td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
 <td class="px-6 py-4">
-<span :class="item.status === 'OK' ? 'bg-primary/10 text-primary' : (item.status === 'BAJO' ? 'bg-tertiary/10 text-tertiary' : 'bg-error/10 text-error')" class="px-3 py-1 rounded-full text-[12px] font-bold">{{ item.status }}</span>
+<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+  {{ item.status }}
+</span>
 </td>
 <td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="adjustStock(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
+<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
   <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </td>
@@ -562,10 +564,13 @@
 <td class="px-6 py-4 font-bold">{{ item.name }}</td>
 <td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
 <td class="px-6 py-4">
-<span :class="item.status === 'OK' ? 'bg-primary/10 text-primary' : (item.status === 'BAJO' ? 'bg-tertiary/10 text-tertiary' : 'bg-error/10 text-error')" class="px-3 py-1 rounded-full text-[12px] font-bold">{{ item.status }}</span>
+<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+  {{ item.status }}
+</span>
 </td>
 <td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="adjustStock(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
+<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
   <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </td>
@@ -597,10 +602,13 @@
 <td class="px-6 py-4 font-bold">{{ item.name }}</td>
 <td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
 <td class="px-6 py-4">
-<span :class="item.status === 'OK' ? 'bg-primary/10 text-primary' : (item.status === 'BAJO' ? 'bg-tertiary/10 text-tertiary' : 'bg-error/10 text-error')" class="px-3 py-1 rounded-full text-[12px] font-bold">{{ item.status }}</span>
+<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+  {{ item.status }}
+</span>
 </td>
 <td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="adjustStock(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
+<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
   <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </td>
@@ -619,7 +627,7 @@
       <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
       <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
       <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
@@ -629,7 +637,7 @@
   <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
   <span class="text-[10px] mt-0.5 leading-none">Finca</span>
 </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
       <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
@@ -676,7 +684,7 @@
 </div>
 <div class="grid grid-cols-2 gap-sm">
 <div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Stock Inicial</label>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
 <input v-model.number="newItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
 </div>
 <div>
@@ -693,175 +701,255 @@
 </div>
 </div>
 
-<script>
-        const { createApp } = Vue;
-        createApp({
-            data() {
-                return {
-                    isDarkMode: false,
-                    currentUser: null,
-                    showSidebar: false,
-                    items: [],
-                    showAddModal: false,
-                    selectedStatusFilter: '',
-                    newItem: {
-                        name: '',
-                        category: 'feed',
-                        stock: 0,
-                        unit: 'kg'
-                    }
-                };
-            },
-            computed: {
-                totalItems() {
-                    return this.items.length;
-                },
-                criticalCount() {
-                    return this.items.filter(i => i.status === 'CRÍTICO').length;
-                },
-                lowCount() {
-                    return this.items.filter(i => i.status === 'BAJO').length;
-                },
-                feedItems() {
-                    let res = this.items.filter(i => i.category === 'feed');
-                    if (this.selectedStatusFilter) {
-                        res = res.filter(i => i.status === this.selectedStatusFilter);
-                    }
-                    return res;
-                },
-                medicineItems() {
-                    let res = this.items.filter(i => i.category === 'medicine');
-                    if (this.selectedStatusFilter) {
-                        res = res.filter(i => i.status === this.selectedStatusFilter);
-                    }
-                    return res;
-                },
-                hygieneItems() {
-                    let res = this.items.filter(i => i.category === 'hygiene');
-                    if (this.selectedStatusFilter) {
-                        res = res.filter(i => i.status === this.selectedStatusFilter);
-                    }
-                    return res;
-                }
-            },
-            mounted() {
-                const theme = localStorage.getItem('theme') || 'light';
-                this.isDarkMode = theme === 'dark';
-                if (this.isDarkMode) {
-                    document.documentElement.classList.add('dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                }
+<!-- Adjust Item Modal -->
+<div v-if="showAdjustModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
+<h3 class="font-headline-md text-headline-md text-primary mb-md">Ajustar Artículo</h3>
+<form @submit.prevent="saveAdjustStock">
+<div class="space-y-base">
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
+<input v-model="adjustItem.name" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
+<input v-model.number="adjustItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
+<input v-model="adjustItem.unit" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-sm mt-lg">
+<button type="button" @click="showAdjustModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
+<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
+</div>
+</form>
+</div>
+</div>
 
-                const userStr = localStorage.getItem('loggedInUser');
-                if (userStr) {
-                    try {
-                        this.currentUser = JSON.parse(userStr);
-                        if (this.currentUser.status !== 'Activo') {
-                            localStorage.removeItem('loggedInUser');
-                            window.location.href = 'login.html';
-                            return;
-                        }
-                    } catch (e) {
+<script>
+    const { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                isDarkMode: false,
+                currentUser: null,
+                showSidebar: false,
+                items: [
+                    { id: 1, name: 'Concentrado Lechero 22%', category: 'feed', stock: 2450, unit: 'kg', status: 'BIEN' },
+                    { id: 2, name: 'Sales Minerales Premium', category: 'feed', stock: 45, unit: 'kg', status: 'BAJO' },
+                    { id: 3, name: 'Vacuna Antiaftosa (Frasco 50 ds)', category: 'medicine', stock: 2, unit: 'unidades', status: 'CRÍTICO' },
+                    { id: 4, name: 'Antibiótico Oxitetraciclina', category: 'medicine', stock: 12, unit: 'frascos', status: 'BIEN' },
+                    { id: 5, name: 'Sellador de Pezones (Post-ordeño)', category: 'hygiene', stock: 15, unit: 'galones', status: 'BAJO' }
+                ],
+                showAddModal: false,
+                showAdjustModal: false,
+                selectedStatusFilter: '',
+                newItem: {
+                    name: '',
+                    category: 'feed',
+                    stock: 0,
+                    unit: 'kg'
+                },
+                adjustItem: {
+                    id: null,
+                    name: '',
+                    stock: 0,
+                    unit: ''
+                }
+            };
+        },
+        computed: {
+            totalItems() {
+                return this.items.length;
+            },
+            criticalCount() {
+                return this.items.filter(i => i.status === 'CRÍTICO').length;
+            },
+            lowCount() {
+                return this.items.filter(i => i.status === 'BAJO').length;
+            },
+            feedItems() {
+                let res = this.items.filter(i => {
+                    const cat = (i.category || '').toLowerCase();
+                    return cat === 'feed' || cat.includes('alimento') || cat.includes('nutrición');
+                });
+                if (this.selectedStatusFilter) {
+                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                }
+                return res;
+            },
+            medicineItems() {
+                let res = this.items.filter(i => {
+                    const cat = (i.category || '').toLowerCase();
+                    return cat === 'medicine' || cat.includes('medicamento') || cat.includes('salud');
+                });
+                if (this.selectedStatusFilter) {
+                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                }
+                return res;
+            },
+            hygieneItems() {
+                let res = this.items.filter(i => {
+                    const cat = (i.category || '').toLowerCase();
+                    return cat === 'hygiene' || cat.includes('higiene') || cat.includes('suministro');
+                });
+                if (this.selectedStatusFilter) {
+                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                }
+                return res;
+            }
+        },
+        mounted() {
+            const theme = localStorage.getItem('theme') || 'light';
+            this.isDarkMode = theme === 'dark';
+            if (this.isDarkMode) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            const userStr = localStorage.getItem('loggedInUser');
+            if (userStr) {
+                try {
+                    this.currentUser = JSON.parse(userStr);
+                    if (this.currentUser.status !== 'Activo') {
                         localStorage.removeItem('loggedInUser');
                         window.location.href = 'login.html';
                         return;
                     }
-                } else {
+                } catch (e) {
+                    localStorage.removeItem('loggedInUser');
                     window.location.href = 'login.html';
                     return;
                 }
+            } else {
+                window.location.href = 'login.html';
+                return;
+            }
 
-                this.fetchItems();
+            this.fetchItems();
+        },
+        methods: {
+            toggleTheme() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode) {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                }
             },
-            methods: {
-                toggleTheme() {
-                    this.isDarkMode = !this.isDarkMode;
-                    if (this.isDarkMode) {
-                        document.documentElement.classList.add('dark');
-                        localStorage.setItem('theme', 'dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                        localStorage.setItem('theme', 'light');
-                    }
-                },
 
-                logout() {
-                    localStorage.removeItem('loggedInUser');
-                    window.location.href = 'login.html';
-                },
+            logout() {
+                localStorage.removeItem('loggedInUser');
+                window.location.href = 'login.html';
+            },
 
-                isActive(page) {
-                    const path = window.location.pathname;
-                    return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
-                },
-                async fetchItems() {
-                    try {
-                        const res = await fetch('/api/inventory');
-                        if (res.ok) {
-                            this.items = await res.json();
+            isActive(page) {
+                const path = window.location.pathname;
+                return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
+            },
+            async fetchItems() {
+                try {
+                    const res = await fetch('/api/inventory');
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (Array.isArray(data) && data.length > 0) {
+                            this.items = data;
                         }
-                    } catch (err) {
-                        console.error("Error fetching inventory", err);
                     }
-                },
-                async adjustStock(item) {
-                    if (!this.currentUser || (this.currentUser.role !== 'Administrador' && this.currentUser.role !== 'Veterinario')) {
-                        alert("No tienes permisos para realizar esta acción.");
-                        return;
-                    }
-                    const newStockStr = prompt(`Ingrese el nuevo stock para ${item.name} (Actual: ${item.stock} ${item.unit}):`, item.stock);
-                    if (newStockStr !== null) {
-                        const newStock = parseFloat(newStockStr);
-                        if (!isNaN(newStock) && newStock >= 0) {
-                            try {
-                                const res = await fetch(`/api/inventory/${item.id}/stock`, {
-                                    method: 'PUT',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ stock: newStock })
-                                });
-                                if (res.ok) {
-                                    const updated = await res.json();
-                                    item.stock = updated.stock;
-                                    item.status = updated.status;
-                                }
-                            } catch (err) {
-                                  console.error("Error adjusting stock", err);
+                } catch (err) {
+                    console.error("Usando respaldo local de inventario", err);
+                }
+            },
+            openAdjustModal(item) {
+                if (!this.currentUser || (this.currentUser.role !== 'Administrador' && this.currentUser.role !== 'Veterinario')) {
+                    alert("No tienes permisos para realizar esta acción.");
+                    return;
+                }
+                this.adjustItem = {
+                    id: item.id,
+                    name: item.name,
+                    stock: item.stock,
+                    unit: item.unit
+                };
+                this.showAdjustModal = true;
+            },
+            async saveAdjustStock() {
+                const newStock = parseFloat(this.adjustItem.stock);
+                if (!isNaN(newStock) && newStock >= 0) {
+                    const item = this.items.find(i => i.id === this.adjustItem.id);
+                    if (item) {
+                        try {
+                            const res = await fetch(`/api/inventory/${item.id}/stock`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ stock: newStock })
+                            });
+                            if (res.ok) {
+                                const updated = await res.json();
+                                item.stock = updated.stock;
+                                item.status = updated.status;
+                            } else {
+                                item.stock = newStock;
+                                item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
                             }
-                        } else {
-                            alert("Por favor ingrese un número válido mayor o igual a 0.");
+                        } catch (err) {
+                            item.stock = newStock;
+                            item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
                         }
                     }
-                },
-                async addItem() {
-                    try {
-                        const res = await fetch('/api/inventory', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(this.newItem)
+                    this.showAdjustModal = false;
+                } else {
+                    alert("Por favor ingrese un número válido mayor o igual a 0.");
+                }
+            },
+            async addItem() {
+                try {
+                    const res = await fetch('/api/inventory', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(this.newItem)
+                    });
+                    if (res.ok) {
+                        const created = await res.json();
+                        this.items.push(created);
+                    } else {
+                        this.items.push({
+                            id: Date.now(),
+                            ...this.newItem,
+                            status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
                         });
-                        if (res.ok) {
-                            const created = await res.json();
-                            this.items.push(created);
-                            this.showAddModal = false;
-                            this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
-                        }
-                    } catch (err) {
-                        console.error("Error adding item", err);
                     }
+                    this.showAddModal = false;
+                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
+                } catch (err) {
+                    this.items.push({
+                        id: Date.now(),
+                        ...this.newItem,
+                        status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
+                    });
+                    this.showAddModal = false;
+                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
                 }
             }
-        }).mount('#app');
-    </script>
+        }
+    }).mount('#app');
+</script>
 
-    <!-- Script para registrar el Service Worker de la PWA -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-            .catch(err => console.error('Error al registrar el Service Worker:', err));
-        });
-      }
-    </script>
-</body></html>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+        .catch(err => console.error('Error al registrar el Service Worker:', err));
+    });
+  }
+</script>
+</body>
+</html>
