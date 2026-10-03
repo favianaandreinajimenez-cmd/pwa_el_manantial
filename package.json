@@ -1,5 +1,5 @@
 {
-  "name": "pwa_el_manantial",
+  "name": "@favianaandreinajimenez-cmd/pwa_el_manantial",
   "version": "1.0.0",
   "description": "el Manantial Production System",
   "main": "server.js",
@@ -9,5 +9,12 @@
   },
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/favianaandreinajimenez-cmd/pwa_el_manantial.git"
   }
 }
