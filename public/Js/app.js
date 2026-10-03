@@ -31,4 +31,3 @@ function irA(vista) {
   // O si prefieres mantener la estructura con subcarpeta, asegúrate de que coincida con tu servidor:
   // window.location.href = `/public/${vista}`;
 }
-
