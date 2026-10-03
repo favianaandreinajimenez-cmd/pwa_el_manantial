@@ -4,20 +4,18 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-</head>
-<!-- Enlace al manifiesto de la PWA -->
-<link rel="manifest" href="/manifest.json">
+<!-- Scripts con respaldo local o CDN estándar -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<!-- Respaldo local para funcionar sin internet -->
+<script>
+    // Respaldo por si Vue o Tailwind no cargan offline en Spck Editor
+    if (typeof Vue === 'undefined') {
+        document.write('<script src="js/vue.global.js"><\/script>');
+    }
+</script>
 <script src="local-db-fallback.js"></script>
-<!-- Lógica de sincronización cuando vuelve la red -->
-<script src="js/sync.js"></script>
-<!-- Lógica general de la interfaz -->
-<script src="js/app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Archivos CSS externos -->
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
 <script id="tailwind-config">
@@ -174,8 +172,9 @@
         html.dark ::-webkit-scrollbar-thumb:hover { background: #10b981; }
     </style>
 </head>
-<body class="font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
-
+<body class="font-body-md text-body-md overflow-x-hidden text-on-surface">
+    <div id="app" class="contents">
+    
     <!-- Navigation Drawer Backdrop -->
     <div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
 
@@ -187,7 +186,7 @@
         </div>
         
         <nav class="flex-1 mt-4 px-2 overflow-y-auto custom-scrollbar flex flex-col gap-1">
-            <a v-if="currentUser && currentUser.role !== 'Obrero'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
+            <a v-if="currentUser" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
                :class="[
                  showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
                  isActive('index.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -196,19 +195,8 @@
                 <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
                 <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
             </a>
-
-            <!-- Obrero Desktop Nav Links (Only Inicio, Ordeño, Finca, Perfil) -->
-            <a v-if="currentUser && currentUser.role === 'Obrero'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
-               :class="[
-                 showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-                 isActive('index.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-               ]"
-               href="index.html">
-                <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-                <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Inicio</span>
-            </a>
             
-            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
+            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
                :class="[
                  showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
                  isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -218,7 +206,7 @@
                 <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
             </a>
             
-            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
+            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
                :class="[
                  showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
                  isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -300,17 +288,17 @@
 <button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
- <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar" />
-     <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
- </a>
- </div>
- </header>
+  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
+    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
+    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+  </a>
+</div>
+</header>
 
 <div class="px-margin-mobile md:px-margin-desktop py-6 max-w-[1600px] mx-auto">
 
- <!-- ADMINISTRATOR DASHBOARD VIEW -->
-     <div v-if="currentUser && currentUser.role === 'Administrador'">
+            <!-- ADMINISTRATOR DASHBOARD VIEW -->
+            <div v-if="currentUser && currentUser.role === 'Administrador'">
                 <div class="mb-base">
                     <h2 class="font-headline-lg text-headline-lg text-primary font-bold">Panel de Control</h2>
                     <p class="text-on-surface-variant font-body-md text-body-md">Resumen operativo para del Manantial</p>
@@ -318,8 +306,8 @@
                 
                 <div class="grid grid-cols-1 gap-md mt-md">
                     
-    <!-- Producción Total Hoy (Sola en una fila) -->
-         <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm w-full flex flex-col justify-between">
+                    <!-- Producción Total Hoy -->
+                    <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm w-full flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-start">
                                 <span class="text-primary font-label-lg text-label-lg">Producción Total Hoy</span>
@@ -346,7 +334,7 @@
                         </div>
                     </div>
 
-  <!-- Unidades Activas, Alertas y Salud del Rebaño -->
+                    <!-- Unidades Activas, Alertas de Stock y Salud del Rebaño -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
                         <!-- Unidades Activas -->
                         <a href="unidad.html" class="bg-primary-container text-on-primary-container p-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group active:scale-98 transition-transform">
@@ -363,11 +351,11 @@
                             </div>
                         </a>
 
-                        <!-- Alertas -->
+                        <!-- Alertas de Stock -->
                         <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm flex flex-col justify-between">
                             <div>
                                 <div class="flex justify-between items-start">
-                                    <span class="text-on-surface-variant font-label-lg text-label-lg">Alertas </span>
+                                    <span class="text-on-surface-variant font-label-lg text-label-lg">Alertas</span>
                                     <span class="material-symbols-outlined text-error" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
                                 </div>
                                 <div class="mt-base flex items-baseline gap-xs">
@@ -398,24 +386,23 @@
                         </div>
                     </div>
 
-                    <!-- TABLA: DETALLE DE ORDEÑO POR UNIDAD -->
+                    <!-- TABLA: DETALLE DE ORDEÑO POR UNIDAD (40 VACAS) -->
                     <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col w-full">
                         <div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
-                            <h3 class="font-headline-md text-headline-md text-primary">Detalle de Ordeño por Unidad (Total: 40 vacas)</h3>
+                            <h3 class="font-headline-md text-headline-md text-primary">Detalle de Ordeño por Unidad</h3>
                             <a href="ordeno.html" class="flex items-center gap-xs text-primary font-label-lg text-label-lg hover:underline">
                                 <span>Registrar</span>
                                 <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
                             </a>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
+                            <table class="w-full text-left border-collapse min-w-[700px]">
                                 <thead>
                                     <tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
                                         <th class="px-md py-3 font-semibold">Unidad</th>
                                         <th class="px-md py-3 font-semibold">ID Animal</th>
                                         <th class="px-md py-3 font-semibold">Nombre</th>
-                                        <th class="px-md py-3 font-semibold">Ubicación</th>
-                                        <th class="px-md py-3 font-semibold">Hora</th>
+                                        <th class="px-md py-3 font-semibold">Raza</th>
                                         <th class="px-md py-3 font-semibold text-right">Rendimiento (Lt)</th>
                                         <th class="px-md py-3 font-semibold">Estado</th>
                                     </tr>
@@ -423,25 +410,25 @@
                                 <tbody class="divide-y divide-outline-variant">
                                     <tr v-for="record in paginatedMilkingRecords" :key="record.id" class="hover:bg-surface-container-low transition-colors group">
                                         <td class="px-md py-4 font-data-tabular text-data-tabular font-bold">{{ record.unitName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalName.split('/')[0].replace('ID:', '').trim() || record.animalName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.animalName.split('/')[1] ? record.animalName.split('/')[1].trim() : '-' }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.location }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.time }}</td>
-                                        <td class="px-md py-4 text-right font-data-tabular text-data-tabular font-bold">{{ record.liters }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalId }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.name }}</td>
+                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.breed }}</td>
+                                        <td class="px-md py-4 text-right font-data-tabular text-data-tabular font-bold">{{ record.liters }} Lt</td>
                                         <td class="px-md py-4">
-                                            <span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d]' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
+                                            <span :class="record.status === 'VERIFICADO' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-emerald-950 dark:text-emerald-300' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
                                                 {{ record.status }}
                                             </span>
                                         </td>
                                     </tr>
                                     <tr v-if="milkingRecords.length === 0">
-                                        <td colspan="7" class="px-md py-8 text-center text-on-surface-variant italic">No hay registros de ordeño hoy.</td>
+                                        <td colspan="6" class="px-md py-8 text-center text-on-surface-variant italic">No hay registros de ordeño hoy.</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Paginación dinámica: 5 en móvil, 10 en PC -->
                         <div class="p-md bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
-                            <span class="text-sm text-on-surface-variant">Mostrando página {{ milkingPage }} de {{ maxMilkingPages }} ({{ pageSize }} por página)</span>
+                            <span class="text-sm text-on-surface-variant">Página {{ milkingPage }} de {{ maxMilkingPages }}</span>
                             <div class="flex gap-2">
                                 <button @click="milkingPage > 1 ? milkingPage-- : null" :disabled="milkingPage === 1" class="px-3 py-1 bg-surface-container border border-outline-variant rounded text-sm disabled:opacity-50 cursor-pointer">Anterior</button>
                                 <button @click="milkingPage < maxMilkingPages ? milkingPage++ : null" :disabled="milkingPage === maxMilkingPages" class="px-3 py-1 bg-primary text-on-primary rounded text-sm disabled:opacity-50 cursor-pointer">Siguiente</button>
@@ -461,6 +448,7 @@
                 <div class="grid grid-cols-1 gap-md mt-md">
                     
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+                        <!-- Salud del Rebaño -->
                         <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl shadow-sm flex flex-col justify-between text-center items-center">
                             <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm mb-2 text-primary">
                                 <span class="material-symbols-outlined text-2xl" data-icon="health_and_safety" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
@@ -476,6 +464,7 @@
                             </div>
                         </div>
 
+                        <!-- Próximos Controles -->
                         <div class="bg-primary-container text-on-primary-container p-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
                             <div class="absolute -right-4 -bottom-4 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
                                 <span class="material-symbols-outlined text-[80px]" data-icon="vaccines">vaccines</span>
@@ -487,6 +476,7 @@
                             <p class="text-body-sm opacity-90 mt-1 z-10">Vacunaciones agendadas.</p>
                         </div>
 
+                        <!-- En Tratamiento -->
                         <a href="salud.html" class="bg-white border border-outline-variant p-md rounded-xl shadow-sm flex flex-col justify-between hover:border-tertiary/50 transition-all cursor-pointer">
                             <div class="flex justify-between items-start">
                                 <span class="text-on-surface-variant font-label-lg text-label-lg">En Tratamiento</span>
@@ -499,6 +489,7 @@
                             <p class="text-body-sm text-on-surface-variant/80 mt-1">Monitoreo activo.</p>
                         </a>
 
+                        <!-- Bajo Observación -->
                         <a href="salud.html" class="bg-white border border-outline-variant p-md rounded-xl shadow-sm flex flex-col justify-between hover:border-amber-500/50 transition-all cursor-pointer">
                             <div class="flex justify-between items-start">
                                 <span class="text-on-surface-variant font-label-lg text-label-lg">Bajo Observación</span>
@@ -512,6 +503,7 @@
                         </a>
                     </div>
 
+                    <!-- Controles sanitarios pendientes -->
                     <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col w-full">
                         <div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
                             <h3 class="font-headline-md text-headline-md text-primary font-bold">Controles Sanitarios Pendientes</h3>
@@ -534,6 +526,7 @@
                         </div>
                     </div>
 
+                    <!-- Historial de eventos sanitarios -->
                     <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col w-full">
                         <div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
                             <h3 class="font-headline-md text-headline-md text-primary font-bold">Historial de Eventos de Salud</h3>
@@ -573,8 +566,8 @@
                 </div>
             </div>
 
-    <!-- OPERARIO DASHBOARD VIEW -->
-     <div v-else-if="currentUser && currentUser.role === 'Operario'">
+            <!-- OPERATOR DASHBOARD VIEW -->
+            <div v-else-if="currentUser && currentUser.role === 'Operario'">
                 <div class="mb-base">
                     <h2 class="font-headline-lg text-headline-lg text-primary font-bold">Panel de Control Operario</h2>
                     <p class="text-on-surface-variant font-body-md text-body-md">Monitoreo de producción y Finca</p>
@@ -609,12 +602,13 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                        <!-- Fincas Activas -->
                         <a href="unidad.html" class="bg-primary-container text-on-primary-container p-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:scale-[1.01] transition-all cursor-pointer">
                             <div class="absolute -right-4 -bottom-4 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
                                 <span class="material-symbols-outlined text-[100px]" data-icon="house_siding">house_siding</span>
                             </div>
                             <div class="z-10">
-                                <p class="font-label-lg text-label-lg uppercase tracking-wider opacity-80"> Unidades Activas</p>
+                                <p class="font-label-lg text-label-lg uppercase tracking-wider opacity-80">Fincas Activas</p>
                                 <div class="mt-base font-display-lg text-display-lg font-bold">{{ activeUnits }}</div>
                             </div>
                             <div class="z-10 flex items-center gap-xs font-body-sm text-body-sm mt-md">
@@ -623,6 +617,7 @@
                             </div>
                         </a>
 
+                        <!-- Estado de Stock -->
                         <a href="inventario.html" class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm flex flex-col justify-between hover:border-error/50 transition-all cursor-pointer">
                             <div>
                                 <div class="flex justify-between items-start">
@@ -634,27 +629,27 @@
                                     <span class="text-on-surface-variant font-label-md text-label-md">Críticos</span>
                                 </div>
                             </div>
-                            <p class="text-body-sm text-on-surface-variant/80 mt-2">Insumos y alimentos con nivel de nventario bajo.</p>
+                            <p class="text-body-sm text-on-surface-variant/80 mt-2">Insumos y alimentos con nivel de stock bajo.</p>
                         </a>
                     </div>
 
+                    <!-- TABLA: ÚLTIMOS REGISTROS DE ORDEÑO (40 VACAS) -->
                     <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col w-full">
                         <div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
-                            <h3 class="font-headline-md text-headline-md text-primary font-bold">Últimos Registros de Ordeño (Total: 40 vacas)</h3>
+                            <h3 class="font-headline-md text-headline-md text-primary font-bold">Últimos Registros de Ordeño</h3>
                             <a href="ordeno.html" class="flex items-center gap-xs text-primary font-label-lg text-label-lg hover:underline">
                                 <span>Registrar Ordeño</span>
                                 <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
                             </a>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
+                            <table class="w-full text-left border-collapse min-w-[700px]">
                                 <thead>
                                     <tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md border-b border-outline-variant">
                                         <th class="px-md py-3 font-semibold">Unidad</th>
                                         <th class="px-md py-3 font-semibold">ID Animal</th>
                                         <th class="px-md py-3 font-semibold">Nombre</th>
-                                        <th class="px-md py-3 font-semibold">Ubicación</th>
-                                        <th class="px-md py-3 font-semibold">Hora</th>
+                                        <th class="px-md py-3 font-semibold">Raza</th>
                                         <th class="px-md py-3 font-semibold text-right">Rendimiento (Lt)</th>
                                         <th class="px-md py-3 font-semibold">Estado</th>
                                     </tr>
@@ -662,25 +657,25 @@
                                 <tbody class="divide-y divide-outline-variant">
                                     <tr v-for="record in paginatedMilkingRecords" :key="record.id" class="hover:bg-surface-container-low transition-colors group">
                                         <td class="px-md py-4 font-data-tabular text-data-tabular font-bold">{{ record.unitName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalName.split('/')[0].replace('ID:', '').trim() || record.animalName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.animalName.split('/')[1] ? record.animalName.split('/')[1].trim() : '-' }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.location }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.time }}</td>
-                                        <td class="px-md py-4 text-right font-data-tabular text-data-tabular font-bold">{{ record.liters }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalId }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.name }}</td>
+                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.breed }}</td>
+                                        <td class="px-md py-4 text-right font-data-tabular text-data-tabular font-bold">{{ record.liters }} Lt</td>
                                         <td class="px-md py-4">
-                                            <span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d]' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
+                                            <span :class="record.status === 'VERIFICADO' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-emerald-950 dark:text-emerald-300' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
                                                 {{ record.status }}
                                             </span>
                                         </td>
                                     </tr>
                                     <tr v-if="milkingRecords.length === 0">
-                                        <td colspan="7" class="px-md py-8 text-center text-on-surface-variant italic">No hay registros de ordeño registrados hoy.</td>
+                                        <td colspan="6" class="px-md py-8 text-center text-on-surface-variant italic">No hay registros de ordeño registrados hoy.</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Paginación dinámica: 5 en móvil, 10 en PC -->
                         <div class="p-md bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
-                            <span class="text-sm text-on-surface-variant">Mostrando página {{ milkingPage }} de {{ maxMilkingPages }} ({{ pageSize }} por página)</span>
+                            <span class="text-sm text-on-surface-variant">Página {{ milkingPage }} de {{ maxMilkingPages }} ({{ pageSize }} por página de 40 vacas)</span>
                             <div class="flex gap-2">
                                 <button @click="milkingPage > 1 ? milkingPage-- : null" :disabled="milkingPage === 1" class="px-3 py-1 bg-surface-container border border-outline-variant rounded text-sm disabled:opacity-50 cursor-pointer">Anterior</button>
                                 <button @click="milkingPage < maxMilkingPages ? milkingPage++ : null" :disabled="milkingPage === maxMilkingPages" class="px-3 py-1 bg-primary text-on-primary rounded text-sm disabled:opacity-50 cursor-pointer">Siguiente</button>
@@ -689,181 +684,49 @@
                     </div>
                 </div>
             </div>
-
-            <!-- OBRERO DASHBOARD VIEW -->
-            <div v-else-if="currentUser && currentUser.role === 'Obrero'">
-                <div class="mb-base">
-                    <h2 class="font-headline-lg text-headline-lg text-primary font-bold">Panel de Control Obrero</h2>
-                    <p class="text-on-surface-variant font-body-md text-body-md">Monitores de tareas productivas
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 gap-md mt-md">
-                    
-                    <!-- Jornada Activa bienvenida -->
-                    <div class="bg-primary-container text-on-primary-container p-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
-                        <div class="absolute -right-4 -bottom-4 opacity-10">
-                            <span class="material-symbols-outlined text-[120px]" data-icon="engineering">engineering</span>
-                        </div>
-                        <div class="z-10">
-                            <p class="font-label-lg text-label-lg uppercase tracking-wider opacity-80">Jornada Activa</p>
-                            <h3 class="font-headline-md text-headline-md font-bold mt-1">Bienvenido, {{ currentUser.name }}</h3>
-                            <p class="text-body-md opacity-90 mt-2">Registrar las labores de ordeño diario o consultar el lote asignado</p>
-                        </div>
-                    </div>
-
-                    <!-- Producción Total Hoy (Específica para el Obrero y sus 10 vacas) con Gráfica -->
-                    <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm w-full flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start">
-                                <span class="text-primary font-label-lg text-label-lg">Producción Total Hoy</span>
-                                <span class="material-symbols-outlined text-primary-container" data-icon="water_drop" style="font-variation-settings: 'FILL' 1;">water_drop</span>
-                            </div>
-                            <div class="mt-base">
-                                <span class="font-display-lg text-display-lg text-primary font-bold">{{ workerTodayLiters }}</span>
-                                <span class="font-headline-md text-headline-md text-on-surface-variant ml-xs">Litros</span>
-                            </div>
-                        </div>
-                        <div class="mt-md h-28 lg:h-36 w-full relative">
-                            <svg class="w-full h-full overflow-visible" viewBox="0 0 400 100" preserveAspectRatio="none">
-                                <defs>
-                                    <linearGradient id="chartGradientObrero" x1="0" x2="0" y1="0" y2="1">
-                                        <stop offset="0%" stop-color="#154212" stop-opacity="0.2"></stop>
-                                        <stop offset="100%" stop-color="#154212" stop-opacity="0"></stop>
-                                    </linearGradient>
-                                </defs>
-                                <path d="M0,70 Q50,50 100,60 T200,30 T300,40 T400,15" fill="none" stroke="#154212" stroke-width="3"></path>
-                                <path d="M0,70 Q50,50 100,60 T200,30 T300,40 T400,15 L400,100 L0,100 Z" fill="url(#chartGradientObrero)"></path>
-                                <circle cx="400" cy="15" fill="#154212" r="4"></circle>
-                            </svg>
-                            <div class="absolute bottom-0 right-0 font-label-md text-label-md text-primary">Tus 10 vacas asignadas</div>
-                        </div>
-                    </div>
-
-                    <!-- TABLA: REGISTROS Específicos para las 10 vacas del Obrero -->
-                    <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col w-full">
-                        <div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
-                            <h3 class="font-headline-md text-headline-md text-primary font-bold"> Registos de Ordeño</h3>
-                            <a href="ordeno.html" class="flex items-center gap-xs text-primary font-label-lg text-label-lg hover:underline">
-                                <span>Nuevo Registro</span>
-                                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-                            </a>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md border-b border-outline-variant">
-                                        <th class="px-md py-3 font-semibold">Unidad</th>
-                                        <th class="px-md py-3 font-semibold">ID Animal</th>
-                                        <th class="px-md py-3 font-semibold">Nombre</th>
-                                        <th class="px-md py-3 font-semibold">Ubicación</th>
-                                        <th class="px-md py-3 font-semibold">Hora</th>
-                                        <th class="px-md py-3 font-semibold text-right">Rendimiento (Lt)</th>
-                                        <th class="px-md py-3 font-semibold">Estado</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-outline-variant">
-                                    <tr v-for="record in paginatedMilkingRecords" :key="record.id" class="hover:bg-surface-container-low transition-colors group">
-                                        <td class="px-md py-4 font-data-tabular text-data-tabular font-bold">{{ record.unitName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalName.split('/')[0].replace('ID:', '').trim() || record.animalName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.animalName.split('/')[1] ? record.animalName.split('/')[1].trim() : '-' }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.location }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.time }}</td>
-                                        <td class="px-md py-4 text-right font-data-tabular text-data-tabular font-bold">{{ record.liters }}</td>
-                                        <td class="px-md py-4">
-                                            <span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d]' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
-                                                {{ record.status }}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr v-if="milkingRecords.length === 0">
-                                        <td colspan="7" class="px-md py-8 text-center text-on-surface-variant italic">No hay registros de ordeño recientes para tus vacas asignadas.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="p-md bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
-                            <span class="text-sm text-on-surface-variant">Mostrando página {{ milkingPage }} de {{ maxMilkingPages }} ({{ pageSize }} por página)</span>
-                            <div class="flex gap-2">
-                                <button @click="milkingPage > 1 ? milkingPage-- : null" :disabled="milkingPage === 1" class="px-3 py-1 bg-surface-container border border-outline-variant rounded text-sm disabled:opacity-50 cursor-pointer">Anterior</button>
-                                <button @click="milkingPage < maxMilkingPages ? milkingPage++ : null" :disabled="milkingPage === maxMilkingPages" class="px-3 py-1 bg-primary text-on-primary rounded text-sm disabled:opacity-50 cursor-pointer">Siguiente</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </main>
 
     <!-- BottomNavBar Shell -->
     <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
-        <!-- OBRERO SPECIFIC BOTTOM NAV BAR (Inicio, Ordeño, Finca, Perfil) -->
-        <template v-if="currentUser && currentUser.role === 'Obrero'">
-            <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-                <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-            </a>
-            <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-                <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-            </a>
-            <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-                <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-            </a>
-            <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
-                <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-            </a>
-        </template>
-
-        <!-- STANDARD BOTTOM NAV BAR FOR OTHER ROLES -->
-        <template v-else>
-            <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-                <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-            </a>
-            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-                <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-            </a>
-            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-                <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-            </a>
-            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
-                <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
-            </a>
-            <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('salud.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') ? 'fill-icon' : ''" :style="isActive('salud.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
-                <span class="text-[10px] mt-0.5 leading-none">Salud</span>
-            </a>
-            <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
-                <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
-            </a>
-            <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
-               :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
-                <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
-                <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-            </a>
-        </template>
-    </nav>
-
-    <!-- Vue Script Logic -->
-    <script>
-        const { createApp } = Vue;
+        <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
+           :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
+            <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
+            <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
+        </a>
+        <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
+           :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
+            <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
+            <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
+        </a>
+        <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
+           :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
+            <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
+            <span class="text-[10px] mt-0.5 leading-none">Finca</span>
+        </a>
+        <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
+           :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
+            <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
+            <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
+        </a>
+        <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
+           :class="isActive('salud.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
+            <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') ? 'fill-icon' : ''" :style="isActive('salud.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
+            <span class="text-[10px] mt-0.5 leading-none">Salud</span>
+        </a>
+        <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
+           :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
+            <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
+            <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
+           :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
+            <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
+            <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
+         </a>
+       </nav>
+    </main>
+</div>
+ <script>
+      const { createApp } = Vue;
         createApp({
             data() {
                 return {
@@ -871,26 +734,19 @@
                     currentUser: null,
                     showSidebar: false,
                     todayLiters: 1248,
-                    workerTodayLiters: 312,
                     activeUnits: 14,
                     criticalStockAlerts: 3,
                     healthyPercentage: 98,
                     milkingRecords: [],
-                    inTreatment: 0,
-                    underObservation: 0,
-                    birthsThisMonth: 0,
+                    inTreatment: 2,
+                    underObservation: 1,
+                    birthsThisMonth: 3,
                     checkups: [],
                     animals: [],
                     healthEvents: [],
                     units: [],
                     milkingPage: 1,
-                    isDesktop: window.innerWidth >= 768,
-                    allUsers: [
-                        { id: 4, name: "Miguel Hernández", role: "Obrero", status: "Activo", email: "miguel@elmanantial.com", password: "obm123", avatar: "MH" },
-                        { id: 5, name: "Juan Rodríguez", role: "Obrero", status: "Activo", email: "juan@elmanantial.com", password: "obj123", avatar: "JR" },
-                        { id: 6, name: "Pedro Rojas", role: "Obrero", status: "Activo", email: "pedro@elmanantial.com", password: "obp123", avatar: "PR" },
-                        { id: 7, name: "Luis Berrios", role: "Obrero", status: "Activo", email: "luis@elmanantial.com", password: "obl123", avatar: "LB" }
-                    ]
+                    isDesktop: window.innerWidth >= 768
                 };
             },
             computed: {
@@ -908,6 +764,9 @@
             mounted() {
                 window.addEventListener('resize', () => {
                     this.isDesktop = window.innerWidth >= 768;
+                    if(this.milkingPage > this.maxMilkingPages) {
+                        this.milkingPage = 1;
+                    }
                 });
 
                 const theme = localStorage.getItem('theme') || 'light';
@@ -973,15 +832,6 @@
                 getRecentEvents() {
                     return this.healthEvents.slice(0, 5);
                 },
-                getWorkerAssignmentText() {
-                    if (!this.currentUser || this.currentUser.role !== 'Obrero') return '';
-                    const email = this.currentUser.email;
-                    if (email === 'miguel@elmanantial.com') return 'Lote A (Primeras 10 vacas)';
-                    if (email === 'juan@elmanantial.com') return 'Lote A (Últimas 10 vacas)';
-                    if (email === 'pedro@elmanantial.com') return 'Lote B (Primeras 10 vacas)';
-                    if (email === 'luis@elmanantial.com') return 'Lote B (Últimas 10 vacas)';
-                    return 'Lote Asignado';
-                },
                 async fetchData() {
                     if (!this.currentUser) return;
                     try {
@@ -1006,10 +856,9 @@
                                 this.todayLiters = data.todayLiters;
                                 this.activeUnits = data.activeUnits;
                                 this.criticalStockAlerts = data.criticalStockAlerts;
-                                this.milkingRecords = data.milkingRecords;
+                                this.milkingRecords = data.milkingRecords && data.milkingRecords.length > 0 ? data.milkingRecords : this.generateMock40Records();
                                 this.healthyPercentage = data.healthyPercentage;
                                 this.units = data.units || [];
-                                this.filterRecordsForWorker();
                             } else {
                                 this.localDashboardFallback();
                             }
@@ -1025,32 +874,51 @@
                         }
                     }
                 },
-                filterRecordsForWorker() {
-                    if (!this.currentUser || this.currentUser.role !== 'Obrero') return;
-                    const email = this.currentUser.email;
-                    let subset = [];
-                    let targetUnit = 'Lote A';
-                    
-                    if (email === 'miguel@elmanantial.com') {
-                        targetUnit = 'Lote A';
-                        subset = this.milkingRecords.filter(r => r.unitName === 'Lote A').slice(0, 10);
-                    } else if (email === 'juan@elmanantial.com') {
-                        targetUnit = 'Lote A';
-                        subset = this.milkingRecords.filter(r => r.unitName === 'Lote A').slice(10, 20);
-                    } else if (email === 'pedro@elmanantial.com') {
-                        targetUnit = 'Lote B';
-                        subset = this.milkingRecords.filter(r => r.unitName === 'Lote B').slice(0, 10);
-                    } else if (email === 'luis@elmanantial.com') {
-                        targetUnit = 'Lote B';
-                        subset = this.milkingRecords.filter(r => r.unitName === 'Lote B').slice(10, 20);
-                    }
-                    
-                    if (subset.length === 0 && this.milkingRecords.length > 0) {
-                        subset = this.milkingRecords.slice(0, 10);
-                    }
-                    
-                    this.milkingRecords = subset;
-                    this.workerTodayLiters = subset.reduce((acc, curr) => acc + (parseFloat(curr.liters) || 0), 0).toFixed(1);
+                generateMock40Records() {
+                    return [
+                        // --- LOTE A ---
+                        { id: 1, date: "2026-05-23", animalId: "#A-101", name: "Lucero", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "06:00 AM", liters: 34.5, status: "VERIFICADO" },
+                        { id: 2, date: "2026-05-23", animalId: "#A-102", name: "Mariposa", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "06:08 AM", liters: 38.2, status: "VERIFICADO" },
+                        { id: 3, date: "2026-05-23", animalId: "#A-103", name: "Gitana", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "06:15 AM", liters: 29.0, status: "VERIFICADO" },
+                        { id: 4, date: "2026-05-23", animalId: "#A-104", name: "Estrella", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "06:22 AM", liters: 33.6, status: "VERIFICADO" },
+                        { id: 5, date: "2026-05-23", animalId: "#A-105", name: "Luna", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "06:30 AM", liters: 28.4, status: "VERIFICADO" },
+                        { id: 6, date: "2026-05-23", animalId: "#A-106", name: "Paloma", breed: "Mestiza", unitName: "Lote A", shift: "Mañana", time: "06:37 AM", liters: 31.1, status: "VERIFICADO" },
+                        { id: 7, date: "2026-05-23", animalId: "#A-107", name: "Rosilla", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "06:45 AM", liters: 30.2, status: "VERIFICADO" },
+                        { id: 8, date: "2026-05-23", animalId: "#A-108", name: "Morena", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "06:52 AM", liters: 39.5, status: "VERIFICADO" },
+                        { id: 9, date: "2026-05-23", animalId: "#A-109", name: "Margarita", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "07:00 AM", liters: 31.8, status: "VERIFICADO" },
+                        { id: 10, date: "2026-05-23", animalId: "#A-110", name: "Princesa", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "07:07 AM", liters: 35.0, status: "VERIFICADO" },
+                        { id: 11, date: "2026-05-23", animalId: "#A-111", name: "Flor", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "07:15 AM", liters: 27.6, status: "VERIFICADO" },
+                        { id: 12, date: "2026-05-23", animalId: "#A-112", name: "Reina", breed: "Mestiza", unitName: "Lote A", shift: "Mañana", time: "07:22 AM", liters: 32.4, status: "VERIFICADO" },
+                        { id: 13, date: "2026-05-23", animalId: "#A-113", name: "Bonita", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "07:30 AM", liters: 31.0, status: "VERIFICADO" },
+                        { id: 14, date: "2026-05-23", animalId: "#A-114", name: "Mora", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "07:37 AM", liters: 37.9, status: "VERIFICADO" },
+                        { id: 15, date: "2026-05-23", animalId: "#A-115", name: "Canela", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "07:45 AM", liters: 31.5, status: "VERIFICADO" },
+                        { id: 16, date: "2026-05-23", animalId: "#A-116", name: "Pinta", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "07:52 AM", liters: 34.2, status: "VERIFICADO" },
+                        { id: 17, date: "2026-05-23", animalId: "#A-117", name: "Negrita", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "08:00 AM", liters: 28.0, status: "VERIFICADO" },
+                        { id: 18, date: "2026-05-23", animalId: "#A-118", name: "Blanca", breed: "Mestiza", unitName: "Lote A", shift: "Mañana", time: "08:07 AM", liters: 33.1, status: "VERIFICADO" },
+                        { id: 19, date: "2026-05-23", animalId: "#A-119", name: "Perla", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "08:15 AM", liters: 30.4, status: "VERIFICADO" },
+                        { id: 20, date: "2026-05-23", animalId: "#A-120", name: "Esperanza", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "08:22 AM", liters: 38.8, status: "VERIFICADO" },
+                        // --- LOTE B ---
+                        { id: 21, date: "2026-05-23", animalId: "#B-201", name: "Rosa", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "08:35 AM", liters: 29.8, status: "VERIFICADO" },
+                        { id: 22, date: "2026-05-23", animalId: "#B-202", name: "Hermosa", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "08:42 AM", liters: 37.1, status: "VERIFICADO" },
+                        { id: 23, date: "2026-05-23", animalId: "#B-203", name: "Diamante", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "08:50 AM", liters: 31.2, status: "VERIFICADO" },
+                        { id: 24, date: "2026-05-23", animalId: "#B-204", name: "Zamurita", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "08:57 AM", liters: 34.0, status: "VERIFICADO" },
+                        { id: 25, date: "2026-05-23", animalId: "#B-205", name: "Gaviota", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "09:05 AM", liters: 28.5, status: "VERIFICADO" },
+                        { id: 26, date: "2026-05-23", animalId: "#B-206", name: "Lucerito", breed: "Mestiza", unitName: "Lote B", shift: "Mañana", time: "09:12 AM", liters: 32.0, status: "VERIFICADO" },
+                        { id: 27, date: "2026-05-23", animalId: "#B-207", name: "Tormenta", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "09:20 AM", liters: 29.5, status: "VERIFICADO" },
+                        { id: 28, date: "2026-05-23", animalId: "#B-208", name: "Manea", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "09:27 AM", liters: 38.0, status: "VERIFICADO" },
+                        { id: 29, date: "2026-05-23", animalId: "#B-209", name: "Consentida", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "09:35 AM", liters: 32.2, status: "VERIFICADO" },
+                        { id: 30, date: "2026-05-23", animalId: "#B-210", name: "Altagracia", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "09:42 AM", liters: 34.6, status: "VERIFICADO" },
+                        { id: 31, date: "2026-05-23", animalId: "#B-211", name: "Sombra", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "09:50 AM", liters: 27.9, status: "VERIFICADO" },
+                        { id: 32, date: "2026-05-23", animalId: "#B-212", name: "Parda", breed: "Mestiza", unitName: "Lote B", shift: "Mañana", time: "09:57 AM", liters: 32.1, status: "VERIFICADO" },
+                        { id: 33, date: "2026-05-23", animalId: "#B-213", name: "Chiquinquirá", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "10:05 AM", liters: 31.8, status: "VERIFICADO" },
+                        { id: 34, date: "2026-05-23", animalId: "#B-214", name: "Lunaria", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "10:12 AM", liters: 36.9, status: "VERIFICADO" },
+                        { id: 35, date: "2026-05-23", animalId: "#B-215", name: "Reliquia", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "10:20 AM", liters: 30.5, status: "VERIFICADO" },
+                        { id: 36, date: "2026-05-23", animalId: "#B-216", name: "Pintada", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "10:27 AM", liters: 34.3, status: "VERIFICADO" },
+                        { id: 37, date: "2026-05-23", animalId: "#B-217", name: "Pavita", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "10:35 AM", liters: 27.8, status: "VERIFICADO" },
+                        { id: 38, date: "2026-05-23", animalId: "#B-218", name: "Milagrosa", breed: "Mestiza", unitName: "Lote B", shift: "Mañana", time: "10:42 AM", liters: 32.7, status: "VERIFICADO" },
+                        { id: 39, date: "2026-05-23", animalId: "#B-219", name: "Zamana", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "10:50 AM", liters: 30.1, status: "VERIFICADO" },
+                        { id: 40, date: "2026-05-23", animalId: "#B-220", name: "Florinda", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "10:57 AM", liters: 38.5, status: "VERIFICADO" }
+                    ];
                 },
                 localDashboardFallback() {
                     const role = this.currentUser ? this.currentUser.role : 'Administrador';
@@ -1061,38 +929,21 @@
                         this.underObservation = 1;
                         this.birthsThisMonth = 3;
                         this.checkups = [
-                            { id: 1, title: "Vacunación Aftosa", target: "Lote 04 - Corrales Norte", priority: "Urgente", date: "24 Oct", completed: false },
-                            { id: 2, title: "Control de Mastitis", target: "Grupo Producción A", priority: "Programado", date: "27 Oct", completed: false },
-                            { id: 3, title: "Chequeo Prenatal", target: "Vaca ID: #L-402", priority: "Programado", date: "02 Nov", completed: false }
+                            { id: 1, title: "Vacunación Aftosa", target: "Lote A", priority: "Urgente", date: "24 May", completed: false },
+                            { id: 2, title: "Control de Mastitis", target: "Lote B", priority: "Programado", date: "27 May", completed: false },
+                            { id: 3, title: "Chequeo Prenatal", target: "Vaca ID: #A-102", priority: "Programado", date: "02 Jun", completed: false }
                         ];
                         this.healthEvents = [
-                            { id: 1, animalId: "L-402", type: "Vacunación", details: "Aftosa (Lote: #AFT-2023-09)", veterinarian: "Dra. Mendoza", date: "15 Oct 2023" },
-                            { id: 2, animalId: "J-115", type: "Tratamiento", details: "Mastitis Leve (Cefalexina - 5 días)", veterinarian: "Dra. Mendoza", date: "22 Ago 2023" },
-                            { id: 3, animalId: "G-089", type: "Parto", details: "Cría Hembra (L-455) - Parto natural", veterinarian: "Dr. Rivas", date: "10 Jun 2023" }
+                            { id: 1, animalId: "#B-220", type: "Vacunación", details: "Aftosa (Lote: #AFT-2026-05)", veterinarian: "Dra. Mendoza", date: "15 May 2026" },
+                            { id: 2, animalId: "#A-105", type: "Tratamiento", details: "Mastitis Leve (Cefalexina - 5 días)", veterinarian: "Dra. Mendoza", date: "22 Abr 2026" },
+                            { id: 3, animalId: "#A-102", type: "Parto", details: "Cría Hembra (#A-121) - Parto natural", veterinarian: "Dra. Mendoza", date: "10 Mar 2026" }
                         ];
                     } else {
                         this.todayLiters = 1248;
                         this.activeUnits = 14;
                         this.criticalStockAlerts = 3;
                         this.healthyPercentage = 98;
-                        
-                        const mockRecords = [];
-                        const unitsList = ["Lote A", "Lote B"];
-                        const namesList = ["Gitana", "Rosaura", "Lucero", "Estrella", "Margarita", "Luna", "Paloma", "Gaviota", "Clavel", "Bella"];
-                        for(let i = 1; i <= 40; i++) {
-                            mockRecords.push({
-                                id: i,
-                                unitName: i <= 20 ? "Lote A" : "Lote B",
-                                animalName: `ID: #${i < 10 ? '0' + i : i} / ${namesList[i % namesList.length]}`,
-                                location: i % 2 === 0 ? "Zona Norte" : "Corral Principal",
-                                time: `06:${(10 + i) % 50} AM`,
-                                liters: parseFloat((25 + (i * 1.5) % 15).toFixed(1)),
-                                status: i % 7 === 0 ? "PENDIENTE" : "VERIFICADO",
-                                date: "2026-05-23"
-                            });
-                        }
-                        this.milkingRecords = mockRecords;
-                        this.filterRecordsForWorker();
+                        this.milkingRecords = this.generateMock40Records();
                     }
                 },
                 animateChart() {
@@ -1107,7 +958,22 @@
                     }
                 }
             }
+        
         }).mount('#app');
+    </script>
+    <!-- Registro del Service Worker para la PWA de El Manantial fuera de la instancia de Vue -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado exitosamente con alcance:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Fallo en el registro del Service Worker:', error);
+                    });
+            });
+        }
     </script>
 </body>
 </html>
