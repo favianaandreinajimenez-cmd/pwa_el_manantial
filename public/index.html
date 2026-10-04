@@ -254,6 +254,9 @@
                  isActive('usuarios.html') ? 'bg-primary-container text-on-primary-container font-bold' : ''
                ]">
                 <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User avatar" class="w-10 h-10 min-w-[40px] rounded-full bg-secondary-container object-cover" :src="currentUser.avatar"/>
+                <div v-else-if="currentUser && currentUser.role === 'Veterinario'" class="w-10 h-10 min-w-[40px] rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
+                    VET
+                </div>
                 <div v-else class="w-10 h-10 min-w-[40px] rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
                     {{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}
                 </div>
@@ -290,6 +293,7 @@
   </button>
   <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
+    <span v-else-if="currentUser && currentUser.role === 'Veterinario'">VET</span>
     <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
   </a>
 </div>
