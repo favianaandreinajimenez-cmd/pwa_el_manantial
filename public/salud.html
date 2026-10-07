@@ -422,7 +422,7 @@
      ]">
     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User avatar" class="w-10 h-10 min-w-[40px] rounded-full bg-secondary-container object-cover" :src="currentUser.avatar"/>
     <div v-else class="w-10 h-10 min-w-[40px] rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
-      {{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}
+      {{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}
     </div>
     <div :class="showSidebar ? 'opacity-100 max-w-[120px] ml-2' : 'opacity-0 max-w-0 overflow-hidden lg:hidden'" class="transition-all duration-300 ease-in-out whitespace-nowrap">
       <p class="font-label-lg text-label-lg truncate font-bold" :class="isActive('usuarios.html') ? 'text-on-primary-container' : 'text-on-surface'">{{ currentUser ? currentUser.name : 'User' }}</p>
@@ -439,11 +439,11 @@
 <main class="lg:ml-20 pt-16 pb-24 md:pb-8">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
-    <div class="flex items-center h-full min-w-0 flex-1">
-        <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
-                  <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-white dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active shadow-sm">
-                    <span class="material-symbols-outlined text-[#f8f9ff] dark:text-[#0b0f19]" data-icon="agriculture">agriculture</span>    
-                  </div>
+<div class="flex items-center h-full min-w-0 flex-1">
+    <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
+        <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-[#f8f9ff] dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm overflow-hidden p-1">
+            <img src="imagenes/icono_logo.svg" alt="Logo" class="w-full h-full object-contain dark:brightness-0 dark:invert-[0.05]" />
+        </div>
         </div>
         <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
     </div>
@@ -457,7 +457,7 @@
   </button>
   <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+    <span v-else>{{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}</span>
   </a>
 </div>
 </header>
