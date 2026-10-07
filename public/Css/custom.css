@@ -1,4 +1,4 @@
-/* =================================================================ate
+/* =================================================================
    ESTILOS PERSONALIZADOS - EL MANANTIAL (PWA)
    Inspiración: Material Design 3 & Tailwind CSS
    =================================================================== */
@@ -89,4 +89,17 @@ html.dark .manantial-card {
   color: var(--color-error);
   border-radius: 0.5rem;
   padding: 1rem;
+}
+
+/* 6. Corrección para elementos SVG y objetos (Elimina fondos blancos no deseados) */
+object, svg {
+  background-color: transparent !important;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.manantial-card object,
+.manantial-card svg {
+  background: transparent !important;
 }
