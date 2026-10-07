@@ -276,6 +276,10 @@
         html.dark ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
+        /* Filtro CSS para convertir el SVG al color #0b0f19 en modo oscuro */
+        html.dark .logo-dark-filter {
+            filter: brightness(0) saturate(100%) invert(3%) sepia(21%) saturate(2200%) hue-rotate(190deg) brightness(95%) contrast(98%);
+        }
   </style>
 </head>
 <body class="flex items-center justify-center p-4">
@@ -288,8 +292,8 @@
     <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
 
     <div class="mb-8">
-      <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary mx-auto mb-4 shadow-md">
-        <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">agriculture</span>
+      <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary mx-auto mb-4 shadow-md overflow-hidden p-2">
+        <img src="imagenes/icono_logo.svg" alt="Logo El Manantial" class="w-full h-full object-contain logo-dark-filter" />
       </div>
       <h2 class="font-display text-2xl font-bold text-primary">El Manantial</h2>
       <p class="text-on-surface-variant text-sm mt-1">Gestión de Producción Láctea</p>
@@ -430,7 +434,7 @@
           }
 
           const fallbackUsers = [
-            { id: 1, name: "Francisco Molina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "FM" },
+            { id: 1, name: "Francisco Molina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "F" },
             { id: 2, name: "Dra. Maria Mendoza", role: "Veterinario", status: "Activo", email: "veterinario@elmanantial.com", password: "vet123", avatar: "VET" },
             { id: 3, name: "Jose Sanchez", role: "Operario", status: "Activo", email: "jose@elmanantial.com", password: "ope123", avatar: "JS" },
           ];
