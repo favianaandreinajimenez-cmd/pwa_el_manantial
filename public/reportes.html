@@ -609,29 +609,29 @@
 </div>
 </div>
 <div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
+<table class="w-full text-center border-collapse">
 <thead>
 <tr class="bg-surface-container-low dark:bg-[#101726] text-on-surface dark:text-white font-label-lg text-label-lg">
-<th class="px-md py-4 border-b border-outline-variant">Fecha</th>
-<th class="px-md py-4 border-b border-outline-variant">ID Animal</th>
-<th class="px-md py-4 border-b border-outline-variant">Nombre</th>
-<th class="px-md py-4 border-b border-outline-variant">Lote</th>
-<th class="px-md py-4 border-b border-outline-variant">Turno</th>
-<th class="px-md py-4 border-b border-outline-variant">Hora</th>
-<th class="px-md py-4 border-b border-outline-variant">Litros</th>
-<th class="px-md py-4 border-b border-outline-variant">Estado</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">Fecha</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">ID Animal</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">Nombre</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">Lote</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">Turno</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">Hora</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">Litros</th>
+<th class="px-md py-4 border-b border-outline-variant text-center">Estado</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant font-data-tabular text-data-tabular">
 <tr v-for="record in paginatedRecords" :key="record.animalId" class="hover:bg-surface-container-low transition-colors">
-<td class="px-md py-4">{{ record.date }}</td>
-<td class="px-md py-4 font-bold">{{ record.animalId }}</td>
-<td class="px-md py-4">{{ record.name }}</td>
-<td class="px-md py-4">{{ record.unitName }}</td>
-<td class="px-md py-4">{{ record.shift }}</td>
-<td class="px-md py-4">{{ record.time }}</td>
-<td class="px-md py-4 font-bold">{{ record.liters }} L</td>
-<td class="px-md py-4">
+<td class="px-md py-4 text-center">{{ record.date }}</td>
+<td class="px-md py-4 font-bold text-center">{{ record.animalId }}</td>
+<td class="px-md py-4 text-center">{{ record.name }}</td>
+<td class="px-md py-4 text-center">{{ record.unitName }}</td>
+<td class="px-md py-4 text-center">{{ record.shift }}</td>
+<td class="px-md py-4 text-center">{{ record.time }}</td>
+<td class="px-md py-4 font-bold text-center">{{ record.liters }} L</td>
+<td class="px-md py-4 text-center">
 <span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-[#064e3b] dark:text-[#a7f3d0]' : 'bg-error-container text-on-error-container'" class="px-2 py-1 rounded-full text-label-md font-bold">{{ record.status }}</span>
 </td>
 </tr>
@@ -717,8 +717,9 @@ Siguiente
                         <div class="flex justify-around text-xs text-black font-bold pt-1 border-t border-gray-200">
                             <span v-for="point in chartData" :key="'lbl-'+point.day">{{ point.day }}</span>
                         </div>
+                        <!-- Resumen exacto de 6 líneas -->
                         <p class="text-[11px] text-black font-bold mt-2 leading-relaxed">
-                            Resumen de Producción Diaria: Durante los últimos 7 días analizados, la finca ha mantenido una curva de ordeño ascendente y estable, registrando un volumen diario promedio de 1.232 litros. El pico máximo de la semana se alcanzó en el día 6 con 1.350 litros recolectados.
+                            Resumen de Producción Diaria: Durante los últimos siete días analizados, la finca ha mantenido una curva de ordeño ascendente y sumamente estable. Se registró un volumen diario promedio óptimo de mil doscientos treinta y dos litros. El pico máximo de recolección semanal se alcanzó con éxito en el día seis. Esto evidencia una excelente respuesta nutricional del ganado en pastoreo. Los controles garantizan la máxima eficiencia operativa y rentabilidad.
                         </p>
                     </div>
                 </section>
@@ -726,7 +727,7 @@ Siguiente
                 <section class="flex flex-col gap-2">
                     <h4 class="text-sm font-bold text-black font-pdf-title text-left">Ranking de Unidades y Lotes</h4>
                     <div class="border border-black overflow-hidden">
-                        <table class="w-full text-left text-xs border-collapse">
+                        <table class="w-full text-center text-xs border-collapse">
                             <thead>
                                 <tr class="bg-[#154212] text-white font-bold">
                                     <th class="p-2 text-center border-r border-black w-20">Ranking</th>
@@ -764,7 +765,7 @@ Siguiente
                         <h4 class="text-sm font-bold text-black font-pdf-title text-left">Registro Detallado de Ordeño Individual (Bloque {{ pageIndex - 1 }} de 2)</h4>
                     </div>
                     <div class="border border-black overflow-hidden">
-                        <table class="w-full text-left text-xs border-collapse">
+                        <table class="w-full text-center text-xs border-collapse">
                             <thead>
                                 <tr class="bg-[#154212] text-white font-bold">
                                     <th class="p-2 text-center border-r border-black w-14">Nº</th>
@@ -798,15 +799,9 @@ Siguiente
             <template v-else-if="pageIndex === 4">
                 <section class="flex flex-col gap-4 mt-6">
                     <h2 class="text-2xl font-bold text-black font-pdf-title">Resumen General</h2>
+                    <!-- Resumen exacto de 6 líneas -->
                     <p class="text-xs text-black font-bold leading-relaxed">
-                        El presente informe productivo consolida los datos de rendimiento de la Unidad de Producción Agropecuaria Finca El Manantial, ubicada en Obispo, Barinas, Venezuela. 
-                        Durante el ciclo evaluado, se ha registrado una producción mensual acumulada robusta y un rendimiento promedio estable por cabeza que ratifica la eficiencia del rodeo lechero. 
-                        Asimismo, el análisis comparativo por lotes demuestra un desempeño sobresaliente en el Lote A, posicionándose como la unidad líder de la jornada bajo estrictos estándares de control. 
-                        Todas las cabezas de ganado monitoreadas se encuentran debidamente verificadas y en un estado óptimo de salud y productividad operativa. 
-                        Las proyecciones estimadas para el próximo período se sustentan en tendencias históricas favorables y un manejo nutricional y sanitario riguroso. 
-                        Este sistema de gestión integral garantiza la trazabilidad completa desde el ordeño matutino hasta el empaque y distribución final de los derivados lácteos. 
-                        Reiteramos nuestro firme compromiso con la excelencia agropecuaria, la sostenibilidad ambiental y el desarrollo socioeconómico de la región barinense. 
-                        Finca El Manantial continúa consolidándose como un referente tecnológico e innovador en la producción lechera de alta calidad a escala nacional.
+                        El presente informe productivo consolida los datos de rendimiento de la Unidad de Producción Agropecuaria Finca El Manantial, ubicada en el estado Barinas, Venezuela. Durante este ciclo se registró una sólida producción acumulada y un rendimiento promedio estable que ratifica la alta eficiencia del hato lechero. Todas las cabezas monitoreadas se encuentran debidamente verificadas y en un estado óptimo de salud operativa. Las proyecciones estimadas para el próximo período se sustentan firmemente en tendencias históricas muy favorables. Reiteramos nuestro compromiso continuo con la excelencia agropecuaria regional y la máxima calidad láctea.
                     </p>
                 </section>
             </template>
