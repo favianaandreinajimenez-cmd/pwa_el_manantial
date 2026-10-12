@@ -18,7 +18,7 @@
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Work+Sans:wght@400;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
@@ -125,6 +125,10 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
         .custom-chart-bar { transition: height 1s ease-out; }
+
+        .font-pdf-title { font-family: 'Montserrat', sans-serif; }
+        .pdf-chart-bars-container { display: flex; align-items: flex-end; height: 180px; gap: 2px; }
+        .pdf-chart-bar { background-color: #0a3a0a; flex: 1; }
 
         @media print {
             aside, header, nav, button, .fixed {
@@ -455,7 +459,7 @@
 </div>
 </header>
 
-<!-- CONTENEDOR PRINCIPAL MARCADO PARA PDF -->
+<!-- CONTENEDOR PRINCIPAL DE LA VISTA WEB -->
 <div id="pdf-container" class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto flex flex-col gap-6">
 
 <!-- Filters & Actions -->
@@ -650,23 +654,160 @@ Siguiente
 </div>
 </section>
 
-<!-- Resumen General Incorporado (8 Líneas) -->
-<section class="bg-white p-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-2">
-<h4 class="font-headline-md text-headline-md font-bold text-on-surface font-title">Resumen General</h4>
-<p class="text-xs text-on-surface-variant leading-relaxed">
-    El presente informe productivo consolida los datos de rendimiento de la Unidad de Producción Agropecuaria Finca El Manantial, ubicada en Obispo, Barinas, Venezuela. 
-    Durante el ciclo evaluado, se ha registrado una producción mensual acumulada robusta y un rendimiento promedio estable por cabeza que ratifica la eficiencia del rodeo lechero. 
-    Asimismo, el análisis comparativo por lotes demuestra un desempeño sobresaliente en el Lote A, posicionándose como la unidad líder de la jornada bajo estrictos estándares de control. 
-    Todas las cabezas de ganado monitoreadas se encuentran debidamente verificadas y en un estado óptimo de salud y productividad operativa. 
-    Las proyecciones estimadas para el próximo período se sustentan en tendencias históricas favorables y un manejo nutricional y sanitario riguroso. 
-    Este sistema de gestión integral garantiza la trazabilidad completa desde el ordeño matutino hasta el empaque y distribución final de los derivados lácteos. 
-    Reiteramos nuestro firme compromiso con la excelencia agropecuaria, la sostenibilidad ambiental y el desarrollo socioeconómico de la región barinense. 
-    Finca El Manantial continúa consolidándose como un referente tecnológico e innovador en la producción lechera de alta calidad a escala nacional.
-</p>
-</section>
-
 </div>
 </main>
+
+<!-- PLANTILLA OCULTA EXCLUSIVA PARA GENERAR EL PDF CON EL FORMATO EXACTO -->
+<div style="position: absolute; left: -9999px; top: -9999px;">
+    <div id="pdf-export-template" class="bg-white w-[850px] p-8 md:p-12 border border-gray-200 flex flex-col gap-6 text-black" style="font-family: 'Inter', sans-serif;">
+        <!-- 1. CABECERA PRINCIPAL -->
+        <header class="flex items-center gap-4 border-b border-gray-300 pb-4">
+            <div class="w-14 h-14 rounded-full bg-[#154212] flex items-center justify-center p-2.5 flex-shrink-0">
+                <svg class="w-full h-full text-white fill-current" viewBox="0 0 24 24">
+                    <path d="M19,2H5C3.34,2 2,3.34 2,5V19C2,20.66 3.34,22 5,22H19C20.66,22 22,20.66 22,19V5C22,3.34 20.66,2 19,2M12,16C9.24,16 7,13.76 7,11C7,8.24 9.24,6 12,6C14.76,6 17,8.24 17,11C17,13.76 14.76,16 12,16Z"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-3xl md:text-4xl font-black text-black font-pdf-title tracking-tight uppercase leading-none">
+                    INFORME PRODUCTIVO
+                </h1>
+                <p class="text-xs text-[#72796e] font-medium mt-1">
+                    Unidad de Producción Agropecuaria - Finca El Manantial | Obispo, Barinas, Venezuela
+                </p>
+            </div>
+        </header>
+
+        <!-- 2. TARJETAS DE MÉTRICAS CLAVE -->
+        <section class="grid grid-cols-3 gap-4">
+            <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
+                <p class="text-[11px] text-[#72796e] font-medium">Total Litros Mensuales</p>
+                <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ totalLiters.toLocaleString() }} L</h3>
+                <p class="text-[10px] text-[#10b981] font-semibold mt-1.5">+8,2% vs. mes anterior</p>
+            </div>
+
+            <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
+                <p class="text-[11px] text-[#72796e] font-medium">Promedio por Vaca</p>
+                <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ avgLitersPerCow }} L/día</h3>
+                <p class="text-[10px] text-[#10b981] font-semibold mt-1.5">Rendimiento estable</p>
+            </div>
+
+            <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
+                <p class="text-[11px] text-[#72796e] font-medium">Proyección Próximo Mes</p>
+                <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ projectionNextMonth.toLocaleString() }} L</h3>
+                <p class="text-[10px] text-[#72796e] font-medium mt-1.5">Estimado histórico</p>
+            </div>
+        </section>
+
+        <!-- 3. GRÁFICA DE PRODUCCIÓN DIARIA -->
+        <section class="border border-gray-300 rounded-2xl p-5 bg-white flex flex-col gap-2">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h4 class="text-base font-bold text-black font-pdf-title">Producción Diaria (Litros)</h4>
+                    <p class="text-[11px] text-[#72796e] font-medium mt-0.5">Lote con mayor producción hoy: {{ topBatchToday }}</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#0a3a0a]"></span>
+                    <span class="text-xs text-[#72796e] font-medium">Ordeño Actual</span>
+                </div>
+            </div>
+
+            <div class="pt-4">
+                <div class="pdf-chart-bars-container px-2">
+                    <div v-for="point in chartData" :key="'pdf-'+point.day" class="pdf-chart-bar" :style="{ height: getChartBarHeight(point.liters) }"></div>
+                </div>
+                <div class="flex justify-around text-xs text-[#72796e] font-medium pt-2 border-t border-gray-200">
+                    <span v-for="point in chartData" :key="'lbl-'+point.day">{{ point.day }}</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. RANKING DE UNIDADES Y LOTES -->
+        <section class="flex flex-col gap-2">
+            <h4 class="text-sm font-bold text-black font-pdf-title text-left">Ranking de Unidades y Lotes</h4>
+            <div class="border border-black overflow-hidden">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="bg-[#154212] text-white font-bold">
+                            <th class="p-2 text-center border-r border-black w-20">Ranking</th>
+                            <th class="p-2 border-r border-black text-center">Lote / Unidad</th>
+                            <th class="p-2 text-center border-r border-black">Litros Acumulados</th>
+                            <th class="p-2 text-center border-r border-black">Rendimiento Relativo</th>
+                            <th class="p-2 text-center">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black font-medium text-black">
+                        <tr>
+                            <td class="p-2 text-center border-r border-black">1º</td>
+                            <td class="p-2 border-r border-black text-center">Lote A</td>
+                            <td class="p-2 text-center border-r border-black">656,2 L</td>
+                            <td class="p-2 text-center border-r border-black">100% (Líder del día)</td>
+                            <td class="p-2 text-center">Óptimo</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 text-center border-r border-black">2º</td>
+                            <td class="p-2 border-r border-black text-center">Lote B</td>
+                            <td class="p-2 text-center border-r border-black">649,5 L</td>
+                            <td class="p-2 text-center border-r border-black">99%</td>
+                            <td class="p-2 text-center">Estable</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 5. REGISTRO DETALLADO DE ORDEÑO INDIVIDUAL -->
+        <section class="flex flex-col gap-2">
+            <div class="flex justify-between items-center">
+                <h4 class="text-sm font-bold text-black font-pdf-title text-left">Registro Detallado de Ordeño Individual ({{ milkingRecords.length }} Cabezas Registradas)</h4>
+            </div>
+
+            <div class="border border-black overflow-hidden">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="bg-[#154212] text-white font-bold">
+                            <th class="p-2 text-center border-r border-black w-14">Nº</th>
+                            <th class="p-2 text-center border-r border-black">Fecha</th>
+                            <th class="p-2 text-center border-r border-black">ID Animal</th>
+                            <th class="p-2 text-center border-r border-black">Nombre</th>
+                            <th class="p-2 text-center border-r border-black">Lote</th>
+                            <th class="p-2 text-center border-r border-black">Turno</th>
+                            <th class="p-2 text-center border-r border-black">Litros</th>
+                            <th class="p-2 text-center">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black font-medium text-black">
+                        <tr v-for="(record, index) in milkingRecords" :key="'pdf-rec-'+index">
+                            <td class="p-2 text-center border-r border-black">{{ index + 1 }}</td>
+                            <td class="p-2 text-center border-r border-black">{{ record.date }}</td>
+                            <td class="p-2 text-center border-r border-black font-bold">{{ record.animalId }}</td>
+                            <td class="p-2 text-center border-r border-black">{{ record.name }}</td>
+                            <td class="p-2 text-center border-r border-black">{{ record.unitName }}</td>
+                            <td class="p-2 text-center border-r border-black">{{ record.shift }}</td>
+                            <td class="p-2 text-center border-r border-black">{{ record.liters }} L</td>
+                            <td class="p-2 text-center font-bold">{{ record.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PIE DE PÁGINA Y RESUMEN GENERAL -->
+        <footer class="pt-2 text-left flex flex-col gap-2">
+            <p class="text-[10px] text-[#72796e]">Finca El Manantial — Sistema de Gestión y Control de Producción Láctea</p>
+            <h2 class="text-xl font-bold text-black font-pdf-title">Resumen General</h2>
+            <p class="text-xs text-black leading-relaxed">
+                El presente informe productivo consolida los datos de rendimiento de la Unidad de Producción Agropecuaria Finca El Manantial, ubicada en Obispo, Barinas, Venezuela. 
+                Durante el ciclo evaluado, se ha registrado una producción mensual acumulada robusta y un rendimiento promedio estable por cabeza que ratifica la eficiencia del rodeo lechero. 
+                Asimismo, el análisis comparativo por lotes demuestra un desempeño sobresaliente en el Lote A, posicionándose como la unidad líder de la jornada bajo estrictos estándares de control. 
+                Todas las cabezas de ganado monitoreadas se encuentran debidamente verificadas y en un estado óptimo de salud y productividad operativa. 
+                Las proyecciones estimadas para el próximo período se sustentan en tendencias históricas favorables y un manejo nutricional y sanitario riguroso. 
+                Este sistema de gestión integral garantiza la trazabilidad completa desde el ordeño matutino hasta el empaque y distribución final de los derivados lácteos. 
+                Reiteramos nuestro firme compromiso con la excelencia agropecuaria, la sostenibilidad ambiental y el desarrollo socioeconómico de la región barinense. 
+                Finca El Manantial continúa consolidándose como un referente tecnológico e innovador en la producción lechera de alta calidad a escala nacional.
+            </p>
+        </footer>
+    </div>
+</div>
 
 <!-- Metric Detail Modal -->
 <div v-if="showModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
@@ -967,7 +1108,7 @@ Siguiente
                 return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
             },
             async generatePDFBlob() {
-                const element = document.getElementById('pdf-container');
+                const element = document.getElementById('pdf-export-template');
                 const canvas = await html2canvas(element, { scale: 1.5, useCORS: true, backgroundColor: '#ffffff' });
                 const imgData = canvas.toDataURL('image/jpeg', 0.95);
                 const { jsPDF } = window.jspdf;
@@ -996,10 +1137,10 @@ Siguiente
                 try {
                     if (navigator.canShare && navigator.canShare({ files: [new File([], '')] })) {
                         const pdfBlob = await this.generatePDFBlob();
-                        const file = new File([pdfBlob], 'Reporte_Produccion_El_Manantial.pdf', { type: 'application/pdf' });
+                        const file = new File([pdfBlob], 'Informe_Productivo_Finca_El_Manantial.pdf', { type: 'application/pdf' });
                         await navigator.share({
                             files: [file],
-                            title: 'Reporte de Producción - El Manantial',
+                            title: 'Informe Productivo - Finca El Manantial',
                             text: summaryText
                         });
                     } else {
@@ -1011,13 +1152,13 @@ Siguiente
             },
             async shareEmail() {
                 this.showShareMenu = false;
-                const subject = 'Reporte de Producción - Finca El Manantial';
-                const body = `Hola,\n\nAquí tienes el resumen actual de la producción lechera:\n\n- Total Litros Mensuales: ${this.totalLiters.toLocaleString()} L\n- Promedio por Vaca: ${this.avgLitersPerCow} L/día\n- Proyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L\n\nPuedes ver el detalle completo en el sistema.`;
+                const subject = 'Informe Productivo - Finca El Manantial';
+                const body = `Hola,\n\nAdjunto encontrarás el informe productivo en formato PDF de Finca El Manantial:\n\n- Total Litros Mensuales: ${this.totalLiters.toLocaleString()} L\n- Promedio por Vaca: ${this.avgLitersPerCow} L/día\n- Proyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L\n\nResumen General incorporado al archivo en formato PDF.`;
 
                 try {
                     if (navigator.canShare && navigator.canShare({ files: [new File([], '')] })) {
                         const pdfBlob = await this.generatePDFBlob();
-                        const file = new File([pdfBlob], 'Reporte_Produccion_El_Manantial.pdf', { type: 'application/pdf' });
+                        const file = new File([pdfBlob], 'Informe_Productivo_Finca_El_Manantial.pdf', { type: 'application/pdf' });
                         await navigator.share({
                             files: [file],
                             title: subject,
@@ -1032,7 +1173,7 @@ Siguiente
                 }
             },
             exportPDF() {
-                const element = document.getElementById('pdf-container');
+                const element = document.getElementById('pdf-export-template');
                 if (!element) return;
                 
                 const btn = event.currentTarget;
@@ -1059,7 +1200,7 @@ Siguiente
                         heightLeft -= pageHeight;
                     }
 
-                    pdf.save('Reporte_Produccion_El_Manantial.pdf');
+                    pdf.save('Informe_Productivo_Finca_El_Manantial.pdf');
                     btn.innerHTML = originalText;
                 }).catch(err => {
                     console.error('Error al generar PDF:', err);
