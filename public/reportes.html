@@ -657,10 +657,10 @@ Siguiente
 </div>
 </main>
 
-<!-- PLANTILLA OCULTA EXCLUSIVA PARA GENERAR EL PDF CON EL FORMATO EXACTO (PAGINADA DE 10 EN 10, CON LOGO SVG PERSONALIZADO) -->
+<!-- PLANTILLA OCULTA EXCLUSIVA PARA GENERAR EL PDF CON EL FORMATO EXACTO -->
 <div style="position: absolute; left: -9999px; top: -9999px;">
     <div v-for="pageIndex in pdfTotalPages" :key="'pdf-page-'+pageIndex" :id="'pdf-export-page-'+pageIndex" class="bg-white w-[850px] p-8 md:p-12 border border-gray-200 flex flex-col gap-6 text-black" style="font-family: 'Inter', sans-serif;">
-        <!-- 1. CABECERA PRINCIPAL CON LOGOTIPO SVG PERSONALIZADO -->
+        <!-- 1. CABECERA PRINCIPAL CON LOGOTIPO SVG PROPORCIONADO -->
         <header class="flex items-center gap-4 border-b border-gray-300 pb-4">
             <div class="w-14 h-14 rounded-full bg-[#154212] flex items-center justify-center p-2 flex-shrink-0 overflow-hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 459 452" class="w-full h-full object-contain" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
