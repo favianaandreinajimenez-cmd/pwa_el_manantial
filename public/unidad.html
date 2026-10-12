@@ -311,7 +311,8 @@
                             <th class="py-3 px-4">Raza</th>
                             <th class="py-3 px-4">Producción Total (Lt)</th>
                             <th class="py-3 px-4">Estado</th>
-                            <th class="py-3 px-4 text-center">Historial</th>
+                            <!-- Ocultar cabecera de Historial si es el usuario operario jose@elmanantial.com -->
+                            <th v-if="currentUser && currentUser.email !== 'jose@elmanantial.com'" class="py-3 px-4 text-center">Historial</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200 dark:divide-[#162032] text-slate-800 dark:text-white font-body-sm">
@@ -338,7 +339,8 @@
                                     {{ vaca.status }}
                                 </span>
                             </td>
-                            <td class="py-3 px-4 text-center">
+                            <!-- Ocultar botón de Historial si es el usuario operario jose@elmanantial.com -->
+                            <td v-if="currentUser && currentUser.email !== 'jose@elmanantial.com'" class="py-3 px-4 text-center">
                                 <a :href="'historial.html?id=' + encodeURIComponent(vaca.id)" 
                                    class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-[#101727] hover:bg-[#154212] hover:text-white dark:hover:bg-[#10b981] dark:hover:text-[#0b0f19] text-[#154212] dark:text-[#10b981] transition-all border border-slate-200 dark:border-[#162032]"
                                    title="Ver Historial de la Vaca">
