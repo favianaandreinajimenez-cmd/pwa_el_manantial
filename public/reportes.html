@@ -478,6 +478,7 @@
 </div>
 </div>
 
+<!-- Botones de Acción (Exportar y Compartir) -->
 <div class="flex gap-sm w-full md:w-auto relative">
     <div class="relative flex-1 md:flex-none">
         <button @click="showShareMenu = !showShareMenu" class="w-full md:w-auto flex items-center justify-center gap-xs px-md py-2 border border-primary text-primary font-label-lg text-label-lg rounded-lg hover:bg-primary-fixed transition-colors active:scale-95 duration-150 cursor-pointer">
@@ -498,9 +499,9 @@
         </div>
     </div>
 
-    <button @click="exportPDF" class="flex-1 md:flex-none flex items-center justify-center gap-xs px-md py-2 bg-primary text-on-primary font-label-lg text-label-lg rounded-lg hover:opacity-90 transition-colors active:scale-95 duration-150 shadow-sm cursor-pointer">
+    <button @click="exportPDF" :disabled="isGeneratingPDF" class="flex-1 md:flex-none flex items-center justify-center gap-xs px-md py-2 bg-primary text-on-primary font-label-lg text-label-lg rounded-lg hover:opacity-90 transition-colors active:scale-95 duration-150 shadow-sm cursor-pointer disabled:opacity-50">
         <span class="material-symbols-outlined text-[20px]" data-icon="picture_as_pdf">picture_as_pdf</span>
-        Exportar PDF
+        {{ isGeneratingPDF ? 'Generando...' : 'Exportar PDF' }}
     </button>
 </div>
 </section>
@@ -776,6 +777,7 @@ Siguiente
                 showSidebar: false,
                 showModal: false,
                 showShareMenu: false,
+                isGeneratingPDF: false,
                 modalTitle: '',
                 modalDescription: '',
                 modalIcon: '',
@@ -951,42 +953,77 @@ Siguiente
                 const path = window.location.pathname;
                 return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
             },
-            shareWhatsApp() {
-                this.showShareMenu = false;
-                const text = `📊 *Reporte de Producción - El Manantial*\nTotal Litros: ${this.totalLiters.toLocaleString()} L\nPromedio por Vaca: ${this.avgLitersPerCow} L/día\nEnlace: ${window.location.href}`;
-                const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-                window.open(whatsappUrl, '_blank');
+            async generatePDFBlob() {
+                const element = document.getElementById('pdf-container');
+                const canvas = await html2canvas(element, { scale: 1.5, useCORS: true, backgroundColor: '#ffffff' });
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgWidth = 210;
+                const pageHeight = 295;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                return pdf.output('blob');
             },
-            shareEmail() {
+            async shareWhatsApp() {
+                this.showShareMenu = false;
+                const summaryText = `📊 *Reporte de Producción - Finca El Manantial*\nTotal Litros: ${this.totalLiters.toLocaleString()} L\nPromedio por Vaca: ${this.avgLitersPerCow} L/día\nProyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L`;
+
+                try {
+                    if (navigator.canShare && navigator.canShare({ files: [new File([], '')] })) {
+                        const pdfBlob = await this.generatePDFBlob();
+                        const file = new File([pdfBlob], 'Reporte_Produccion_El_Manantial.pdf', { type: 'application/pdf' });
+                        await navigator.share({
+                            files: [file],
+                            title: 'Reporte de Producción - El Manantial',
+                            text: summaryText
+                        });
+                    } else {
+                        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(summaryText)}`, '_blank');
+                    }
+                } catch (e) {
+                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(summaryText)}`, '_blank');
+                }
+            },
+            async shareEmail() {
                 this.showShareMenu = false;
                 const subject = 'Reporte de Producción - Finca El Manantial';
-                const body = `Hola,\n\nAquí tienes el resumen actual de la producción lechera:\n\n- Total Litros Mensuales: ${this.totalLiters.toLocaleString()} L\n- Promedio por Vaca: ${this.avgLitersPerCow} L/día\n- Proyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L\n\nPuedes ver el detalle completo en el sistema: ${window.location.href}`;
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: subject,
-                        text: body,
-                        url: window.location.href,
-                    }).catch(() => {});
-                } else {
-                    try {
+                const body = `Hola,\n\nAquí tienes el resumen actual de la producción lechera:\n\n- Total Litros Mensuales: ${this.totalLiters.toLocaleString()} L\n- Promedio por Vaca: ${this.avgLitersPerCow} L/día\n- Proyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L\n\nAdjunto y en línea con el sistema de gestión.`;
+
+                try {
+                    if (navigator.canShare && navigator.canShare({ files: [new File([], '')] })) {
+                        const pdfBlob = await this.generatePDFBlob();
+                        const file = new File([pdfBlob], 'Reporte_Produccion_El_Manantial.pdf', { type: 'application/pdf' });
+                        await navigator.share({
+                            files: [file],
+                            title: subject,
+                            text: body
+                        });
+                    } else {
                         const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                         window.open(mailtoUrl, '_blank');
-                    } catch (e) {
-                        alert('No se pudo abrir el cliente de correo.');
                     }
+                } catch (e) {
+                    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 }
             },
             exportPDF() {
                 const element = document.getElementById('pdf-container');
                 if (!element) return;
                 
-                // Mostrar indicador visual rápido
-                const btn = event.currentTarget;
-                const originalText = btn.innerHTML;
-                btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">sync</span> Generando...`;
+                this.isGeneratingPDF = true;
                 
-                // Generar canvas del reporte y descargar mediante jsPDF
                 html2canvas(element, { scale: 1.5, useCORS: true, backgroundColor: '#ffffff' }).then(canvas => {
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
                     const { jsPDF } = window.jspdf;
@@ -1008,11 +1045,11 @@ Siguiente
                     }
 
                     pdf.save('Reporte_Produccion_El_Manantial.pdf');
-                    btn.innerHTML = originalText;
+                    this.isGeneratingPDF = false;
                 }).catch(err => {
                     console.error('Error al generar PDF:', err);
                     alert('No se pudo generar el archivo PDF.');
-                    btn.innerHTML = originalText;
+                    this.isGeneratingPDF = false;
                 });
             },
             goToMilking() {
