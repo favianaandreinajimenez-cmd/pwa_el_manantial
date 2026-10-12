@@ -691,137 +691,142 @@ Siguiente
                 <h1 class="text-3xl md:text-4xl font-black text-black font-pdf-title tracking-tight uppercase leading-none">
                     INFORME PRODUCTIVO
                 </h1>
-                <p class="text-xs text-[#72796e] font-medium mt-1">
+                <p class="text-xs text-black font-semibold mt-1">
                     Unidad de Producción Agropecuaria - Finca El Manantial | Obispo, Barinas, Venezuela
                 </p>
             </div>
         </header>
 
-        <!-- 2. TARJETAS DE MÉTRICAS CLAVE (Solo en página 1) -->
-        <section v-if="pageIndex === 1" class="grid grid-cols-3 gap-4">
-            <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
-                <p class="text-[11px] text-[#72796e] font-medium">Total Litros Mensuales</p>
-                <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ totalLiters.toLocaleString() }} L</h3>
-                <p class="text-[10px] text-[#10b981] font-semibold mt-1.5">+8,2% vs. mes anterior</p>
-            </div>
-
-            <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
-                <p class="text-[11px] text-[#72796e] font-medium">Promedio por Vaca</p>
-                <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ avgLitersPerCow }} L/día</h3>
-                <p class="text-[10px] text-[#10b981] font-semibold mt-1.5">Rendimiento estable</p>
-            </div>
-
-            <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
-                <p class="text-[11px] text-[#72796e] font-medium">Proyección Próximo Mes</p>
-                <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ projectionNextMonth.toLocaleString() }} L</h3>
-                <p class="text-[10px] text-[#72796e] font-medium mt-1.5">Estimado histórico</p>
-            </div>
-        </section>
-
-        <!-- 3. GRÁFICA DE PRODUCCIÓN DIARIA + RESUMEN DIARIO (Solo en página 1) -->
-        <section v-if="pageIndex === 1" class="border border-gray-300 rounded-2xl p-5 bg-white flex flex-col gap-2">
-            <div class="flex justify-between items-start">
-                <div>
-                    <h4 class="text-base font-bold text-black font-pdf-title">Producción Diaria (Litros)</h4>
-                    <p class="text-[11px] text-[#72796e] font-medium mt-0.5">Lote con mayor producción hoy: {{ topBatchToday }}</p>
+        <!-- PÁGINA 1: RESUMEN, GRÁFICA Y RANKING -->
+        <template v-if="pageIndex === 1">
+            <!-- 2. TARJETAS DE MÉTRICAS CLAVE -->
+            <section class="grid grid-cols-3 gap-4">
+                <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
+                    <p class="text-[11px] text-black font-bold">Total Litros Mensuales</p>
+                    <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ totalLiters.toLocaleString() }} L</h3>
+                    <p class="text-[10px] text-black font-bold mt-1.5">+8,2% vs. mes anterior</p>
                 </div>
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#0a3a0a]"></span>
-                    <span class="text-xs text-[#72796e] font-medium">Ordeño Actual</span>
-                </div>
-            </div>
 
-            <div class="pt-2">
-                <div class="pdf-chart-bars-container px-2">
-                    <div v-for="point in chartData" :key="'pdf-'+point.day" class="pdf-chart-bar" :style="{ height: getChartBarHeight(point.liters) }"></div>
+                <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
+                    <p class="text-[11px] text-black font-bold">Promedio por Vaca</p>
+                    <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ avgLitersPerCow }} L/día</h3>
+                    <p class="text-[10px] text-black font-bold mt-1.5">Rendimiento estable</p>
                 </div>
-                <div class="flex justify-around text-xs text-[#72796e] font-medium pt-2 border-t border-gray-200">
-                    <span v-for="point in chartData" :key="'lbl-'+point.day">{{ point.day }}</span>
+
+                <div class="border border-gray-300 rounded-xl p-4 text-left bg-white">
+                    <p class="text-[11px] text-black font-bold">Proyección Próximo Mes</p>
+                    <h3 class="text-xl md:text-2xl font-bold text-black font-pdf-title mt-0.5">{{ projectionNextMonth.toLocaleString() }} L</h3>
+                    <p class="text-[10px] text-black font-bold mt-1.5">Estimado histórico</p>
                 </div>
-                <p class="text-[11px] text-[#72796e] mt-3 leading-relaxed">
-                    <strong>Resumen de Producción Diaria:</strong> Durante los últimos 7 días analizados, la finca ha mantenido una curva de ordeño ascendente y estable, registrando un volumen diario promedio de 1.232 litros. El pico máximo de la semana se alcanzó en el día 6 con 1.350 litros recolectados, evidenciando una excelente respuesta del ganado al pastoreo rotativo y suplementación óptima.
+            </section>
+
+            <!-- 3. GRÁFICA DE PRODUCCIÓN DIARIA + RESUMEN DIARIO -->
+            <section class="border border-gray-300 rounded-2xl p-5 bg-white flex flex-col gap-2">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-base font-bold text-black font-pdf-title">Producción Diaria (Litros)</h4>
+                        <p class="text-[11px] text-black font-bold mt-0.5">Lote con mayor producción hoy: {{ topBatchToday }}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#0a3a0a]"></span>
+                        <span class="text-xs text-black font-bold">Ordeño Actual</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <div class="pdf-chart-bars-container px-2">
+                        <div v-for="point in chartData" :key="'pdf-'+point.day" class="pdf-chart-bar" :style="{ height: getChartBarHeight(point.liters) }"></div>
+                    </div>
+                    <div class="flex justify-around text-xs text-black font-bold pt-2 border-t border-gray-200">
+                        <span v-for="point in chartData" :key="'lbl-'+point.day">{{ point.day }}</span>
+                    </div>
+                    <p class="text-[11px] text-black font-bold mt-3 leading-relaxed">
+                        Resumen de Producción Diaria: Durante los últimos 7 días analizados, la finca ha mantenido una curva de ordeño ascendente y estable, registrando un volumen diario promedio de 1.232 litros. El pico máximo de la semana se alcanzó en el día 6 con 1.350 litros recolectados, evidenciando una excelente respuesta del ganado al pastoreo rotativo y suplementación óptima.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 4. RANKING DE UNIDADES Y LOTES + RESUMEN DE UNIDADES -->
+            <section class="flex flex-col gap-2">
+                <h4 class="text-sm font-bold text-black font-pdf-title text-left">Ranking de Unidades y Lotes</h4>
+                <div class="border border-black overflow-hidden">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-[#154212] text-white font-bold">
+                                <th class="p-2 text-center border-r border-black w-20">Ranking</th>
+                                <th class="p-2 border-r border-black text-center">Lote / Unidad</th>
+                                <th class="p-2 text-center border-r border-black">Litros Acumulados</th>
+                                <th class="p-2 text-center border-r border-black">Rendimiento Relativo</th>
+                                <th class="p-2 text-center">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-black font-bold text-black">
+                            <tr>
+                                <td class="p-2 text-center border-r border-black">1º</td>
+                                <td class="p-2 border-r border-black text-center">Lote A</td>
+                                <td class="p-2 text-center border-r border-black">656,2 L</td>
+                                <td class="p-2 text-center border-r border-black">100% (Líder del día)</td>
+                                <td class="p-2 text-center">Óptimo</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 text-center border-r border-black">2º</td>
+                                <td class="p-2 border-r border-black text-center">Lote B</td>
+                                <td class="p-2 text-center border-r border-black">649,5 L</td>
+                                <td class="p-2 text-center border-r border-black">99%</td>
+                                <td class="p-2 text-center">Estable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-[11px] text-black font-bold mt-1 leading-relaxed">
+                    Resumen de Ranking de Unidades y Lotes: El Lote A encabeza el rendimiento general de la finca con un total acumulado de 656,2 litros y un estado operativo óptimo, seguido de muy cerca por el Lote B con 649,5 litros (99% de rendimiento relativo). Ambas unidades demuestran un nivel de competitividad y homogeneidad sobresaliente en el hato lechero.
                 </p>
-            </div>
-        </section>
+            </section>
+        </template>
 
-        <!-- 4. RANKING DE UNIDADES Y LOTES + RESUMEN DE UNIDADES (Solo en página 1) -->
-        <section v-if="pageIndex === 1" class="flex flex-col gap-2">
-            <h4 class="text-sm font-bold text-black font-pdf-title text-left">Ranking de Unidades y Lotes</h4>
-            <div class="border border-black overflow-hidden">
-                <table class="w-full text-left text-xs border-collapse">
-                    <thead>
-                        <tr class="bg-[#154212] text-white font-bold">
-                            <th class="p-2 text-center border-r border-black w-20">Ranking</th>
-                            <th class="p-2 border-r border-black text-center">Lote / Unidad</th>
-                            <th class="p-2 text-center border-r border-black">Litros Acumulados</th>
-                            <th class="p-2 text-center border-r border-black">Rendimiento Relativo</th>
-                            <th class="p-2 text-center">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-black font-medium text-black">
-                        <tr>
-                            <td class="p-2 text-center border-r border-black">1º</td>
-                            <td class="p-2 border-r border-black text-center">Lote A</td>
-                            <td class="p-2 text-center border-r border-black">656,2 L</td>
-                            <td class="p-2 text-center border-r border-black">100% (Líder del día)</td>
-                            <td class="p-2 text-center">Óptimo</td>
-                        </tr>
-                        <tr>
-                            <td class="p-2 text-center border-r border-black">2º</td>
-                            <td class="p-2 border-r border-black text-center">Lote B</td>
-                            <td class="p-2 text-center border-r border-black">649,5 L</td>
-                            <td class="p-2 text-center border-r border-black">99%</td>
-                            <td class="p-2 text-center">Estable</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-[11px] text-[#72796e] mt-1 leading-relaxed">
-                <strong>Resumen de Ranking de Unidades y Lotes:</strong> El Lote A encabeza el rendimiento general de la finca con un total acumulado de 656,2 litros y un estado operativo óptimo, seguido de muy cerca por el Lote B con 649,5 litros (99% de rendimiento relativo). Ambas unidades demuestran un nivel de competitividad y homogeneidad sobresaliente en el hato lechero.
-            </p>
-        </section>
+        <!-- PÁGINAS 2 EN ADELANTE: REGISTRO DETALLADO DE ORDEÑO INDIVIDUAL (20 por página) -->
+        <template v-else>
+            <section class="flex flex-col gap-2">
+                <div class="flex justify-between items-center">
+                    <h4 class="text-sm font-bold text-black font-pdf-title text-left">Registro Detallado de Ordeño Individual ({{ pageIndex }} de {{ pdfTotalPages }})</h4>
+                </div>
 
-        <!-- 5. REGISTRO DETALLADO DE ORDEÑO INDIVIDUAL (10 por página) -->
-        <section class="flex flex-col gap-2">
-            <div class="flex justify-between items-center">
-                <h4 class="text-sm font-bold text-black font-pdf-title text-left">Registro Detallado de Ordeño Individual (Página {{ pageIndex }} de {{ pdfTotalPages }})</h4>
-            </div>
-
-            <div class="border border-black overflow-hidden">
-                <table class="w-full text-left text-xs border-collapse">
-                    <thead>
-                        <tr class="bg-[#154212] text-white font-bold">
-                            <th class="p-2 text-center border-r border-black w-14">Nº</th>
-                            <th class="p-2 text-center border-r border-black">Fecha</th>
-                            <th class="p-2 text-center border-r border-black">ID Animal</th>
-                            <th class="p-2 text-center border-r border-black">Nombre</th>
-                            <th class="p-2 text-center border-r border-black">Lote</th>
-                            <th class="p-2 text-center border-r border-black">Turno</th>
-                            <th class="p-2 text-center border-r border-black">Litros</th>
-                            <th class="p-2 text-center">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-black font-medium text-black">
-                        <tr v-for="(record, index) in getPdfPageRecords(pageIndex)" :key="'pdf-rec-'+pageIndex+'-'+index">
-                            <td class="p-2 text-center border-r border-black">{{ ((pageIndex - 1) * 10) + index + 1 }}</td>
-                            <td class="p-2 text-center border-r border-black">{{ record.date }}</td>
-                            <td class="p-2 text-center border-r border-black font-bold">{{ record.animalId }}</td>
-                            <td class="p-2 text-center border-r border-black">{{ record.name }}</td>
-                            <td class="p-2 text-center border-r border-black">{{ record.unitName }}</td>
-                            <td class="p-2 text-center border-r border-black">{{ record.shift }}</td>
-                            <td class="p-2 text-center border-r border-black">{{ record.liters }} L</td>
-                            <td class="p-2 text-center font-bold">{{ record.status }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+                <div class="border border-black overflow-hidden">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-[#154212] text-white font-bold">
+                                <th class="p-2 text-center border-r border-black w-14">Nº</th>
+                                <th class="p-2 text-center border-r border-black">Fecha</th>
+                                <th class="p-2 text-center border-r border-black">ID Animal</th>
+                                <th class="p-2 text-center border-r border-black">Nombre</th>
+                                <th class="p-2 text-center border-r border-black">Lote</th>
+                                <th class="p-2 text-center border-r border-black">Turno</th>
+                                <th class="p-2 text-center border-r border-black">Litros</th>
+                                <th class="p-2 text-center">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-black font-bold text-black">
+                            <tr v-for="(record, index) in getPdfPageRecords(pageIndex)" :key="'pdf-rec-'+pageIndex+'-'+index">
+                                <td class="p-2 text-center border-r border-black">{{ ((pageIndex - 2) * 20) + index + 1 }}</td>
+                                <td class="p-2 text-center border-r border-black">{{ record.date }}</td>
+                                <td class="p-2 text-center border-r border-black font-bold">{{ record.animalId }}</td>
+                                <td class="p-2 text-center border-r border-black">{{ record.name }}</td>
+                                <td class="p-2 text-center border-r border-black">{{ record.unitName }}</td>
+                                <td class="p-2 text-center border-r border-black">{{ record.shift }}</td>
+                                <td class="p-2 text-center border-r border-black">{{ record.liters }} L</td>
+                                <td class="p-2 text-center font-bold">{{ record.status }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </template>
 
         <!-- PIE DE PÁGINA Y RESUMEN GENERAL (Solo en última página) -->
-        <footer v-if="pageIndex === pdfTotalPages" class="pt-2 text-left flex flex-col gap-2">
-            <p class="text-[10px] text-[#72796e]">Finca El Manantial — Sistema de Gestión y Control de Producción Láctea</p>
+        <footer v-if="pageIndex === pdfTotalPages" class="pt-2 text-left flex flex-col gap-2 mt-auto">
+            <p class="text-[10px] text-black font-bold">Finca El Manantial — Sistema de Gestión y Control de Producción Láctea</p>
             <h2 class="text-xl font-bold text-black font-pdf-title">Resumen General</h2>
-            <p class="text-xs text-black leading-relaxed">
+            <p class="text-xs text-black font-bold leading-relaxed">
                 El presente informe productivo consolida los datos de rendimiento de la Unidad de Producción Agropecuaria Finca El Manantial, ubicada en Obispo, Barinas, Venezuela. 
                 Durante el ciclo evaluado, se ha registrado una producción mensual acumulada robusta y un rendimiento promedio estable por cabeza que ratifica la eficiencia del rodeo lechero. 
                 Asimismo, el análisis comparativo por lotes demuestra un desempeño sobresaliente en el Lote A, posicionándose como la unidad líder de la jornada bajo estrictos estándares de control. 
@@ -1028,7 +1033,9 @@ Siguiente
                 return this.milkingRecords.slice(start, start + this.pageSize);
             },
             pdfTotalPages() {
-                return Math.ceil(this.milkingRecords.length / 10) || 1;
+                // Página 1 es resumen/gráfica/ranking, las siguientes contienen bloques de 20 registros
+                const recordsPages = Math.ceil(this.milkingRecords.length / 20) || 1;
+                return 1 + recordsPages;
             },
             topBatchToday() {
                 if (!this.milkingRecords || this.milkingRecords.length === 0) return 'Sin registros';
@@ -1137,8 +1144,9 @@ Siguiente
                 return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
             },
             getPdfPageRecords(pageIndex) {
-                const start = (pageIndex - 1) * 10;
-                return this.milkingRecords.slice(start, start + 10);
+                // pageIndex 2 toma los primeros 20 registros, pageIndex 3 los siguientes 20, etc.
+                const start = (pageIndex - 2) * 20;
+                return this.milkingRecords.slice(start, start + 20);
             },
             async generatePDFBlob() {
                 const { jsPDF } = window.jspdf;
