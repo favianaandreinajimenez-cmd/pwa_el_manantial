@@ -661,11 +661,11 @@ Siguiente
 <div style="position: absolute; left: -9999px; top: -9999px;">
     <div v-for="pageIndex in pdfTotalPages" :key="'pdf-page-'+pageIndex" :id="'pdf-export-page-'+pageIndex" class="bg-white w-[794px] h-[1123px] box-border p-8 border border-gray-100 flex flex-col justify-between text-black" style="font-family: 'Inter', sans-serif;">
         <div class="flex flex-col gap-4">
-            <!-- CABECERA PRINCIPAL CON LOGOTIPO SVG DESDE PUBLIC/IMAGENES/ICONO_LOGO.SVG -->
+            <!-- CABECERA PRINCIPAL CON LOGOTIPO SVG CARGADO DESDE public/imagenes/icono_logo.svg -->
             <header class="flex items-center gap-4 border-b border-gray-300 pb-3">
                 <div class="w-12 h-12 rounded-full bg-[#154212] flex items-center justify-center p-2 flex-shrink-0 overflow-hidden">
                     <object data="public/imagenes/icono_logo.svg" type="image/svg+xml" class="w-full h-full object-contain">
-                        <img src="public/imagenes/icono_logo.svg" alt="Logo" class="w-full h-full object-contain"/>
+                        <img src="public/imagenes/icono_logo.svg" alt="Logo" class="w-full h-full object-contain" />
                     </object>
                 </div>
                 <div>
@@ -754,9 +754,9 @@ Siguiente
                             </tbody>
                         </table>
                     </div>
-                    <!-- Resumen exacto y completo de Ranking de Unidades y Lotes -->
+                    <!-- Resumen exacto del ranking de unidades y lotes -->
                     <p class="text-[11px] text-black font-bold mt-1 leading-relaxed">
-                        Resumen de Ranking de Unidades y Lotes: El Lote A encabeza el rendimiento general de la finca con un total acumulado de seiscientos cincuenta y seis coma dos litros y un estado operativo óptimo, seguido muy de cerca por el Lote B con seiscientos cuarenta y nueve coma cinco litros y noventa y nueve por ciento de rendimiento relativo. Ambas unidades demuestran un nivel de competitividad y homogeneidad sobresaliente dentro del hato lechero. Los registros garantizan un balance perfecto de producción por hectárea y una excelente distribución del ganado en pastoreo.
+                        Resumen de Ranking de Unidades y Lotes: El Lote A encabeza el rendimiento general de la finca con un total acumulado de 656,2 litros y un estado operativo óptimo, seguido de muy cerca por el Lote B con 649,5 litros que representan un 99% de rendimiento relativo. Ambas unidades demuestran un nivel de competitividad y una gran homogeneidad sobresaliente en todo el hato lechero actual.
                     </p>
                 </section>
             </template>
