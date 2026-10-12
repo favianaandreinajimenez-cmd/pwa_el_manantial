@@ -519,7 +519,7 @@
 </div>
 <p class="font-label-lg text-label-lg text-outline">Total Litros Mensuales</p>
 <h3 class="font-display-lg text-display-lg text-primary mt-xs">{{ totalLiters.toLocaleString() }}<span class="text-headline-md font-normal ml-xs">L</span></h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">Acumulado del mes actual (40 Cabezas)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">Acumulado del mes actual</p>
 </div>
 
 <div @click="openMetricModal('avg')" class="bg-white p-md rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-all duration-200 cursor-pointer active:scale-98">
@@ -595,10 +595,10 @@
 </div>
 </section>
 
-<!-- Detailed Table Section (40 Vacas Completas) -->
+<!-- Detailed Table Section -->
 <section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
 <div class="p-md border-b border-outline-variant flex justify-between items-center bg-[#eff4ff] dark:bg-[#0f172a] text-on-surface dark:text-white">
-<h4 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-white">Historial de Producción Individual (40 Vacas Registradas)</h4>
+<h4 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-white">Historial de Producción</h4>
 <div class="flex gap-xs">
 <span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary" data-icon="filter_list">filter_list</span>
 <span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary" data-icon="search">search</span>
@@ -638,7 +638,7 @@
 </table>
 </div>
 <div class="p-md flex justify-between items-center bg-[#eff4ff] dark:bg-[#0f172a] text-on-surface dark:text-white">
-<span class="font-label-md text-label-md text-on-surface-variant dark:text-gray-400">Página {{ currentPage }} de {{ totalPages }} (Total: 40 cabezas)</span>
+<span class="font-label-md text-label-md text-on-surface-variant dark:text-gray-400">Página {{ currentPage }} de {{ totalPages }}</span>
 <div class="flex gap-base items-center">
 <button @click="prevPage" :disabled="currentPage === 1" class="px-4 py-2 border border-outline-variant rounded-lg text-sm font-medium hover:bg-surface-container-high disabled:opacity-50 transition-colors cursor-pointer">
 Anterior
@@ -791,7 +791,6 @@ Siguiente
                 showAddModal: false,
                 currentPage: 1,
                 milkingRecords: [
-                    // LOTE A (20 Vacas)
                     { date: "2026-05-23", animalId: "#A-101", name: "Lucero", unitName: "Lote A", shift: "Mañana", time: "06:00 AM", liters: 34.5, status: "VERIFICADO" },
                     { date: "2026-05-23", animalId: "#A-102", name: "Mariposa", unitName: "Lote A", shift: "Mañana", time: "06:08 AM", liters: 38.2, status: "VERIFICADO" },
                     { date: "2026-05-23", animalId: "#A-103", name: "Gitana", unitName: "Lote A", shift: "Mañana", time: "06:15 AM", liters: 29.0, status: "VERIFICADO" },
@@ -812,7 +811,6 @@ Siguiente
                     { date: "2026-05-23", animalId: "#A-118", name: "Blanca", unitName: "Lote A", shift: "Mañana", time: "08:07 AM", liters: 33.1, status: "VERIFICADO" },
                     { date: "2026-05-23", animalId: "#A-119", name: "Perla", unitName: "Lote A", shift: "Mañana", time: "08:15 AM", liters: 30.4, status: "VERIFICADO" },
                     { date: "2026-05-23", animalId: "#A-120", name: "Esperanza", unitName: "Lote A", shift: "Mañana", time: "08:22 AM", liters: 38.8, status: "VERIFICADO" },
-                    // LOTE B (20 Vacas)
                     { date: "2026-05-23", animalId: "#B-201", name: "Rosa", unitName: "Lote B", shift: "Mañana", time: "08:35 AM", liters: 29.8, status: "VERIFICADO" },
                     { date: "2026-05-23", animalId: "#B-202", name: "Hermosa", unitName: "Lote B", shift: "Mañana", time: "08:42 AM", liters: 37.1, status: "VERIFICADO" },
                     { date: "2026-05-23", animalId: "#B-203", name: "Diamante", unitName: "Lote B", shift: "Mañana", time: "08:50 AM", liters: 31.2, status: "VERIFICADO" },
@@ -1024,7 +1022,7 @@ Siguiente
                 if (type === 'liters') {
                     this.modalTitle = 'Total Litros Mensuales';
                     this.modalIcon = 'water_drop';
-                    this.modalDescription = 'Esta métrica representa la producción acumulada de leche durante el mes actual en toda la Unidad de Producción Pecuaria activa de El Manantial (40 cabezas).';
+                    this.modalDescription = 'Esta métrica representa la producción acumulada de leche durante el mes actual en toda la Unidad de Producción Pecuaria activa de El Manantial.';
                 } else if (type === 'avg') {
                     this.modalTitle = 'Promedio por Vaca';
                     this.modalIcon = 'pets';
