@@ -609,7 +609,7 @@
 </div>
 </div>
 <div class="overflow-x-auto">
-<table class="w-full text-center border-collapse">
+<table class="w-full border-collapse">
 <thead>
 <tr class="bg-surface-container-low dark:bg-[#101726] text-on-surface dark:text-white font-label-lg text-label-lg">
 <th class="px-md py-4 border-b border-outline-variant text-center">Fecha</th>
@@ -624,15 +624,15 @@
 </thead>
 <tbody class="divide-y divide-outline-variant font-data-tabular text-data-tabular">
 <tr v-for="record in paginatedRecords" :key="record.animalId" class="hover:bg-surface-container-low transition-colors">
-<td class="px-md py-4 text-center">{{ record.date }}</td>
-<td class="px-md py-4 font-bold text-center">{{ record.animalId }}</td>
-<td class="px-md py-4 text-center">{{ record.name }}</td>
-<td class="px-md py-4 text-center">{{ record.unitName }}</td>
-<td class="px-md py-4 text-center">{{ record.shift }}</td>
-<td class="px-md py-4 text-center">{{ record.time }}</td>
-<td class="px-md py-4 font-bold text-center">{{ record.liters }} L</td>
-<td class="px-md py-4 text-center">
-<span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-[#064e3b] dark:text-[#a7f3d0]' : 'bg-error-container text-on-error-container'" class="px-2 py-1 rounded-full text-label-md font-bold">{{ record.status }}</span>
+<td class="px-md py-4 text-center align-middle">{{ record.date }}</td>
+<td class="px-md py-4 font-bold text-center align-middle">{{ record.animalId }}</td>
+<td class="px-md py-4 text-center align-middle">{{ record.name }}</td>
+<td class="px-md py-4 text-center align-middle">{{ record.unitName }}</td>
+<td class="px-md py-4 text-center align-middle">{{ record.shift }}</td>
+<td class="px-md py-4 text-center align-middle">{{ record.time }}</td>
+<td class="px-md py-4 font-bold text-center align-middle">{{ record.liters }} L</td>
+<td class="px-md py-4 text-center align-middle">
+<span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-[#064e3b] dark:text-[#a7f3d0]' : 'bg-error-container text-on-error-container'" class="px-2 py-1 rounded-full text-label-md font-bold inline-block">{{ record.status }}</span>
 </td>
 </tr>
 <tr v-if="paginatedRecords.length === 0">
@@ -729,27 +729,27 @@ Siguiente
                         <table class="w-full text-center text-xs border-collapse">
                             <thead>
                                 <tr class="bg-[#154212] text-white font-bold">
-                                    <th class="p-2 text-center border-r border-black w-20">Ranking</th>
-                                    <th class="p-2 border-r border-black text-center">Lote / Unidad</th>
-                                    <th class="p-2 text-center border-r border-black">Litros Acumulados</th>
-                                    <th class="p-2 text-center border-r border-black">Rendimiento Relativo</th>
-                                    <th class="p-2 text-center">Estado</th>
+                                    <th class="p-2 text-center border-r border-black w-20 align-middle">Ranking</th>
+                                    <th class="p-2 border-r border-black text-center align-middle">Lote / Unidad</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">Litros Acumulados</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">Rendimiento Relativo</th>
+                                    <th class="p-2 text-center align-middle">Estado</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-black font-bold text-black">
                                 <tr>
-                                    <td class="p-2 text-center border-r border-black">1º</td>
-                                    <td class="p-2 border-r border-black text-center">Lote A</td>
-                                    <td class="p-2 text-center border-r border-black">656,2 L</td>
-                                    <td class="p-2 text-center border-r border-black">100% (Líder del día)</td>
-                                    <td class="p-2 text-center">Óptimo</td>
+                                    <td class="p-2 text-center border-r border-black align-middle">1º</td>
+                                    <td class="p-2 border-r border-black text-center align-middle">Lote A</td>
+                                    <td class="p-2 text-center border-r border-black align-middle">656,2 L</td>
+                                    <td class="p-2 text-center border-r border-black align-middle">100% (Líder del día)</td>
+                                    <td class="p-2 text-center align-middle">Óptimo</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2 text-center border-r border-black">2º</td>
-                                    <td class="p-2 border-r border-black text-center">Lote B</td>
-                                    <td class="p-2 text-center border-r border-black">649,5 L</td>
-                                    <td class="p-2 text-center border-r border-black">99%</td>
-                                    <td class="p-2 text-center">Estable</td>
+                                    <td class="p-2 text-center border-r border-black align-middle">2º</td>
+                                    <td class="p-2 border-r border-black text-center align-middle">Lote B</td>
+                                    <td class="p-2 text-center border-r border-black align-middle">649,5 L</td>
+                                    <td class="p-2 text-center border-r border-black align-middle">99%</td>
+                                    <td class="p-2 text-center align-middle">Estable</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -771,26 +771,26 @@ Siguiente
                         <table class="w-full text-center text-xs border-collapse">
                             <thead>
                                 <tr class="bg-[#154212] text-white font-bold">
-                                    <th class="p-2 text-center border-r border-black w-14">Nº</th>
-                                    <th class="p-2 text-center border-r border-black">Fecha</th>
-                                    <th class="p-2 text-center border-r border-black">ID Animal</th>
-                                    <th class="p-2 text-center border-r border-black">Nombre</th>
-                                    <th class="p-2 text-center border-r border-black">Lote</th>
-                                    <th class="p-2 text-center border-r border-black">Turno</th>
-                                    <th class="p-2 text-center border-r border-black">Litros</th>
-                                    <th class="p-2 text-center">Estado</th>
+                                    <th class="p-2 text-center border-r border-black w-14 align-middle">Nº</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">Fecha</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">ID Animal</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">Nombre</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">Lote</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">Turno</th>
+                                    <th class="p-2 text-center border-r border-black align-middle">Litros</th>
+                                    <th class="p-2 text-center align-middle">Estado</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-black font-bold text-black">
                                 <tr v-for="(record, index) in getPdfPageRecords(pageIndex)" :key="'pdf-rec-'+pageIndex+'-'+index">
-                                    <td class="p-1.5 text-center border-r border-black">{{ ((pageIndex - 2) * 20) + index + 1 }}</td>
-                                    <td class="p-1.5 text-center border-r border-black">{{ record.date }}</td>
-                                    <td class="p-1.5 text-center border-r border-black font-bold">{{ record.animalId }}</td>
-                                    <td class="p-1.5 text-center border-r border-black">{{ record.name }}</td>
-                                    <td class="p-1.5 text-center border-r border-black">{{ record.unitName }}</td>
-                                    <td class="p-1.5 text-center border-r border-black">{{ record.shift }}</td>
-                                    <td class="p-1.5 text-center border-r border-black">{{ record.liters }} L</td>
-                                    <td class="p-1.5 text-center font-bold">{{ record.status }}</td>
+                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ ((pageIndex - 2) * 20) + index + 1 }}</td>
+                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.date }}</td>
+                                    <td class="p-1.5 text-center border-r border-black font-bold align-middle">{{ record.animalId }}</td>
+                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.name }}</td>
+                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.unitName }}</td>
+                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.shift }}</td>
+                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.liters }} L</td>
+                                    <td class="p-1.5 text-center font-bold align-middle">{{ record.status }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1267,4 +1267,3 @@ Siguiente
     }).mount('#app');
 </script>
 </body></html>
-
