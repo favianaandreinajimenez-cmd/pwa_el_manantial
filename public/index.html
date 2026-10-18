@@ -136,11 +136,7 @@
         html.dark body { background-color: #0b0f19 !important; color: #e2e8f0 !important; }
         html.dark header { background-color: #101726 !important; border-color: #25354e !important; }
         html.dark header h2 { color: #10b981 !important; }
-        
-        /* Barra lateral con el mismo color exacto que el header */
-        aside { background-color: #f8f9fc !important; border-color: #c2c9bb !important; }
-        html.dark aside { background-color: #101727 !important; border-color: #25354e !important; }
-
+        html.dark aside { background-color: #101726 !important; border-color: #25354e !important; }
         html.dark aside a:not(.bg-primary-container) { color: #94a3b8 !important; }
         html.dark aside a:not(.bg-primary-container):hover { background-color: #1e293b !important; color: #f8fafc !important; }
         html.dark main { background-color: #0b0f19 !important; }
@@ -187,7 +183,7 @@
     <div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
 
     <!-- Navigation Drawer -->
-    <aside :class="showSidebar ? 'w-80 translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20'" class="hidden lg:flex flex-col h-[calc(100vh-4rem)] fixed left-0 top-16 z-50 border-r border-outline-variant transition-all duration-300 ease-in-out">
+    <aside :class="showSidebar ? 'w-80 translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20'" class="hidden lg:flex flex-col h-[calc(100vh-4rem)] fixed left-0 top-16 z-50 border-r border-outline-variant bg-surface-container-low transition-all duration-300 ease-in-out">
         <div v-if="showSidebar" class="px-6 py-4 border-b border-outline-variant/30">
             <p class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">El Manantial</p>
             <p class="text-[11px] text-on-surface-variant">Gestión Láctea</p>
