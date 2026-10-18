@@ -10,7 +10,7 @@
       { id: 2, name: "Sales Minerales Premium", category: "feed", stock: 45, unit: "kg", status: "BAJO" },
       { id: 3, name: "Vacuna Antiaftosa (Frasco 50 ds)", category: "medicine", stock: 2, unit: "unidades", status: "CRÍTICO" },
       { id: 4, name: "Antibiótico Oxitetraciclina", category: "medicine", stock: 12, unit: "frascos", status: "OK" },
-      { id: 5, name: "Sellador de Pezones (Post-ordeño)", category: "hygiene", stock: 15, unit: "galones", status: "BAJO" }
+      { id: 5, name: "Sellador de Pezones (Post-ordeño)", category: "galones", stock: 15, unit: "galones", status: "BAJO" }
     ],
     units: [
       { id: 1, name: "Lote A", animalCount: 20, productionToday: "", healthAvg: "Excelente", status: "Activa", image: "" },
@@ -94,7 +94,6 @@
     }
     try {
       const parsed = JSON.parse(dbStr);
-      // Forzar actualización si no existen animales o hay menos de 40
       if (!parsed.animals || parsed.animals.length < 40) {
         localStorage.setItem('elmanantial_local_db', JSON.stringify(defaultDb));
         return JSON.parse(JSON.stringify(defaultDb));
@@ -117,7 +116,6 @@
       const method = (options.method || 'GET').toUpperCase();
       let db = getDb();
 
-      // --- Manejo para /api/animals ---
       if (endpoint.startsWith('animals')) {
         const parts = endpoint.split('/');
         
@@ -127,7 +125,6 @@
           const animal = db.animals.find(a => a.id === rawId || a.id === '#' + cleanId || a.id.replace('#','') === cleanId);
 
           if (animal) {
-            // PUT /api/animals/:id/notes
             if (parts.length === 3 && parts[2] === 'notes' && method === 'PUT') {
               try {
                 const body = JSON.parse(options.body);
@@ -142,7 +139,6 @@
               }
             }
 
-            // POST /api/animals/:id/events
             if (parts.length === 3 && parts[2] === 'events' && method === 'POST') {
               try {
                 const newEvent = JSON.parse(options.body);
@@ -161,7 +157,6 @@
               }
             }
 
-            // GET /api/animals/:id
             if (method === 'GET') {
               return new Response(JSON.stringify(animal), {
                 status: 200,
@@ -172,7 +167,6 @@
         }
       }
 
-      // Manejo para endpoints de inventario con ID dinámico
       if (endpoint.startsWith('inventory')) {
         const parts = endpoint.split('/');
         
