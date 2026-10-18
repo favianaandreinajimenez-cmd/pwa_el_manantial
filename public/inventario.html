@@ -4,8 +4,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#064e3b">
+<!-- Configuración PWA -->
+<link rel="manifest" href="/public/manifest.json"/>
+<meta name="theme-color" content="#154212"/>
+
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Respaldo local para funcionar sin internet -->
@@ -14,138 +16,119 @@
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#23501e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-container": "#ffaac8",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c2c9bb",
+                    "on-secondary-fixed-variant": "#454747",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface-variant": "#42493e",
+                    "inverse-primary": "#a1d494",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary-fixed-dim": "#a1d494",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9ff",
+                    "outline": "#72796e",
+                    "surface-variant": "#d5e3fc",
+                    "inverse-surface": "#233144",
+                    "surface-dim": "#ccdbf3",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-fixed": "#ffd9e4",
+                    "tertiary-container": "#7c3a55",
+                    "secondary-container": "#dfe0e0",
+                    "on-surface": "#0d1c2e",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#3b0520",
+                    "on-tertiary-fixed-variant": "#71314c",
+                    "surface-container-highest": "#d5e3fc",
+                    "on-background": "#0d1c2e",
+                    "on-primary-fixed": "#002201",
+                    "primary-fixed": "#bcf0ae",
+                    "primary": "#154212",
+                    "tertiary": "#60233e",
+                    "secondary": "#5d5f5f",
+                    "primary-container": "#2d5a27",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#616363",
+                    "tertiary-fixed-dim": "#ffb0cc",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-container": "#9dd090",
+                    "surface-tint": "#3b6934",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e6eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "sm": "12px",
+                    "md": "24px",
+                    "lg": "40px",
+                    "base": "8px",
+                    "xl": "64px",
+                    "margin-desktop": "32px",
+                    "xs": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Work Sans"],
+                    "data-tabular": ["Hanken Grotesk"],
+                    "label-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Work Sans"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-md": ["Hanken Grotesk"],
+                    "display-lg": ["Work Sans"]
+            }
+          }
+        }
+      }
+    </script>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
         body {
+            background-color: #f8f9ff;
             font-family: 'Hanken Grotesk', sans-serif;
-            -webkit-font-smoothing: antialiased;
         }
-        h1, h2, h3, .font-headline {
-            font-family: 'Work Sans', sans-serif;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #c2c9bb;
-            border-radius: 10px;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
         }
     </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-primary-fixed-variant": "#23501e",
-                        "surface-container-lowest": "#ffffff",
-                        "on-secondary-fixed": "#1a1c1c",
-                        "outline-variant": "#c2c9bb",
-                        "on-tertiary-container": "#ffaac8",
-                        "on-primary": "#ffffff",
-                        "inverse-primary": "#a1d494",
-                        "surface-container-low": "#eff4ff",
-                        "on-surface-variant": "#42493e",
-                        "on-secondary-fixed-variant": "#454747",
-                        "surface": "#f8f9ff",
-                        "secondary-fixed": "#e2e2e2",
-                        "primary-fixed-dim": "#a1d494",
-                        "error": "#ba1a1a",
-                        "secondary-fixed-dim": "#c6c6c7",
-                        "on-secondary": "#ffffff",
-                        "background": "#f8f9ff",
-                        "surface-container-high": "#dce9ff",
-                        "outline": "#72796e",
-                        "surface-variant": "#d5e3fc",
-                        "inverse-surface": "#233144",
-                        "tertiary-fixed": "#ffd9e4",
-                        "tertiary-container": "#7c3a55",
-                        "inverse-on-surface": "#eaf1ff",
-                        "surface-dim": "#ccdbf3",
-                        "on-surface": "#0d1c2e",
-                        "on-error": "#ffffff",
-                        "error-container": "#ffdad6",
-                        "secondary-container": "#dfe0e0",
-                        "on-tertiary-fixed-variant": "#71314c",
-                        "on-tertiary-fixed": "#3b0520",
-                        "tertiary": "#60233e",
-                        "primary-fixed": "#bcf0ae",
-                        "primary": "#154212",
-                        "on-primary-fixed": "#002201",
-                        "surface-container-highest": "#d5e3fc",
-                        "on-background": "#0d1c2e",
-                        "secondary": "#5d5f5f",
-                        "primary-fixed": "#bcf0ae",
-                        "primary": "#154212",
-                        "on-primary-fixed": "#002201",
-                        "surface-container-highest": "#d5e3fc",
-                        "on-background": "#0d1c2e",
-                        "secondary": "#5d5f5f",
-                        "primary-container": "#2d5a27",
-                        "on-tertiary": "#ffffff",
-                        "surface-bright": "#f8f9ff",
-                        "tertiary-fixed-dim": "#ffb0cc",
-                        "on-secondary-container": "#616363",
-                        "surface-tint": "#3b6934",
-                        "on-primary-container": "#9dd090",
-                        "surface-container": "#e6eeff",
-                        "on-error-container": "#93000a"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "sm": "12px",
-                        "md": "24px",
-                        "gutter": "24px",
-                        "margin-desktop": "32px",
-                        "xs": "4px",
-                        "margin-mobile": "16px",
-                        "lg": "40px",
-                        "base": "8px",
-                        "xl": "64px"
-                    },
-                    "fontFamily": {
-                        "label-md": ["Hanken Grotesk"],
-                        "display-lg": ["Work Sans"],
-                        "headline-md": ["Work Sans"],
-                        "body-md": ["Hanken Grotesk"],
-                        "label-lg": ["Hanken Grotesk"],
-                        "data-tabular": ["Hanken Grotesk"],
-                        "headline-lg": ["Work Sans"],
-                        "body-lg": ["Hanken Grotesk"],
-                        "body-sm": ["Hanken Grotesk"]
-                    },
-                    "fontSize": {
-                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
-    </script>
 <style>
     body {
       min-height: max(884px, 100dvh);
     }
+
+        /* Custom styles for dark mode */
         html.dark .glass-card {
             background: rgba(22, 32, 50, 0.8) !important;
             border-color: #25354e !important;
@@ -160,25 +143,22 @@
             background-color: #25354e !important;
         }
         html.dark .bg-emerald-100 {
-            background-color: #064e3b !important;
+            background-color: rgba(6, 78, 59, 0.8) !important;
         }
         html.dark .text-emerald-800 {
             color: #a7f3d0 !important;
         }
         html.dark .bg-amber-100 {
-            background-color: #78350f !important;
+            background-color: rgba(120, 53, 15, 0.8) !important;
         }
         html.dark .text-amber-800 {
             color: #fde68a !important;
         }
-        html.dark .bg-blue-100 {
-            background-color: #1e3a8a !important;
+        html.dark .bg-rose-100 {
+            background-color: rgba(159, 18, 57, 0.8) !important;
         }
-        html.dark .text-blue-800 {
-            color: #bfdbfe !important;
-        }
-        html.dark .bg-green-100\/90 {
-            background-color: rgba(6, 78, 59, 0.9) !important;
+        html.dark .text-rose-800 {
+            color: #fecdd3 !important;
         }
         html.dark body {
             background-color: #0b0f19 !important;
@@ -318,6 +298,33 @@
         html.dark .bg-primary:hover {
             background-color: #059669 !important;
         }
+        html.dark .bg-\[\#e3f2fd\] {
+            background-color: #1e3a8a !important;
+        }
+        html.dark .text-\[\#1565c0\] {
+            color: #93c5fd !important;
+        }
+        html.dark .bg-\[\#dcfce7\] {
+            background-color: #064e3b !important;
+        }
+        html.dark .text-\[\#14532d\] {
+            color: #a7f3d0 !important;
+        }
+        html.dark .text-\[\#2e7d32\] {
+            color: #a7f3d0 !important;
+        }
+        html.dark .text-\[\#c62828\] {
+            color: #fca5a5 !important;
+        }
+        html.dark svg path[stroke="#154212"] {
+            stroke: #10b981 !important;
+        }
+        html.dark svg circle[fill="#154212"] {
+            fill: #10b981 !important;
+        }
+        html.dark stop[stop-color="#154212"] {
+            stop-color: #10b981 !important;
+        }
         html.dark .shadow-sm,
         html.dark .shadow-md,
         html.dark .shadow-lg,
@@ -340,7 +347,7 @@
         }
     </style>
   </head>
-<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
+<body class="text-on-surface" id="app">
 <!-- Navigation Drawer Backdrop -->
 <div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
 <!-- Navigation Drawer -->
@@ -359,7 +366,7 @@
         <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -368,7 +375,7 @@
         <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -377,7 +384,7 @@
         <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -407,8 +414,8 @@
     </nav>
 </aside>
 
-<!-- Profile Content Canvas -->
-<main class="lg:ml-20 pt-16 pb-24 md:pb-8 flex-1">
+<!-- Main Content Area -->
+<main class="lg:ml-20 pt-16 pb-24 md:pb-8">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
 <div class="flex items-center h-full min-w-0 flex-1">
@@ -419,7 +426,7 @@
         </div>
         <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
     </div>
-  <div class="flex items-center gap-3 pr-4 md:pr-margin-desktop">
+  <div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
   <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
     <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
   </button>
@@ -427,190 +434,284 @@
 <button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
-  <a href="usuarios.html" class="w-10 h-10 rounded-full overflow-hidden bg-[#154212] text-white flex items-center justify-center text-sm font-bold shadow-sm">
+  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+    <span v-else>{{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}</span>
   </a>
 </div>
 </header>
-<div class="px-4 md:px-margin-desktop pt-4 pb-8 max-w-7xl mx-auto">
+<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
     
-<!-- Breadcrumbs / Botón Volver Dinámico -->
-<nav class="flex items-center gap-2 mb-4 text-on-surface-variant">
-<a :href="backUrl" class="flex items-center gap-2 font-label-md text-primary font-bold hover:underline">
-<span class="material-symbols-outlined text-sm">arrow_back</span>
-    {{ backText }}
-</a>
-<span class="font-label-md font-bold text-on-surface">/ {{ cleanAnimalId }} {{ animal.name }}</span>
-</nav>
-<!-- Header Section -->
-<section class="mb-6">
-  <div class="relative bg-white rounded-2xl shadow-sm border border-outline-variant overflow-hidden mb-4">
-    <img :alt="animal.name" class="w-full aspect-[4/3] sm:aspect-square object-cover" :src="animal.image"/>
-    <div class="absolute top-4 right-4">
-      <span :class="animal.status === 'Saludable' ? 'bg-emerald-100/90 text-emerald-800 border-emerald-200' : (animal.status === 'En Tratamiento' ? 'bg-error-container text-on-error-container border-error/25' : 'bg-secondary-container text-on-secondary-container border-secondary/25')" class="inline-flex items-center px-3 py-1.5 rounded-full font-bold text-xs border backdrop-blur-md shadow-sm">
-        <span :class="animal.status === 'Saludable' ? 'bg-emerald-600' : (animal.status === 'En Tratamiento' ? 'bg-error' : 'bg-secondary')" class="w-2 h-2 rounded-full mr-2"></span>
-        {{ animal.status }}
-      </span>
-    </div>
-  </div>
-
-  <div class="text-center mb-6">
-    <h1 class="text-4xl font-extrabold text-[#0d1c2e] dark:text-white tracking-tight mb-4">{{ animal.name }}</h1>
-    <div class="flex flex-wrap items-center justify-center gap-6 max-w-4xl mx-auto text-left px-2">
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-xl">category</span>
-        <span class="text-sm text-on-surface">Raza: <strong class="text-on-surface font-semibold">{{ animal.breed }}</strong></span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-xl">event</span>
-        <span class="text-sm text-on-surface">Edad: <strong class="text-on-surface font-semibold">{{ animal.age }} años</strong></span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-xl">scale</span>
-        <span class="text-sm text-on-surface">Peso: <strong class="text-on-surface font-semibold">{{ animal.weight }} kg</strong></span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-xl">tag</span>
-        <span class="text-sm text-on-surface">ID: <strong class="text-on-surface font-semibold">{{ cleanAnimalId }}</strong></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-    <div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/60 shadow-sm">
-      <p class="text-xs text-on-surface-variant font-medium mb-1">Producción Total</p>
-      <p class="text-2xl font-bold text-primary">{{ animal.productionTotal ? animal.productionTotal.toLocaleString() : '0' }} L</p>
-    </div>
-    <div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/60 shadow-sm">
-      <p class="text-xs text-on-surface-variant font-medium mb-1">Últ. Vacunación</p>
-      <p class="text-lg font-bold text-on-surface">{{ animal.lastVaccination || 'No registrada' }}</p>
-    </div>
-    <div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/60 shadow-sm">
-      <p class="text-xs text-on-surface-variant font-medium mb-1">Estado Preñez</p>
-      <p class="text-lg font-bold text-primary">{{ animal.pregnancyStatus || 'No preñada' }}</p>
-    </div>
-  </div>
+<!-- Health Summary Section -->
+<section class="mb-10">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="font-headline-lg text-2xl md:text-3xl font-bold text-primary mb-1">Estado de Salud del Rebaño</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Resumen operativo de las últimas 24 horas</p>
+</div>
+<div class="hidden md:block">
+<span class="inline-flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-container rounded-full font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="update">update</span>
+                            Actualizado: Hoy 08:30 AM
+                        </span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Healthy Stat -->
+<div @click="selectedStatusFilter = (selectedStatusFilter === 'Saludable' ? '' : 'Saludable')" :class="selectedStatusFilter === 'Saludable' ? 'ring-2 ring-primary border-transparent shadow-md' : 'border-outline-variant hover:border-primary/50 cursor-pointer'" class="bg-surface-container-lowest border p-6 rounded-xl transition-all duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="health_and_safety">health_and_safety</span>
+</div>
+<span class="text-primary font-bold text-lg">+2%</span>
+</div>
+<p class="font-display-lg text-display-lg text-primary">{{ healthyPercentage }}%</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Animales Saludables</p>
+</div>
+<!-- Active Treatment Stat -->
+<div @click="selectedStatusFilter = (selectedStatusFilter === 'En Tratamiento' ? '' : 'En Tratamiento')" :class="selectedStatusFilter === 'En Tratamiento' ? 'ring-2 ring-error border-transparent shadow-md' : 'border-outline-variant hover:border-error/50 cursor-pointer'" class="bg-surface-container-lowest border p-6 rounded-xl transition-all duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+</div>
+<span class="text-error font-bold text-lg">{{ inTreatment }}</span>
+</div>
+<p class="font-display-lg text-display-lg text-on-surface">{{ inTreatment }}</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">En Tratamiento</p>
+</div>
+<!-- Observation Stat -->
+<div @click="selectedStatusFilter = (selectedStatusFilter === 'Bajo Observación' ? '' : 'Bajo Observación')" :class="selectedStatusFilter === 'Bajo Observación' ? 'ring-2 ring-secondary border-transparent shadow-md' : 'border-outline-variant hover:border-secondary/50 cursor-pointer'" class="bg-surface-container-lowest border p-6 rounded-xl transition-all duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+<span class="text-secondary font-bold text-lg">{{ underObservation }}</span>
+</div>
+<p class="font-display-lg text-display-lg text-on-surface">{{ underObservation }}</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Bajo Observación</p>
+</div>
+<!-- Births/New Records -->
+<div @click="selectedStatusFilter = (selectedStatusFilter === 'nacimientos' ? '' : 'nacimientos')" :class="selectedStatusFilter === 'nacimientos' ? 'ring-2 ring-primary border-transparent shadow-md' : 'border-outline-variant hover:border-primary/50 cursor-pointer'" class="bg-surface-container-lowest border p-6 rounded-xl transition-all duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant">
+<span class="material-symbols-outlined" data-icon="child_care">child_care</span>
+</div>
+<span class="text-primary font-bold text-lg">{{ birthsThisMonth }}</span>
+</div>
+<p class="font-display-lg text-display-lg text-on-surface">{{ birthsThisMonth }}</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Nacimientos (Mes)</p>
+</div>
+</div>
 </section>
-<!-- Main Layout Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Left Column: Clinical History & Timeline -->
-<div class="lg:col-span-8 space-y-gutter">
-<!-- History Tabs -->
-<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
-<div class="flex border-b border-outline-variant overflow-x-auto">
-<button class="px-6 py-4 font-label-lg text-label-lg text-primary border-b-2 border-primary whitespace-nowrap">Historial Médico</button>
-<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap">Producción Mensual</button>
-<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap">Genealogía</button>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Upcoming Checkups (Left Column) -->
+<section class="lg:col-span-1">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Próximos Chequeos</h3>
+<button class="text-primary font-label-lg text-label-lg hover:underline underline-offset-4">Ver calendario</button>
 </div>
-<div class="p-6">
-<div class="space-y-8 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
-<!-- Dynamic Event Card Loop -->
-<div v-for="event in animal.events" :key="event.id" class="relative pl-10">
-<div :class="getEventColorClass(event.type)" class="absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center border-4 border-white shadow-sm">
-<span class="material-symbols-outlined text-white text-[14px]" :data-icon="getEventIcon(event.type)">{{ getEventIcon(event.type) }}</span>
+<div class="space-y-4">
+<!-- Checkup Card Loop -->
+<div v-for="check in checkups" :key="check.id" class="bg-white border border-outline-variant rounded-xl p-4 flex gap-4 items-start">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-fixed flex flex-col items-center justify-center text-on-primary-fixed">
+<span class="text-[10px] uppercase font-bold leading-none">{{ check.date.split(' ')[1] || 'Oct' }}</span>
+<span class="text-xl font-bold leading-tight">{{ check.date.split(' ')[0] }}</span>
 </div>
-<div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
-<div>
-<h4 class="font-headline-md text-label-lg font-bold text-on-surface">{{ event.type }}: {{ event.details }}</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Veterinario: {{ event.veterinarian }}</p>
-</div>
-<span class="font-data-tabular text-data-tabular bg-surface-container p-1 px-3 rounded text-on-surface-variant">{{ event.date }}</span>
-</div>
-</div>
-<div v-if="!animal.events || animal.events.length === 0" class="text-center italic text-on-surface-variant">
-No hay eventos clínicos registrados para este animal.
-</div>
-</div>
-<button @click="openEventModal('Chequeo')" class="mt-8 w-full py-3 border border-dashed border-outline text-primary font-bold rounded-lg hover:bg-primary-fixed transition-colors">
-                                Registrar Evento de Chequeo
-                            </button>
+<div class="flex-1">
+<p class="font-label-lg text-label-lg text-primary">{{ check.title }}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">{{ check.target }}</p>
+<div class="flex items-center gap-2">
+<span :class="check.priority === 'Urgente' ? 'bg-error' : 'bg-secondary'" class="w-2 h-2 rounded-full"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">{{ check.priority }}</span>
 </div>
 </div>
 </div>
-<!-- Right Column: Notes & Actions -->
-<div class="lg:col-span-4 space-y-gutter">
-<!-- Action Cards -->
-<div class="bg-white rounded-xl border border-outline-variant shadow-sm p-6">
-<h3 class="font-headline-md text-label-lg font-bold text-on-surface mb-4">Acciones Rápidas</h3>
-<div class="space-y-3">
-<button @click="openEventModal('Tratamiento')" class="w-full flex items-center justify-center gap-3 bg-primary text-on-primary py-3 rounded-xl font-bold hover:brightness-110 active:scale-[0.98] transition-all">
-<span class="material-symbols-outlined" data-icon="add_moderator">add_moderator</span>
-                                Registrar Tratamiento
-                            </button>
-<button @click="openEventModal('Vacunación')" class="w-full flex items-center justify-center gap-3 bg-white border-2 border-primary text-primary py-3 rounded-xl font-bold hover:bg-surface-container transition-all">
-<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
-                                Registrar Vacunación
-                            </button>
 </div>
-</div>
-<!-- Veterinary Notes -->
-<div class="bg-white rounded-xl border border-outline-variant shadow-sm p-6">
-<div class="flex justify-between items-center mb-4">
-<h3 class="font-headline-md text-label-lg font-bold text-on-surface">Notas Veterinarias</h3>
-<button @click="toggleEditNotes" class="text-primary material-symbols-outlined hover:bg-surface-container p-1 rounded transition-colors" data-icon="edit_note">edit_note</button>
-</div>
-<div v-if="!isEditingNotes" class="bg-surface p-4 rounded-lg border border-outline-variant/30 italic text-on-surface-variant font-body-sm whitespace-pre-line">
-                            "{{ animal.notes || 'Sin notas registradas.' }}"
-                        </div>
-<div v-else class="space-y-sm">
-<textarea v-model="editNotesText" class="w-full bg-surface-container-lowest border border-outline rounded-lg p-3 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none h-24" placeholder="Ingrese notas veterinarias..."></textarea>
-<div class="flex justify-end gap-sm">
-<button @click="isEditingNotes = false" class="px-3 py-1 border border-outline rounded-lg text-label-md hover:bg-surface-container">Cancelar</button>
-<button @click="saveNotes" :disabled="savingNotes" class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-md hover:brightness-110 active:scale-95 transition-all">
-                                {{ savingNotes ? 'Guardando...' : 'Guardar' }}
-                            </button>
-</div>
-</div>
-<p class="mt-2 text-right font-label-md text-[10px] text-outline uppercase tracking-wider">Última actualización: {{ lastNotesUpdate || 'Dra. Mendoza' }}</p>
-</div>
-<!-- Environment Info -->
-<div class="bg-surface-container-high rounded-xl p-6 border border-primary/10">
-<div class="flex items-center gap-4">
-<div class="p-3 bg-white rounded-full">
-<span class="material-symbols-outlined text-primary" data-icon="thermostat">thermostat</span>
-</div>
-<div>
-<p class="font-label-md text-label-md text-on-surface-variant">Estrés Térmico</p>
-<p class="font-headline-md text-label-lg font-bold text-primary">Nivel Bajo (Optimal)</p>
+</section>
+<!-- Veterinary Records (Right 2 Columns) -->
+<section class="lg:col-span-2">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Fichas Veterinarias</h3>
+<div class="flex items-center gap-3">
+<!-- Filtro por Lote (A o B) -->
+<select v-model="selectedLot" class="bg-white border border-outline-variant rounded-full px-4 py-2 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md text-on-surface">
+<option value="">Todos los Lotes (40 Vacas)</option>
+<option value="A">Lote A (20 Vacas)</option>
+<option value="B">Lote B (20 Vacas)</option>
+</select>
+<div class="relative max-w-xs w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input v-model="searchQuery" class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-full focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md" placeholder="Buscar ID o raza..." type="text"/>
 </div>
 </div>
 </div>
+<!-- Veterinary List -->
+<div class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead>
+<tr class="bg-surface-container text-on-surface font-label-lg text-label-lg">
+<th class="px-6 py-4">ID Animal</th>
+<th class="px-6 py-4">Nombre</th>
+<th class="px-6 py-4">Raza</th>
+<th class="px-6 py-4">Lote</th>
+<th class="px-6 py-4">Estado</th>
+<th class="px-6 py-4 text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr v-for="cow in paginatedMilkingRecords" :key="cow.id" class="hover:bg-surface-bright transition-colors">
+<!-- ID Animal separado con formato #letra-XXX -->
+<td class="px-6 py-4">
+<a :href="'historial.html?id=' + cow.id" class="px-3 py-1.5 rounded-lg bg-surface-container-high inline-flex items-center justify-center font-bold text-primary text-xs active:scale-95 transition-transform hover:underline">
+  #{{ cow.id.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0,1) }}-{{ String(cow.id).replace(/\D/g, '').slice(-3).padStart(3, '0') }}
+</a>
+</td>
+<!-- Nombre separado de la ID -->
+<td class="px-6 py-4">
+<a :href="'historial.html?id=' + cow.id" class="font-body-md text-body-md font-bold text-primary hover:underline block">{{ cow.name }}</a>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Edad: {{ cow.age }} años</p>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">{{ cow.breed }}</td>
+<!-- Lote limitado únicamente a A o B -->
+<td class="px-6 py-4 font-body-md text-body-md">
+  <span class="px-2.5 py-1 bg-surface-container text-on-surface rounded-full text-xs font-bold">{{ cow.lot }}</span>
+</td>
+<td class="px-6 py-4">
+<span :class="[
+  'inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label-md text-label-md border',
+  cow.status === 'Saludable' ? 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border-emerald-700' :
+  cow.status === 'Bajo Observación' ? 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/80 dark:text-amber-300 dark:border-amber-700' :
+  'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950/80 dark:text-rose-300 dark:border-rose-700'
+]">
+  <span :class="[
+    'w-1.5 h-1.5 rounded-full',
+    cow.status === 'Saludable' ? 'bg-emerald-500' :
+    cow.status === 'Bajo Observación' ? 'bg-amber-500' :
+    'bg-rose-500'
+  ]"></span>
+  {{ cow.status }}
+</span>
+</td>
+<td class="px-6 py-4 text-right">
+<a :href="'historial.html?id=' + cow.id" class="text-primary hover:bg-primary-fixed p-2 rounded-full inline-block transition-colors cursor-pointer" :title="'Ver historial de ' + cow.name">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</a>
+</td>
+</tr>
+<tr v-if="paginatedMilkingRecords.length === 0">
+<td colspan="6" class="px-6 py-8 text-center text-on-surface-variant italic">No se encontraron animales.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+    <span class="text-sm text-on-surface-variant">Página {{ milkingPage }} de {{ maxMilkingPages }}</span>
+    <div class="flex gap-2">
+        <button @click="milkingPage > 1 ? milkingPage-- : null" :disabled="milkingPage === 1" class="px-3 py-1 border border-outline rounded text-label-md hover:bg-white transition-colors disabled:opacity-50 cursor-pointer">Anterior</button>
+        <button @click="milkingPage < maxMilkingPages ? milkingPage++ : null" :disabled="milkingPage === maxMilkingPages" class="px-3 py-1 rounded text-label-md transition-colors disabled:opacity-50 cursor-pointer bg-[#154212] dark:bg-[#10b981] text-white dark:text-[#0b0f19] hover:brightness-110">Siguiente</button>
+    </div>
+</div>
+</div>
+</section>
 </div>
 </div>
 </main>
-<!-- BottomNavBar (Mobile Only) -->
+
+<!-- Floating Action Button -->
+<button v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showAddModal = true" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+
+<!-- New Health Event Modal -->
+<div v-if="showAddModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+<div class="bg-white rounded-xl border border-outline-variant p-6 max-w-md w-full shadow-xl text-left">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Registrar Evento Veterinario</h3>
+<form @submit.prevent="submitEvent">
+<div class="space-y-4">
+<div>
+<label class="block font-label-lg text-label-lg mb-1 text-on-surface-variant">Seleccionar Vaca</label>
+<select v-model="newEvent.animalId" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-3 focus:ring-2 focus:ring-primary outline-none text-body-md">
+<option disabled value="">Seleccione una vaca</option>
+<option v-for="cow in animals" :key="cow.id" :value="cow.id">#{{ cow.id.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0,1) }}-{{ String(cow.id).replace(/\D/g, '').slice(-3).padStart(3, '0') }} - {{ cow.name }} ({{ cow.breed }}) - Lote {{ cow.lot }}</option>
+</select>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-1 text-on-surface-variant">Tipo de Evento</label>
+<select v-model="newEvent.type" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-3 focus:ring-2 focus:ring-primary outline-none text-body-md">
+<option value="Vacunación">Vacunación</option>
+<option value="Tratamiento">Tratamiento</option>
+<option value="Parto">Parto</option>
+<option value="Chequeo">Chequeo General</option>
+</select>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-1 text-on-surface-variant">Detalles del Evento</label>
+<input v-model="newEvent.details" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-3 focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. Aftosa o Mastitis Leve (Cefalexina)" type="text"/>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-1 text-on-surface-variant">Veterinario</label>
+<input v-model="newEvent.veterinarian" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-3 focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Dra. Maria Mendoza" type="text"/>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-1 text-on-surface-variant">Cambiar Estado del Animal</label>
+<select v-model="newEvent.status" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-3 focus:ring-2 focus:ring-primary outline-none text-body-md">
+<option value="">No cambiar estado</option>
+<option value="Saludable">Saludable</option>
+<option value="En Tratamiento">En Tratamiento</option>
+<option value="Bajo Observación">Bajo Observación</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end gap-3 mt-6">
+<button type="button" @click="showAddModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
+<button type="submit" :disabled="submitting" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">
+  {{ submitting ? 'Guardando...' : 'Guardar' }}
+</button>
+</div>
+</form>
+</div>
+</div>
+
+<!-- Bottom Navigation Bar (Mobile only) -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
+    <!-- Inicio -->
     <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
       <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <!-- Ordeño -->
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
       <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <!-- Finca -->
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
       <span class="text-[10px] mt-0.5 leading-none">Finca</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <!-- inventario -->
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario' || currentUser.role === 'Obrero')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
       <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
     </a>
+    <!-- Salud -->
     <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('salud.html') || isActive('historial.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
       <span class="text-[10px] mt-0.5 leading-none">Salud</span>
     </a>
+    <!-- Reportes -->
     <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
       <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
     </a>
+    <!-- Perfil -->
     <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
@@ -618,54 +719,8 @@ No hay eventos clínicos registrados para este animal.
     </a>
   </nav>
 
-<!-- New Health Event Modal & Vue mount -->
-<div v-if="showEventModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-  <div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl text-left">
-    <h3 class="font-headline-md text-headline-md text-primary mb-md">Registrar Evento Veterinario</h3>
-    <form @submit.prevent="submitEvent">
-      <div class="space-y-base">
-        <div>
-          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">ID Animal</label>
-          <input :value="cleanAnimalId + ' - ' + animal.name" disabled class="w-full bg-surface-container border border-outline rounded-lg h-12 px-base text-body-md opacity-70 outline-none" type="text"/>
-        </div>
-        <div>
-          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Tipo de Evento</label>
-          <select v-model="newEvent.type" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
-            <option value="Vacunación">Vacunación</option>
-            <option value="Tratamiento">Tratamiento</option>
-            <option value="Parto">Parto</option>
-            <option value="Chequeo">Chequeo General</option>
-          </select>
-        </div>
-        <div>
-          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Detalles del Evento</label>
-          <input v-model="newEvent.details" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. Aftosa o Mastitis Leve (Cefalexina)" type="text"/>
-        </div>
-        <div>
-          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Veterinario</label>
-          <input v-model="newEvent.veterinarian" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Dra. Maria Mendoza" type="text"/>
-        </div>
-        <div>
-          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Cambiar Estado del Animal</label>
-          <select v-model="newEvent.status" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
-            <option value="">No cambiar estado</option>
-            <option value="Saludable">Saludable</option>
-            <option value="En Tratamiento">En Tratamiento</option>
-            <option value="Bajo Observación">Bajo Observación</option>
-          </select>
-        </div>
-      </div>
-      <div class="flex justify-end gap-sm mt-lg">
-        <button type="button" @click="showEventModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-        <button type="submit" :disabled="submittingEvent" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">
-          {{ submittingEvent ? 'Guardando...' : 'Guardar' }}
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
 <script>
+    // Registro del Service Worker para PWA
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('sw.js')
@@ -674,823 +729,233 @@ No hay eventos clínicos registrados para este animal.
         });
     }
 
-    // Base de datos completa integrada directamente con Lote A (A-101 al A-120) y Lote B (B-201 al B-220)
-    const ALL_ANIMALS_ARRAY = [
-        // --- LOTE A ---
-        {
-            id: "A-101",
-            name: "Lucero",
-            breed: "Carora",
-            age: 4.0,
-            weight: 460,
-            status: "Saludable",
-            productionTotal: 12450,
-            lastVaccination: "10 Sep 2023",
-            pregnancyStatus: "Confirmado (2m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Animal muestra excelente recuperación post-parto. Se recomienda mantener suplementación mineral tipo B hasta el próximo ciclo de ordeño.",
-            events: [
-                { id: 1, type: "Vacunación", details: "Aftosa y Rabia", veterinarian: "Dra. Mendoza", date: "10 Sep 2023" },
-                { id: 2, type: "Chequeo", details: "Diagnóstico de preñez positivo", veterinarian: "Dra. Mendoza", date: "15 Jul 2023" }
-            ]
-        },
-        {
-            id: "A-102",
-            name: "Mariposa",
-            breed: "Holstein",
-            age: 5.0,
-            weight: 550,
-            status: "En Tratamiento",
-            productionTotal: 9200,
-            lastVaccination: "14 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-            notes: "En tratamiento por mastitis leve. Aplicación de Cefalexina durante 5 días.",
-            events: [
-                { id: 1, type: "Tratamiento", details: "Mastitis Leve (Cefalexina - 5 días)", veterinarian: "Dra. Mendoza", date: "22 Abr 2026" }
-            ]
-        },
-        {
-            id: "A-103",
-            name: "Gitana",
-            breed: "Brahman",
-            age: 3.5,
-            weight: 500,
-            status: "Bajo Observación",
-            productionTotal: 6500,
-            lastVaccination: "01 Oct 2023",
-            pregnancyStatus: "Confirmado (4m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Chequeo mensual de gestación y monitoreo de cojera leve.",
-            events: []
-        },
-        {
-            id: "A-104",
-            name: "Estrella",
-            breed: "Pardo Suizo",
-            age: 4.2,
-            weight: 530,
-            status: "Saludable",
-            productionTotal: 8400,
-            lastVaccination: "11 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Comportamiento dócil en sala de ordeño.",
-            events: []
-        },
-        {
-            id: "A-105",
-            name: "Luna",
-            breed: "Jersey",
-            age: 3.0,
-            weight: 440,
-            status: "Saludable",
-            productionTotal: 6100,
-            lastVaccination: "19 Sep 2023",
-            pregnancyStatus: "Confirmado (1m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Vaca joven con excelente persistencia.",
-            events: []
-        },
-        {
-            id: "A-106",
-            name: "Paloma",
-            breed: "Carora",
-            age: 4.5,
-            weight: 470,
-            status: "Saludable",
-            productionTotal: 7800,
-            lastVaccination: "20 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Sin observaciones especiales.",
-            events: []
-        },
-        {
-            id: "A-107",
-            name: "Rosilla",
-            breed: "Holstein",
-            age: 3.8,
-            weight: 490,
-            status: "Saludable",
-            productionTotal: 8100,
-            lastVaccination: "21 Sep 2023",
-            pregnancyStatus: "Confirmado (3m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Buen desarrollo productivo.",
-            events: []
-        },
-        {
-            id: "A-108",
-            name: "Morena",
-            breed: "Brahman",
-            age: 4.6,
-            weight: 520,
-            status: "Saludable",
-            productionTotal: 6900,
-            lastVaccination: "22 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Adaptada al sistema de potrero.",
-            events: []
-        },
-        {
-            id: "A-109",
-            name: "Margarita",
-            breed: "Pardo Suizo",
-            age: 5.2,
-            weight: 540,
-            status: "Saludable",
-            productionTotal: 9500,
-            lastVaccination: "23 Sep 2023",
-            pregnancyStatus: "Confirmado (5m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Excelente rendimiento lechero.",
-            events: []
-        },
-        {
-            id: "A-110",
-            name: "Princesa",
-            breed: "Jersey",
-            age: 3.3,
-            weight: 430,
-            status: "Saludable",
-            productionTotal: 5900,
-            lastVaccination: "24 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Buen temperamento.",
-            events: []
-        },
-        {
-            id: "A-111",
-            name: "Flor",
-            breed: "Carora",
-            age: 4.1,
-            weight: 450,
-            status: "Saludable",
-            productionTotal: 7200,
-            lastVaccination: "25 Sep 2023",
-            pregnancyStatus: "Confirmado (2m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Estable.",
-            events: []
-        },
-        {
-            id: "A-112",
-            name: "Reina",
-            breed: "Holstein",
-            age: 5.5,
-            weight: 580,
-            status: "Saludable",
-            productionTotal: 10400,
-            lastVaccination: "26 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Alta producción.",
-            events: []
-        },
-        {
-            id: "A-113",
-            name: "Bonita",
-            breed: "Brahman",
-            age: 3.9,
-            weight: 495,
-            status: "Saludable",
-            productionTotal: 6300,
-            lastVaccination: "27 Sep 2023",
-            pregnancyStatus: "Confirmado (1m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Saludable y activa.",
-            events: []
-        },
-        {
-            id: "A-114",
-            name: "Mora",
-            breed: "Pardo Suizo",
-            age: 4.8,
-            weight: 515,
-            status: "Saludable",
-            productionTotal: 8600,
-            lastVaccination: "28 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Sin novedad.",
-            events: []
-        },
-        {
-            id: "A-115",
-            name: "Canela",
-            breed: "Jersey",
-            age: 3.4,
-            weight: 435,
-            status: "Saludable",
-            productionTotal: 6000,
-            lastVaccination: "29 Sep 2023",
-            pregnancyStatus: "Confirmado (4m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Buena ganancia de peso.",
-            events: []
-        },
-        {
-            id: "A-116",
-            name: "Pinta",
-            breed: "Carora",
-            age: 4.3,
-            weight: 465,
-            status: "Saludable",
-            productionTotal: 7500,
-            lastVaccination: "30 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Control rutinario normal.",
-            events: []
-        },
-        {
-            id: "A-117",
-            name: "Negrita",
-            breed: "Holstein",
-            age: 5.0,
-            weight: 540,
-            status: "Saludable",
-            productionTotal: 9100,
-            lastVaccination: "01 Oct 2023",
-            pregnancyStatus: "Confirmado (3m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Excelente condición corporal.",
-            events: []
-        },
-        {
-            id: "A-118",
-            name: "Blanca",
-            breed: "Brahman",
-            age: 3.7,
-            weight: 485,
-            status: "Saludable",
-            productionTotal: 6400,
-            lastVaccination: "02 Oct 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Tranquila en el corral.",
-            events: []
-        },
-        {
-            id: "A-119",
-            name: "Perla",
-            breed: "Pardo Suizo",
-            age: 4.4,
-            weight: 510,
-            status: "Saludable",
-            productionTotal: 8200,
-            lastVaccination: "03 Oct 2023",
-            pregnancyStatus: "Confirmado (2m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Buen ritmo de producción.",
-            events: []
-        },
-        {
-            id: "A-120",
-            name: "Esperanza",
-            breed: "Jersey",
-            age: 3.2,
-            weight: 425,
-            status: "Saludable",
-            productionTotal: 5800,
-            lastVaccination: "04 Oct 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Saludable.",
-            events: []
-        },
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    isDarkMode: false,
+                    currentUser: null,
+                    searchQuery: '',
+                    selectedLot: '',
+                    milkingPage: 1,
+                    isDesktop: window.innerWidth >= 1024,
+                    showAddModal: false,
+                    submitting: false,
+                    healthyPercentage: 95,
+                    inTreatment: 1,
+                    underObservation: 1,
+                    birthsThisMonth: 2,
+                    selectedStatusFilter: '',
+                    checkups: [
+                        { id: 1, date: '02 Oct', title: 'Vacunación Aftosa', target: 'Lote A y B', priority: 'Urgente' },
+                        { id: 2, date: '05 Oct', title: 'Palpación Rutinaria', target: 'Vacas Seleccionadas', priority: 'Normal' }
+                    ],
+                    animals: [],
+                    showSidebar: false,
+                    newEvent: {
+                        animalId: '',
+                        type: 'Vacunación',
+                        details: '',
+                        veterinarian: 'Dra. Maria Mendoza',
+                        status: ''
+                    }
+                };
+            },
+            computed: {
+                filteredAnimals() {
+                    return this.animals.filter(cow => {
+                        const query = this.searchQuery.toLowerCase();
+                        const matchesQuery = cow.id.toLowerCase().includes(query) || 
+                                             cow.name.toLowerCase().includes(query) || 
+                                             cow.breed.toLowerCase().includes(query);
 
-        // --- LOTE B ---
-        {
-            id: "B-201",
-            name: "Rosa",
-            breed: "Holstein",
-            age: 4.5,
-            weight: 520,
-            status: "Saludable",
-            productionTotal: 8500,
-            lastVaccination: "05 Sep 2023",
-            pregnancyStatus: "Confirmado (2m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Buen desempeño en el lote B.",
-            events: []
-        },
-        {
-            id: "B-202",
-            name: "Hermosa",
-            breed: "Brahman",
-            age: 3.8,
-            weight: 490,
-            status: "Saludable",
-            productionTotal: 6700,
-            lastVaccination: "06 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Activa y en buen estado.",
-            events: []
-        },
-        {
-            id: "B-203",
-            name: "Diamante",
-            breed: "Pardo Suizo",
-            age: 4.9,
-            weight: 530,
-            status: "Saludable",
-            productionTotal: 8900,
-            lastVaccination: "07 Sep 2023",
-            pregnancyStatus: "Confirmado (3m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Estable.",
-            events: []
-        },
-        {
-            id: "B-204",
-            name: "Zamurita",
-            breed: "Carora",
-            age: 4.0,
-            weight: 460,
-            status: "Saludable",
-            productionTotal: 7100,
-            lastVaccination: "08 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Sin novedad clínica.",
-            events: []
-        },
-        {
-            id: "B-205",
-            name: "Gaviota",
-            breed: "Jersey",
-            age: 3.5,
-            weight: 430,
-            status: "Saludable",
-            productionTotal: 5900,
-            lastVaccination: "09 Sep 2023",
-            pregnancyStatus: "Confirmado (1m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Vaca dócil.",
-            events: []
-        },
-        {
-            id: "B-206",
-            name: "Lucerito",
-            breed: "Holstein",
-            age: 4.2,
-            weight: 505,
-            status: "Saludable",
-            productionTotal: 8300,
-            lastVaccination: "10 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Buen ritmo de ordeño.",
-            events: []
-        },
-        {
-            id: "B-207",
-            name: "Tormenta",
-            breed: "Brahman",
-            age: 4.6,
-            weight: 515,
-            status: "Saludable",
-            productionTotal: 6800,
-            lastVaccination: "11 Sep 2023",
-            pregnancyStatus: "Confirmado (4m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Energética.",
-            events: []
-        },
-        {
-            id: "B-208",
-            name: "Manea",
-            breed: "Pardo Suizo",
-            age: 3.9,
-            weight: 485,
-            status: "Saludable",
-            productionTotal: 7900,
-            lastVaccination: "12 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Salud óptima.",
-            events: []
-        },
-        {
-            id: "B-209",
-            name: "Consentida",
-            breed: "Carora",
-            age: 4.1,
-            weight: 470,
-            status: "Saludable",
-            productionTotal: 7400,
-            lastVaccination: "13 Sep 2023",
-            pregnancyStatus: "Confirmado (2m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Comportamiento excelente.",
-            events: []
-        },
-        {
-            id: "B-210",
-            name: "Altagracia",
-            breed: "Holstein",
-            age: 5.1,
-            weight: 560,
-            status: "Saludable",
-            productionTotal: 9600,
-            lastVaccination: "14 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Alta productora.",
-            events: []
-        },
-        {
-            id: "B-211",
-            name: "Sombra",
-            breed: "Brahman",
-            age: 3.6,
-            weight: 475,
-            status: "Saludable",
-            productionTotal: 6200,
-            lastVaccination: "15 Sep 2023",
-            pregnancyStatus: "Confirmado (1m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Sin incidentes.",
-            events: []
-        },
-        {
-            id: "B-212",
-            name: "Parda",
-            breed: "Pardo Suizo",
-            age: 4.7,
-            weight: 525,
-            status: "Saludable",
-            productionTotal: 8700,
-            lastVaccination: "16 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Salud normal.",
-            events: []
-        },
-        {
-            id: "B-213",
-            name: "Chiquinquirá",
-            breed: "Jersey",
-            age: 3.4,
-            weight: 440,
-            status: "Saludable",
-            productionTotal: 6100,
-            lastVaccination: "17 Sep 2023",
-            pregnancyStatus: "Confirmado (3m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Estable.",
-            events: []
-        },
-        {
-            id: "B-214",
-            name: "Lunaria",
-            breed: "Carora",
-            age: 4.3,
-            weight: 480,
-            status: "Saludable",
-            productionTotal: 7600,
-            lastVaccination: "18 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Buen desarrollo.",
-            events: []
-        },
-        {
-            id: "B-215",
-            name: "Reliquia",
-            breed: "Holstein",
-            age: 5.3,
-            weight: 570,
-            status: "Saludable",
-            productionTotal: 9900,
-            lastVaccination: "19 Sep 2023",
-            pregnancyStatus: "Confirmado (2m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Muy productiva.",
-            events: []
-        },
-        {
-            id: "B-216",
-            name: "Pintada",
-            breed: "Brahman",
-            age: 3.8,
-            weight: 495,
-            status: "Saludable",
-            productionTotal: 6500,
-            lastVaccination: "20 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-            notes: "Saludable.",
-            events: []
-        },
-        {
-            id: "B-217",
-            name: "Pavita",
-            breed: "Pardo Suizo",
-            age: 4.5,
-            weight: 510,
-            status: "Saludable",
-            productionTotal: 8400,
-            lastVaccination: "21 Sep 2023",
-            pregnancyStatus: "Confirmado (4m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Sin problemas aparentes.",
-            events: []
-        },
-        {
-            id: "B-218",
-            name: "Milagrosa",
-            breed: "Jersey",
-            age: 3.2,
-            weight: 420,
-            status: "Saludable",
-            productionTotal: 5700,
-            lastVaccination: "22 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Animal joven en observación.",
-            events: []
-        },
-        {
-            id: "B-219",
-            name: "Zamana",
-            breed: "Carora",
-            age: 4.1,
-            weight: 465,
-            status: "Saludable",
-            productionTotal: 7300,
-            lastVaccination: "23 Sep 2023",
-            pregnancyStatus: "Confirmado (1m)",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-            notes: "Buen estado general.",
-            events: []
-        },
-        {
-            id: "B-220",
-            name: "Florinda",
-            breed: "Holstein",
-            age: 5.1,
-            weight: 560,
-            status: "Saludable",
-            productionTotal: 9200,
-            lastVaccination: "23 Sep 2023",
-            pregnancyStatus: "No preñada",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-            notes: "Cierre exitoso del registro completo del Lote B.",
-            events: [
-                { id: 1, type: "Vacunación", details: "Aftosa (Lote: #AFT-2026-05)", veterinarian: "Dra. Mendoza", date: "15 May 2026" }
-            ]
-        }
-    ];
+                        if (!matchesQuery) return false;
 
-    const { createApp } = Vue;
-    createApp({
-        data() {
-            return {
-                isDarkMode: false,
-                currentUser: null,
-                animal: {
-                    id: '',
-                    name: '',
-                    breed: '',
-                    age: '',
-                    weight: '',
-                    status: '',
-                    productionTotal: '',
-                    lastVaccination: '',
-                    pregnancyStatus: '',
-                    image: '',
-                    notes: '',
-                    events: []
+                        if (this.selectedLot && cow.lot !== this.selectedLot) {
+                            return false;
+                        }
+
+                        if (this.selectedStatusFilter) {
+                            if (this.selectedStatusFilter === 'nacimientos') {
+                                return cow.age < 1 || (cow.isNewborn === true);
+                            }
+                            return cow.status === this.selectedStatusFilter;
+                        }
+
+                        return true;
+                    });
                 },
-                isEditingNotes: false,
-                editNotesText: '',
-                savingNotes: false,
-                lastNotesUpdate: 'Dra. Mendoza',
-                showEventModal: false,
-                submittingEvent: false,
-                showSidebar: false,
-                newEvent: {
-                    type: 'Tratamiento',
-                    details: '',
-                    veterinarian: 'Dra. Mendoza',
-                    status: ''
+                milkingRecords() {
+                    return this.filteredAnimals;
+                },
+                pageSize() {
+                    return this.isDesktop ? 10 : 5;
+                },
+                maxMilkingPages() {
+                    return Math.max(1, Math.ceil(this.milkingRecords.length / this.pageSize));
+                },
+                paginatedMilkingRecords() {
+                    const start = (this.milkingPage - 1) * this.pageSize;
+                    return this.milkingRecords.slice(start, start + this.pageSize);
                 }
-            };
-        },
-        computed: {
-            cleanAnimalId() {
-                return (this.animal.id || '').replace('#', '');
             },
-            backUrl() {
-                const params = new URLSearchParams(window.location.search);
-                const from = params.get('from');
-                if (from === 'unidad') return 'unidad.html';
-                if (from === 'salud') return 'salud.html';
-                const referrer = document.referrer;
-                if (referrer.includes('unidad.html')) return 'unidad.html';
-                return 'salud.html';
-            },
-            backText() {
-                const params = new URLSearchParams(window.location.search);
-                const from = params.get('from');
-                if (from === 'unidad' || document.referrer.includes('unidad.html')) {
-                    return 'Volver a Lotes';
+            watch: {
+                searchQuery() {
+                    this.milkingPage = 1;
+                },
+                selectedLot() {
+                    this.milkingPage = 1;
+                },
+                selectedStatusFilter() {
+                    this.milkingPage = 1;
                 }
-                return 'Volver a Salud';
-            }
-        },
-        mounted() {
-            const theme = localStorage.getItem('theme') || 'light';
-            this.isDarkMode = theme === 'dark';
-            if (this.isDarkMode) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+            },
+            async mounted() {
+                window.addEventListener('resize', () => {
+                    this.isDesktop = window.innerWidth >= 1024;
+                });
 
-            const userStr = localStorage.getItem('loggedInUser');
-            if (userStr) {
-                this.currentUser = JSON.parse(userStr);
-                if (this.currentUser.status !== 'Activo') {
-                    localStorage.removeItem('loggedInUser');
+                const theme = localStorage.getItem('theme') || 'light';
+                this.isDarkMode = theme === 'dark';
+                if (this.isDarkMode) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+
+                const userStr = localStorage.getItem('loggedInUser');
+                if (userStr) {
+                    this.currentUser = JSON.parse(userStr);
+                    if (this.currentUser.status !== 'Activo') {
+                        localStorage.removeItem('loggedInUser');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    // Redirección de rol
+                    if (this.currentUser.role === 'Operario' || this.currentUser.role === 'Obrero') {
+                        window.location.href = 'ordeno.html';
+                        return;
+                    }
+
+                    // Carga sincrónica/asincrónica de la base de datos de animales
+                    await this.loadAnimals();
+
+                } else {
                     window.location.href = 'login.html';
                     return;
                 }
-                if (this.currentUser.role === 'Operario') {
-                    window.location.href = 'ordeno.html';
-                    return;
-                }
-            } else {
-                window.location.href = 'login.html';
-                return;
-            }
+            },
+            methods: {
+                async loadAnimals() {
+                    try {
+                        const dbStr = localStorage.getItem('elmanantial_local_db');
+                        if (dbStr) {
+                            const db = JSON.parse(dbStr);
+                            if (db.animals && db.animals.length > 0) {
+                                this.animals = db.animals.map(a => {
+                                    const cleanId = a.id.replace('#', '');
+                                    return {
+                                        ...a,
+                                        id: cleanId,
+                                        lot: cleanId.startsWith('A') ? 'A' : 'B'
+                                    };
+                                });
+                                this.calculateStats();
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Error al cargar lista de animales:", e);
+                    }
+                },
 
-            this.fetchAnimalDetails();
-        },
-        methods: {
-            toggleTheme() {
-                this.isDarkMode = !this.isDarkMode;
-                if (this.isDarkMode) {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                }
-            },
-            logout() {
-                localStorage.removeItem('loggedInUser');
-                window.location.href = 'login.html';
-            },
-            isActive(page) {
-                const path = window.location.pathname;
-                return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
-            },
-            getAnimalIdFromUrl() {
-                const params = new URLSearchParams(window.location.search);
-                return params.get('id') || 'A-101';
-            },
-            async fetchAnimalDetails() {
-                const id = this.getAnimalIdFromUrl();
-                try {
-                    const res = await fetch(`/api/animals/${encodeURIComponent(id)}`, { method: 'GET' });
-                    if (res.ok) {
-                        this.animal = await res.json();
-                        this.editNotesText = this.animal.notes || '';
+                calculateStats() {
+                    if (this.animals.length === 0) return;
+                    const total = this.animals.length;
+                    const healthy = this.animals.filter(a => a.status === 'Saludable').length;
+                    this.inTreatment = this.animals.filter(a => a.status === 'En Tratamiento').length;
+                    this.underObservation = this.animals.filter(a => a.status === 'Bajo Observación').length;
+                    this.healthyPercentage = Math.round((healthy / total) * 100);
+                },
+
+                toggleTheme() {
+                    this.isDarkMode = !this.isDarkMode;
+                    if (this.isDarkMode) {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
                     } else {
-                        this.loadFromLocalFallback(id);
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
                     }
-                } catch (err) {
-                    console.warn("Error fetching from API, loading local fallback", err);
-                    this.loadFromLocalFallback(id);
-                }
-            },
-            loadFromLocalFallback(id) {
-                const cleanId = id.replace('#', '');
-                let found = null;
-                try {
-                    const localDb = JSON.parse(localStorage.getItem('elmanantial_local_db'));
-                    if (localDb && localDb.animals) {
-                        found = localDb.animals.find(a => a.id === id || a.id === '#' + cleanId || a.id === cleanId);
+                },
+
+                logout() {
+                    localStorage.removeItem('loggedInUser');
+                    window.location.href = 'login.html';
+                },
+
+                isActive(page) {
+                    const path = window.location.pathname;
+                    return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
+                },
+
+                async submitEvent() {
+                    if (!this.newEvent.animalId) return;
+                    this.submitting = true;
+                    try {
+                        const cleanId = this.newEvent.animalId.replace('#', '');
+                        
+                        // 1. Crear el objeto del nuevo evento
+                        const eventPayload = {
+                            id: Date.now(),
+                            type: this.newEvent.type,
+                            details: this.newEvent.details,
+                            veterinarian: this.newEvent.veterinarian || 'Dra. Maria Mendoza',
+                            date: new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
+                        };
+
+                        // 2. Enviar evento al backend simulado por API
+                        await fetch(`/api/animals/${cleanId}/events`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(eventPayload)
+                        });
+
+                        // 3. Si se definió un nuevo estado, actualizarlo en la base de datos
+                        if (this.newEvent.status) {
+                            const dbStr = localStorage.getItem('elmanantial_local_db');
+                            if (dbStr) {
+                                const db = JSON.parse(dbStr);
+                                const target = db.animals.find(a => a.id === cleanId || a.id === '#' + cleanId);
+                                if (target) {
+                                    target.status = this.newEvent.status;
+                                    localStorage.setItem('elmanantial_local_db', JSON.stringify(db));
+                                }
+                            }
+                        }
+
+                        alert("Evento veterinario registrado con éxito e integrado en el historial.");
+                        this.showAddModal = false;
+                        this.newEvent = {
+                            animalId: '',
+                            type: 'Vacunación',
+                            details: '',
+                            veterinarian: 'Dra. Maria Mendoza',
+                            status: ''
+                        };
+
+                        // Recargar animales para refrescar la tabla y estadísticas
+                        await this.loadAnimals();
+
+                    } catch (err) {
+                        console.error("Error al registrar evento:", err);
+                        alert("Error al registrar el evento.");
+                    } finally {
+                        this.submitting = false;
                     }
-                } catch (e) {
-                    console.error("Error reading local db", e);
-                }
-                if (!found) {
-                    found = ALL_ANIMALS_ARRAY.find(a => a.id === id || a.id === '#' + cleanId || a.id === cleanId);
-                }
-                if (found) {
-                    this.animal = found;
-                    this.editNotesText = this.animal.notes || '';
-                } else {
-                    // Default fallback animal if none found
-                    this.animal = {
-                        id: cleanId,
-                        name: "Animal " + cleanId,
-                        breed: "Mestiza",
-                        age: 4.0,
-                        weight: 480,
-                        status: "Saludable",
-                        productionTotal: 7000,
-                        lastVaccination: "01 Sep 2023",
-                        pregnancyStatus: "No preñada",
-                        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                        notes: "Sin notas registradas.",
-                        events: []
-                    };
-                    this.editNotesText = this.animal.notes || '';
-                }
-            },
-            getEventColorClass(type) {
-                switch(type) {
-                    case 'Vacunación': return 'bg-primary';
-                    case 'Tratamiento': return 'bg-tertiary';
-                    case 'Parto': return 'bg-primary-container';
-                    default: return 'bg-secondary';
-                }
-            },
-            getEventIcon(type) {
-                switch(type) {
-                    case 'Vacunación': return 'vaccines';
-                    case 'Tratamiento': return 'medical_services';
-                    case 'Parto': return 'child_care';
-                    default: return 'event_note';
-                }
-            },
-            toggleEditNotes() {
-                this.isEditingNotes = !this.isEditingNotes;
-                if (this.isEditingNotes) {
-                    this.editNotesText = this.animal.notes || '';
-                }
-            },
-            async saveNotes() {
-                this.savingNotes = true;
-                const id = this.animal.id;
-                this.animal.notes = this.editNotesText;
-                const now = new Date();
-                this.lastNotesUpdate = `Dra. Mendoza (${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()})`;
-                
-                try {
-                    await fetch(`/api/animals/${encodeURIComponent(id)}/notes`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ notes: this.editNotesText })
-                    });
-                } catch (err) {
-                    console.warn("Could not sync notes to server", err);
-                } finally {
-                    this.savingNotes = false;
-                    this.isEditingNotes = false;
-                }
-            },
-            openEventModal(type) {
-                this.newEvent.type = type;
-                this.newEvent.details = '';
-                this.newEvent.status = '';
-                this.newEvent.veterinarian = 'Dra. Mendoza';
-                this.showEventModal = true;
-            },
-            async submitEvent() {
-                this.submittingEvent = true;
-                const now = new Date();
-                const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
-                
-                const newRecord = {
-                    id: Date.now(),
-                    type: this.newEvent.type,
-                    details: this.newEvent.details,
-                    veterinarian: this.newEvent.veterinarian,
-                    date: dateStr
-                };
-
-                if (!this.animal.events) this.animal.events = [];
-                this.animal.events.unshift(newRecord);
-
-                if (this.newEvent.status) {
-                    this.animal.status = this.newEvent.status;
-                }
-
-                try {
-                    await fetch(`/api/animals/${encodeURIComponent(this.animal.id)}/events`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(newRecord)
-                    });
-                } catch (err) {
-                    console.warn("Could not sync event to server", err);
-                } finally {
-                    this.submittingEvent = false;
-                    this.showEventModal = false;
                 }
             }
-        }
-    }).mount('#app');
-</script>
+        }).mount('#app');
+    </script>
 </body>
 </html>
