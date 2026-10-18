@@ -155,37 +155,37 @@
 </div>
 <nav class="flex-1 mt-4 px-2 overflow-y-auto custom-scrollbar flex flex-col gap-1">
       <a v-if="currentUser" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('index.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('index.html') ? 'bg-[#154212] text-[#bcf0ae] dark:bg-[#064e3b] dark:text-[#a7f3d0] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="index.html">
         <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Panel Control</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('ordeno.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('ordeno.html') ? 'bg-[#154212] text-[#bcf0ae] dark:bg-[#064e3b] dark:text-[#a7f3d0] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="ordeno.html">
         <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Registro Ordeño</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('unidad.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('unidad.html') ? 'bg-[#154212] text-[#bcf0ae] dark:bg-[#064e3b] dark:text-[#a7f3d0] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="unidad.html">
         <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Gestión Finca</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('inventario.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('inventario.html') ? 'bg-[#154212] text-[#bcf0ae] dark:bg-[#064e3b] dark:text-[#a7f3d0] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="inventario.html">
         <span class="material-symbols-outlined" :class="isActive('inventario.html') ? 'fill-icon' : ''" data-icon="inventory">inventory</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Control Inventario</span>
       </a>
       <a v-if="currentUser && currentUser.role === 'Administrador'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('reportes.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('reportes.html') ? 'bg-[#154212] text-[#bcf0ae] dark:bg-[#064e3b] dark:text-[#a7f3d0] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="reportes.html">
         <span class="material-symbols-outlined" :class="isActive('reportes.html') ? 'fill-icon' : ''" data-icon="description">description</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Reportes Producción</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('salud.html') || isActive('historial.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('salud.html') || isActive('historial.html') ? 'bg-[#154212] text-[#bcf0ae] dark:bg-[#064e3b] dark:text-[#a7f3d0] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="salud.html">
         <span class="material-symbols-outlined" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" data-icon="health_and_safety">health_and_safety</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Salud Animal</span>
