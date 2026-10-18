@@ -4,10 +4,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-<!-- Enlace al manifiesto de la PWA -->
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#154212">
-
+<meta name="theme-color" content="#064e3b">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Respaldo local para funcionar sin internet -->
@@ -16,119 +14,138 @@
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
-        body { font-family: 'Hanken Grotesk', sans-serif; }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Work Sans', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c9bb;
+            border-radius: 10px;
         }
     </style>
 <script id="tailwind-config">
         tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-error-container": "#93000a",
-                      "on-primary-container": "#9dd090",
-                      "on-secondary-fixed-variant": "#454747",
-                      "outline": "#72796e",
-                      "primary": "#154212",
-                      "secondary-container": "#dfe0e0",
-                      "outline-variant": "#c2c9bb",
-                      "surface": "#f8f9ff",
-                      "on-surface-variant": "#42493e",
-                      "secondary": "#5d5f5f",
-                      "tertiary-fixed": "#ffd9e4",
-                      "on-background": "#0d1c2e",
-                      "on-tertiary-container": "#ffaac8",
-                      "surface-container": "#e6eeff",
-                      "on-secondary": "#ffffff",
-                      "surface-container-high": "#dce9ff",
-                      "surface-tint": "#3b6934",
-                      "inverse-on-surface": "#eaf1ff",
-                      "inverse-surface": "#233144",
-                      "secondary-fixed-dim": "#c6c6c7",
-                      "tertiary": "#60233e",
-                      "primary-container": "#2d5a27",
-                      "secondary-fixed": "#e2e2e2",
-                      "surface-container-highest": "#d5e3fc",
-                      "on-tertiary-fixed-variant": "#71314c",
-                      "primary-fixed-dim": "#a1d494",
-                      "on-tertiary-fixed": "#3b0520",
-                      "on-secondary-container": "#616363",
-                      "on-error": "#ffffff",
-                      "surface-variant": "#d5e3fc",
-                      "on-secondary-fixed": "#1a1c1c",
-                      "on-primary": "#ffffff",
-                      "on-primary-fixed-variant": "#23501e",
-                      "surface-container-lowest": "#ffffff",
-                      "error": "#ba1a1a",
-                      "surface-bright": "#f8f9ff",
-                      "surface-dim": "#ccdbf3",
-                      "tertiary-container": "#7c3a55",
-                      "on-primary-fixed": "#002201",
-                      "tertiary-fixed-dim": "#ffb0cc",
-                      "background": "#f8f9ff",
-                      "on-surface": "#0d1c2e",
-                      "on-tertiary": "#ffffff",
-                      "surface-container-low": "#eff4ff",
-                      "inverse-primary": "#a1d494",
-                      "primary-fixed": "#bcf0ae",
-                      "error-container": "#ffdad6"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "lg": "40px",
-                      "gutter": "24px",
-                      "md": "24px",
-                      "margin-mobile": "16px",
-                      "margin-desktop": "32px",
-                      "xl": "64px",
-                      "sm": "12px",
-                      "xs": "4px",
-                      "base": "8px"
-              },
-              "fontFamily": {
-                      "label-md": ["Hanken Grotesk"],
-                      "body-sm": ["Hanken Grotesk"],
-                      "headline-lg": ["Work Sans"],
-                      "data-tabular": ["Hanken Grotesk"],
-                      "display-lg": ["Work Sans"],
-                      "label-lg": ["Hanken Grotesk"],
-                      "body-lg": ["Hanken Grotesk"],
-                      "body-md": ["Hanken Grotesk"],
-                      "headline-md": ["Work Sans"]
-              },
-              "fontSize": {
-                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                      "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
-              }
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline-variant": "#c2c9bb",
+                        "on-tertiary-container": "#ffaac8",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#a1d494",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface-variant": "#42493e",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-fixed-dim": "#a1d494",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "outline": "#72796e",
+                        "surface-variant": "#d5e3fc",
+                        "inverse-surface": "#233144",
+                        "tertiary-fixed": "#ffd9e4",
+                        "tertiary-container": "#7c3a55",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-dim": "#ccdbf3",
+                        "on-surface": "#0d1c2e",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#dfe0e0",
+                        "on-tertiary-fixed-variant": "#71314c",
+                        "on-tertiary-fixed": "#3b0520",
+                        "tertiary": "#60233e",
+                        "primary-fixed": "#bcf0ae",
+                        "primary": "#154212",
+                        "on-primary-fixed": "#002201",
+                        "surface-container-highest": "#d5e3fc",
+                        "on-background": "#0d1c2e",
+                        "secondary": "#5d5f5f",
+                        "primary-fixed": "#bcf0ae",
+                        "primary": "#154212",
+                        "on-primary-fixed": "#002201",
+                        "surface-container-highest": "#d5e3fc",
+                        "on-background": "#0d1c2e",
+                        "secondary": "#5d5f5f",
+                        "primary-container": "#2d5a27",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-fixed-dim": "#ffb0cc",
+                        "on-secondary-container": "#616363",
+                        "surface-tint": "#3b6934",
+                        "on-primary-container": "#9dd090",
+                        "surface-container": "#e6eeff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "40px",
+                        "base": "8px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg": ["Work Sans"],
+                        "headline-md": ["Work Sans"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "data-tabular": ["Hanken Grotesk"],
+                        "headline-lg": ["Work Sans"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
             },
-          },
         }
-      </script>
+    </script>
 <style>
     body {
       min-height: max(884px, 100dvh);
     }
-
-        /* Custom styles for dark mode */
         html.dark .glass-card {
             background: rgba(22, 32, 50, 0.8) !important;
             border-color: #25354e !important;
@@ -301,33 +318,6 @@
         html.dark .bg-primary:hover {
             background-color: #059669 !important;
         }
-        html.dark .bg-\[\#e3f2fd\] {
-            background-color: #1e3a8a !important;
-        }
-        html.dark .text-\[\#1565c0\] {
-            color: #93c5fd !important;
-        }
-        html.dark .bg-\[\#dcfce7\] {
-            background-color: #064e3b !important;
-        }
-        html.dark .text-\[\#14532d\] {
-            color: #a7f3d0 !important;
-        }
-        html.dark .text-\[\#2e7d32\] {
-            color: #a7f3d0 !important;
-        }
-        html.dark .text-\[\#c62828\] {
-            color: #fca5a5 !important;
-        }
-        html.dark svg path[stroke="#154212"] {
-            stroke: #10b981 !important;
-        }
-        html.dark svg circle[fill="#154212"] {
-            fill: #10b981 !important;
-        }
-        html.dark stop[stop-color="#154212"] {
-            stop-color: #10b981 !important;
-        }
         html.dark .shadow-sm,
         html.dark .shadow-md,
         html.dark .shadow-lg,
@@ -350,7 +340,7 @@
         }
     </style>
   </head>
-<body class="font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
 <!-- Navigation Drawer Backdrop -->
 <div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
 <!-- Navigation Drawer -->
@@ -417,8 +407,8 @@
     </nav>
 </aside>
 
-<!-- Main Content Area -->
-<main class="lg:ml-20 pt-16 pb-24 md:pb-8">
+<!-- Profile Content Canvas -->
+<main class="lg:ml-20 pt-16 pb-24 md:pb-8 flex-1">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
 <div class="flex items-center h-full min-w-0 flex-1">
@@ -429,7 +419,7 @@
         </div>
         <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
     </div>
-  <div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
+  <div class="flex items-center gap-3 pr-4 md:pr-margin-desktop">
   <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
     <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
   </button>
@@ -437,167 +427,155 @@
 <button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
-  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
+  <a href="usuarios.html" class="w-10 h-10 rounded-full overflow-hidden bg-[#154212] text-white flex items-center justify-center text-sm font-bold shadow-sm">
     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}</span>
+    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
   </a>
 </div>
 </header>
-<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
+<div class="px-4 md:px-margin-desktop pt-4 pb-8 max-w-7xl mx-auto">
     
+<!-- Breadcrumbs / Botón Volver Dinámico -->
+<nav class="flex items-center gap-2 mb-4 text-on-surface-variant">
+<a :href="backUrl" class="flex items-center gap-2 font-label-md text-primary font-bold hover:underline">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+    {{ backText }}
+</a>
+<span class="font-label-md font-bold text-on-surface">/ {{ cleanAnimalId }} {{ animal.name }}</span>
+</nav>
 <!-- Header Section -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<section class="mb-6">
+  <div class="relative bg-white rounded-2xl shadow-sm border border-outline-variant overflow-hidden mb-4">
+    <img :alt="animal.name" class="w-full aspect-[4/3] sm:aspect-square object-cover" :src="animal.image"/>
+    <div class="absolute top-4 right-4">
+      <span :class="animal.status === 'Saludable' ? 'bg-emerald-100/90 text-emerald-800 border-emerald-200' : (animal.status === 'En Tratamiento' ? 'bg-error-container text-on-error-container border-error/25' : 'bg-secondary-container text-on-secondary-container border-secondary/25')" class="inline-flex items-center px-3 py-1.5 rounded-full font-bold text-xs border backdrop-blur-md shadow-sm">
+        <span :class="animal.status === 'Saludable' ? 'bg-emerald-600' : (animal.status === 'En Tratamiento' ? 'bg-error' : 'bg-secondary')" class="w-2 h-2 rounded-full mr-2"></span>
+        {{ animal.status }}
+      </span>
+    </div>
+  </div>
+
+  <div class="text-center mb-6">
+    <h1 class="text-4xl font-extrabold text-[#0d1c2e] dark:text-white tracking-tight mb-4">{{ animal.name }}</h1>
+    <div class="flex flex-wrap items-center justify-center gap-6 max-w-4xl mx-auto text-left px-2">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">category</span>
+        <span class="text-sm text-on-surface">Raza: <strong class="text-on-surface font-semibold">{{ animal.breed }}</strong></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">event</span>
+        <span class="text-sm text-on-surface">Edad: <strong class="text-on-surface font-semibold">{{ animal.age }} años</strong></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">scale</span>
+        <span class="text-sm text-on-surface">Peso: <strong class="text-on-surface font-semibold">{{ animal.weight }} kg</strong></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">tag</span>
+        <span class="text-sm text-on-surface">ID: <strong class="text-on-surface font-semibold">{{ cleanAnimalId }}</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+    <div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/60 shadow-sm">
+      <p class="text-xs text-on-surface-variant font-medium mb-1">Producción Total</p>
+      <p class="text-2xl font-bold text-primary">{{ animal.productionTotal ? animal.productionTotal.toLocaleString() : '0' }} L</p>
+    </div>
+    <div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/60 shadow-sm">
+      <p class="text-xs text-on-surface-variant font-medium mb-1">Últ. Vacunación</p>
+      <p class="text-lg font-bold text-on-surface">{{ animal.lastVaccination || 'No registrada' }}</p>
+    </div>
+    <div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/60 shadow-sm">
+      <p class="text-xs text-on-surface-variant font-medium mb-1">Estado Preñez</p>
+      <p class="text-lg font-bold text-primary">{{ animal.pregnancyStatus || 'No preñada' }}</p>
+    </div>
+  </div>
+</section>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Clinical History & Timeline -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- History Tabs -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="flex border-b border-outline-variant overflow-x-auto">
+<button class="px-6 py-4 font-label-lg text-label-lg text-primary border-b-2 border-primary whitespace-nowrap">Historial Médico</button>
+<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap">Producción Mensual</button>
+<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap">Genealogía</button>
+</div>
+<div class="p-6">
+<div class="space-y-8 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
+<!-- Dynamic Event Card Loop -->
+<div v-for="event in animal.events" :key="event.id" class="relative pl-10">
+<div :class="getEventColorClass(event.type)" class="absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center border-4 border-white shadow-sm">
+<span class="material-symbols-outlined text-white text-[14px]" :data-icon="getEventIcon(event.type)">{{ getEventIcon(event.type) }}</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
 <div>
-<h2 class="font-headline-lg text-headline-lg text-[#154212] dark:text-emerald-500">Control Inventario</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Gestión y monitoreo de suministros críticos para la producción Láctea.</p>
+<h4 class="font-headline-md text-label-lg font-bold text-on-surface">{{ event.type }}: {{ event.details }}</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Veterinario: {{ event.veterinarian }}</p>
+</div>
+<span class="font-data-tabular text-data-tabular bg-surface-container p-1 px-3 rounded text-on-surface-variant">{{ event.date }}</span>
 </div>
 </div>
-
-<!-- Inventory Dashboard Stats (Bento Grid Style) -->
-<div class="space-y-4 mb-10">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div @click="selectedStatusFilter = ''" :class="selectedStatusFilter === '' ? 'ring-2 ring-primary border-transparent' : 'border-outline-variant hover:border-primary/50'" class="bg-surface-container-low p-6 rounded-xl border flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-on-surface-variant font-label-md text-label-md">TOTAL ITEMS</span>
-      <span class="text-4xl font-bold text-primary mt-2">{{ totalItems }}</span>
-    </div>
-    <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant flex flex-col justify-between">
-      <span class="text-on-surface-variant font-label-md text-label-md">PRÓXIMA ENTREGA</span>
-      <span class="text-xl font-bold text-primary mt-2">Mañana, 08:00</span>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'CRÍTICO' ? '' : 'CRÍTICO')" :class="selectedStatusFilter === 'CRÍTICO' ? 'ring-2 ring-error border-transparent' : 'border-outline-variant hover:border-error/50'" class="bg-rose-100/50 dark:bg-rose-950/40 p-6 rounded-xl border border-rose-300 dark:border-rose-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-rose-800 dark:text-rose-300 font-label-md text-label-md flex items-center gap-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> CRÍTICO
-      </span>
-      <span class="text-4xl font-bold text-rose-800 dark:text-rose-300 mt-2">{{ String(criticalCount).padStart(2, '0') }}</span>
-    </div>
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'BAJO' ? '' : 'BAJO')" :class="selectedStatusFilter === 'BAJO' ? 'ring-2 ring-tertiary border-transparent' : 'border-outline-variant hover:border-tertiary/50'" class="bg-amber-100/50 dark:bg-amber-950/40 p-6 rounded-xl border border-amber-300 dark:border-amber-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-amber-800 dark:text-amber-300 font-label-md text-label-md flex items-center gap-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> BAJO
-      </span>
-      <span class="text-4xl font-bold text-amber-800 dark:text-amber-300 mt-2">{{ String(lowCount).padStart(2, '0') }}</span>
-    </div>
-  </div>
+<div v-if="!animal.events || animal.events.length === 0" class="text-center italic text-on-surface-variant">
+No hay eventos clínicos registrados para este animal.
 </div>
-
-<!-- Inventory Lists -->
-<div class="space-y-12">
-<!-- Category: Feed -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="grass">grass</span>
 </div>
-<h3 class="font-headline-md text-headline-md">Alimento y Nutrición</h3>
+<button @click="openEventModal('Chequeo')" class="mt-8 w-full py-3 border border-dashed border-outline text-primary font-bold rounded-lg hover:bg-primary-fixed transition-colors">
+                                Registrar Evento de Chequeo
+                            </button>
 </div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in feedItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-</section>
-<!-- Category: Medicine -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined" data-icon="vaccines">vaccines</span>
 </div>
-<h3 class="font-headline-md text-headline-md">Medicamentos y Salud</h3>
+<!-- Right Column: Notes & Actions -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Action Cards -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm p-6">
+<h3 class="font-headline-md text-label-lg font-bold text-on-surface mb-4">Acciones Rápidas</h3>
+<div class="space-y-3">
+<button @click="openEventModal('Tratamiento')" class="w-full flex items-center justify-center gap-3 bg-primary text-on-primary py-3 rounded-xl font-bold hover:brightness-110 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="add_moderator">add_moderator</span>
+                                Registrar Tratamiento
+                            </button>
+<button @click="openEventModal('Vacunación')" class="w-full flex items-center justify-center gap-3 bg-white border-2 border-primary text-primary py-3 rounded-xl font-bold hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+                                Registrar Vacunación
+                            </button>
 </div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in medicineItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-</section>
-<!-- Category: Supplies -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-on-surface-variant/10 flex items-center justify-center text-on-surface-variant">
-<span class="material-symbols-outlined" data-icon="sanitizer">sanitizer</span>
+<!-- Veterinary Notes -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-label-lg font-bold text-on-surface">Notas Veterinarias</h3>
+<button @click="toggleEditNotes" class="text-primary material-symbols-outlined hover:bg-surface-container p-1 rounded transition-colors" data-icon="edit_note">edit_note</button>
 </div>
-<h3 class="font-headline-md text-headline-md">Suministros de Higiene</h3>
+<div v-if="!isEditingNotes" class="bg-surface p-4 rounded-lg border border-outline-variant/30 italic text-on-surface-variant font-body-sm whitespace-pre-line">
+                            "{{ animal.notes || 'Sin notas registradas.' }}"
+                        </div>
+<div v-else class="space-y-sm">
+<textarea v-model="editNotesText" class="w-full bg-surface-container-lowest border border-outline rounded-lg p-3 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none h-24" placeholder="Ingrese notas veterinarias..."></textarea>
+<div class="flex justify-end gap-sm">
+<button @click="isEditingNotes = false" class="px-3 py-1 border border-outline rounded-lg text-label-md hover:bg-surface-container">Cancelar</button>
+<button @click="saveNotes" :disabled="savingNotes" class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-md hover:brightness-110 active:scale-95 transition-all">
+                                {{ savingNotes ? 'Guardando...' : 'Guardar' }}
+                            </button>
 </div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in hygieneItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-</section>
+<p class="mt-2 text-right font-label-md text-[10px] text-outline uppercase tracking-wider">Última actualización: {{ lastNotesUpdate || 'Dra. Mendoza' }}</p>
+</div>
+<!-- Environment Info -->
+<div class="bg-surface-container-high rounded-xl p-6 border border-primary/10">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-white rounded-full">
+<span class="material-symbols-outlined text-primary" data-icon="thermostat">thermostat</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Estrés Térmico</p>
+<p class="font-headline-md text-label-lg font-bold text-primary">Nivel Bajo (Optimal)</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </main>
@@ -613,11 +591,11 @@
       <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
       <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
     </a>
-<a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-   :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
-  <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-  <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-</a>
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+       :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
+      <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
+      <span class="text-[10px] mt-0.5 leading-none">Finca</span>
+    </a>
     <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
@@ -640,148 +618,691 @@
     </a>
   </nav>
 
-<!-- FAB (Floating Action Button) -->
-<button v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showAddModal = true" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
-<span class="material-symbols-outlined" data-icon="add">add</span>
-</button>
-
-<!-- New Item Modal -->
-<div v-if="showAddModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
-<h3 class="font-headline-md text-headline-md text-primary mb-md">Nuevo Artículo de Inventario</h3>
-<form @submit.prevent="addItem">
-<div class="space-y-base">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
-<input v-model="newItem.name" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. Concentrado Lechero 22%" type="text"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Categoría</label>
-<select v-model="newItem.category" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
-<option value="feed">Alimento y Nutrición</option>
-<option value="medicine">Medicamentos y Salud</option>
-<option value="hygiene">Suministros de Higiene</option>
-</select>
-</div>
-<div class="grid grid-cols-2 gap-sm">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
-<input v-model.number="newItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
-<input v-model="newItem.unit" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. kg, unidades" type="text"/>
-</div>
-</div>
-</div>
-<div class="flex justify-end gap-sm mt-lg">
-<button type="button" @click="showAddModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
-</div>
-</form>
-</div>
-</div>
-
-<!-- Adjust Item Modal -->
-<div v-if="showAdjustModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
-<h3 class="font-headline-md text-headline-md text-primary mb-md">Ajustar Artículo</h3>
-<form @submit.prevent="saveAdjustStock">
-<div class="space-y-base">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
-<input v-model="adjustItem.name" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-sm">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
-<input v-model.number="adjustItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
-<input v-model="adjustItem.unit" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
-</div>
-</div>
-</div>
-<div class="flex justify-end gap-sm mt-lg">
-<button type="button" @click="showAdjustModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
-</div>
-</form>
-</div>
+<!-- New Health Event Modal & Vue mount -->
+<div v-if="showEventModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl text-left">
+    <h3 class="font-headline-md text-headline-md text-primary mb-md">Registrar Evento Veterinario</h3>
+    <form @submit.prevent="submitEvent">
+      <div class="space-y-base">
+        <div>
+          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">ID Animal</label>
+          <input :value="cleanAnimalId + ' - ' + animal.name" disabled class="w-full bg-surface-container border border-outline rounded-lg h-12 px-base text-body-md opacity-70 outline-none" type="text"/>
+        </div>
+        <div>
+          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Tipo de Evento</label>
+          <select v-model="newEvent.type" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
+            <option value="Vacunación">Vacunación</option>
+            <option value="Tratamiento">Tratamiento</option>
+            <option value="Parto">Parto</option>
+            <option value="Chequeo">Chequeo General</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Detalles del Evento</label>
+          <input v-model="newEvent.details" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. Aftosa o Mastitis Leve (Cefalexina)" type="text"/>
+        </div>
+        <div>
+          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Veterinario</label>
+          <input v-model="newEvent.veterinarian" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Dra. Maria Mendoza" type="text"/>
+        </div>
+        <div>
+          <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Cambiar Estado del Animal</label>
+          <select v-model="newEvent.status" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
+            <option value="">No cambiar estado</option>
+            <option value="Saludable">Saludable</option>
+            <option value="En Tratamiento">En Tratamiento</option>
+            <option value="Bajo Observación">Bajo Observación</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-end gap-sm mt-lg">
+        <button type="button" @click="showEventModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
+        <button type="submit" :disabled="submittingEvent" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">
+          {{ submittingEvent ? 'Guardando...' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+                .catch(err => console.error('Error al registrar el Service Worker:', err));
+        });
+    }
+
+    // Base de datos completa integrada directamente con Lote A (A-101 al A-120) y Lote B (B-201 al B-220)
+    const ALL_ANIMALS_ARRAY = [
+        // --- LOTE A ---
+        {
+            id: "A-101",
+            name: "Lucero",
+            breed: "Carora",
+            age: 4.0,
+            weight: 460,
+            status: "Saludable",
+            productionTotal: 12450,
+            lastVaccination: "10 Sep 2023",
+            pregnancyStatus: "Confirmado (2m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Animal muestra excelente recuperación post-parto. Se recomienda mantener suplementación mineral tipo B hasta el próximo ciclo de ordeño.",
+            events: [
+                { id: 1, type: "Vacunación", details: "Aftosa y Rabia", veterinarian: "Dra. Mendoza", date: "10 Sep 2023" },
+                { id: 2, type: "Chequeo", details: "Diagnóstico de preñez positivo", veterinarian: "Dra. Mendoza", date: "15 Jul 2023" }
+            ]
+        },
+        {
+            id: "A-102",
+            name: "Mariposa",
+            breed: "Holstein",
+            age: 5.0,
+            weight: 550,
+            status: "En Tratamiento",
+            productionTotal: 9200,
+            lastVaccination: "14 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+            notes: "En tratamiento por mastitis leve. Aplicación de Cefalexina durante 5 días.",
+            events: [
+                { id: 1, type: "Tratamiento", details: "Mastitis Leve (Cefalexina - 5 días)", veterinarian: "Dra. Mendoza", date: "22 Abr 2026" }
+            ]
+        },
+        {
+            id: "A-103",
+            name: "Gitana",
+            breed: "Brahman",
+            age: 3.5,
+            weight: 500,
+            status: "Bajo Observación",
+            productionTotal: 6500,
+            lastVaccination: "01 Oct 2023",
+            pregnancyStatus: "Confirmado (4m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Chequeo mensual de gestación y monitoreo de cojera leve.",
+            events: []
+        },
+        {
+            id: "A-104",
+            name: "Estrella",
+            breed: "Pardo Suizo",
+            age: 4.2,
+            weight: 530,
+            status: "Saludable",
+            productionTotal: 8400,
+            lastVaccination: "11 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Comportamiento dócil en sala de ordeño.",
+            events: []
+        },
+        {
+            id: "A-105",
+            name: "Luna",
+            breed: "Jersey",
+            age: 3.0,
+            weight: 440,
+            status: "Saludable",
+            productionTotal: 6100,
+            lastVaccination: "19 Sep 2023",
+            pregnancyStatus: "Confirmado (1m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Vaca joven con excelente persistencia.",
+            events: []
+        },
+        {
+            id: "A-106",
+            name: "Paloma",
+            breed: "Carora",
+            age: 4.5,
+            weight: 470,
+            status: "Saludable",
+            productionTotal: 7800,
+            lastVaccination: "20 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Sin observaciones especiales.",
+            events: []
+        },
+        {
+            id: "A-107",
+            name: "Rosilla",
+            breed: "Holstein",
+            age: 3.8,
+            weight: 490,
+            status: "Saludable",
+            productionTotal: 8100,
+            lastVaccination: "21 Sep 2023",
+            pregnancyStatus: "Confirmado (3m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Buen desarrollo productivo.",
+            events: []
+        },
+        {
+            id: "A-108",
+            name: "Morena",
+            breed: "Brahman",
+            age: 4.6,
+            weight: 520,
+            status: "Saludable",
+            productionTotal: 6900,
+            lastVaccination: "22 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Adaptada al sistema de potrero.",
+            events: []
+        },
+        {
+            id: "A-109",
+            name: "Margarita",
+            breed: "Pardo Suizo",
+            age: 5.2,
+            weight: 540,
+            status: "Saludable",
+            productionTotal: 9500,
+            lastVaccination: "23 Sep 2023",
+            pregnancyStatus: "Confirmado (5m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Excelente rendimiento lechero.",
+            events: []
+        },
+        {
+            id: "A-110",
+            name: "Princesa",
+            breed: "Jersey",
+            age: 3.3,
+            weight: 430,
+            status: "Saludable",
+            productionTotal: 5900,
+            lastVaccination: "24 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Buen temperamento.",
+            events: []
+        },
+        {
+            id: "A-111",
+            name: "Flor",
+            breed: "Carora",
+            age: 4.1,
+            weight: 450,
+            status: "Saludable",
+            productionTotal: 7200,
+            lastVaccination: "25 Sep 2023",
+            pregnancyStatus: "Confirmado (2m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Estable.",
+            events: []
+        },
+        {
+            id: "A-112",
+            name: "Reina",
+            breed: "Holstein",
+            age: 5.5,
+            weight: 580,
+            status: "Saludable",
+            productionTotal: 10400,
+            lastVaccination: "26 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Alta producción.",
+            events: []
+        },
+        {
+            id: "A-113",
+            name: "Bonita",
+            breed: "Brahman",
+            age: 3.9,
+            weight: 495,
+            status: "Saludable",
+            productionTotal: 6300,
+            lastVaccination: "27 Sep 2023",
+            pregnancyStatus: "Confirmado (1m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Saludable y activa.",
+            events: []
+        },
+        {
+            id: "A-114",
+            name: "Mora",
+            breed: "Pardo Suizo",
+            age: 4.8,
+            weight: 515,
+            status: "Saludable",
+            productionTotal: 8600,
+            lastVaccination: "28 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Sin novedad.",
+            events: []
+        },
+        {
+            id: "A-115",
+            name: "Canela",
+            breed: "Jersey",
+            age: 3.4,
+            weight: 435,
+            status: "Saludable",
+            productionTotal: 6000,
+            lastVaccination: "29 Sep 2023",
+            pregnancyStatus: "Confirmado (4m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Buena ganancia de peso.",
+            events: []
+        },
+        {
+            id: "A-116",
+            name: "Pinta",
+            breed: "Carora",
+            age: 4.3,
+            weight: 465,
+            status: "Saludable",
+            productionTotal: 7500,
+            lastVaccination: "30 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Control rutinario normal.",
+            events: []
+        },
+        {
+            id: "A-117",
+            name: "Negrita",
+            breed: "Holstein",
+            age: 5.0,
+            weight: 540,
+            status: "Saludable",
+            productionTotal: 9100,
+            lastVaccination: "01 Oct 2023",
+            pregnancyStatus: "Confirmado (3m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Excelente condición corporal.",
+            events: []
+        },
+        {
+            id: "A-118",
+            name: "Blanca",
+            breed: "Brahman",
+            age: 3.7,
+            weight: 485,
+            status: "Saludable",
+            productionTotal: 6400,
+            lastVaccination: "02 Oct 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Tranquila en el corral.",
+            events: []
+        },
+        {
+            id: "A-119",
+            name: "Perla",
+            breed: "Pardo Suizo",
+            age: 4.4,
+            weight: 510,
+            status: "Saludable",
+            productionTotal: 8200,
+            lastVaccination: "03 Oct 2023",
+            pregnancyStatus: "Confirmado (2m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Buen ritmo de producción.",
+            events: []
+        },
+        {
+            id: "A-120",
+            name: "Esperanza",
+            breed: "Jersey",
+            age: 3.2,
+            weight: 425,
+            status: "Saludable",
+            productionTotal: 5800,
+            lastVaccination: "04 Oct 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Saludable.",
+            events: []
+        },
+
+        // --- LOTE B ---
+        {
+            id: "B-201",
+            name: "Rosa",
+            breed: "Holstein",
+            age: 4.5,
+            weight: 520,
+            status: "Saludable",
+            productionTotal: 8500,
+            lastVaccination: "05 Sep 2023",
+            pregnancyStatus: "Confirmado (2m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Buen desempeño en el lote B.",
+            events: []
+        },
+        {
+            id: "B-202",
+            name: "Hermosa",
+            breed: "Brahman",
+            age: 3.8,
+            weight: 490,
+            status: "Saludable",
+            productionTotal: 6700,
+            lastVaccination: "06 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Activa y en buen estado.",
+            events: []
+        },
+        {
+            id: "B-203",
+            name: "Diamante",
+            breed: "Pardo Suizo",
+            age: 4.9,
+            weight: 530,
+            status: "Saludable",
+            productionTotal: 8900,
+            lastVaccination: "07 Sep 2023",
+            pregnancyStatus: "Confirmado (3m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Estable.",
+            events: []
+        },
+        {
+            id: "B-204",
+            name: "Zamurita",
+            breed: "Carora",
+            age: 4.0,
+            weight: 460,
+            status: "Saludable",
+            productionTotal: 7100,
+            lastVaccination: "08 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Sin novedad clínica.",
+            events: []
+        },
+        {
+            id: "B-205",
+            name: "Gaviota",
+            breed: "Jersey",
+            age: 3.5,
+            weight: 430,
+            status: "Saludable",
+            productionTotal: 5900,
+            lastVaccination: "09 Sep 2023",
+            pregnancyStatus: "Confirmado (1m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Vaca dócil.",
+            events: []
+        },
+        {
+            id: "B-206",
+            name: "Lucerito",
+            breed: "Holstein",
+            age: 4.2,
+            weight: 505,
+            status: "Saludable",
+            productionTotal: 8300,
+            lastVaccination: "10 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Buen ritmo de ordeño.",
+            events: []
+        },
+        {
+            id: "B-207",
+            name: "Tormenta",
+            breed: "Brahman",
+            age: 4.6,
+            weight: 515,
+            status: "Saludable",
+            productionTotal: 6800,
+            lastVaccination: "11 Sep 2023",
+            pregnancyStatus: "Confirmado (4m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Energética.",
+            events: []
+        },
+        {
+            id: "B-208",
+            name: "Manea",
+            breed: "Pardo Suizo",
+            age: 3.9,
+            weight: 485,
+            status: "Saludable",
+            productionTotal: 7900,
+            lastVaccination: "12 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Salud óptima.",
+            events: []
+        },
+        {
+            id: "B-209",
+            name: "Consentida",
+            breed: "Carora",
+            age: 4.1,
+            weight: 470,
+            status: "Saludable",
+            productionTotal: 7400,
+            lastVaccination: "13 Sep 2023",
+            pregnancyStatus: "Confirmado (2m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Comportamiento excelente.",
+            events: []
+        },
+        {
+            id: "B-210",
+            name: "Altagracia",
+            breed: "Holstein",
+            age: 5.1,
+            weight: 560,
+            status: "Saludable",
+            productionTotal: 9600,
+            lastVaccination: "14 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Alta productora.",
+            events: []
+        },
+        {
+            id: "B-211",
+            name: "Sombra",
+            breed: "Brahman",
+            age: 3.6,
+            weight: 475,
+            status: "Saludable",
+            productionTotal: 6200,
+            lastVaccination: "15 Sep 2023",
+            pregnancyStatus: "Confirmado (1m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Sin incidentes.",
+            events: []
+        },
+        {
+            id: "B-212",
+            name: "Parda",
+            breed: "Pardo Suizo",
+            age: 4.7,
+            weight: 525,
+            status: "Saludable",
+            productionTotal: 8700,
+            lastVaccination: "16 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Salud normal.",
+            events: []
+        },
+        {
+            id: "B-213",
+            name: "Chiquinquirá",
+            breed: "Jersey",
+            age: 3.4,
+            weight: 440,
+            status: "Saludable",
+            productionTotal: 6100,
+            lastVaccination: "17 Sep 2023",
+            pregnancyStatus: "Confirmado (3m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Estable.",
+            events: []
+        },
+        {
+            id: "B-214",
+            name: "Lunaria",
+            breed: "Carora",
+            age: 4.3,
+            weight: 480,
+            status: "Saludable",
+            productionTotal: 7600,
+            lastVaccination: "18 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Buen desarrollo.",
+            events: []
+        },
+        {
+            id: "B-215",
+            name: "Reliquia",
+            breed: "Holstein",
+            age: 5.3,
+            weight: 570,
+            status: "Saludable",
+            productionTotal: 9900,
+            lastVaccination: "19 Sep 2023",
+            pregnancyStatus: "Confirmado (2m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Muy productiva.",
+            events: []
+        },
+        {
+            id: "B-216",
+            name: "Pintada",
+            breed: "Brahman",
+            age: 3.8,
+            weight: 495,
+            status: "Saludable",
+            productionTotal: 6500,
+            lastVaccination: "20 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Saludable.",
+            events: []
+        },
+        {
+            id: "B-217",
+            name: "Pavita",
+            breed: "Pardo Suizo",
+            age: 4.5,
+            weight: 510,
+            status: "Saludable",
+            productionTotal: 8400,
+            lastVaccination: "21 Sep 2023",
+            pregnancyStatus: "Confirmado (4m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Sin problemas aparentes.",
+            events: []
+        },
+        {
+            id: "B-218",
+            name: "Milagrosa",
+            breed: "Jersey",
+            age: 3.2,
+            weight: 420,
+            status: "Saludable",
+            productionTotal: 5700,
+            lastVaccination: "22 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Animal joven en observación.",
+            events: []
+        },
+        {
+            id: "B-219",
+            name: "Zamana",
+            breed: "Carora",
+            age: 4.1,
+            weight: 465,
+            status: "Saludable",
+            productionTotal: 7300,
+            lastVaccination: "23 Sep 2023",
+            pregnancyStatus: "Confirmado (1m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Buen estado general.",
+            events: []
+        },
+        {
+            id: "B-220",
+            name: "Florinda",
+            breed: "Holstein",
+            age: 5.1,
+            weight: 560,
+            status: "Saludable",
+            productionTotal: 9200,
+            lastVaccination: "23 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Cierre exitoso del registro completo del Lote B.",
+            events: [
+                { id: 1, type: "Vacunación", details: "Aftosa (Lote: #AFT-2026-05)", veterinarian: "Dra. Mendoza", date: "15 May 2026" }
+            ]
+        }
+    ];
+
     const { createApp } = Vue;
     createApp({
         data() {
             return {
                 isDarkMode: false,
                 currentUser: null,
-                showSidebar: false,
-                items: [
-                    { id: 1, name: 'Concentrado Lechero 22%', category: 'feed', stock: 2450, unit: 'kg', status: 'BIEN' },
-                    { id: 2, name: 'Sales Minerales Premium', category: 'feed', stock: 45, unit: 'kg', status: 'BAJO' },
-                    { id: 3, name: 'Vacuna Antiaftosa (Frasco 50 ds)', category: 'medicine', stock: 2, unit: 'unidades', status: 'CRÍTICO' },
-                    { id: 4, name: 'Antibiótico Oxitetraciclina', category: 'medicine', stock: 12, unit: 'frascos', status: 'BIEN' },
-                    { id: 5, name: 'Sellador de Pezones (Post-ordeño)', category: 'hygiene', stock: 15, unit: 'galones', status: 'BAJO' }
-                ],
-                showAddModal: false,
-                showAdjustModal: false,
-                selectedStatusFilter: '',
-                newItem: {
+                animal: {
+                    id: '',
                     name: '',
-                    category: 'feed',
-                    stock: 0,
-                    unit: 'kg'
+                    breed: '',
+                    age: '',
+                    weight: '',
+                    status: '',
+                    productionTotal: '',
+                    lastVaccination: '',
+                    pregnancyStatus: '',
+                    image: '',
+                    notes: '',
+                    events: []
                 },
-                adjustItem: {
-                    id: null,
-                    name: '',
-                    stock: 0,
-                    unit: ''
+                isEditingNotes: false,
+                editNotesText: '',
+                savingNotes: false,
+                lastNotesUpdate: 'Dra. Mendoza',
+                showEventModal: false,
+                submittingEvent: false,
+                showSidebar: false,
+                newEvent: {
+                    type: 'Tratamiento',
+                    details: '',
+                    veterinarian: 'Dra. Mendoza',
+                    status: ''
                 }
             };
         },
         computed: {
-            totalItems() {
-                return this.items.length;
+            cleanAnimalId() {
+                return (this.animal.id || '').replace('#', '');
             },
-            criticalCount() {
-                return this.items.filter(i => i.status === 'CRÍTICO').length;
+            backUrl() {
+                const params = new URLSearchParams(window.location.search);
+                const from = params.get('from');
+                if (from === 'unidad') return 'unidad.html';
+                if (from === 'salud') return 'salud.html';
+                const referrer = document.referrer;
+                if (referrer.includes('unidad.html')) return 'unidad.html';
+                return 'salud.html';
             },
-            lowCount() {
-                return this.items.filter(i => i.status === 'BAJO').length;
-            },
-            feedItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'feed' || cat.includes('alimento') || cat.includes('nutrición');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
+            backText() {
+                const params = new URLSearchParams(window.location.search);
+                const from = params.get('from');
+                if (from === 'unidad' || document.referrer.includes('unidad.html')) {
+                    return 'Volver a Lotes';
                 }
-                return res;
-            },
-            medicineItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'medicine' || cat.includes('medicamento') || cat.includes('salud');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
-                }
-                return res;
-            },
-            hygieneItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'hygiene' || cat.includes('higiene') || cat.includes('suministro');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
-                }
-                return res;
+                return 'Volver a Salud';
             }
         },
         mounted() {
@@ -795,16 +1316,14 @@
 
             const userStr = localStorage.getItem('loggedInUser');
             if (userStr) {
-                try {
-                    this.currentUser = JSON.parse(userStr);
-                    if (this.currentUser.status !== 'Activo') {
-                        localStorage.removeItem('loggedInUser');
-                        window.location.href = 'login.html';
-                        return;
-                    }
-                } catch (e) {
+                this.currentUser = JSON.parse(userStr);
+                if (this.currentUser.status !== 'Activo') {
                     localStorage.removeItem('loggedInUser');
                     window.location.href = 'login.html';
+                    return;
+                }
+                if (this.currentUser.role === 'Operario') {
+                    window.location.href = 'ordeno.html';
                     return;
                 }
             } else {
@@ -812,7 +1331,7 @@
                 return;
             }
 
-            this.fetchItems();
+            this.fetchAnimalDetails();
         },
         methods: {
             toggleTheme() {
@@ -825,112 +1344,153 @@
                     localStorage.setItem('theme', 'light');
                 }
             },
-
             logout() {
                 localStorage.removeItem('loggedInUser');
                 window.location.href = 'login.html';
             },
-
             isActive(page) {
                 const path = window.location.pathname;
                 return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
             },
-            async fetchItems() {
+            getAnimalIdFromUrl() {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('id') || 'A-101';
+            },
+            async fetchAnimalDetails() {
+                const id = this.getAnimalIdFromUrl();
                 try {
-                    const res = await fetch('/api/inventory');
+                    const res = await fetch(`/api/animals/${encodeURIComponent(id)}`, { method: 'GET' });
                     if (res.ok) {
-                        const data = await res.json();
-                        if (Array.isArray(data) && data.length > 0) {
-                            this.items = data;
-                        }
+                        this.animal = await res.json();
+                        this.editNotesText = this.animal.notes || '';
+                    } else {
+                        this.loadFromLocalFallback(id);
                     }
                 } catch (err) {
-                    console.error("Usando respaldo local de inventario", err);
+                    console.warn("Error fetching from API, loading local fallback", err);
+                    this.loadFromLocalFallback(id);
                 }
             },
-            openAdjustModal(item) {
-                if (!this.currentUser || (this.currentUser.role !== 'Administrador' && this.currentUser.role !== 'Veterinario')) {
-                    alert("No tienes permisos para realizar esta acción.");
-                    return;
-                }
-                this.adjustItem = {
-                    id: item.id,
-                    name: item.name,
-                    stock: item.stock,
-                    unit: item.unit
-                };
-                this.showAdjustModal = true;
-            },
-            async saveAdjustStock() {
-                const newStock = parseFloat(this.adjustItem.stock);
-                if (!isNaN(newStock) && newStock >= 0) {
-                    const item = this.items.find(i => i.id === this.adjustItem.id);
-                    if (item) {
-                        try {
-                            const res = await fetch(`/api/inventory/${item.id}/stock`, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ stock: newStock })
-                            });
-                            if (res.ok) {
-                                const updated = await res.json();
-                                item.stock = updated.stock;
-                                item.status = updated.status;
-                            } else {
-                                item.stock = newStock;
-                                item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
-                            }
-                        } catch (err) {
-                            item.stock = newStock;
-                            item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
-                        }
-                    }
-                    this.showAdjustModal = false;
-                } else {
-                    alert("Por favor ingrese un número válido mayor o igual a 0.");
-                }
-            },
-            async addItem() {
+            loadFromLocalFallback(id) {
+                const cleanId = id.replace('#', '');
+                let found = null;
                 try {
-                    const res = await fetch('/api/inventory', {
+                    const localDb = JSON.parse(localStorage.getItem('elmanantial_local_db'));
+                    if (localDb && localDb.animals) {
+                        found = localDb.animals.find(a => a.id === id || a.id === '#' + cleanId || a.id === cleanId);
+                    }
+                } catch (e) {
+                    console.error("Error reading local db", e);
+                }
+                if (!found) {
+                    found = ALL_ANIMALS_ARRAY.find(a => a.id === id || a.id === '#' + cleanId || a.id === cleanId);
+                }
+                if (found) {
+                    this.animal = found;
+                    this.editNotesText = this.animal.notes || '';
+                } else {
+                    // Default fallback animal if none found
+                    this.animal = {
+                        id: cleanId,
+                        name: "Animal " + cleanId,
+                        breed: "Mestiza",
+                        age: 4.0,
+                        weight: 480,
+                        status: "Saludable",
+                        productionTotal: 7000,
+                        lastVaccination: "01 Sep 2023",
+                        pregnancyStatus: "No preñada",
+                        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                        notes: "Sin notas registradas.",
+                        events: []
+                    };
+                    this.editNotesText = this.animal.notes || '';
+                }
+            },
+            getEventColorClass(type) {
+                switch(type) {
+                    case 'Vacunación': return 'bg-primary';
+                    case 'Tratamiento': return 'bg-tertiary';
+                    case 'Parto': return 'bg-primary-container';
+                    default: return 'bg-secondary';
+                }
+            },
+            getEventIcon(type) {
+                switch(type) {
+                    case 'Vacunación': return 'vaccines';
+                    case 'Tratamiento': return 'medical_services';
+                    case 'Parto': return 'child_care';
+                    default: return 'event_note';
+                }
+            },
+            toggleEditNotes() {
+                this.isEditingNotes = !this.isEditingNotes;
+                if (this.isEditingNotes) {
+                    this.editNotesText = this.animal.notes || '';
+                }
+            },
+            async saveNotes() {
+                this.savingNotes = true;
+                const id = this.animal.id;
+                this.animal.notes = this.editNotesText;
+                const now = new Date();
+                this.lastNotesUpdate = `Dra. Mendoza (${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()})`;
+                
+                try {
+                    await fetch(`/api/animals/${encodeURIComponent(id)}/notes`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ notes: this.editNotesText })
+                    });
+                } catch (err) {
+                    console.warn("Could not sync notes to server", err);
+                } finally {
+                    this.savingNotes = false;
+                    this.isEditingNotes = false;
+                }
+            },
+            openEventModal(type) {
+                this.newEvent.type = type;
+                this.newEvent.details = '';
+                this.newEvent.status = '';
+                this.newEvent.veterinarian = 'Dra. Mendoza';
+                this.showEventModal = true;
+            },
+            async submitEvent() {
+                this.submittingEvent = true;
+                const now = new Date();
+                const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+                
+                const newRecord = {
+                    id: Date.now(),
+                    type: this.newEvent.type,
+                    details: this.newEvent.details,
+                    veterinarian: this.newEvent.veterinarian,
+                    date: dateStr
+                };
+
+                if (!this.animal.events) this.animal.events = [];
+                this.animal.events.unshift(newRecord);
+
+                if (this.newEvent.status) {
+                    this.animal.status = this.newEvent.status;
+                }
+
+                try {
+                    await fetch(`/api/animals/${encodeURIComponent(this.animal.id)}/events`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(this.newItem)
+                        body: JSON.stringify(newRecord)
                     });
-                    if (res.ok) {
-                        const created = await res.json();
-                        this.items.push(created);
-                    } else {
-                        this.items.push({
-                            id: Date.now(),
-                            ...this.newItem,
-                            status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
-                        });
-                    }
-                    this.showAddModal = false;
-                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
                 } catch (err) {
-                    this.items.push({
-                        id: Date.now(),
-                        ...this.newItem,
-                        status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
-                    });
-                    this.showAddModal = false;
-                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
+                    console.warn("Could not sync event to server", err);
+                } finally {
+                    this.submittingEvent = false;
+                    this.showEventModal = false;
                 }
             }
         }
     }).mount('#app');
-</script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-        .catch(err => console.error('Error al registrar el Service Worker:', err));
-    });
-  }
 </script>
 </body>
 </html>
