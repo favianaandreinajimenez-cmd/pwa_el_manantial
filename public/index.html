@@ -52,7 +52,7 @@
                         "on-tertiary-container": "#ffaac8",
                         "on-primary": "#ffffff",
                         "inverse-primary": "#a1d494",
-                        "surface-container-low": "#eff4ff",
+                        "surface-container-low": "#f8f9fc",
                         "on-surface-variant": "#42493e",
                         "on-secondary-fixed-variant": "#454747",
                         "surface": "#f8f9fc",
@@ -85,7 +85,7 @@
                         "secondary": "#5d5f5f",
                         "primary-container": "#2d5a27",
                         "on-tertiary": "#ffffff",
-                        "surface-bright": "#f8f9fc",
+                        "surface-bright": "#f8f9ff",
                         "tertiary-fixed-dim": "#ffb0cc",
                         "on-secondary-container": "#616363",
                         "surface-tint": "#3b6934",
@@ -331,6 +331,14 @@
         }
         html.dark ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
+        }
+
+        /* Colores personalizados explícitos para barra lateral y superior */
+        aside, header, nav.fixed {
+            background-color: #f8f9fc !important;
+        }
+        html.dark aside, html.dark header, html.dark nav.fixed {
+            background-color: #101727 !important;
         }
     </style>
   </head>
