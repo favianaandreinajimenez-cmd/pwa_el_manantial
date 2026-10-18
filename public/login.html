@@ -346,6 +346,16 @@
           loading: false
         };
       },
+      mounted() {
+        // Cargar el tema guardado en la última sesión desde localStorage
+        const theme = localStorage.getItem('theme') || 'light';
+        this.isDarkMode = theme === 'dark';
+        if (this.isDarkMode) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      },
       methods: {
         // Bloqueo total de nuevas teclas si ya se llegó al límite exacto de 27 caracteres
         checkEmailLength(e) {
@@ -434,7 +444,7 @@
           }
 
           const fallbackUsers = [
-            { id: 1, name: "Francisco Molina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "F" },
+            { id: 1, name: "Francisco Molina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "FM" },
             { id: 2, name: "Dra. Maria Mendoza", role: "Veterinario", status: "Activo", email: "veterinario@elmanantial.com", password: "vet123", avatar: "VET" },
             { id: 3, name: "Jose Sanchez", role: "Operario", status: "Activo", email: "jose@elmanantial.com", password: "ope123", avatar: "JS" },
           ];
