@@ -4,14 +4,13 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-</head>
 <!-- Configuración PWA -->
 <link rel="manifest" href="/public/manifest.json"/>
 <meta name="theme-color" content="#154212"/>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <!-- Respaldo local para funcionar sin internet -->
+<!-- Respaldo local para funcionar sin internet -->
 <script src="local-db-fallback.js"></script>
 <!-- Lógica de sincronización cuando vuelve la red -->
 <script src="js/sync.js"></script>
@@ -19,7 +18,6 @@
 <script src="js/app.js"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
 <script id="tailwind-config">
@@ -762,7 +760,7 @@
                     isDesktop: window.innerWidth >= 1024,
                     showAddModal: false,
                     submitting: false,
-                    healthyPercentage: 94,
+                    healthyPercentage: 95,
                     inTreatment: 1,
                     underObservation: 1,
                     birthsThisMonth: 2,
@@ -771,574 +769,13 @@
                         { id: 1, date: '02 Oct', title: 'Vacunación Aftosa', target: 'Lote A y B', priority: 'Urgente' },
                         { id: 2, date: '05 Oct', title: 'Palpación Rutinaria', target: 'Vacas Seleccionadas', priority: 'Normal' }
                     ],
-                    animals: [
-                        {
-                            id: "#A-101",
-                            name: "Lucero",
-                            breed: "Carora",
-                            age: 4.0,
-                            weight: 460,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 12450,
-                            lastVaccination: "10 Sep 2023",
-                            pregnancyStatus: "Confirmado (2m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Animal muestra excelente recuperación post-parto. Se recomienda mantener suplementación mineral tipo B hasta el próximo ciclo de ordeño. Observar pezón posterior izquierdo por sensibilidad mínima."
-                        },
-                        {
-                            id: "#A-102",
-                            name: "Mariposa",
-                            breed: "Holstein",
-                            age: 5.0,
-                            weight: 550,
-                            status: "En Tratamiento",
-                            lot: "A",
-                            productionTotal: 9200,
-                            lastVaccination: "14 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Animal muestra excelente recuperación post-parto. Se recomienda mantener suplementación mineral tipo B hasta el próximo ciclo de ordeño. Observar pezón posterior izquierdo por sensibilidad mínima."
-                        },
-                        {
-                            id: "#A-103",
-                            name: "Gitana",
-                            breed: "Brahman",
-                            age: 3.5,
-                            weight: 500,
-                            status: "Bajo Observación",
-                            lot: "A",
-                            productionTotal: 6500,
-                            lastVaccination: "01 Oct 2023",
-                            pregnancyStatus: "Confirmado (4m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Chequeo mensual de gestación y monitoreo de cojera leve."
-                        },
-                        {
-                            id: "#A-104",
-                            name: "Estrella",
-                            breed: "Pardo Suizo",
-                            age: 4.2,
-                            weight: 530,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 8400,
-                            lastVaccination: "11 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Comportamiento dócil en sala de ordeño."
-                        },
-                        {
-                            id: "#A-105",
-                            name: "Luna",
-                            breed: "Jersey",
-                            age: 3.0,
-                            weight: 440,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 6100,
-                            lastVaccination: "19 Sep 2023",
-                            pregnancyStatus: "Confirmado (1m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Vaca joven con excelente persistencia."
-                        },
-                        {
-                            id: "#A-106",
-                            name: "Paloma",
-                            breed: "Mestiza",
-                            age: 4.8,
-                            weight: 490,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 7300,
-                            lastVaccination: "22 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Adaptada perfectamente al sistema del Lote A."
-                        },
-                        {
-                            id: "#A-107",
-                            name: "Rosilla",
-                            breed: "Carora",
-                            age: 3.8,
-                            weight: 450,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 6800,
-                            lastVaccination: "05 Sep 2023",
-                            pregnancyStatus: "Confirmado (3m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Controles sanitarios al día."
-                        },
-                        {
-                            id: "#A-108",
-                            name: "Morena",
-                            breed: "Holstein",
-                            age: 5.5,
-                            weight: 570,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 9600,
-                            lastVaccination: "12 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Buen volumen de producción."
-                        },
-                        {
-                            id: "#A-109",
-                            name: "Margarita",
-                            breed: "Brahman",
-                            age: 4.1,
-                            weight: 510,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 7100,
-                            lastVaccination: "18 Sep 2023",
-                            pregnancyStatus: "Confirmado (2m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Sin observaciones especiales."
-                        },
-                        {
-                            id: "#A-110",
-                            name: "Princesa",
-                            breed: "Pardo Suizo",
-                            age: 3.9,
-                            weight: 520,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 7900,
-                            lastVaccination: "25 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Excelente temperamento."
-                        },
-                        {
-                            id: "#A-111",
-                            name: "Flor",
-                            breed: "Jersey",
-                            age: 3.2,
-                            weight: 430,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 5900,
-                            lastVaccination: "08 Sep 2023",
-                            pregnancyStatus: "Confirmado (3m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Leche con alta concentración de sólidos."
-                        },
-                        {
-                            id: "#A-112",
-                            name: "Reina",
-                            breed: "Mestiza",
-                            age: 4.6,
-                            weight: 480,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 7400,
-                            lastVaccination: "13 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Estable en los controles de rutina."
-                        },
-                        {
-                            id: "#A-113",
-                            name: "Bonita",
-                            breed: "Carora",
-                            age: 3.5,
-                            weight: 465,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 7100,
-                            lastVaccination: "17 Sep 2023",
-                            pregnancyStatus: "Confirmado (5m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Sin problemas sanitarios."
-                        },
-                        {
-                            id: "#A-114",
-                            name: "Mora",
-                            breed: "Holstein",
-                            age: 5.1,
-                            weight: 560,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 9100,
-                            lastVaccination: "21 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Buen rendimiento."
-                        },
-                        {
-                            id: "#A-115",
-                            name: "Canela",
-                            breed: "Brahman",
-                            age: 4.3,
-                            weight: 515,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 7200,
-                            lastVaccination: "29 Sep 2023",
-                            pregnancyStatus: "Confirmado (2m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Monitoreo periódico."
-                        },
-                        {
-                            id: "#A-116",
-                            name: "Pinta",
-                            breed: "Pardo Suizo",
-                            age: 4.0,
-                            weight: 525,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 8100,
-                            lastVaccination: "03 Oct 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Comportamiento normal."
-                        },
-                        {
-                            id: "#A-117",
-                            name: "Negrita",
-                            breed: "Jersey",
-                            age: 3.3,
-                            weight: 435,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 6000,
-                            lastVaccination: "09 Sep 2023",
-                            pregnancyStatus: "Confirmado (4m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Sin incidencias."
-                        },
-                        {
-                            id: "#A-118",
-                            name: "Blanca",
-                            breed: "Mestiza",
-                            age: 4.7,
-                            weight: 495,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 7500,
-                            lastVaccination: "15 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Salud general excelente."
-                        },
-                        {
-                            id: "#A-119",
-                            name: "Perla",
-                            breed: "Carora",
-                            age: 3.6,
-                            weight: 460,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 6900,
-                            lastVaccination: "20 Sep 2023",
-                            pregnancyStatus: "Confirmado (1m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Desarrollo óptimo."
-                        },
-                        {
-                            id: "#A-120",
-                            name: "Esperanza",
-                            breed: "Holstein",
-                            age: 5.2,
-                            weight: 565,
-                            status: "Saludable",
-                            lot: "A",
-                            productionTotal: 9400,
-                            lastVaccination: "26 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Cierre del lote A con alta producción láctea."
-                        },
-                        {
-                            id: "#B-201",
-                            name: "Rosa",
-                            breed: "Carora",
-                            age: 3.7,
-                            weight: 455,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 6700,
-                            lastVaccination: "11 Sep 2023",
-                            pregnancyStatus: "Confirmado (3m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Comienzo del Lote B en óptimas condiciones."
-                        },
-                        {
-                            id: "#B-202",
-                            name: "Hermosa",
-                            breed: "Holstein",
-                            age: 4.8,
-                            weight: 540,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 8900,
-                            lastVaccination: "16 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Estable y sin novedades."
-                        },
-                        {
-                            id: "#B-203",
-                            name: "Diamante",
-                            breed: "Brahman",
-                            age: 4.0,
-                            weight: 505,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7000,
-                            lastVaccination: "21 Sep 2023",
-                            pregnancyStatus: "Confirmado (2m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Buen desarrollo corporal."
-                        },
-                        {
-                            id: "#B-204",
-                            name: "Zamurita",
-                            breed: "Pardo Suizo",
-                            age: 4.3,
-                            weight: 535,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 8300,
-                            lastVaccination: "27 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Sin observaciones especiales."
-                        },
-                        {
-                            id: "#B-205",
-                            name: "Gaviota",
-                            breed: "Jersey",
-                            age: 3.1,
-                            weight: 445,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 6200,
-                            lastVaccination: "02 Oct 2023",
-                            pregnancyStatus: "Confirmado (3m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Comportamiento dócil."
-                        },
-                        {
-                            id: "#B-206",
-                            name: "Lucerito",
-                            breed: "Mestiza",
-                            age: 4.5,
-                            weight: 485,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7200,
-                            lastVaccination: "06 Oct 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Buena adaptación en el grupo B."
-                        },
-                        {
-                            id: "#B-207",
-                            name: "Tormenta",
-                            breed: "Carora",
-                            age: 3.6,
-                            weight: 450,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 6600,
-                            lastVaccination: "12 Sep 2023",
-                            pregnancyStatus: "Confirmado (1m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Controles sanitarios completos."
-                        },
-                        {
-                            id: "#B-208",
-                            name: "Manea",
-                            breed: "Holstein",
-                            age: 5.0,
-                            weight: 555,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 9000,
-                            lastVaccination: "18 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Estable en su producción."
-                        },
-                        {
-                            id: "#B-209",
-                            name: "Consentida",
-                            breed: "Brahman",
-                            age: 4.2,
-                            weight: 510,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7300,
-                            lastVaccination: "24 Sep 2023",
-                            pregnancyStatus: "Confirmado (4m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Sin inconvenientes."
-                        },
-                        {
-                            id: "#B-210",
-                            name: "Altagracia",
-                            breed: "Pardo Suizo",
-                            age: 3.8,
-                            weight: 515,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7800,
-                            lastVaccination: "30 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Buen ritmo de ordeño."
-                        },
-                        {
-                            id: "#B-211",
-                            name: "Sombra",
-                            breed: "Jersey",
-                            age: 3.4,
-                            weight: 440,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 6100,
-                            lastVaccination: "04 Oct 2023",
-                            pregnancyStatus: "Confirmado (2m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Salud estable."
-                        },
-                        {
-                            id: "#B-212",
-                            name: "Parda",
-                            breed: "Mestiza",
-                            age: 4.4,
-                            weight: 475,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7300,
-                            lastVaccination: "10 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Sin observaciones médicas."
-                        },
-                        {
-                            id: "#B-213",
-                            name: "Chiquinquirá",
-                            breed: "Carora",
-                            age: 3.9,
-                            weight: 470,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7200,
-                            lastVaccination: "14 Sep 2023",
-                            pregnancyStatus: "Confirmado (3m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Excelente respuesta a la suplementación."
-                        },
-                        {
-                            id: "#B-214",
-                            name: "Lunaria",
-                            breed: "Holstein",
-                            age: 4.9,
-                            weight: 550,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 8800,
-                            lastVaccination: "19 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Producción constante."
-                        },
-                        {
-                            id: "#B-215",
-                            name: "Reliquia",
-                            breed: "Brahman",
-                            age: 4.1,
-                            weight: 500,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 6900,
-                            lastVaccination: "25 Sep 2023",
-                            pregnancyStatus: "Confirmado (1m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Buen estado físico general."
-                        },
-                        {
-                            id: "#B-216",
-                            name: "Pintada",
-                            breed: "Pardo Suizo",
-                            age: 3.8,
-                            weight: 520,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7900,
-                            lastVaccination: "01 Oct 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Sin anomalías."
-                        },
-                        {
-                            id: "#B-217",
-                            name: "Pavita",
-                            breed: "Jersey",
-                            age: 3.2,
-                            weight: 425,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 5900,
-                            lastVaccination: "07 Oct 2023",
-                            pregnancyStatus: "Confirmado (4m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
-                            notes: "Respuesta positiva a planes sanitarios."
-                        },
-                        {
-                            id: "#B-218",
-                            name: "Milagrosa",
-                            breed: "Mestiza",
-                            age: 4.6,
-                            weight: 490,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 7400,
-                            lastVaccination: "13 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
-                            notes: "Comportamiento normal en corral."
-                        },
-                        {
-                            id: "#B-219",
-                            name: "Zamana",
-                            breed: "Carora",
-                            age: 3.5,
-                            weight: 455,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 6800,
-                            lastVaccination: "18 Sep 2023",
-                            pregnancyStatus: "Confirmado (2m)",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
-                            notes: "Monitoreo veterinario al día."
-                        },
-                        {
-                            id: "#B-220",
-                            name: "Florinda",
-                            breed: "Holstein",
-                            age: 5.1,
-                            weight: 560,
-                            status: "Saludable",
-                            lot: "B",
-                            productionTotal: 9200,
-                            lastVaccination: "23 Sep 2023",
-                            pregnancyStatus: "No preñada",
-                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
-                            notes: "Cierre exitoso del registro completo del Lote B."
-                        }
-                    ],
+                    animals: [],
                     showSidebar: false,
                     newEvent: {
                         animalId: '',
                         type: 'Vacunación',
                         details: '',
-                        veterinarian: 'Dra. Mendoza',
+                        veterinarian: 'Dra. Maria Mendoza',
                         status: ''
                     }
                 };
@@ -1392,7 +829,7 @@
                     this.milkingPage = 1;
                 }
             },
-            mounted() {
+            async mounted() {
                 window.addEventListener('resize', () => {
                     this.isDesktop = window.innerWidth >= 1024;
                 });
@@ -1414,11 +851,14 @@
                         return;
                     }
 
-                    // Si es Operario u Obrero, redirigir automáticamente al panel de ordeño si intentan entrar aquí
+                    // Redirección de rol
                     if (this.currentUser.role === 'Operario' || this.currentUser.role === 'Obrero') {
                         window.location.href = 'ordeno.html';
                         return;
                     }
+
+                    // Carga sincrónica/asincrónica de la base de datos de animales
+                    await this.loadAnimals();
 
                 } else {
                     window.location.href = 'login.html';
@@ -1426,6 +866,37 @@
                 }
             },
             methods: {
+                async loadAnimals() {
+                    try {
+                        const dbStr = localStorage.getItem('elmanantial_local_db');
+                        if (dbStr) {
+                            const db = JSON.parse(dbStr);
+                            if (db.animals && db.animals.length > 0) {
+                                this.animals = db.animals.map(a => {
+                                    const cleanId = a.id.replace('#', '');
+                                    return {
+                                        ...a,
+                                        id: cleanId,
+                                        lot: cleanId.startsWith('A') ? 'A' : 'B'
+                                    };
+                                });
+                                this.calculateStats();
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Error al cargar lista de animales:", e);
+                    }
+                },
+
+                calculateStats() {
+                    if (this.animals.length === 0) return;
+                    const total = this.animals.length;
+                    const healthy = this.animals.filter(a => a.status === 'Saludable').length;
+                    this.inTreatment = this.animals.filter(a => a.status === 'En Tratamiento').length;
+                    this.underObservation = this.animals.filter(a => a.status === 'Bajo Observación').length;
+                    this.healthyPercentage = Math.round((healthy / total) * 100);
+                },
+
                 toggleTheme() {
                     this.isDarkMode = !this.isDarkMode;
                     if (this.isDarkMode) {
@@ -1446,25 +917,57 @@
                     const path = window.location.pathname;
                     return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
                 },
+
                 async submitEvent() {
                     if (!this.newEvent.animalId) return;
                     this.submitting = true;
                     try {
-                        const targetCow = this.animals.find(c => c.id === this.newEvent.animalId);
-                        if (targetCow && this.newEvent.status) {
-                            targetCow.status = this.newEvent.status;
+                        const cleanId = this.newEvent.animalId.replace('#', '');
+                        
+                        // 1. Crear el objeto del nuevo evento
+                        const eventPayload = {
+                            id: Date.now(),
+                            type: this.newEvent.type,
+                            details: this.newEvent.details,
+                            veterinarian: this.newEvent.veterinarian || 'Dra. Maria Mendoza',
+                            date: new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
+                        };
+
+                        // 2. Enviar evento al backend simulado por API
+                        await fetch(`/api/animals/${cleanId}/events`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(eventPayload)
+                        });
+
+                        // 3. Si se definió un nuevo estado, actualizarlo en la base de datos
+                        if (this.newEvent.status) {
+                            const dbStr = localStorage.getItem('elmanantial_local_db');
+                            if (dbStr) {
+                                const db = JSON.parse(dbStr);
+                                const target = db.animals.find(a => a.id === cleanId || a.id === '#' + cleanId);
+                                if (target) {
+                                    target.status = this.newEvent.status;
+                                    localStorage.setItem('elmanantial_local_db', JSON.stringify(db));
+                                }
+                            }
                         }
-                        alert("Evento veterinario registrado con éxito.");
+
+                        alert("Evento veterinario registrado con éxito e integrado en el historial.");
                         this.showAddModal = false;
                         this.newEvent = {
                             animalId: '',
                             type: 'Vacunación',
                             details: '',
-                            veterinarian: 'Dra. Mendoza',
+                            veterinarian: 'Dra. Maria Mendoza',
                             status: ''
                         };
+
+                        // Recargar animales para refrescar la tabla y estadísticas
+                        await this.loadAnimals();
+
                     } catch (err) {
-                        console.error("Error submitting health event", err);
+                        console.error("Error al registrar evento:", err);
                         alert("Error al registrar el evento.");
                     } finally {
                         this.submitting = false;
