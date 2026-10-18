@@ -4,154 +4,131 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-</head>
-<link rel="manifest" href="manifest.json"/>
+<!-- Enlace al manifiesto de la PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#154212">
+
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<!-- Librerías robustas para exportar PDF en cliente -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- Respaldo local para funcionar sin internet -->
 <script src="local-db-fallback.js"></script>
 <!-- Lógica de sincronización cuando vuelve la red -->
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Work+Sans:wght@400;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "surface-dim": "#ccdbf3",
-                    "surface-container-high": "#dce9ff",
-                    "on-secondary-fixed-variant": "#454747",
-                    "tertiary-container": "#7c3a55",
-                    "primary-fixed": "#bcf0ae",
-                    "on-primary-container": "#9dd090",
-                    "on-error-container": "#93000a",
-                    "inverse-primary": "#a1d494",
-                    "primary": "#154212",
-                    "secondary-container": "#dfe0e0",
-                    "on-secondary-fixed": "#1a1c1c",
-                    "surface-tint": "#3b6934",
-                    "secondary": "#5d5f5f",
-                    "on-primary-fixed": "#002201",
-                    "error-container": "#ffdad6",
-                    "outline": "#72796e",
-                    "on-surface-variant": "#42493e",
-                    "surface-bright": "#f8f9ff",
-                    "primary-container": "#2d5a27",
-                    "on-tertiary-fixed": "#3b0520",
-                    "on-tertiary": "#ffffff",
-                    "inverse-surface": "#233144",
-                    "surface-variant": "#d5e3fc",
-                    "secondary-fixed-dim": "#c6c6c7",
-                    "on-secondary": "#ffffff",
-                    "tertiary-fixed": "#ffd9e4",
-                    "on-tertiary-container": "#ffaac8",
-                    "surface-container-highest": "#d5e3fc",
-                    "inverse-on-surface": "#eaf1ff",
-                    "error": "#ba1a1a",
-                    "surface-container-low": "#eff4ff",
-                    "surface-container-lowest": "#ffffff",
-                    "on-secondary-container": "#616363",
-                    "surface-container": "#e6eeff",
-                    "on-primary": "#ffffff",
-                    "surface": "#f8f9ff",
-                    "secondary-fixed": "#e2e2e2",
-                    "on-tertiary-fixed-variant": "#71314c",
-                    "on-background": "#0d1c2e",
-                    "primary-fixed-dim": "#a1d494",
-                    "on-primary-fixed-variant": "#23501e",
-                    "tertiary": "#60233e",
-                    "tertiary-fixed-dim": "#ffb0cc",
-                    "background": "#f8f9ff",
-                    "outline-variant": "#c2c9bb",
-                    "on-error": "#ffffff",
-                    "on-surface": "#0d1c2e"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "md": "24px",
-                    "base": "8px",
-                    "xl": "64px",
-                    "margin-mobile": "16px",
-                    "xs": "4px",
-                    "lg": "40px",
-                    "sm": "12px",
-                    "margin-desktop": "32px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "data-tabular": ["Hanken Grotesk"],
-                    "body-sm": ["Hanken Grotesk"],
-                    "display-lg": ["Work Sans"],
-                    "headline-md": ["Work Sans"],
-                    "body-lg": ["Hanken Grotesk"],
-                    "label-lg": ["Hanken Grotesk"],
-                    "headline-lg": ["Work Sans"],
-                    "label-md": ["Hanken Grotesk"],
-                    "body-md": ["Hanken Grotesk"]
-            },
-            "fontSize": {
-                    "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-            }
-          },
-        },
-      }
-    </script>
 <style>
-        body { font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
-        .custom-chart-bar { transition: height 1s ease-out; }
-
-        .font-pdf-title { font-family: 'Montserrat', sans-serif; }
-        .pdf-chart-bars-container { display: flex; align-items: flex-end; height: 180px; gap: 2px; }
-        .pdf-chart-bar { background-color: #0a3a0a; flex: 1; }
-
-        @media print {
-            aside, header, nav, button, .fixed {
-                display: none !important;
-            }
-            main {
-                margin: 0 !important;
-                padding: 0 !important;
-                width: 100% !important;
-            }
-            body {
-                background-color: white !important;
-                color: black !important;
-            }
-            .glass-card, div {
-                box-shadow: none !important;
-            }
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#9dd090",
+                      "on-secondary-fixed-variant": "#454747",
+                      "outline": "#72796e",
+                      "primary": "#154212",
+                      "secondary-container": "#dfe0e0",
+                      "outline-variant": "#c2c9bb",
+                      "surface": "#f8f9ff",
+                      "on-surface-variant": "#42493e",
+                      "secondary": "#5d5f5f",
+                      "tertiary-fixed": "#ffd9e4",
+                      "on-background": "#0d1c2e",
+                      "on-tertiary-container": "#ffaac8",
+                      "surface-container": "#e6eeff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-high": "#dce9ff",
+                      "surface-tint": "#3b6934",
+                      "inverse-on-surface": "#eaf1ff",
+                      "inverse-surface": "#233144",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "tertiary": "#60233e",
+                      "primary-container": "#2d5a27",
+                      "secondary-fixed": "#e2e2e2",
+                      "surface-container-highest": "#d5e3fc",
+                      "on-tertiary-fixed-variant": "#71314c",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-tertiary-fixed": "#3b0520",
+                      "on-secondary-container": "#616363",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#d5e3fc",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed-variant": "#23501e",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#f8f9ff",
+                      "surface-dim": "#ccdbf3",
+                      "tertiary-container": "#7c3a55",
+                      "on-primary-fixed": "#002201",
+                      "tertiary-fixed-dim": "#ffb0cc",
+                      "background": "#f8f9ff",
+                      "on-surface": "#0d1c2e",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#eff4ff",
+                      "inverse-primary": "#a1d494",
+                      "primary-fixed": "#bcf0ae",
+                      "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "40px",
+                      "gutter": "24px",
+                      "md": "24px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px",
+                      "xl": "64px",
+                      "sm": "12px",
+                      "xs": "4px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "label-md": ["Hanken Grotesk"],
+                      "body-sm": ["Hanken Grotesk"],
+                      "headline-lg": ["Work Sans"],
+                      "data-tabular": ["Hanken Grotesk"],
+                      "display-lg": ["Work Sans"],
+                      "label-lg": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "body-md": ["Hanken Grotesk"],
+                      "headline-md": ["Work Sans"]
+              },
+              "fontSize": {
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
 <style>
     body {
       min-height: max(884px, 100dvh);
     }
+
+        /* Custom styles for dark mode */
         html.dark .glass-card {
             background: rgba(22, 32, 50, 0.8) !important;
             border-color: #25354e !important;
@@ -273,7 +250,7 @@
             color: #0b0f19 !important;
         }
         html.dark table thead tr {
-            background-color: #0b0f19 !important;
+            background-color: #101726 !important;
             color: #f8fafc !important;
         }
         html.dark table tbody tr {
@@ -323,6 +300,33 @@
         }
         html.dark .bg-primary:hover {
             background-color: #059669 !important;
+        }
+        html.dark .bg-\[\#e3f2fd\] {
+            background-color: #1e3a8a !important;
+        }
+        html.dark .text-\[\#1565c0\] {
+            color: #93c5fd !important;
+        }
+        html.dark .bg-\[\#dcfce7\] {
+            background-color: #064e3b !important;
+        }
+        html.dark .text-\[\#14532d\] {
+            color: #a7f3d0 !important;
+        }
+        html.dark .text-\[\#2e7d32\] {
+            color: #a7f3d0 !important;
+        }
+        html.dark .text-\[\#c62828\] {
+            color: #fca5a5 !important;
+        }
+        html.dark svg path[stroke="#154212"] {
+            stroke: #10b981 !important;
+        }
+        html.dark svg circle[fill="#154212"] {
+            fill: #10b981 !important;
+        }
+        html.dark stop[stop-color="#154212"] {
+            stop-color: #10b981 !important;
         }
         html.dark .shadow-sm,
         html.dark .shadow-md,
@@ -435,428 +439,169 @@
   </button>
   <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
+    <span v-else>{{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}</span>
   </a>
 </div>
 </header>
-
-<!-- CONTENEDOR PRINCIPAL DE LA VISTA WEB -->
-<div id="pdf-container" class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto flex flex-col gap-6">
-
-<!-- Filters & Actions -->
-<section class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
-<div class="flex flex-wrap gap-sm">
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-4 pr-10 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-label-lg text-label-lg cursor-pointer">
-<option>2023</option>
-<option>2024</option>
-<option>2025</option>
-<option selected>2026</option>
-</select>
-</div>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-4 pr-10 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-label-lg text-label-lg cursor-pointer">
-<option value="" selected disabled>La Unidad</option>
-<option value="Lote A">Lote A</option>
-<option value="Lote B">Lote B</option>
-</select>
-</div>
-</div>
-
-<div class="flex gap-sm w-full md:w-auto relative">
-    <div class="relative flex-1 md:flex-none">
-        <button @click="showShareMenu = !showShareMenu" class="w-full md:w-auto flex items-center justify-center gap-xs px-md py-2 border border-primary text-primary font-label-lg text-label-lg rounded-lg hover:bg-primary-fixed transition-colors active:scale-95 duration-150 cursor-pointer">
-            <span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
-            Compartir
-            <span class="material-symbols-outlined text-[16px]">expand_more</span>
-        </button>
-
-        <div v-if="showShareMenu" @click.away="showShareMenu = false" class="absolute left-0 md:left-auto md:right-0 mt-2 w-56 bg-white dark:bg-[#162032] border border-outline-variant dark:border-[#25354e] rounded-xl shadow-xl z-50 py-2 overflow-hidden">
-            <button @click="shareWhatsApp" class="w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-surface-container-low dark:hover:bg-[#1e293b] text-on-surface dark:text-gray-200 transition-colors text-sm cursor-pointer">
-                <span class="material-symbols-outlined text-emerald-600">chat</span>
-                WhatsApp
-            </button>
-            <button @click="shareEmail" class="w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-surface-container-low dark:hover:bg-[#1e293b] text-on-surface dark:text-gray-200 transition-colors text-sm cursor-pointer">
-                <span class="material-symbols-outlined text-blue-500">mail</span>
-                Correo Electrónico
-            </button>
-        </div>
-    </div>
-
-    <button @click="exportPDF" class="flex-1 md:flex-none flex items-center justify-center gap-xs px-md py-2 bg-primary text-on-primary font-label-lg text-label-lg rounded-lg hover:opacity-90 transition-colors active:scale-95 duration-150 shadow-sm cursor-pointer">
-        <span class="material-symbols-outlined text-[20px]" data-icon="picture_as_pdf">picture_as_pdf</span>
-        Exportar PDF
-    </button>
-</div>
-</section>
-
-<!-- Summary Cards -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
-<div @click="openMetricModal('liters')" class="bg-white p-md rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-all duration-200 cursor-pointer active:scale-98 group">
-<div class="flex justify-between items-start mb-base">
-<div class="w-10 h-10 bg-surface-container-high rounded-lg flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="water_drop">water_drop</span>
-</div>
-<span class="bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md px-2 py-1 rounded-full flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
-                        +8.2%
-                    </span>
-</div>
-<p class="font-label-lg text-label-lg text-outline">Total Litros Mensuales</p>
-<h3 class="font-display-lg text-display-lg text-primary mt-xs">{{ totalLiters.toLocaleString() }}<span class="text-headline-md font-normal ml-xs">L</span></h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">Acumulado del mes actual</p>
-</div>
-
-<div @click="openMetricModal('avg')" class="bg-white p-md rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-all duration-200 cursor-pointer active:scale-98">
-<div class="flex justify-between items-start mb-base">
-<div class="w-10 h-10 bg-surface-container-high rounded-lg flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="pets">pets</span>
-</div>
-<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md px-2 py-1 rounded-full flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
-                        Estable
-                    </span>
-</div>
-<p class="font-label-lg text-label-lg text-outline">Promedio por Vaca</p>
-<h3 class="font-display-lg text-display-lg text-primary mt-xs">{{ avgLitersPerCow }}<span class="text-headline-md font-normal ml-xs">L/día</span></h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">Rendimiento promedio diario</p>
-</div>
-
-<div @click="openMetricModal('projection')" class="bg-primary-container text-on-primary-container p-md rounded-xl border border-primary shadow-sm relative overflow-hidden cursor-pointer hover:brightness-105 active:scale-98 transition-all duration-200">
-<div class="relative z-10">
-<div class="flex justify-between items-start mb-base">
-<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
-<span class="material-symbols-outlined" data-icon="batch_prediction">batch_prediction</span>
-</div>
-</div>
-<p class="font-label-lg text-label-lg opacity-80">Proyección Próximo Mes</p>
-<h3 class="font-display-lg text-display-lg mt-xs">{{ projectionNextMonth.toLocaleString() }}<span class="text-headline-md font-normal ml-xs">L</span></h3>
-<p class="font-body-sm text-body-sm mt-sm">Estimado en base a registros</p>
-</div>
-<div class="absolute -right-4 -bottom-4 opacity-10">
-<span class="material-symbols-outlined text-[120px]" data-icon="agriculture">agriculture</span>
-</div>
-</div>
-</section>
-
-<!-- Bento Layout: Chart and Table -->
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-md">
-<div class="lg:col-span-2 bg-white p-md rounded-xl border border-outline-variant shadow-sm flex flex-col">
-<div class="flex justify-between items-center mb-lg">
+<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
+    
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
 <div>
-    <h4 class="font-headline-md text-headline-md font-bold text-on-surface">Producción Diaria (Litros)</h4>
-    <p class="text-xs text-primary font-bold mt-1">Lote con mayor producción hoy: {{ topBatchToday }}</p>
-</div>
-<div class="flex items-center gap-sm">
-<div class="flex items-center gap-xs">
-<span class="w-3 h-3 bg-primary rounded-full"></span>
-<span class="font-label-md text-label-md text-outline">Ordeño Actual</span>
-</div>
-</div>
-</div>
-<div class="flex-grow flex items-end gap-1 md:gap-2 h-64 md:h-80 group">
-<div class="flex-grow flex items-end justify-between px-2 h-full">
-<div v-for="point in chartData" :key="point.day" class="flex flex-col justify-end items-center gap-2 w-full h-full">
-<div class="w-full bg-primary rounded-t-sm custom-chart-bar transition-all duration-1000" :style="{ height: getChartBarHeight(point.liters) }"></div>
-<span class="font-label-md text-label-md text-outline hidden md:block">{{ point.day }}</span>
-</div>
-</div>
+<h2 class="font-headline-lg text-headline-lg text-[#154212] dark:text-emerald-500">Control Inventario</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión y monitoreo de suministros críticos para la producción Láctea.</p>
 </div>
 </div>
 
-<div class="bg-white p-md rounded-xl border border-outline-variant shadow-sm flex flex-col">
-<h4 class="font-headline-md text-headline-md font-bold text-on-surface mb-md">Ranking de Unidades</h4>
-<div class="space-y-sm">
-<div v-for="item in calculatedRanking" :key="item.rank" :class="item.rank === 1 ? 'bg-surface-container-low border border-transparent hover:border-outline-variant' : 'hover:bg-surface-container-low'" class="flex items-center gap-md p-sm rounded-lg transition-colors group">
-<div :class="item.rank === 1 ? 'bg-primary text-on-primary' : 'bg-outline-variant text-on-surface'" class="w-8 h-8 rounded-full flex items-center justify-center font-bold">{{ item.rank }}</div>
-<div class="flex-grow">
-<p class="font-label-lg text-label-lg font-bold text-on-surface">{{ item.name }}</p>
-<p class="font-label-md text-label-md text-on-surface-variant">{{ item.liters }} L/mes</p>
-</div>
-<span v-if="item.rank === 1" class="material-symbols-outlined text-primary" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
-</div>
-</div>
-<button @click="showRankingModal = true" class="mt-auto pt-md text-primary font-label-lg text-label-lg hover:underline text-center w-full cursor-pointer">Ver reporte detallado </button>
-</div>
-</section>
+<!-- Inventory Dashboard Stats (Bento Grid Style) -->
+<div class="space-y-4 mb-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div @click="selectedStatusFilter = ''" :class="selectedStatusFilter === '' ? 'ring-2 ring-primary border-transparent' : 'border-outline-variant hover:border-primary/50'" class="bg-surface-container-low p-6 rounded-xl border flex flex-col justify-between cursor-pointer transition-all duration-200">
+      <span class="text-on-surface-variant font-label-md text-label-md">TOTAL ITEMS</span>
+      <span class="text-4xl font-bold text-primary mt-2">{{ totalItems }}</span>
+    </div>
+    <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant flex flex-col justify-between">
+      <span class="text-on-surface-variant font-label-md text-label-md">PRÓXIMA ENTREGA</span>
+      <span class="text-xl font-bold text-primary mt-2">Mañana, 08:00</span>
+    </div>
+  </div>
 
-<!-- Detailed Table Section -->
-<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
-<div class="p-md border-b border-outline-variant flex justify-between items-center bg-[#eff4ff] dark:bg-[#0f172a] text-on-surface dark:text-white">
-<h4 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-white">Historial de Producción</h4>
-<div class="flex gap-xs">
-<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary" data-icon="filter_list">filter_list</span>
-<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary" data-icon="search">search</span>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div @click="selectedStatusFilter = (selectedStatusFilter === 'CRÍTICO' ? '' : 'CRÍTICO')" :class="selectedStatusFilter === 'CRÍTICO' ? 'ring-2 ring-error border-transparent' : 'border-outline-variant hover:border-error/50'" class="bg-rose-100/50 dark:bg-rose-950/40 p-6 rounded-xl border border-rose-300 dark:border-rose-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
+      <span class="text-rose-800 dark:text-rose-300 font-label-md text-label-md flex items-center gap-1">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> CRÍTICO
+      </span>
+      <span class="text-4xl font-bold text-rose-800 dark:text-rose-300 mt-2">{{ String(criticalCount).padStart(2, '0') }}</span>
+    </div>
+    <div @click="selectedStatusFilter = (selectedStatusFilter === 'BAJO' ? '' : 'BAJO')" :class="selectedStatusFilter === 'BAJO' ? 'ring-2 ring-tertiary border-transparent' : 'border-outline-variant hover:border-tertiary/50'" class="bg-amber-100/50 dark:bg-amber-950/40 p-6 rounded-xl border border-amber-300 dark:border-amber-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
+      <span class="text-amber-800 dark:text-amber-300 font-label-md text-label-md flex items-center gap-1">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> BAJO
+      </span>
+      <span class="text-4xl font-bold text-amber-800 dark:text-amber-300 mt-2">{{ String(lowCount).padStart(2, '0') }}</span>
+    </div>
+  </div>
 </div>
+
+<!-- Inventory Lists -->
+<div class="space-y-12">
+<!-- Category: Feed -->
+<section>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="grass">grass</span>
 </div>
-<div class="overflow-x-auto">
-<table class="w-full border-collapse">
-<thead>
-<tr class="bg-surface-container-low dark:bg-[#101726] text-on-surface dark:text-white font-label-lg text-label-lg">
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">Fecha</th>
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">ID Animal</th>
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">Nombre</th>
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">Lote</th>
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">Turno</th>
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">Hora</th>
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">Litros</th>
-<th class="px-md py-4 border-b border-outline-variant text-center align-middle">Estado</th>
+<h3 class="font-headline-md text-headline-md">Alimento y Nutrición</h3>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
+<table class="w-full text-left border-collapse min-w-[500px]">
+<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
+<tr>
+<th class="px-6 py-4">Producto</th>
+<th class="px-6 py-4">Inventario Actual</th>
+<th class="px-6 py-4">Estado</th>
+<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-outline-variant font-data-tabular text-data-tabular">
-<tr v-for="record in paginatedRecords" :key="record.animalId" class="hover:bg-surface-container-low transition-colors">
-<td class="px-md py-4 text-center align-middle">{{ record.date }}</td>
-<td class="px-md py-4 font-bold text-center align-middle">{{ record.animalId }}</td>
-<td class="px-md py-4 text-center align-middle">{{ record.name }}</td>
-<td class="px-md py-4 text-center align-middle">{{ record.unitName }}</td>
-<td class="px-md py-4 text-center align-middle">{{ record.shift }}</td>
-<td class="px-md py-4 text-center align-middle">{{ record.time }}</td>
-<td class="px-md py-4 font-bold text-center align-middle">{{ record.liters }} L</td>
-<td class="px-md py-4 text-center align-middle">
-<span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-[#064e3b] dark:text-[#a7f3d0]' : 'bg-error-container text-on-error-container'" class="px-2 py-1 rounded-full text-label-md font-bold inline-block">{{ record.status }}</span>
+<tbody class="font-body-md text-body-md">
+<tr v-for="item in feedItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold">{{ item.name }}</td>
+<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
+<td class="px-6 py-4">
+<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+  {{ item.status }}
+</span>
 </td>
-</tr>
-<tr v-if="paginatedRecords.length === 0">
-<td colspan="8" class="px-md py-8 text-center text-on-surface-variant italic">No hay registros de producción.</td>
+<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
+<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
+  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="p-md flex justify-between items-center bg-[#eff4ff] dark:bg-[#0f172a] text-on-surface dark:text-white">
-<span class="font-label-md text-label-md text-on-surface-variant dark:text-gray-400">Página {{ currentPage }} de {{ totalPages }}</span>
-<div class="flex gap-base items-center">
-<button @click="prevPage" :disabled="currentPage === 1" class="px-4 py-2 border border-outline-variant rounded-lg text-sm font-medium hover:bg-surface-container-high disabled:opacity-50 transition-colors cursor-pointer">
-Anterior
-</button>
-<button @click="nextPage" :disabled="currentPage === totalPages" class="px-4 py-2 rounded-lg text-sm font-medium bg-[#154212] dark:bg-[#10b981] text-white dark:text-[#0b0f19] hover:opacity-90 disabled:opacity-50 transition-colors cursor-pointer shadow-sm">
-Siguiente
-</button>
+</section>
+<!-- Category: Medicine -->
+<section>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="vaccines">vaccines</span>
 </div>
+<h3 class="font-headline-md text-headline-md">Medicamentos y Salud</h3>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
+<table class="w-full text-left border-collapse min-w-[500px]">
+<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
+<tr>
+<th class="px-6 py-4">Producto</th>
+<th class="px-6 py-4">Inventario Actual</th>
+<th class="px-6 py-4">Estado</th>
+<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr v-for="item in medicineItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold">{{ item.name }}</td>
+<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
+<td class="px-6 py-4">
+<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+  {{ item.status }}
+</span>
+</td>
+<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
+<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
+  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
-
+<!-- Category: Supplies -->
+<section>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-on-surface-variant/10 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="sanitizer">sanitizer</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Suministros de Higiene</h3>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
+<table class="w-full text-left border-collapse min-w-[500px]">
+<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
+<tr>
+<th class="px-6 py-4">Producto</th>
+<th class="px-6 py-4">Inventario Actual</th>
+<th class="px-6 py-4">Estado</th>
+<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr v-for="item in hygieneItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold">{{ item.name }}</td>
+<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
+<td class="px-6 py-4">
+<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+  {{ item.status }}
+</span>
+</td>
+<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
+<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
+  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
 </div>
 </main>
-
-<!-- PLANTILLA OCULTA EXCLUSIVA PARA GENERAR EL PDF EXACTO DE 4 PÁGINAS -->
-<div style="position: absolute; left: -9999px; top: -9999px;">
-    <div v-for="pageIndex in pdfTotalPages" :key="'pdf-page-'+pageIndex" :id="'pdf-export-page-'+pageIndex" class="bg-white w-[794px] h-[1123px] box-border p-8 border border-gray-100 flex flex-col justify-between text-black" style="font-family: 'Inter', sans-serif;">
-        <div class="flex flex-col gap-4">
-            <!-- CABECERA PRINCIPAL CON LOGOTIPO SVG CARGADO DESDE imagenes/icono_logo.svg -->
-            <header class="flex items-center gap-4 border-b border-gray-300 pb-3">
-                <div class="w-12 h-12 rounded-full bg-[#154212] flex items-center justify-center p-2 flex-shrink-0 overflow-hidden">
-                    <img src="imagenes/icono_logo.svg" alt="Logo El Manantial" class="w-full h-full object-contain" />
-                </div>
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-black text-black font-pdf-title tracking-tight uppercase leading-none">
-                        INFORME PRODUCTIVO
-                    </h1>
-                    <p class="text-[11px] text-black font-semibold mt-1">
-                        Unidad de Producción Agropecuaria - Finca El Manantial | Obispo, Barinas, Venezuela
-                    </p>
-                </div>
-            </header>
-
-            <!-- PÁGINA 1: RESUMEN, GRÁFICA Y RANKING -->
-            <template v-if="pageIndex === 1">
-                <section class="grid grid-cols-3 gap-3">
-                    <div class="border border-gray-300 rounded-xl p-3 text-left bg-white">
-                        <p class="text-[11px] text-black font-bold">Total Litros Mensuales</p>
-                        <h3 class="text-lg md:text-xl font-bold text-black font-pdf-title mt-0.5">{{ totalLiters.toLocaleString() }} L</h3>
-                        <p class="text-[10px] text-black font-bold mt-1">+8,2% vs. mes anterior</p>
-                    </div>
-                    <div class="border border-gray-300 rounded-xl p-3 text-left bg-white">
-                        <p class="text-[11px] text-black font-bold">Promedio por Vaca</p>
-                        <h3 class="text-lg md:text-xl font-bold text-black font-pdf-title mt-0.5">{{ avgLitersPerCow }} L/día</h3>
-                        <p class="text-[10px] text-black font-bold mt-1">Rendimiento estable</p>
-                    </div>
-                    <div class="border border-gray-300 rounded-xl p-3 text-left bg-white">
-                        <p class="text-[11px] text-black font-bold">Proyección Próximo Mes</p>
-                        <h3 class="text-lg md:text-xl font-bold text-black font-pdf-title mt-0.5">{{ projectionNextMonth.toLocaleString() }} L</h3>
-                        <p class="text-[10px] text-black font-bold mt-1">Estimado histórico</p>
-                    </div>
-                </section>
-
-                <section class="border border-gray-300 rounded-xl p-4 bg-white flex flex-col gap-2">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="text-sm font-bold text-black font-pdf-title">Producción Diaria (Litros)</h4>
-                            <p class="text-[11px] text-black font-bold mt-0.5">Lote con mayor producción hoy: {{ topBatchToday }}</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-[#0a3a0a]"></span>
-                            <span class="text-xs text-black font-bold">Ordeño Actual</span>
-                        </div>
-                    </div>
-                    <div class="pt-1">
-                        <div class="pdf-chart-bars-container px-2">
-                            <div v-for="point in chartData" :key="'pdf-'+point.day" class="pdf-chart-bar" :style="{ height: getChartBarHeight(point.liters) }"></div>
-                        </div>
-                        <div class="flex justify-around text-xs text-black font-bold pt-1 border-t border-gray-200">
-                            <span v-for="point in chartData" :key="'lbl-'+point.day">{{ point.day }}</span>
-                        </div>
-                        <!-- Resumen exacto de 6 líneas de producción diaria -->
-                        <p class="text-[11px] text-black font-bold mt-2 leading-relaxed">
-                            Resumen de Producción Diaria: Durante los últimos siete días analizados, la finca ha mantenido una curva de ordeño ascendente y sumamente estable. Se registró un volumen diario promedio óptimo de mil doscientos treinta y dos litros. El pico máximo de recolección semanal se alcanzó con éxito en el día seis. Esto evidencia una excelente respuesta nutricional del ganado en pastoreo. Los controles garantizan la máxima eficiencia operativa y rentabilidad.
-                        </p>
-                    </div>
-                </section>
-
-                <section class="flex flex-col gap-2">
-                    <h4 class="text-sm font-bold text-black font-pdf-title text-left">Ranking de Unidades y Lotes</h4>
-                    <div class="border border-black overflow-hidden">
-                        <table class="w-full text-center text-xs border-collapse">
-                            <thead>
-                                <tr class="bg-[#154212] text-white font-bold">
-                                    <th class="p-2 text-center border-r border-black w-20 align-middle">Ranking</th>
-                                    <th class="p-2 border-r border-black text-center align-middle">Lote / Unidad</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">Litros Acumulados</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">Rendimiento Relativo</th>
-                                    <th class="p-2 text-center align-middle">Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-black font-bold text-black">
-                                <tr>
-                                    <td class="p-2 text-center border-r border-black align-middle">1º</td>
-                                    <td class="p-2 border-r border-black text-center align-middle">Lote A</td>
-                                    <td class="p-2 text-center border-r border-black align-middle">656,2 L</td>
-                                    <td class="p-2 text-center border-r border-black align-middle">100% (Líder del día)</td>
-                                    <td class="p-2 text-center align-middle">Óptimo</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 text-center border-r border-black align-middle">2º</td>
-                                    <td class="p-2 border-r border-black text-center align-middle">Lote B</td>
-                                    <td class="p-2 text-center border-r border-black align-middle">649,5 L</td>
-                                    <td class="p-2 text-center border-r border-black align-middle">99%</td>
-                                    <td class="p-2 text-center align-middle">Estable</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Resumen exacto del ranking de unidades y lotes -->
-                    <p class="text-[11px] text-black font-bold mt-1 leading-relaxed">
-                        Resumen de Ranking de Unidades y Lotes: El Lote A encabeza el rendimiento general de la finca con un total acumulado de 656,2 litros y un estado operativo óptimo, seguido de muy cerca por el Lote B con 649,5 litros que representan un 99% de rendimiento relativo. Ambas unidades demuestran un nivel de competitividad y una gran homogeneidad sobresaliente en todo el hato lechero actual.
-                    </p>
-                </section>
-            </template>
-
-            <!-- PÁGINAS 2 Y 3: REGISTRO DETALLADO DE ORDEÑO (20 vacas por página) -->
-            <template v-else-if="pageIndex === 2 || pageIndex === 3">
-                <section class="flex flex-col gap-2">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-sm font-bold text-black font-pdf-title text-left">Registro Detallado de Ordeño Individual (Bloque {{ pageIndex - 1 }} de 2)</h4>
-                    </div>
-                    <div class="border border-black overflow-hidden">
-                        <table class="w-full text-center text-xs border-collapse">
-                            <thead>
-                                <tr class="bg-[#154212] text-white font-bold">
-                                    <th class="p-2 text-center border-r border-black w-14 align-middle">Nº</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">Fecha</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">ID Animal</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">Nombre</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">Lote</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">Turno</th>
-                                    <th class="p-2 text-center border-r border-black align-middle">Litros</th>
-                                    <th class="p-2 text-center align-middle">Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-black font-bold text-black">
-                                <tr v-for="(record, index) in getPdfPageRecords(pageIndex)" :key="'pdf-rec-'+pageIndex+'-'+index">
-                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ ((pageIndex - 2) * 20) + index + 1 }}</td>
-                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.date }}</td>
-                                    <td class="p-1.5 text-center border-r border-black font-bold align-middle">{{ record.animalId }}</td>
-                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.name }}</td>
-                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.unitName }}</td>
-                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.shift }}</td>
-                                    <td class="p-1.5 text-center border-r border-black align-middle">{{ record.liters }} L</td>
-                                    <td class="p-1.5 text-center font-bold align-middle">{{ record.status }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </template>
-
-            <!-- PÁGINA 4: RESUMEN GENERAL -->
-            <template v-else-if="pageIndex === 4">
-                <section class="flex flex-col gap-4 mt-6">
-                    <h2 class="text-2xl font-bold text-black font-pdf-title">Resumen General</h2>
-                    <!-- Resumen exacto de 6 líneas -->
-                    <p class="text-xs text-black font-bold leading-relaxed">
-                        El presente informe productivo consolida los datos de rendimiento de la Unidad de Producción Agropecuaria Finca El Manantial, ubicada en el estado Barinas, Venezuela. Durante este ciclo se registró una sólida producción acumulada y un rendimiento promedio estable que ratifica la alta eficiencia del hato lechero. Todas las cabezas monitoreadas se encuentran debidamente verificadas y en un estado óptimo de salud operativa. Las proyecciones estimadas para el próximo período se sustentan firmemente en tendencias históricas muy favorables. Reiteramos nuestro compromiso continuo con la excelencia agropecuaria regional y la máxima calidad láctea.
-                    </p>
-                </section>
-            </template>
-        </div>
-
-        <!-- PIE DE PÁGINA -->
-        <footer class="pt-2 border-t border-gray-200 text-left mt-auto">
-            <p class="text-[10px] text-black font-bold">Finca El Manantial — Sistema de Gestión y Control de Producción Láctea (Página {{ pageIndex }} de 4)</p>
-        </footer>
-    </div>
-</div>
-
-<!-- Metric Detail Modal -->
-<div v-if="showModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-  <div class="bg-white rounded-xl border border-outline-variant p-6 max-w-md w-full shadow-xl text-left">
-    <div class="flex items-center gap-3 mb-4">
-      <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-        <span class="material-symbols-outlined text-2xl" :data-icon="modalIcon">{{ modalIcon }}</span>
-      </div>
-      <h3 class="font-headline-md text-headline-md text-primary font-bold">{{ modalTitle }}</h3>
-    </div>
-    <p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">{{ modalDescription }}</p>
-    <div class="flex justify-end">
-      <button @click="showModal = false" class="px-6 py-2.5 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all cursor-pointer">Entendido</button>
-    </div>
-  </div>
-</div>
-
-<!-- Ranking Detail Modal -->
-<div v-if="showRankingModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-  <div class="bg-white dark:bg-[#162032] border border-outline-variant dark:border-[#25354e] rounded-2xl p-6 max-w-lg w-full shadow-2xl text-left relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
-    <div class="flex justify-between items-start mb-6">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-          <span class="material-symbols-outlined text-2xl" data-icon="leaderboard">leaderboard</span>
-        </div>
-        <div>
-          <h3 class="font-headline-md text-headline-md text-primary font-bold">Reporte Detallado de UPPs</h3>
-          <p class="text-on-surface-variant text-sm mt-0.5">Rendimiento acumulado de producción por unidad</p>
-        </div>
-      </div>
-      <button @click="showRankingModal = false" class="text-on-surface-variant hover:text-error p-1 rounded-full hover:bg-surface-container transition-colors cursor-pointer">
-        <span class="material-symbols-outlined">close</span>
-      </button>
-    </div>
-    <div class="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-      <div v-for="item in calculatedRanking" :key="item.rank" class="border border-outline-variant/60 rounded-xl p-4 flex flex-col gap-3 hover:border-primary/50 transition-colors bg-surface-container-lowest dark:bg-[#1e293b]">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center gap-3">
-            <span :class="item.rank === 1 ? 'bg-primary text-on-primary' : 'bg-outline-variant/30 text-on-surface'" class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">{{ item.rank }}</span>
-            <span class="font-bold text-on-surface text-lg">{{ item.name }}</span>
-          </div>
-          <span class="font-headline-md text-primary font-bold">{{ item.liters }} <span class="text-xs text-on-surface-variant">LT</span></span>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs text-on-surface-variant mb-1">
-            <span>Rendimiento vs Unidad Líder</span>
-            <span>{{ getRankingPercentage(item.liters) }}%</span>
-          </div>
-          <div class="w-full h-2.5 bg-outline-variant/30 rounded-full overflow-hidden">
-            <div class="h-full bg-primary" :style="{ width: getRankingPercentage(item.liters) + '%' }"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex justify-end mt-6">
-      <button @click="showRankingModal = false" class="px-6 py-2.5 bg-primary text-on-primary font-bold rounded-xl hover:brightness-110 active:scale-95 transition-all shadow-md cursor-pointer">Cerrar Reporte</button>
-    </div>
-  </div>
-</div>
-
-<!-- Bottom Nav Bar (Mobile Only) -->
+<!-- BottomNavBar (Mobile Only) -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
     <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
@@ -868,11 +613,11 @@ Siguiente
       <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
       <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-      <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-    </a>
+<a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+   :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
+  <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
+  <span class="text-[10px] mt-0.5 leading-none">Finca</span>
+</a>
     <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
        :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
@@ -895,21 +640,78 @@ Siguiente
     </a>
   </nav>
 
-<!-- Floating Action Button Contextual (FAB) -->
-<button v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="goToMilking" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40 cursor-pointer" title="Ir a Registro de Ordeño">
-    <span class="material-symbols-outlined" data-icon="add">add</span>
+<!-- FAB (Floating Action Button) -->
+<button v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showAddModal = true" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined" data-icon="add">add</span>
 </button>
 
-<script>
-    // Registro del Service Worker para PWA
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-                .catch(err => console.error('Error al registrar el Service Worker:', err));
-        });
-    }
+<!-- New Item Modal -->
+<div v-if="showAddModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
+<h3 class="font-headline-md text-headline-md text-primary mb-md">Nuevo Artículo de Inventario</h3>
+<form @submit.prevent="addItem">
+<div class="space-y-base">
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
+<input v-model="newItem.name" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. Concentrado Lechero 22%" type="text"/>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Categoría</label>
+<select v-model="newItem.category" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
+<option value="feed">Alimento y Nutrición</option>
+<option value="medicine">Medicamentos y Salud</option>
+<option value="hygiene">Suministros de Higiene</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
+<input v-model.number="newItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
+<input v-model="newItem.unit" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. kg, unidades" type="text"/>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-sm mt-lg">
+<button type="button" @click="showAddModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
+<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
+</div>
+</form>
+</div>
+</div>
 
+<!-- Adjust Item Modal -->
+<div v-if="showAdjustModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
+<h3 class="font-headline-md text-headline-md text-primary mb-md">Ajustar Artículo</h3>
+<form @submit.prevent="saveAdjustStock">
+<div class="space-y-base">
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
+<input v-model="adjustItem.name" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
+<input v-model.number="adjustItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
+<input v-model="adjustItem.unit" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-sm mt-lg">
+<button type="button" @click="showAdjustModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
+<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
+</div>
+</form>
+</div>
+</div>
+
+<script>
     const { createApp } = Vue;
     createApp({
         data() {
@@ -917,166 +719,100 @@ Siguiente
                 isDarkMode: false,
                 currentUser: null,
                 showSidebar: false,
-                showModal: false,
-                showShareMenu: false,
-                modalTitle: '',
-                modalDescription: '',
-                modalIcon: '',
-                totalLiters: 1254.5,
-                avgLitersPerCow: 32.4,
-                projectionNextMonth: 38500,
-                chartData: [
-                    { day: '1', liters: 1100 }, { day: '2', liters: 1250 }, { day: '3', liters: 1180 },
-                    { day: '4', liters: 1300 }, { day: '5', liters: 1220 }, { day: '6', liters: 1350 },
-                    { day: '7', liters: 1280 }
+                items: [
+                    { id: 1, name: 'Concentrado Lechero 22%', category: 'feed', stock: 2450, unit: 'kg', status: 'BIEN' },
+                    { id: 2, name: 'Sales Minerales Premium', category: 'feed', stock: 45, unit: 'kg', status: 'BAJO' },
+                    { id: 3, name: 'Vacuna Antiaftosa (Frasco 50 ds)', category: 'medicine', stock: 2, unit: 'unidades', status: 'CRÍTICO' },
+                    { id: 4, name: 'Antibiótico Oxitetraciclina', category: 'medicine', stock: 12, unit: 'frascos', status: 'BIEN' },
+                    { id: 5, name: 'Sellador de Pezones (Post-ordeño)', category: 'hygiene', stock: 15, unit: 'galones', status: 'BAJO' }
                 ],
-                showRankingModal: false,
                 showAddModal: false,
-                currentPage: 1,
-                milkingRecords: [
-                    { date: "2026-05-23", animalId: "#A-101", name: "Lucero", unitName: "Lote A", shift: "Mañana", time: "06:00 AM", liters: 34.5, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-102", name: "Mariposa", unitName: "Lote A", shift: "Mañana", time: "06:08 AM", liters: 38.2, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-103", name: "Gitana", unitName: "Lote A", shift: "Mañana", time: "06:15 AM", liters: 29.0, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-104", name: "Estrella", unitName: "Lote A", shift: "Mañana", time: "06:22 AM", liters: 33.6, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-105", name: "Luna", unitName: "Lote A", shift: "Mañana", time: "06:30 AM", liters: 28.4, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-106", name: "Paloma", unitName: "Lote A", shift: "Mañana", time: "06:37 AM", liters: 31.1, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-107", name: "Rosilla", unitName: "Lote A", shift: "Mañana", time: "06:45 AM", liters: 30.2, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-108", name: "Morena", unitName: "Lote A", shift: "Mañana", time: "06:52 AM", liters: 39.5, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-109", name: "Margarita", unitName: "Lote A", shift: "Mañana", time: "07:00 AM", liters: 31.8, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-110", name: "Princesa", unitName: "Lote A", shift: "Mañana", time: "07:07 AM", liters: 35.0, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-111", name: "Flor", unitName: "Lote A", shift: "Mañana", time: "07:15 AM", liters: 27.6, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-112", name: "Reina", unitName: "Lote A", shift: "Mañana", time: "07:22 AM", liters: 32.4, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-113", name: "Bonita", unitName: "Lote A", shift: "Mañana", time: "07:30 AM", liters: 31.0, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-114", name: "Mora", unitName: "Lote A", shift: "Mañana", time: "07:37 AM", liters: 37.9, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-115", name: "Canela", unitName: "Lote A", shift: "Mañana", time: "07:45 AM", liters: 31.5, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-116", name: "Pinta", unitName: "Lote A", shift: "Mañana", time: "07:52 AM", liters: 34.2, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-117", name: "Negra", unitName: "Lote A", shift: "Mañana", time: "08:00 AM", liters: 28.0, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-118", name: "Blanca", unitName: "Lote A", shift: "Mañana", time: "08:07 AM", liters: 33.1, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-119", name: "Perla", unitName: "Lote A", shift: "Mañana", time: "08:15 AM", liters: 30.4, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#A-120", name: "Esperanza", unitName: "Lote A", shift: "Mañana", time: "08:22 AM", liters: 38.8, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-201", name: "Rosa", unitName: "Lote B", shift: "Mañana", time: "08:35 AM", liters: 29.8, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-202", name: "Hermosa", unitName: "Lote B", shift: "Mañana", time: "08:42 AM", liters: 37.1, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-203", name: "Diamante", unitName: "Lote B", shift: "Mañana", time: "08:50 AM", liters: 31.2, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-204", name: "Zamurita", unitName: "Lote B", shift: "Mañana", time: "08:57 AM", liters: 34.0, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-205", name: "Gaviota", unitName: "Lote B", shift: "Mañana", time: "09:05 AM", liters: 28.5, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-206", name: "Lucerito", unitName: "Lote B", shift: "Mañana", time: "09:12 AM", liters: 32.0, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-207", name: "Tormenta", unitName: "Lote B", shift: "Mañana", time: "09:20 AM", liters: 29.5, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-208", name: "Manea", unitName: "Lote B", shift: "Mañana", time: "09:27 AM", liters: 38.0, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-209", name: "Consentida", unitName: "Lote B", shift: "Mañana", time: "09:35 AM", liters: 32.2, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-210", name: "Altagracia", unitName: "Lote B", shift: "Mañana", time: "09:42 AM", liters: 34.6, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-211", name: "Sombra", unitName: "Lote B", shift: "Mañana", time: "09:50 AM", liters: 27.9, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-212", name: "Parda", unitName: "Lote B", shift: "Mañana", time: "09:57 AM", liters: 32.1, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-213", name: "Chiquinquirá", unitName: "Lote B", shift: "Mañana", time: "10:05 AM", liters: 31.8, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-214", name: "Lunaria", unitName: "Lote B", shift: "Mañana", time: "10:12 AM", liters: 36.9, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-215", name: "Reliquia", unitName: "Lote B", shift: "Mañana", time: "10:20 AM", liters: 30.5, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-216", name: "Pintada", unitName: "Lote B", shift: "Mañana", time: "10:27 AM", liters: 34.3, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-217", name: "Pavita", unitName: "Lote B", shift: "Mañana", time: "10:35 AM", liters: 27.8, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-218", name: "Milagrosa", unitName: "Lote B", shift: "Mañana", time: "10:42 AM", liters: 32.7, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-219", name: "Zamana", unitName: "Lote B", shift: "Mañana", time: "10:50 AM", liters: 30.1, status: "VERIFICADO" },
-                    { date: "2026-05-23", animalId: "#B-220", name: "Florinda", unitName: "Lote B", shift: "Mañana", time: "10:57 AM", liters: 38.5, status: "VERIFICADO" }
-                ]
+                showAdjustModal: false,
+                selectedStatusFilter: '',
+                newItem: {
+                    name: '',
+                    category: 'feed',
+                    stock: 0,
+                    unit: 'kg'
+                },
+                adjustItem: {
+                    id: null,
+                    name: '',
+                    stock: 0,
+                    unit: ''
+                }
             };
         },
         computed: {
-            pageSize() {
-                return window.innerWidth < 768 ? 5 : 10;
+            totalItems() {
+                return this.items.length;
             },
-            totalPages() {
-                return Math.ceil(this.milkingRecords.length / this.pageSize) || 1;
+            criticalCount() {
+                return this.items.filter(i => i.status === 'CRÍTICO').length;
             },
-            paginatedRecords() {
-                const start = (this.currentPage - 1) * this.pageSize;
-                return this.milkingRecords.slice(start, start + this.pageSize);
+            lowCount() {
+                return this.items.filter(i => i.status === 'BAJO').length;
             },
-            pdfTotalPages() {
-                return 4; // Página 1: Resumen/Gráfica/Ranking, Páginas 2 y 3: Bloques de 20 vacas, Página 4: Resumen general
-            },
-            topBatchToday() {
-                if (!this.milkingRecords || this.milkingRecords.length === 0) return 'Sin registros';
-                const totals = {};
-                this.milkingRecords.forEach(record => {
-                    if (!totals[record.unitName]) totals[record.unitName] = 0;
-                    totals[record.unitName] += record.liters;
+            feedItems() {
+                let res = this.items.filter(i => {
+                    const cat = (i.category || '').toLowerCase();
+                    return cat === 'feed' || cat.includes('alimento') || cat.includes('nutrición');
                 });
-                let topBatch = '';
-                let maxLiters = -1;
-                for (const [batch, liters] of Object.entries(totals)) {
-                    if (liters > maxLiters) {
-                        maxLiters = liters;
-                        topBatch = batch;
-                    }
+                if (this.selectedStatusFilter) {
+                    res = res.filter(i => i.status === this.selectedStatusFilter);
                 }
-                return `${topBatch} (${maxLiters.toLocaleString()} L)`;
+                return res;
             },
-            calculatedRanking() {
-                const totals = {};
-                this.milkingRecords.forEach(record => {
-                    if (!totals[record.unitName]) totals[record.unitName] = 0;
-                    totals[record.unitName] += record.liters;
+            medicineItems() {
+                let res = this.items.filter(i => {
+                    const cat = (i.category || '').toLowerCase();
+                    return cat === 'medicine' || cat.includes('medicamento') || cat.includes('salud');
                 });
-                const sorted = Object.entries(totals)
-                    .map(([name, liters]) => ({ name, liters }))
-                    .sort((a, b) => b.liters - a.liters);
-                return sorted.map((item, index) => ({
-                    rank: index + 1,
-                    name: item.name,
-                    liters: item.liters.toLocaleString()
-                }));
+                if (this.selectedStatusFilter) {
+                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                }
+                return res;
+            },
+            hygieneItems() {
+                let res = this.items.filter(i => {
+                    const cat = (i.category || '').toLowerCase();
+                    return cat === 'hygiene' || cat.includes('higiene') || cat.includes('suministro');
+                });
+                if (this.selectedStatusFilter) {
+                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                }
+                return res;
             }
         },
         mounted() {
-                const theme = localStorage.getItem('theme') || 'light';
-                this.isDarkMode = theme === 'dark';
-                if (this.isDarkMode) {
-                    document.documentElement.classList.add('dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                }
+            const theme = localStorage.getItem('theme') || 'light';
+            this.isDarkMode = theme === 'dark';
+            if (this.isDarkMode) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
 
-                const userStr = localStorage.getItem('loggedInUser');
-                if (userStr) {
+            const userStr = localStorage.getItem('loggedInUser');
+            if (userStr) {
+                try {
                     this.currentUser = JSON.parse(userStr);
                     if (this.currentUser.status !== 'Activo') {
                         localStorage.removeItem('loggedInUser');
                         window.location.href = 'login.html';
                         return;
                     }
-                    
-                    fetch(`/api/users/${this.currentUser.id}`)
-                        .then(res => {
-                            if (res.ok) return res.json();
-                            throw new Error('User not found');
-                        })
-                        .then(user => {
-                            if (user.status !== 'Activo') {
-                                localStorage.removeItem('loggedInUser');
-                                window.location.href = 'login.html';
-                            } else {
-                                localStorage.setItem('loggedInUser', JSON.stringify(user));
-                                this.currentUser = user;
-                            }
-                        })
-                        .catch(err => console.warn("Could not verify status on server, keeping local session", err));
-
-                    if (this.currentUser.role === 'Veterinario') {
-                        window.location.href = 'salud.html';
-                        return;
-                    }
-                    if (this.currentUser.role === 'Operario') {
-                        window.location.href = 'ordeno.html';
-                        return;
-                    }
-
-                } else {
+                } catch (e) {
+                    localStorage.removeItem('loggedInUser');
                     window.location.href = 'login.html';
                     return;
                 }
+            } else {
+                window.location.href = 'login.html';
+                return;
+            }
 
-            document.querySelectorAll('button, a').forEach(el => {
-                el.addEventListener('mousedown', () => { el.style.transform = 'scale(0.96)'; });
-                el.addEventListener('mouseup', () => { el.style.transform = 'scale(1)'; });
-                el.addEventListener('mouseleave', () => { el.style.transform = 'scale(1)'; });
-            });
+            this.fetchItems();
         },
         methods: {
             toggleTheme() {
@@ -1089,160 +825,112 @@ Siguiente
                     localStorage.setItem('theme', 'light');
                 }
             },
+
             logout() {
                 localStorage.removeItem('loggedInUser');
                 window.location.href = 'login.html';
             },
+
             isActive(page) {
                 const path = window.location.pathname;
                 return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
             },
-            getPdfPageRecords(pageIndex) {
-                const start = (pageIndex - 2) * 20;
-                return this.milkingRecords.slice(start, start + 20);
-            },
-            async generatePDFBlob() {
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                const totalPages = this.pdfTotalPages;
-
-                for (let i = 1; i <= totalPages; i++) {
-                    const element = document.getElementById('pdf-export-page-' + i);
-                    if (!element) continue;
-                    const canvas = await html2canvas(element, { scale: 1.5, useCORS: true, backgroundColor: '#ffffff' });
-                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                    const imgWidth = 210;
-                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-                    if (i > 1) {
-                        pdf.addPage();
-                    }
-                    pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-                }
-                return pdf.output('blob');
-            },
-            async shareWhatsApp() {
-                this.showShareMenu = false;
-                const summaryText = `📊 *Reporte de Producción - El Manantial*\nTotal Litros: ${this.totalLiters.toLocaleString()} L\nPromedio por Vaca: ${this.avgLitersPerCow} L/día\nProyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L`;
-
+            async fetchItems() {
                 try {
-                    if (navigator.canShare && navigator.canShare({ files: [new File([], '')] })) {
-                        const pdfBlob = await this.generatePDFBlob();
-                        const file = new File([pdfBlob], 'Informe_Productivo_Finca_El_Manantial.pdf', { type: 'application/pdf' });
-                        await navigator.share({
-                            files: [file],
-                            title: 'Informe Productivo - Finca El Manantial',
-                            text: summaryText
-                        });
-                    } else {
-                        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(summaryText)}`, '_blank');
-                    }
-                } catch (e) {
-                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(summaryText)}`, '_blank');
-                }
-            },
-            async shareEmail() {
-                this.showShareMenu = false;
-                const subject = 'Informe Productivo - Finca El Manantial';
-                const body = `Hola,\n\nAdjunto encontrarás el informe productivo en formato PDF de Finca El Manantial:\n\n- Total Litros Mensuales: ${this.totalLiters.toLocaleString()} L\n- Promedio por Vaca: ${this.avgLitersPerCow} L/día\n- Proyección Próximo Mes: ${this.projectionNextMonth.toLocaleString()} L\n\nResumen General incorporado al archivo en formato PDF.`;
-
-                try {
-                    if (navigator.canShare && navigator.canShare({ files: [new File([], '')] })) {
-                        const pdfBlob = await this.generatePDFBlob();
-                        const file = new File([pdfBlob], 'Informe_Productivo_Finca_El_Manantial.pdf', { type: 'application/pdf' });
-                        await navigator.share({
-                            files: [file],
-                            title: subject,
-                            text: body
-                        });
-                    } else {
-                        const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                        window.open(mailtoUrl, '_blank');
-                    }
-                } catch (e) {
-                    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                }
-            },
-            async exportPDF() {
-                const btn = event.currentTarget;
-                const originalText = btn.innerHTML;
-                btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">sync</span> Generando...`;
-
-                try {
-                    const { jsPDF } = window.jspdf;
-                    const pdf = new jsPDF('p', 'mm', 'a4');
-                    const totalPages = this.pdfTotalPages;
-
-                    for (let i = 1; i <= totalPages; i++) {
-                        const element = document.getElementById('pdf-export-page-' + i);
-                        if (!element) continue;
-                        const canvas = await html2canvas(element, { scale: 1.5, useCORS: true, backgroundColor: '#ffffff' });
-                        const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                        const imgWidth = 210;
-                        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-                        if (i > 1) {
-                            pdf.addPage();
+                    const res = await fetch('/api/inventory');
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (Array.isArray(data) && data.length > 0) {
+                            this.items = data;
                         }
-                        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
                     }
-
-                    pdf.save('Informe_Productivo_Finca_El_Manantial.pdf');
-                    btn.innerHTML = originalText;
                 } catch (err) {
-                    console.error('Error al generar PDF:', err);
-                    alert('No se pudo generar el archivo PDF.');
-                    btn.innerHTML = originalText;
+                    console.error("Usando respaldo local de inventario", err);
                 }
             },
-            goToMilking() {
-                window.location.href = 'ordeno.html';
-            },
-            openMetricModal(type) {
-                if (type === 'liters') {
-                    this.modalTitle = 'Total Litros Mensuales';
-                    this.modalIcon = 'water_drop';
-                    this.modalDescription = 'Esta métrica representa la producción acumulada de leche durante el mes actual en toda la Unidad de Producción Pecuaria activa de El Manantial.';
-                } else if (type === 'avg') {
-                    this.modalTitle = 'Promedio por Vaca';
-                    this.modalIcon = 'pets';
-                    this.modalDescription = 'El rendimiento promedio por animal se calcula dividiendo la producción diaria total entre el número de vacas ordeñadas en el mismo período.';
-                } else if (type === 'projection') {
-                    this.modalTitle = 'Proyección Próximo Mes';
-                    this.modalIcon = 'batch_prediction';
-                    this.modalDescription = 'Esta proyección es estimada mediante un análisis predictivo basado en el histórico de producción de los últimos 30 días.';
+            openAdjustModal(item) {
+                if (!this.currentUser || (this.currentUser.role !== 'Administrador' && this.currentUser.role !== 'Veterinario')) {
+                    alert("No tienes permisos para realizar esta acción.");
+                    return;
                 }
-                this.showModal = true;
-            },
-            nextPage() {
-                if (this.currentPage < this.totalPages) {
-                    this.currentPage++;
-                }
-            },
-            prevPage() {
-                if (this.currentPage > 1) {
-                    this.currentPage--;
-                }
-            },
-            getChartBarHeight(liters) {
-                if (!this.chartData || this.chartData.length === 0) return '0%';
-                const max = Math.max(...this.chartData.map(p => p.liters));
-                if (max === 0) return '0%';
-                const pct = (liters / max) * 90;
-                return `${Math.max(10, pct)}%`;
-            },
-            getRankingPercentage(litersStr) {
-                if (!this.calculatedRanking || this.calculatedRanking.length === 0) return 0;
-                const cleanLiters = (str) => {
-                    let cleaned = String(str).replace(/\./g, '').replace(',', '.');
-                    return parseFloat(cleaned) || 0;
+                this.adjustItem = {
+                    id: item.id,
+                    name: item.name,
+                    stock: item.stock,
+                    unit: item.unit
                 };
-                const maxLiters = cleanLiters(this.calculatedRanking[0].liters);
-                if (maxLiters === 0) return 0;
-                const currentLiters = cleanLiters(litersStr);
-                return Math.round((currentLiters / maxLiters) * 100);
+                this.showAdjustModal = true;
+            },
+            async saveAdjustStock() {
+                const newStock = parseFloat(this.adjustItem.stock);
+                if (!isNaN(newStock) && newStock >= 0) {
+                    const item = this.items.find(i => i.id === this.adjustItem.id);
+                    if (item) {
+                        try {
+                            const res = await fetch(`/api/inventory/${item.id}/stock`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ stock: newStock })
+                            });
+                            if (res.ok) {
+                                const updated = await res.json();
+                                item.stock = updated.stock;
+                                item.status = updated.status;
+                            } else {
+                                item.stock = newStock;
+                                item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
+                            }
+                        } catch (err) {
+                            item.stock = newStock;
+                            item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
+                        }
+                    }
+                    this.showAdjustModal = false;
+                } else {
+                    alert("Por favor ingrese un número válido mayor o igual a 0.");
+                }
+            },
+            async addItem() {
+                try {
+                    const res = await fetch('/api/inventory', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(this.newItem)
+                    });
+                    if (res.ok) {
+                        const created = await res.json();
+                        this.items.push(created);
+                    } else {
+                        this.items.push({
+                            id: Date.now(),
+                            ...this.newItem,
+                            status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
+                        });
+                    }
+                    this.showAddModal = false;
+                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
+                } catch (err) {
+                    this.items.push({
+                        id: Date.now(),
+                        ...this.newItem,
+                        status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
+                    });
+                    this.showAddModal = false;
+                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
+                }
             }
         }
     }).mount('#app');
 </script>
-</body></html>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+        .catch(err => console.error('Error al registrar el Service Worker:', err));
+    });
+  }
+</script>
+</body>
+</html>
