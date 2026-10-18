@@ -4,10 +4,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
+</head>
 <!-- Enlace al manifiesto de la PWA -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#154212">
-
+<link rel="manifest" href="/manifest.json">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Respaldo local para funcionar sin internet -->
@@ -16,416 +15,192 @@
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#10b981",
+                    "outline": "#72796e",
+                    "primary": "#154212",
+                    "secondary-container": "#dfe0e0",
+                    "outline-variant": "#c2c9bb",
+                    "surface": "#f8f9ff",
+                    "on-surface-variant": "#42493e",
+                    "secondary": "#5d5f5f",
+                    "on-background": "#0d1c2e",
+                    "surface-container": "#e6eeff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-tint": "#154212",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#233144",
+                    "tertiary": "#60233e",
+                    "primary-container": "#10b981",
+                    "surface-container-highest": "#d5e3fc",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#ffffff",
+                    "surface-dim": "#d5e3fc",
+                    "background": "#f8f9ff",
+                    "on-surface": "#0d1c2e",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#10b981",
+                    "primary-fixed": "#ffd9e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "md": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "xl": "64px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "headline-lg": ["Work Sans"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Work Sans"]
+            }
+          },
+        },
+      }
+    </script>
 <style>
-        body { font-family: 'Hanken Grotesk', sans-serif; }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-error-container": "#93000a",
-                      "on-primary-container": "#9dd090",
-                      "on-secondary-fixed-variant": "#454747",
-                      "outline": "#72796e",
-                      "primary": "#154212",
-                      "secondary-container": "#dfe0e0",
-                      "outline-variant": "#c2c9bb",
-                      "surface": "#f8f9ff",
-                      "on-surface-variant": "#42493e",
-                      "secondary": "#5d5f5f",
-                      "tertiary-fixed": "#ffd9e4",
-                      "on-background": "#0d1c2e",
-                      "on-tertiary-container": "#ffaac8",
-                      "surface-container": "#e6eeff",
-                      "on-secondary": "#ffffff",
-                      "surface-container-high": "#dce9ff",
-                      "surface-tint": "#3b6934",
-                      "inverse-on-surface": "#eaf1ff",
-                      "inverse-surface": "#233144",
-                      "secondary-fixed-dim": "#c6c6c7",
-                      "tertiary": "#60233e",
-                      "primary-container": "#2d5a27",
-                      "secondary-fixed": "#e2e2e2",
-                      "surface-container-highest": "#d5e3fc",
-                      "on-tertiary-fixed-variant": "#71314c",
-                      "primary-fixed-dim": "#a1d494",
-                      "on-tertiary-fixed": "#3b0520",
-                      "on-secondary-container": "#616363",
-                      "on-error": "#ffffff",
-                      "surface-variant": "#d5e3fc",
-                      "on-secondary-fixed": "#1a1c1c",
-                      "on-primary": "#ffffff",
-                      "on-primary-fixed-variant": "#23501e",
-                      "surface-container-lowest": "#ffffff",
-                      "error": "#ba1a1a",
-                      "surface-bright": "#f8f9ff",
-                      "surface-dim": "#ccdbf3",
-                      "tertiary-container": "#7c3a55",
-                      "on-primary-fixed": "#002201",
-                      "tertiary-fixed-dim": "#ffb0cc",
-                      "background": "#f8f9ff",
-                      "on-surface": "#0d1c2e",
-                      "on-tertiary": "#ffffff",
-                      "surface-container-low": "#eff4ff",
-                      "inverse-primary": "#a1d494",
-                      "primary-fixed": "#bcf0ae",
-                      "error-container": "#ffdad6"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "lg": "40px",
-                      "gutter": "24px",
-                      "md": "24px",
-                      "margin-mobile": "16px",
-                      "margin-desktop": "32px",
-                      "xl": "64px",
-                      "sm": "12px",
-                      "xs": "4px",
-                      "base": "8px"
-              },
-              "fontFamily": {
-                      "label-md": ["Hanken Grotesk"],
-                      "body-sm": ["Hanken Grotesk"],
-                      "headline-lg": ["Work Sans"],
-                      "data-tabular": ["Hanken Grotesk"],
-                      "display-lg": ["Work Sans"],
-                      "label-lg": ["Hanken Grotesk"],
-                      "body-lg": ["Hanken Grotesk"],
-                      "body-md": ["Hanken Grotesk"],
-                      "headline-md": ["Work Sans"]
-              },
-              "fontSize": {
-                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                      "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
-              }
-            },
-          },
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
         }
-      </script>
+        
+        /* Forzar color exacto para botones inactivos del menú inferior en modo oscuro */
+        html.dark nav.fixed-bottom-menu a:not(.font-bold) {
+            color: #94a3b8 !important;
+        }
+    </style>
 <style>
     body {
       min-height: max(884px, 100dvh);
+      background-color: #f8f9ff;
+      color: #0d1c2e;
     }
+    .dark body {
+      background-color: #0b0f19 !important;
+      color: #f8fafc !important;
+    }
+    header {
+        background-color: #f8f9fc !important;
+        border-color: #c2c9bb !important;
+    }
+    .dark header {
+        background-color: #101727 !important;
+        border-color: #233144 !important;
+    }
+    aside {
+        background-color: #ffffff;
+        border-color: #c2c9bb !important;
+    }
+    .dark aside {
+        background-color: #101727 !important;
+        border-color: #233144 !important;
+    }
+    nav.fixed-bottom-menu {
+        background-color: #f8f9fc !important;
+        border-color: #c2c9bb !important;
+    }
+    .dark nav.fixed-bottom-menu {
+        background-color: #0f1829 !important;
+        border-color: #94a3b8 !important;
+    }
+    /* Color exacto para botones inactivos en modo claro */
+    .nav-inactive-light {
+        color: #3b443c !important;
+    }
+    /* Corregir visibilidad y solapamiento de iconos en el header en modo oscuro */
+    .dark header button {
+        color: #94a3b8 !important;
+        background: transparent !important;
+    }
+    .dark header button:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: #10b981 !important;
+    }
+</style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden bg-white text-slate-900 dark:bg-[#0b0f19] dark:text-on-surface" id="app">
 
-        /* Custom styles for dark mode */
-        html.dark .glass-card {
-            background: rgba(22, 32, 50, 0.8) !important;
-            border-color: #25354e !important;
-            color: #e2e8f0 !important;
-        }
-        html.dark .bg-surface-bright,
-        html.dark .hover\:bg-surface-bright:hover {
-            background-color: #1a2436 !important;
-        }
-        html.dark .bg-outline-variant,
-        html.dark .hover\:bg-outline-variant:hover {
-            background-color: #25354e !important;
-        }
-        html.dark .bg-emerald-100 {
-            background-color: #064e3b !important;
-        }
-        html.dark .text-emerald-800 {
-            color: #a7f3d0 !important;
-        }
-        html.dark .bg-amber-100 {
-            background-color: #78350f !important;
-        }
-        html.dark .text-amber-800 {
-            color: #fde68a !important;
-        }
-        html.dark .bg-blue-100 {
-            background-color: #1e3a8a !important;
-        }
-        html.dark .text-blue-800 {
-            color: #bfdbfe !important;
-        }
-        html.dark .bg-green-100\/90 {
-            background-color: rgba(6, 78, 59, 0.9) !important;
-        }
-        html.dark body {
-            background-color: #0b0f19 !important;
-            color: #e2e8f0 !important;
-        }
-        html.dark header {
-            background-color: #101726 !important;
-            border-color: #25354e !important;
-        }
-        html.dark header h2 {
-            color: #10b981 !important;
-        }
-        html.dark aside {
-            background-color: #101726 !important;
-            border-color: #25354e !important;
-        }
-        html.dark aside a:not(.bg-primary-container) {
-            color: #94a3b8 !important;
-        }
-        html.dark aside a:not(.bg-primary-container):hover {
-            background-color: #1e293b !important;
-            color: #f8fafc !important;
-        }
-        html.dark main {
-            background-color: #0b0f19 !important;
-        }
-        html.dark .bg-white,
-        html.dark .bg-surface-container-lowest {
-            background-color: #162032 !important;
-            border-color: #25354e !important;
-            color: #e2e8f0 !important;
-        }
-        html.dark .bg-surface-container-low {
-            background-color: #0f172a !important;
-        }
-        html.dark .bg-surface-container {
-            background-color: #101726 !important;
-        }
-        html.dark .bg-surface-container-high {
-            background-color: #1a2436 !important;
-        }
-        html.dark .bg-surface-container-highest {
-            background-color: #222f47 !important;
-        }
-        html.dark .border-outline,
-        html.dark .border-outline-variant,
-        html.dark .border-outline-variant\/30,
-        html.dark .border-outline-variant\/40,
-        html.dark .border-outline-variant\/60,
-        html.dark .border-outline-variant\/80,
-        html.dark .divide-outline-variant,
-        html.dark .divide-y > * {
-            border-color: #25354e !important;
-        }
-        html.dark .text-on-surface {
-            color: #f8fafc !important;
-        }
-        html.dark .text-on-surface-variant {
-            color: #94a3b8 !important;
-        }
-        html.dark .text-on-primary-container {
-            color: #a7f3d0 !important;
-        }
-        html.dark .text-on-secondary-container {
-            color: #e2e8f0 !important;
-        }
-        html.dark .text-on-tertiary-container {
-            color: #ffaac8 !important;
-        }
-        html.dark .text-on-error-container {
-            color: #fca5a5 !important;
-        }
-        html.dark .text-primary-container {
-            color: #a7f3d0 !important;
-        }
-        html.dark .text-secondary-container {
-            color: #94a3b8 !important;
-        }
-        html.dark .text-error {
-            color: #ef4444 !important;
-        }
-        html.dark .text-primary {
-            color: #10b981 !important;
-        }
-        html.dark .text-on-primary {
-            color: #0b0f19 !important;
-        }
-        html.dark table thead tr {
-            background-color: #101726 !important;
-            color: #f8fafc !important;
-        }
-        html.dark table tbody tr {
-            border-color: #25354e !important;
-        }
-        html.dark table tbody tr:hover {
-            background-color: #1a2436 !important;
-        }
-        html.dark input,
-        html.dark select,
-        html.dark textarea {
-            background-color: #1e293b !important;
-            color: #f8fafc !important;
-            border-color: #25354e !important;
-        }
-        html.dark input:focus,
-        html.dark select:focus,
-        html.dark textarea:focus {
-            border-color: #10b981 !important;
-            background-color: #1e293b !important;
-            outline: none !important;
-        }
-        html.dark .bg-primary-container {
-            background-color: #064e3b !important;
-            color: #a7f3d0 !important;
-        }
-        html.dark .bg-secondary-container {
-            background-color: #1e293b !important;
-        }
-        html.dark .bg-tertiary-container {
-            background-color: #581c36 !important;
-        }
-        html.dark .bg-error-container {
-            background-color: #7f1d1d !important;
-            color: #fca5a5 !important;
-        }
-        html.dark nav.fixed {
-            background-color: #101726 !important;
-            border-color: #25354e !important;
-        }
-        html.dark nav.fixed a:not(.text-primary) {
-            color: #94a3b8 !important;
-        }
-        html.dark .bg-primary {
-            background-color: #10b981 !important;
-            color: #0b0f19 !important;
-        }
-        html.dark .bg-primary:hover {
-            background-color: #059669 !important;
-        }
-        html.dark .bg-\[\#e3f2fd\] {
-            background-color: #1e3a8a !important;
-        }
-        html.dark .text-\[\#1565c0\] {
-            color: #93c5fd !important;
-        }
-        html.dark .bg-\[\#dcfce7\] {
-            background-color: #064e3b !important;
-        }
-        html.dark .text-\[\#14532d\] {
-            color: #a7f3d0 !important;
-        }
-        html.dark .text-\[\#2e7d32\] {
-            color: #a7f3d0 !important;
-        }
-        html.dark .text-\[\#c62828\] {
-            color: #fca5a5 !important;
-        }
-        html.dark svg path[stroke="#154212"] {
-            stroke: #10b981 !important;
-        }
-        html.dark svg circle[fill="#154212"] {
-            fill: #10b981 !important;
-        }
-        html.dark stop[stop-color="#154212"] {
-            stop-color: #10b981 !important;
-        }
-        html.dark .shadow-sm,
-        html.dark .shadow-md,
-        html.dark .shadow-lg,
-        html.dark .shadow-xl {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3) !important;
-        }
-        html.dark ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        html.dark ::-webkit-scrollbar-track {
-            background: #0b0f19;
-        }
-        html.dark ::-webkit-scrollbar-thumb {
-            background: #25354e;
-            border-radius: 4px;
-        }
-        html.dark ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
-        }
-    </style>
-  </head>
-<body class="font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
-<!-- Navigation Drawer Backdrop -->
 <div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
-<!-- Navigation Drawer -->
-<aside :class="showSidebar ? 'w-80 translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20'" class="hidden lg:flex flex-col h-[calc(100vh-4rem)] fixed left-0 top-16 z-50 border-r border-outline-variant bg-surface-container-low transition-all duration-300 ease-in-out">
-<div v-if="showSidebar" class="px-6 py-4 border-b border-outline-variant/30">
-<p class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">El Manantial</p>
-<p class="text-[11px] text-on-surface-variant">Gestión Láctea</p>
+
+<aside :class="showSidebar ? 'w-80 translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20'" class="hidden lg:flex flex-col h-[calc(100vh-3.5rem)] fixed left-0 top-14 z-55 border-r transition-all duration-300 ease-in-out">
+<div v-if="showSidebar" class="px-6 py-4 border-b border-outline-variant/40 dark:border-inverse-surface">
+<p class="font-label-md text-label-md text-[#154212] dark:text-[#10b981] font-bold uppercase tracking-wider">El Manantial</p>
+<p class="text-[11px] text-slate-500 dark:text-[#94a3b8]">Gestión Láctea</p>
 </div>
 <nav class="flex-1 mt-4 px-2 overflow-y-auto custom-scrollbar flex flex-col gap-1">
       <a v-if="currentUser" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('index.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('index.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="index.html">
-        <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
+        <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
+        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Panel Control</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('ordeno.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="ordeno.html">
-        <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
+        <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
+        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Registro Ordeño</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('unidad.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="unidad.html">
-        <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
+        <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
+        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Gestión Finca</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('inventario.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="inventario.html">
-        <span class="material-symbols-outlined" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Control Inventario</span>
+        <span class="material-symbols-outlined" :class="isActive('inventario.html') ? 'fill-icon' : ''" data-icon="inventory">inventory</span>
+        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Control Inventario</span>
       </a>
       <a v-if="currentUser && currentUser.role === 'Administrador'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('reportes.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('reportes.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="reportes.html">
-        <span class="material-symbols-outlined" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Reportes Producción</span>
+        <span class="material-symbols-outlined" :class="isActive('reportes.html') ? 'fill-icon' : ''" data-icon="description">description</span>
+        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Reportes Producción</span>
       </a>
       <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('salud.html') || isActive('historial.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
+         :class="[showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center', isActive('salud.html') || isActive('historial.html') ? 'bg-[#154212]/10 dark:bg-[#10b981]/10 text-[#154212] dark:text-[#10b981] font-bold' : 'text-[#72796e] dark:text-[#94a3b8] hover:bg-slate-100 dark:hover:bg-[#1e293b]']"
          href="salud.html">
-        <span class="material-symbols-outlined" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Salud Animal</span>
+        <span class="material-symbols-outlined" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" data-icon="health_and_safety">health_and_safety</span>
+        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap">Salud Animal</span>
       </a>
     </nav>
 </aside>
 
-<!-- Main Content Area -->
-<main class="lg:ml-20 pt-16 pb-24 md:pb-8">
+<main class="lg:ml-20 pt-14 pb-24 md:pb-8">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
-<div class="flex items-center h-full min-w-0 flex-1">
-    <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
-        <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-[#f8f9ff] dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm overflow-hidden p-1">
-            <img src="imagenes/icono_logo.svg" alt="Logo" class="w-full h-full object-contain dark:brightness-0 dark:invert-[0.05]" />
-        </div>
+    <div class="flex items-center h-full min-w-0 flex-1">
+        <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
+            <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-[#f8f9ff] dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm overflow-hidden p-1">
+                <img src="imagenes/icono_logo.svg" alt="Logo" class="w-full h-full object-contain dark:brightness-0 dark:invert-[0.05]" />
+            </div>
         </div>
         <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
     </div>
@@ -439,498 +214,772 @@
   </button>
   <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
     <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}</span>
+    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
   </a>
 </div>
 </header>
 <div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
-    
-<!-- Header Section -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-[#154212] dark:text-emerald-500">Control Inventario</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Gestión y monitoreo de suministros críticos para la producción Láctea.</p>
-</div>
-</div>
 
-<!-- Inventory Dashboard Stats (Bento Grid Style) -->
-<div class="space-y-4 mb-10">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div @click="selectedStatusFilter = ''" :class="selectedStatusFilter === '' ? 'ring-2 ring-primary border-transparent' : 'border-outline-variant hover:border-primary/50'" class="bg-surface-container-low p-6 rounded-xl border flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-on-surface-variant font-label-md text-label-md">TOTAL ITEMS</span>
-      <span class="text-4xl font-bold text-primary mt-2">{{ totalItems }}</span>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <div v-if="!loteSeleccionado" class="col-span-12">
+        <div class="flex items-center justify-between mb-lg">
+            <div>
+                <h1 class="font-headline-lg text-2xl font-bold text-[#154212] dark:text-[#10b981] mb-2"> Lotes De La Unidad </h1>
+                <p class="font-body-md text-body-md text-slate-600 dark:text-[#94a3b8]">Selecciona un lote para gestionar el censo y su rendimiento. Total actual: 40 vacas de ordeño.</p>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <div class="bg-white dark:bg-[#162032] border border-slate-200 dark:border-[#162032] rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300">
+                <div class="h-40 w-full relative">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=600&auto=format&fit=crop" alt="Lote A" />
+                    <div class="absolute top-sm right-sm">
+                        <span class="bg-[#154212] text-white dark:bg-[#10b981] dark:text-[#0b0f19] font-bold px-sm py-xs font-label-md rounded-full">Activa</span>
+                    </div>
+                </div>
+                <div class="p-md">
+                    <div class="flex justify-between items-start mb-sm">
+                        <div>
+                            <h3 class="font-headline-md text-headline-md text-slate-900 dark:text-white">El Manantial - Lote A</h3>
+                            <p class="font-body-sm text-body-sm text-slate-500 dark:text-[#94a3b8]">Sector Principal</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-headline-md text-headline-md text-[#154212] dark:text-[#10b981]">20</p>
+                            <p class="font-label-md text-label-md text-slate-500 dark:text-[#94a3b8]">Cabezas</p>
+                        </div>
+                    </div>
+                </div>
+                <div @click="seleccionarLote('A')" class="px-md py-sm bg-slate-50 dark:bg-[#101727] border-t border-slate-200 dark:border-[#162032] flex justify-between items-center cursor-pointer hover:bg-slate-100 dark:hover:bg-[#1e293b] transition-colors">
+                    <span class="text-[#154212] dark:text-[#10b981] font-label-lg">Ingresar a el lote A</span>
+                    <span class="material-symbols-outlined text-slate-400 dark:text-[#94a3b8]">chevron_right</span>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-[#162032] border border-slate-200 dark:border-[#162032] rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300">
+                <div class="h-40 w-full relative">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?q=80&w=600&auto=format&fit=crop" alt="Lote B" />
+                    <div class="absolute top-sm right-sm">
+                        <span class="bg-[#154212] text-white dark:bg-[#10b981] dark:text-[#0b0f19] font-bold px-sm py-xs font-label-md rounded-full">Activa</span>
+                    </div>
+                </div>
+                <div class="p-md">
+                    <div class="flex justify-between items-start mb-sm">
+                        <div>
+                            <h3 class="font-headline-md text-headline-md text-slate-900 dark:text-white">El Manantial - Lote B</h3>
+                            <p class="font-body-sm text-body-sm text-slate-500 dark:text-[#94a3b8]">Sector Secundario</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-headline-md text-headline-md text-[#154212] dark:text-[#10b981]">20</p>
+                            <p class="font-label-md text-label-md text-slate-500 dark:text-[#94a3b8]">Cabezas</p>
+                        </div>
+                    </div>
+                </div>
+                <div @click="seleccionarLote('B')" class="px-md py-sm bg-slate-50 dark:bg-[#101727] border-t border-slate-200 dark:border-[#162032] flex justify-between items-center cursor-pointer hover:bg-slate-100 dark:hover:bg-[#1e293b] transition-colors">
+                    <span class="text-[#154212] dark:text-[#10b981] font-label-lg">Ingresar a el lote B</span>
+                    <span class="material-symbols-outlined text-slate-400 dark:text-[#94a3b8]">chevron_right</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant flex flex-col justify-between">
-      <span class="text-on-surface-variant font-label-md text-label-md">PRÓXIMA ENTREGA</span>
-      <span class="text-xl font-bold text-primary mt-2">Mañana, 08:00</span>
-    </div>
-  </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'CRÍTICO' ? '' : 'CRÍTICO')" :class="selectedStatusFilter === 'CRÍTICO' ? 'ring-2 ring-error border-transparent' : 'border-outline-variant hover:border-error/50'" class="bg-rose-100/50 dark:bg-rose-950/40 p-6 rounded-xl border border-rose-300 dark:border-rose-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-rose-800 dark:text-rose-300 font-label-md text-label-md flex items-center gap-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> CRÍTICO
-      </span>
-      <span class="text-4xl font-bold text-rose-800 dark:text-rose-300 mt-2">{{ String(criticalCount).padStart(2, '0') }}</span>
-    </div>
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'BAJO' ? '' : 'BAJO')" :class="selectedStatusFilter === 'BAJO' ? 'ring-2 ring-tertiary border-transparent' : 'border-outline-variant hover:border-tertiary/50'" class="bg-amber-100/50 dark:bg-amber-950/40 p-6 rounded-xl border border-amber-300 dark:border-amber-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-amber-800 dark:text-amber-300 font-label-md text-label-md flex items-center gap-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> BAJO
-      </span>
-      <span class="text-4xl font-bold text-amber-800 dark:text-amber-300 mt-2">{{ String(lowCount).padStart(2, '0') }}</span>
-    </div>
-  </div>
-</div>
+    <div v-else class="col-span-12">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-4">
+            <div>
+                <button @click="loteSeleccionado = null" class="flex items-center gap-2 text-[#154212] dark:text-[#10b981] hover:underline mb-2 font-label-md">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Lotes
+                </button>
+                <h1 class="font-headline-lg text-2xl font-bold text-[#154212] dark:text-[#10b981]">Registro Del Lote {{ loteSeleccionado }}</h1>
+                <p class="font-body-md text-body-md text-slate-600 dark:text-[#94a3b8]">Listado detallado de las 20 cabezas asignadas y su rendimiento lácteo.</p>
+            </div>
+        </div>
 
-<!-- Inventory Lists -->
-<div class="space-y-12">
-<!-- Category: Feed -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="grass">grass</span>
-</div>
-<h3 class="font-headline-md text-headline-md">Alimento y Nutrición</h3>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in feedItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<!-- Category: Medicine -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined" data-icon="vaccines">vaccines</span>
-</div>
-<h3 class="font-headline-md text-headline-md">Medicamentos y Salud</h3>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in medicineItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<!-- Category: Supplies -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-on-surface-variant/10 flex items-center justify-center text-on-surface-variant">
-<span class="material-symbols-outlined" data-icon="sanitizer">sanitizer</span>
-</div>
-<h3 class="font-headline-md text-headline-md">Suministros de Higiene</h3>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in hygieneItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
+        <div class="bg-white dark:bg-[#162032] border border-slate-200 dark:border-[#162032] rounded-xl overflow-hidden shadow-xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 dark:bg-[#101727] border-b border-slate-200 dark:border-[#162032] text-slate-500 dark:text-[#94a3b8] font-label-md text-xs uppercase tracking-wider">
+                            <th class="py-3 px-4">Nº</th>
+                            <th class="py-3 px-4">Unidad</th>
+                            <th class="py-3 px-4">ID Animal</th>
+                            <th class="py-3 px-4">Nombre</th>
+                            <th class="py-3 px-4">Raza</th>
+                            <th class="py-3 px-4">Producción Total (Lt)</th>
+                            <th class="py-3 px-4">Estado</th>
+                            <th v-if="currentUser && currentUser.email !== 'jose@elmanantial.com'" class="py-3 px-4 text-center">Historial</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-[#162032] text-slate-800 dark:text-white font-body-sm">
+                        <tr v-for="(vaca, index) in listaVacas" :key="vaca.id" class="hover:bg-slate-50 dark:hover:bg-[#1e293b]/50 transition-colors">
+                            <td class="py-3 px-4 text-slate-500 dark:text-[#94a3b8] font-bold">{{ index + 1 }}</td>
+                            <td class="py-3 px-4">El Manantial</td>
+                            <td class="py-3 px-4 font-bold text-[#154212] dark:text-[#10b981]">{{ vaca.id }}</td>
+                            <td class="py-3 px-4">{{ vaca.name }}</td>
+                            <td class="py-3 px-4">{{ vaca.breed }}</td>
+                            <td class="py-3 px-4">{{ vaca.productionTotal }} Lt</td>
+                            <td class="py-3 px-4">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm"
+                                      :class="{
+                                          'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700': vaca.status === 'Saludable',
+                                          'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700': vaca.status === 'Bajo Observación',
+                                          'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700': vaca.status === 'En Tratamiento'
+                                      }">
+                                    <span class="w-2 h-2 rounded-full"
+                                          :class="{
+                                              'bg-emerald-500': vaca.status === 'Saludable',
+                                              'bg-amber-500': vaca.status === 'Bajo Observación',
+                                              'bg-rose-500': vaca.status === 'En Tratamiento'
+                                          }"></span>
+                                    {{ vaca.status }}
+                                </span>
+                            </td>
+                            <td v-if="currentUser && currentUser.email !== 'jose@elmanantial.com'" class="py-3 px-4 text-center">
+                                <a :href="'historial.html?id=' + encodeURIComponent(vaca.id)" 
+                                   class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-[#101727] hover:bg-[#154212] hover:text-white dark:hover:bg-[#10b981] dark:hover:text-[#0b0f19] text-[#154212] dark:text-[#10b981] transition-all border border-slate-200 dark:border-[#162032]"
+                                   title="Ver Historial de la Vaca">
+                                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 </div>
 </main>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
-    <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-      <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-    </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-      <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-    </a>
-<a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-   :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
-  <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-  <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-</a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
-      <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
-    </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('salud.html') || isActive('historial.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
-      <span class="text-[10px] mt-0.5 leading-none">Salud</span>
-    </a>
-    <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
-      <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
-    </a>
-    <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
-      <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-    </a>
-  </nav>
 
-<!-- FAB (Floating Action Button) -->
-<button v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showAddModal = true" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
-<span class="material-symbols-outlined" data-icon="add">add</span>
-</button>
+<!-- Barra de navegación inferior visible EXCLUSIVAMENTE en dispositivos móviles (lg:hidden) -->
+<nav class="fixed bottom-0 left-0 w-full z-40 flex justify-around items-center px-1 py-2 fixed-bottom-menu border-t shadow-lg lg:hidden">
+    <!-- Admin Menu -->
+    <template v-if="currentUser && currentUser.email === 'admin@elmanantial.com'">
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('index.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="index.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
+          <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('ordeno.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="ordeno.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
+          <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('unidad.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="unidad.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
+          <span class="text-[10px] mt-0.5 leading-none">Finca</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('inventario.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="inventario.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" data-icon="inventory">inventory</span>
+          <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('salud.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="salud.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') ? 'fill-icon' : ''" data-icon="health_and_safety">health_and_safety</span>
+          <span class="text-[10px] mt-0.5 leading-none">Salud</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('reportes.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="reportes.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" data-icon="description">description</span>
+          <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('usuarios.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="usuarios.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
+          <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
+        </a>
+    </template>
 
-<!-- New Item Modal -->
-<div v-if="showAddModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
-<h3 class="font-headline-md text-headline-md text-primary mb-md">Nuevo Artículo de Inventario</h3>
-<form @submit.prevent="addItem">
-<div class="space-y-base">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
-<input v-model="newItem.name" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. Concentrado Lechero 22%" type="text"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Categoría</label>
-<select v-model="newItem.category" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
-<option value="feed">Alimento y Nutrición</option>
-<option value="medicine">Medicamentos y Salud</option>
-<option value="hygiene">Suministros de Higiene</option>
-</select>
-</div>
-<div class="grid grid-cols-2 gap-sm">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
-<input v-model.number="newItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
-<input v-model="newItem.unit" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. kg, unidades" type="text"/>
-</div>
-</div>
-</div>
-<div class="flex justify-end gap-sm mt-lg">
-<button type="button" @click="showAddModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
-</div>
-</form>
-</div>
-</div>
+    <!-- Veterinario Menu -->
+    <template v-else-if="currentUser && currentUser.email === 'veterinario@elmanantial.com'">
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('index.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="index.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
+          <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('inventario.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="inventario.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" data-icon="inventory">inventory</span>
+          <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('salud.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="salud.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') ? 'fill-icon' : ''" data-icon="health_and_safety">health_and_safety</span>
+          <span class="text-[10px] mt-0.5 leading-none">Salud</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('usuarios.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="usuarios.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
+          <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
+        </a>
+    </template>
 
-<!-- Adjust Item Modal -->
-<div v-if="showAdjustModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
-<h3 class="font-headline-md text-headline-md text-primary mb-md">Ajustar Artículo</h3>
-<form @submit.prevent="saveAdjustStock">
-<div class="space-y-base">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
-<input v-model="adjustItem.name" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-sm">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
-<input v-model.number="adjustItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
-<input v-model="adjustItem.unit" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
-</div>
-</div>
-</div>
-<div class="flex justify-end gap-sm mt-lg">
-<button type="button" @click="showAdjustModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
-</div>
-</form>
-</div>
-</div>
+    <!-- Operario Menu -->
+    <template v-else-if="currentUser && currentUser.email === 'jose@elmanantial.com'">
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('index.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="index.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" data-icon="analytics">analytics</span>
+          <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('ordeno.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="ordeno.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" data-icon="opacity">opacity</span>
+          <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('unidad.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="unidad.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" data-icon="location_on">location_on</span>
+          <span class="text-[10px] mt-0.5 leading-none">Finca</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('inventario.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="inventario.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" data-icon="inventory">inventory</span>
+          <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
+        </a>
+        <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+           :class="isActive('usuarios.html') ? 'text-[#154212] dark:text-[#10b981] font-bold' : 'nav-inactive-light dark:nav-inactive-dark font-normal'" href="usuarios.html">
+          <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" data-icon="group">group</span>
+          <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
+        </a>
+    </template>
+</nav>
 
 <script>
-    const { createApp } = Vue;
-    createApp({
-        data() {
-            return {
-                isDarkMode: false,
-                currentUser: null,
-                showSidebar: false,
-                items: [
-                    { id: 1, name: 'Concentrado Lechero 22%', category: 'feed', stock: 2450, unit: 'kg', status: 'BIEN' },
-                    { id: 2, name: 'Sales Minerales Premium', category: 'feed', stock: 45, unit: 'kg', status: 'BAJO' },
-                    { id: 3, name: 'Vacuna Antiaftosa (Frasco 50 ds)', category: 'medicine', stock: 2, unit: 'unidades', status: 'CRÍTICO' },
-                    { id: 4, name: 'Antibiótico Oxitetraciclina', category: 'medicine', stock: 12, unit: 'frascos', status: 'BIEN' },
-                    { id: 5, name: 'Sellador de Pezones (Post-ordeño)', category: 'hygiene', stock: 15, unit: 'galones', status: 'BAJO' }
-                ],
-                showAddModal: false,
-                showAdjustModal: false,
-                selectedStatusFilter: '',
-                newItem: {
-                    name: '',
-                    category: 'feed',
-                    stock: 0,
-                    unit: 'kg'
-                },
-                adjustItem: {
-                    id: null,
-                    name: '',
-                    stock: 0,
-                    unit: ''
-                }
-            };
-        },
-        computed: {
-            totalItems() {
-                return this.items.length;
-            },
-            criticalCount() {
-                return this.items.filter(i => i.status === 'CRÍTICO').length;
-            },
-            lowCount() {
-                return this.items.filter(i => i.status === 'BAJO').length;
-            },
-            feedItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'feed' || cat.includes('alimento') || cat.includes('nutrición');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
-                }
-                return res;
-            },
-            medicineItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'medicine' || cat.includes('medicamento') || cat.includes('salud');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
-                }
-                return res;
-            },
-            hygieneItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'hygiene' || cat.includes('higiene') || cat.includes('suministro');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
-                }
-                return res;
-            }
-        },
-        mounted() {
-            const theme = localStorage.getItem('theme') || 'light';
-            this.isDarkMode = theme === 'dark';
-            if (this.isDarkMode) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+    // Registro del Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+                .catch(err => console.error('Error al registrar el Service Worker:', err));
+        });
+    }
 
-            const userStr = localStorage.getItem('loggedInUser');
-            if (userStr) {
-                try {
-                    this.currentUser = JSON.parse(userStr);
-                    if (this.currentUser.status !== 'Activo') {
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    currentUser: null,
+                    showSidebar: false,
+                    loteSeleccionado: null,
+                    listaVacas: [],
+                    isDarkMode: true,
+                    todasLasVacas: [
+                        // --- ANIMALES BASE LOTE A ---
+                        {
+                            id: "#A-101",
+                            name: "Lucero",
+                            breed: "Carora",
+                            age: 4.0,
+                            weight: 460,
+                            status: "Saludable",
+                            productionTotal: 12450,
+                            lastVaccination: "10 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#A-102",
+                            name: "Mariposa",
+                            breed: "Holstein",
+                            age: 5.0,
+                            weight: 550,
+                            status: "En Tratamiento",
+                            productionTotal: 9200,
+                            lastVaccination: "14 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-103",
+                            name: "Gitana",
+                            breed: "Brahman",
+                            age: 3.5,
+                            weight: 500,
+                            status: "Bajo Observación",
+                            productionTotal: 6500,
+                            lastVaccination: "01 Oct 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#A-104",
+                            name: "Estrella",
+                            breed: "Pardo Suizo",
+                            age: 4.2,
+                            weight: 530,
+                            status: "Saludable",
+                            productionTotal: 8400,
+                            lastVaccination: "11 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-105",
+                            name: "Luna",
+                            breed: "Jersey",
+                            age: 3.0,
+                            weight: 440,
+                            status: "Saludable",
+                            productionTotal: 6100,
+                            lastVaccination: "19 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#A-106",
+                            name: "Paloma",
+                            breed: "Mestiza",
+                            age: 4.8,
+                            weight: 490,
+                            status: "Saludable",
+                            productionTotal: 7300,
+                            lastVaccination: "22 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-107",
+                            name: "Rosilla",
+                            breed: "Carora",
+                            age: 3.8,
+                            weight: 450,
+                            status: "Saludable",
+                            productionTotal: 6800,
+                            lastVaccination: "05 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#A-108",
+                            name: "Morena",
+                            breed: "Holstein",
+                            age: 5.5,
+                            weight: 570,
+                            status: "Saludable",
+                            productionTotal: 9600,
+                            lastVaccination: "12 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-109",
+                            name: "Margarita",
+                            breed: "Brahman",
+                            age: 4.1,
+                            weight: 510,
+                            status: "Saludable",
+                            productionTotal: 7100,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#A-110",
+                            name: "Princesa",
+                            breed: "Pardo Suizo",
+                            age: 3.9,
+                            weight: 520,
+                            status: "Saludable",
+                            productionTotal: 7900,
+                            lastVaccination: "25 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-111",
+                            name: "Flor",
+                            breed: "Jersey",
+                            age: 3.2,
+                            weight: 430,
+                            status: "Saludable",
+                            productionTotal: 5900,
+                            lastVaccination: "08 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#A-112",
+                            name: "Reina",
+                            breed: "Mestiza",
+                            age: 4.6,
+                            weight: 480,
+                            status: "Saludable",
+                            productionTotal: 7400,
+                            lastVaccination: "13 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-113",
+                            name: "Bonita",
+                            breed: "Carora",
+                            age: 3.5,
+                            weight: 465,
+                            status: "Saludable",
+                            productionTotal: 7100,
+                            lastVaccination: "17 Sep 2023",
+                            pregnancyStatus: "Confirmado (5m)"
+                        },
+                        {
+                            id: "#A-114",
+                            name: "Mora",
+                            breed: "Holstein",
+                            age: 5.1,
+                            weight: 560,
+                            status: "Saludable",
+                            productionTotal: 9100,
+                            lastVaccination: "21 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-115",
+                            name: "Canela",
+                            breed: "Brahman",
+                            age: 4.3,
+                            weight: 515,
+                            status: "Saludable",
+                            productionTotal: 7200,
+                            lastVaccination: "29 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#A-116",
+                            name: "Pinta",
+                            breed: "Pardo Suizo",
+                            age: 4.0,
+                            weight: 525,
+                            status: "Saludable",
+                            productionTotal: 8100,
+                            lastVaccination: "03 Oct 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-117",
+                            name: "Negrita",
+                            breed: "Jersey",
+                            age: 3.3,
+                            weight: 435,
+                            status: "Saludable",
+                            productionTotal: 6000,
+                            lastVaccination: "09 Sep 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#A-118",
+                            name: "Blanca",
+                            breed: "Mestiza",
+                            age: 4.7,
+                            weight: 495,
+                            status: "Saludable",
+                            productionTotal: 7500,
+                            lastVaccination: "15 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#A-119",
+                            name: "Perla",
+                            breed: "Carora",
+                            age: 3.6,
+                            weight: 460,
+                            status: "Saludable",
+                            productionTotal: 6900,
+                            lastVaccination: "20 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#A-120",
+                            name: "Esperanza",
+                            breed: "Holstein",
+                            age: 5.2,
+                            weight: 565,
+                            status: "Saludable",
+                            productionTotal: 9400,
+                            lastVaccination: "26 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        // --- LOTE B (Registros #B-201 al #B-220) ---
+                        {
+                            id: "#B-201",
+                            name: "Rosa",
+                            breed: "Carora",
+                            age: 3.7,
+                            weight: 455,
+                            status: "Saludable",
+                            productionTotal: 6700,
+                            lastVaccination: "11 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#B-202",
+                            name: "Hermosa",
+                            breed: "Holstein",
+                            age: 4.8,
+                            weight: 540,
+                            status: "Saludable",
+                            productionTotal: 8900,
+                            lastVaccination: "16 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-203",
+                            name: "Diamante",
+                            breed: "Brahman",
+                            age: 4.0,
+                            weight: 505,
+                            status: "Saludable",
+                            productionTotal: 7000,
+                            lastVaccination: "21 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#B-204",
+                            name: "Zamurita",
+                            breed: "Pardo Suizo",
+                            age: 4.3,
+                            weight: 535,
+                            status: "Saludable",
+                            productionTotal: 8300,
+                            lastVaccination: "27 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-205",
+                            name: "Gaviota",
+                            breed: "Jersey",
+                            age: 3.1,
+                            weight: 445,
+                            status: "Saludable",
+                            productionTotal: 6200,
+                            lastVaccination: "02 Oct 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#B-206",
+                            name: "Lucerito",
+                            breed: "Mestiza",
+                            age: 4.5,
+                            weight: 485,
+                            status: "Saludable",
+                            productionTotal: 7200,
+                            lastVaccination: "06 Oct 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-207",
+                            name: "Tormenta",
+                            breed: "Carora",
+                            age: 3.6,
+                            weight: 450,
+                            status: "Saludable",
+                            productionTotal: 6600,
+                            lastVaccination: "12 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#B-208",
+                            name: "Manea",
+                            breed: "Holstein",
+                            age: 5.0,
+                            weight: 555,
+                            status: "Saludable",
+                            productionTotal: 9000,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-209",
+                            name: "Consentida",
+                            breed: "Brahman",
+                            age: 4.2,
+                            weight: 510,
+                            status: "Saludable",
+                            productionTotal: 7300,
+                            lastVaccination: "24 Sep 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#B-210",
+                            name: "Altagracia",
+                            breed: "Pardo Suizo",
+                            age: 3.8,
+                            weight: 515,
+                            status: "Saludable",
+                            productionTotal: 7800,
+                            lastVaccination: "30 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-211",
+                            name: "Sombra",
+                            breed: "Jersey",
+                            age: 3.4,
+                            weight: 440,
+                            status: "Saludable",
+                            productionTotal: 6100,
+                            lastVaccination: "04 Oct 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#B-212",
+                            name: "Parda",
+                            breed: "Mestiza",
+                            age: 4.4,
+                            weight: 475,
+                            status: "Saludable",
+                            productionTotal: 7300,
+                            lastVaccination: "10 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-213",
+                            name: "Chiquinquirá",
+                            breed: "Carora",
+                            age: 3.9,
+                            weight: 470,
+                            status: "Saludable",
+                            productionTotal: 7200,
+                            lastVaccination: "14 Sep 2023",
+                            pregnancyStatus: "Confirmado (3m)"
+                        },
+                        {
+                            id: "#B-214",
+                            name: "Lunaria",
+                            breed: "Holstein",
+                            age: 4.9,
+                            weight: 550,
+                            status: "Saludable",
+                            productionTotal: 8800,
+                            lastVaccination: "19 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-215",
+                            name: "Reliquia",
+                            breed: "Brahman",
+                            age: 4.1,
+                            weight: 500,
+                            status: "Saludable",
+                            productionTotal: 6900,
+                            lastVaccination: "25 Sep 2023",
+                            pregnancyStatus: "Confirmado (1m)"
+                        },
+                        {
+                            id: "#B-216",
+                            name: "Pintada",
+                            breed: "Pardo Suizo",
+                            age: 3.8,
+                            weight: 520,
+                            status: "Saludable",
+                            productionTotal: 7900,
+                            lastVaccination: "01 Oct 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-217",
+                            name: "Pavita",
+                            breed: "Jersey",
+                            age: 3.2,
+                            weight: 425,
+                            status: "Saludable",
+                            productionTotal: 5900,
+                            lastVaccination: "07 Oct 2023",
+                            pregnancyStatus: "Confirmado (4m)"
+                        },
+                        {
+                            id: "#B-218",
+                            name: "Milagrosa",
+                            breed: "Mestiza",
+                            age: 4.6,
+                            weight: 490,
+                            status: "Saludable",
+                            productionTotal: 7400,
+                            lastVaccination: "13 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        },
+                        {
+                            id: "#B-219",
+                            name: "Zamana",
+                            breed: "Carora",
+                            age: 3.5,
+                            weight: 455,
+                            status: "Saludable",
+                            productionTotal: 6800,
+                            lastVaccination: "18 Sep 2023",
+                            pregnancyStatus: "Confirmado (2m)"
+                        },
+                        {
+                            id: "#B-220",
+                            name: "Florinda",
+                            breed: "Holstein",
+                            age: 5.1,
+                            weight: 560,
+                            status: "Saludable",
+                            productionTotal: 9200,
+                            lastVaccination: "23 Sep 2023",
+                            pregnancyStatus: "No preñada"
+                        }
+                    ]
+                };
+            },
+            mounted() {
+                const userStr = localStorage.getItem('loggedInUser');
+                if (userStr) {
+                    try {
+                        this.currentUser = JSON.parse(userStr);
+                        if (typeof this.currentUser === 'string') {
+                            this.currentUser = JSON.parse(this.currentUser);
+                        }
+                    } catch (e) {
+                        console.error("Error al parsear usuario logueado:", e);
                         localStorage.removeItem('loggedInUser');
                         window.location.href = 'login.html';
                         return;
                     }
-                } catch (e) {
-                    localStorage.removeItem('loggedInUser');
+
+                    if (this.currentUser && this.currentUser.email) {
+                        if (this.currentUser.email === 'veterinario@elmanantial.com') {
+                            this.currentUser.role = 'Veterinario';
+                        } else if (this.currentUser.email === 'jose@elmanantial.com') {
+                            this.currentUser.role = 'Operario';
+                        } else if (this.currentUser.email === 'admin@elmanantial.com') {
+                            this.currentUser.role = 'Administrador';
+                        }
+                    }
+                } else {
                     window.location.href = 'login.html';
                     return;
                 }
-            } else {
-                window.location.href = 'login.html';
-                return;
-            }
 
-            this.fetchItems();
-        },
-        methods: {
-            toggleTheme() {
-                this.isDarkMode = !this.isDarkMode;
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                this.isDarkMode = savedTheme === 'dark';
                 if (this.isDarkMode) {
                     document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
                 } else {
                     document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
                 }
-            },
 
-            logout() {
-                localStorage.removeItem('loggedInUser');
-                window.location.href = 'login.html';
-            },
-
-            isActive(page) {
-                const path = window.location.pathname;
-                return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
-            },
-            async fetchItems() {
-                try {
-                    const res = await fetch('/api/inventory');
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (Array.isArray(data) && data.length > 0) {
-                            this.items = data;
-                        }
-                    }
-                } catch (err) {
-                    console.error("Usando respaldo local de inventario", err);
+                const urlParams = new URLSearchParams(window.location.search);
+                const loteParam = urlParams.get('lote');
+                if (loteParam) {
+                    this.seleccionarLote(loteParam.toUpperCase());
                 }
             },
-            openAdjustModal(item) {
-                if (!this.currentUser || (this.currentUser.role !== 'Administrador' && this.currentUser.role !== 'Veterinario')) {
-                    alert("No tienes permisos para realizar esta acción.");
-                    return;
-                }
-                this.adjustItem = {
-                    id: item.id,
-                    name: item.name,
-                    stock: item.stock,
-                    unit: item.unit
-                };
-                this.showAdjustModal = true;
-            },
-            async saveAdjustStock() {
-                const newStock = parseFloat(this.adjustItem.stock);
-                if (!isNaN(newStock) && newStock >= 0) {
-                    const item = this.items.find(i => i.id === this.adjustItem.id);
-                    if (item) {
-                        try {
-                            const res = await fetch(`/api/inventory/${item.id}/stock`, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ stock: newStock })
-                            });
-                            if (res.ok) {
-                                const updated = await res.json();
-                                item.stock = updated.stock;
-                                item.status = updated.status;
-                            } else {
-                                item.stock = newStock;
-                                item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
-                            }
-                        } catch (err) {
-                            item.stock = newStock;
-                            item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
-                        }
-                    }
-                    this.showAdjustModal = false;
-                } else {
-                    alert("Por favor ingrese un número válido mayor o igual a 0.");
-                }
-            },
-            async addItem() {
-                try {
-                    const res = await fetch('/api/inventory', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(this.newItem)
-                    });
-                    if (res.ok) {
-                        const created = await res.json();
-                        this.items.push(created);
+            methods: {
+                seleccionarLote(lote) {
+                    this.loteSeleccionado = lote;
+                    this.generarVacasLote(lote);
+                },
+                generarVacasLote(lote) {
+                    const prefix = `#${lote}-`;
+                    this.listaVacas = this.todasLasVacas.filter(vaca => vaca.id.startsWith(prefix));
+                },
+                toggleTheme() {
+                    this.isDarkMode = !this.isDarkMode;
+                    if (this.isDarkMode) {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
                     } else {
-                        this.items.push({
-                            id: Date.now(),
-                            ...this.newItem,
-                            status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
-                        });
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
                     }
-                    this.showAddModal = false;
-                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
-                } catch (err) {
-                    this.items.push({
-                        id: Date.now(),
-                        ...this.newItem,
-                        status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
-                    });
-                    this.showAddModal = false;
-                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
+                },
+                logout() {
+                    localStorage.removeItem('loggedInUser');
+                    window.location.href = 'login.html';
+                },
+                isActive(page) {
+                    return window.location.pathname.includes(page);
                 }
             }
-        }
-    }).mount('#app');
-</script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-        .catch(err => console.error('Error al registrar el Service Worker:', err));
-    });
-  }
-</script>
-</body>
-</html>
+        }).mount('#app');
+    </script>
+</body></html>
