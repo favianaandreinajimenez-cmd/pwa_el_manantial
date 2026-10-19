@@ -421,7 +421,7 @@
        showSidebar ? 'p-1 hover:bg-surface-container-highest gap-3 justify-start' : 'p-0 w-12 h-12 mx-auto justify-center hover:bg-surface-container-highest',
        isActive('usuarios.html') ? 'bg-primary-container text-on-primary-container font-bold' : ''
      ]">
-    <img v-if="currentUser && currentUser.avatar && ((currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:')) || currentUser.avatar.startsWith('data:'))" alt="User avatar" class="w-10 h-10 min-w-[40px] rounded-full bg-secondary-container object-cover" :src="currentUser.avatar"/>
+    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User avatar" class="w-10 h-10 min-w-[40px] rounded-full bg-secondary-container object-cover" :src="currentUser.avatar"/>
     <div v-else class="w-10 h-10 min-w-[40px] rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
       {{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}
     </div>
