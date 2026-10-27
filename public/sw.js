@@ -1,4 +1,4 @@
-Const CACHE_NAME = 'pwa_el_manantial-v3';
+const CACHE_NAME = 'pwa_el_manantial-v3';
 
 // Rutas ajustadas para coincidir con cómo el servidor sirve los archivos estáticos
 const urlsToCache = [
