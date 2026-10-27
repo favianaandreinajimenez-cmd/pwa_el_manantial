@@ -4,14 +4,17 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-<!-- Enlace al manifiesto de la PWA -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#154212">
-
+</head>
+<!-- Configuración PWA -->
+<link rel="manifest" href="/public/manifest.json"/>
+<meta name="theme-color" content="#064e3b"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Respaldo local para funcionar sin internet -->
 <script src="local-db-fallback.js"></script>
+<!-- Scripts de Base de Datos SQLite (WASM), Sincronización y App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+<script src="js/db-sqlite.js"></script>
 <!-- Lógica de sincronización cuando vuelve la red -->
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
@@ -507,8 +510,8 @@
 <td class="px-6 py-4 font-bold">{{ item.name }}</td>
 <td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
 <td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+<span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
   {{ item.status }}
 </span>
 </td>
@@ -545,8 +548,8 @@
 <td class="px-6 py-4 font-bold">{{ item.name }}</td>
 <td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
 <td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+<span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
   {{ item.status }}
 </span>
 </td>
@@ -583,8 +586,8 @@
 <td class="px-6 py-4 font-bold">{{ item.name }}</td>
 <td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
 <td class="px-6 py-4">
-<span :class="item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
+<span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
+  <span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
   {{ item.status }}
 </span>
 </td>
@@ -660,7 +663,7 @@
 <select v-model="newItem.category" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
 <option value="feed">Alimento y Nutrición</option>
 <option value="medicine">Medicamentos y Salud</option>
-<option value="hygiene">Suministros de Higiene</option>
+<option value="galones">Suministros de Higiene</option>
 </select>
 </div>
 <div class="grid grid-cols-2 gap-sm">
@@ -694,7 +697,7 @@
 </div>
 <div class="grid grid-cols-2 gap-sm">
 <div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
+<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Actual</label>
 <input v-model.number="adjustItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
 </div>
 <div>
@@ -720,11 +723,11 @@
                 currentUser: null,
                 showSidebar: false,
                 items: [
-                    { id: 1, name: 'Concentrado Lechero 22%', category: 'feed', stock: 2450, unit: 'kg', status: 'BIEN' },
+                    { id: 1, name: 'Concentrado Lechero 22%', category: 'feed', stock: 2450, unit: 'kg', status: 'OK' },
                     { id: 2, name: 'Sales Minerales Premium', category: 'feed', stock: 45, unit: 'kg', status: 'BAJO' },
                     { id: 3, name: 'Vacuna Antiaftosa (Frasco 50 ds)', category: 'medicine', stock: 2, unit: 'unidades', status: 'CRÍTICO' },
-                    { id: 4, name: 'Antibiótico Oxitetraciclina', category: 'medicine', stock: 12, unit: 'frascos', status: 'BIEN' },
-                    { id: 5, name: 'Sellador de Pezones (Post-ordeño)', category: 'hygiene', stock: 15, unit: 'galones', status: 'BAJO' }
+                    { id: 4, name: 'Antibiótico Oxitetraciclina', category: 'medicine', stock: 12, unit: 'frascos', status: 'OK' },
+                    { id: 5, name: 'Sellador de Pezones (Post-ordeño)', category: 'galones', stock: 15, unit: 'galones', status: 'BAJO' }
                 ],
                 showAddModal: false,
                 showAdjustModal: false,
@@ -748,10 +751,10 @@
                 return this.items.length;
             },
             criticalCount() {
-                return this.items.filter(i => i.status === 'CRÍTICO').length;
+                return this.items.filter(i => (i.status || '').toUpperCase() === 'CRÍTICO').length;
             },
             lowCount() {
-                return this.items.filter(i => i.status === 'BAJO').length;
+                return this.items.filter(i => (i.status || '').toUpperCase() === 'BAJO').length;
             },
             feedItems() {
                 let res = this.items.filter(i => {
@@ -759,7 +762,7 @@
                     return cat === 'feed' || cat.includes('alimento') || cat.includes('nutrición');
                 });
                 if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                    res = res.filter(i => (i.status || '').toUpperCase() === this.selectedStatusFilter);
                 }
                 return res;
             },
@@ -769,17 +772,17 @@
                     return cat === 'medicine' || cat.includes('medicamento') || cat.includes('salud');
                 });
                 if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                    res = res.filter(i => (i.status || '').toUpperCase() === this.selectedStatusFilter);
                 }
                 return res;
             },
             hygieneItems() {
                 let res = this.items.filter(i => {
                     const cat = (i.category || '').toLowerCase();
-                    return cat === 'hygiene' || cat.includes('higiene') || cat.includes('suministro');
+                    return cat === 'hygiene' || cat === 'galones' || cat.includes('higiene') || cat.includes('suministro');
                 });
                 if (this.selectedStatusFilter) {
-                    res = res.filter(i => i.status === this.selectedStatusFilter);
+                    res = res.filter(i => (i.status || '').toUpperCase() === this.selectedStatusFilter);
                 }
                 return res;
             }
@@ -845,7 +848,7 @@
                         }
                     }
                 } catch (err) {
-                    console.error("Usando respaldo local de inventario", err);
+                    console.error("Error al conectar con la API de inventario SQLite3", err);
                 }
             },
             openAdjustModal(item) {
@@ -878,24 +881,28 @@
                                 item.status = updated.status;
                             } else {
                                 item.stock = newStock;
-                                item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
+                                item.status = newStock <= 2 && item.category === 'medicine' ? 'CRÍTICO' : (newStock <= 10 ? 'BAJO' : 'OK');
                             }
                         } catch (err) {
                             item.stock = newStock;
-                            item.status = newStock <= 2 ? 'CRÍTICO' : (newStock <= 20 ? 'BAJO' : 'BIEN');
+                            item.status = newStock <= 2 && item.category === 'medicine' ? 'CRÍTICO' : (newStock <= 10 ? 'BAJO' : 'OK');
                         }
                     }
-                    this.showAdjustModal5 = false;
+                    this.showAdjustModal = false;
                 } else {
                     alert("Por favor ingrese un número válido mayor o igual a 0.");
                 }
             },
             async addItem() {
                 try {
+                    const payload = {
+                        ...this.newItem,
+                        status: this.newItem.stock <= 2 && this.newItem.category === 'medicine' ? 'CRÍTICO' : (this.newItem.stock <= 10 ? 'BAJO' : 'OK')
+                    };
                     const res = await fetch('/api/inventory', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(this.newItem)
+                        body: JSON.stringify(payload)
                     });
                     if (res.ok) {
                         const created = await res.json();
@@ -903,8 +910,7 @@
                     } else {
                         this.items.push({
                             id: Date.now(),
-                            ...this.newItem,
-                            status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
+                            ...payload
                         });
                     }
                     this.showAddModal = false;
@@ -913,7 +919,7 @@
                     this.items.push({
                         id: Date.now(),
                         ...this.newItem,
-                        status: this.newItem.stock <= 2 ? 'CRÍTICO' : (this.newItem.stock <= 20 ? 'BAJO' : 'BIEN')
+                        status: this.newItem.stock <= 2 && this.newItem.category === 'medicine' ? 'CRÍTICO' : (this.newItem.stock <= 10 ? 'BAJO' : 'OK')
                     });
                     this.showAddModal = false;
                     this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
