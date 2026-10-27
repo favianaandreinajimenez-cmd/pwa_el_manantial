@@ -11,18 +11,24 @@ const files = [
     'reportes.html',
     'historial.html',
     'usuarios.html'
-    
 ];
 
 files.forEach(file => {
     const filePath = path.join(publicDir, file);
-    let content = fs.readFileSync(filePath, 'utf8');
-    content = content.replace(/\r\n/g, '\n'); // Normalize Windows line endings to \n
     
-    // Search for any sequence of one or more logout buttons followed by the user avatar link
+    // Validar que el archivo exista antes de procesarlo
+    if (!fs.existsSync(filePath)) {
+        console.log(`Archivo no encontrado: ${file}`);
+        return;
+    }
+
+    let content = fs.readFileSync(filePath, 'utf8');
+    content = content.replace(/\r\n/g, '\n'); // Normalizar saltos de línea de Windows a \n
+    
+    // Buscar cualquier secuencia de uno o más botones de logout seguidos del enlace de avatar de usuario
     const pattern = /(?:<button @click="logout"[\s\S]*?<\/button>\s*)+<a href="usuarios\.html"[\s\S]*?<\/a>/g;
     
-    // We want to replace it with exactly ONE logout button and the user avatar link
+    // Reemplazar exactamente con un solo botón de logout y el enlace del avatar de usuario respetando diseño y colores
     const singleButtonWithAvatar = `<button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
     <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
   </button>
@@ -34,8 +40,8 @@ files.forEach(file => {
     if (pattern.test(content)) {
         content = content.replace(pattern, singleButtonWithAvatar);
         fs.writeFileSync(filePath, content, 'utf8');
-        console.log(`Cleaned logout buttons for: ${file}`);
+        console.log(`Botones de cierre de sesión limpiados para: ${file}`);
     } else {
-        console.log(`No duplicated logout buttons found for: ${file}`);
+        console.log(`No se encontraron botones duplicados para: ${file}`);
     }
 });
