@@ -5,16 +5,20 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
 </head>
-<link rel="manifest" href="manifest.json">
+<!-- Configuración PWA -->
+<link rel="manifest" href="/public/manifest.json"/>
+<meta name="theme-color" content="#064e3b"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <!-- Respaldo local para funcionar sin internet -->
+<!-- Respaldo local para funcionar sin internet -->
 <script src="local-db-fallback.js"></script>
+<!-- Scripts de Base de Datos SQLite (WASM), Sincronización y App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+<script src="js/db-sqlite.js"></script>
 <!-- Lógica de sincronización cuando vuelve la red -->
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
@@ -511,8 +515,8 @@
 </div>
 <div>
 <p class="font-label-lg text-label-lg text-on-surface">
-    {{ record.unitName }} 
-    <span v-if="record.animalId || record.animalName" class="text-xs font-medium text-primary">({{ record.animalId }} - {{ record.animalName }})</span>
+    {{ record.unitName || record.unit_name }} 
+    <span v-if="record.animalId || record.animal_id || record.animalName || record.name" class="text-xs font-medium text-primary">({{ record.animalId || record.animal_id }} - {{ record.animalName || record.name }})</span>
 </p>
 <p class="font-body-sm text-body-sm text-on-surface-variant">{{ record.shift }} • {{ record.time }}</p>
 </div>
@@ -612,14 +616,17 @@
 
                 const userStr = localStorage.getItem('loggedInUser');
                 if (userStr) {
-                    this.currentUser = JSON.parse(userStr);
-                    if (this.currentUser.status !== 'Activo') {
+                    try {
+                        this.currentUser = JSON.parse(userStr);
+                    } catch (e) {
+                        this.currentUser = null;
+                    }
+                    if (!this.currentUser || this.currentUser.status !== 'Activo') {
                         localStorage.removeItem('loggedInUser');
                         window.location.href = 'login.html';
                         return;
                     }
                     
-                    // Verificación en servidor mejorada para evitar errores en consola si la ruta no existe o falla
                     fetch(`/api/users/${this.currentUser.id}`)
                         .then(res => {
                             if (res.ok) return res.json();
@@ -697,10 +704,18 @@
                             fetch('/api/milking'),
                             fetch('/api/units')
                         ]);
-                        if (milkingRes.ok) this.records = await milkingRes.json();
+                        if (milkingRes.ok) {
+                            const data = await milkingRes.json();
+                            this.records = data.map(r => ({
+                                ...r,
+                                unitName: r.unitName || r.unit_name || 'Lote A',
+                                animalId: r.animalId || r.animal_id || '',
+                                animalName: r.animalName || r.name || ''
+                            }));
+                        }
                         if (unitsRes.ok) this.units = await unitsRes.json();
                     } catch (err) {
-                        console.error("Error fetching milking data", err);
+                        console.error("Error fetching milking data from SQLite API", err);
                     }
                 },
 
@@ -708,7 +723,14 @@
                     this.submitting = true;
                     try {
                         const payload = {
-                            ...this.newRecord
+                            unitName: this.newRecord.unitName,
+                            animalId: this.newRecord.animalId,
+                            animalName: this.newRecord.animalName,
+                            liters: parseFloat(this.newRecord.liters) || 0,
+                            shift: this.newRecord.shift === 'morning' ? 'Mañana' : 'Tarde',
+                            time: new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }),
+                            date: new Date().toISOString().split('T')[0],
+                            status: 'VERIFICADO'
                         };
                         const res = await fetch('/api/milking', {
                             method: 'POST', 
@@ -717,7 +739,12 @@
                         });
                         if (res.ok) {
                             const created = await res.json();
-                            this.records.unshift(created);
+                            this.records.unshift({
+                                ...created,
+                                unitName: created.unitName || created.unit_name || payload.unitName,
+                                animalId: created.animalId || created.animal_id || payload.animalId,
+                                animalName: created.animalName || created.name || payload.animalName
+                            });
                             this.newRecord = {
                                 unitName: '',
                                 animalId: '',
@@ -730,7 +757,8 @@
                             alert("Hubo un error al guardar el registro.");
                         }
                     } catch (err) {
-                        console.error("Error saving milking record", err);
+                        console.error("Error saving milking record to SQLite API", err);
+                        alert("Hubo un error al conectar con la base de datos.");
                     } finally {
                         this.submitting = false;
                     }
