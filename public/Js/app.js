@@ -1,7 +1,8 @@
-// public/js/app.js
+
+// MÓDULO GENERAL DE LA INTERFAZ - PWA EL MANANTIAL
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Corregido: Uso de comillas invertidas (backticks) para la interpolación de ${PORT}
+  // Corregido: Uso de comillas invertidas (backticks) para la interpolación
   console.log(`pwa_el_manantial running`);
 
   // Mostrar indicador visual de estado de red
@@ -25,9 +26,6 @@ function actualizarEstadoRed() {
 
 // Función auxiliar para redirecciones seguras
 function irA(vista) {
-  // Si tus archivos están en la raíz del dominio o del servidor, usa rutas directas:
+  // Redirección directa basada en la ruta del servidor Node.js / SQLite3
   window.location.href = vista;
-  
-  // O si prefieres mantener la estructura con subcarpeta, asegúrate de que coincida con tu servidor:
-  // window.location.href = `/public/${vista}`;
 }
