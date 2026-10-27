@@ -306,7 +306,7 @@
             color: #a7f3d0 !important;
         }
         html.dark .bg-secondary-container {
-            background-color: #1e293b !important;
+            background-color: #1e3a8a !important;
         }
         html.dark .bg-tertiary-container {
             background-color: #581c36 !important;
@@ -1021,7 +1021,10 @@ Siguiente
                     return;
                 }
 
-                // Cargar datos de SQLite mediante API
+                // Inicializar base de datos local y 40 vacas si no existe
+                this.initializeLocalDatabase();
+
+                // Cargar datos híbridos (API SQLite3 o respaldo local)
                 await this.loadMilkingRecords();
 
             } else {
@@ -1036,6 +1039,65 @@ Siguiente
             });
         },
         methods: {
+            initializeLocalDatabase() {
+                try {
+                    let dbStr = localStorage.getItem('elmanantial_local_db');
+                    if (!dbStr) {
+                        const initialDb = {
+                            animals: [
+                                { id: "#A-101", name: "Lucero", breed: "Carora", age: 4.0, weight: 460, status: "Saludable", productionTotal: 12450 },
+                                { id: "#A-102", name: "Mariposa", breed: "Holstein", age: 5.0, weight: 550, status: "En Tratamiento", productionTotal: 9200 },
+                                { id: "#A-103", name: "Gitana", breed: "Brahman", age: 3.5, weight: 500, status: "Bajo Observación", productionTotal: 6500 },
+                                { id: "#A-104", name: "Estrella", breed: "Pardo Suizo", age: 4.2, weight: 530, status: "Saludable", productionTotal: 8400 },
+                                { id: "#A-105", name: "Luna", breed: "Jersey", age: 3.0, weight: 440, status: "Saludable", productionTotal: 6100 },
+                                { id: "#A-106", name: "Paloma", breed: "Mestiza", age: 4.8, weight: 490, status: "Saludable", productionTotal: 7300 },
+                                { id: "#A-107", name: "Rosilla", breed: "Carora", age: 3.8, weight: 450, status: "Saludable", productionTotal: 6800 },
+                                { id: "#A-108", name: "Morena", breed: "Holstein", age: 5.5, weight: 570, status: "Saludable", productionTotal: 9600 },
+                                { id: "#A-109", name: "Margarita", breed: "Brahman", age: 4.1, weight: 510, status: "Saludable", productionTotal: 7100 },
+                                { id: "#A-110", name: "Princesa", breed: "Pardo Suizo", age: 3.9, weight: 520, status: "Saludable", productionTotal: 7900 },
+                                { id: "#A-111", name: "Flor", breed: "Jersey", age: 3.2, weight: 430, status: "Saludable", productionTotal: 5900 },
+                                { id: "#A-112", name: "Reina", breed: "Mestiza", age: 4.6, weight: 480, status: "Saludable", productionTotal: 7400 },
+                                { id: "#A-113", name: "Bonita", breed: "Carora", age: 3.5, weight: 465, status: "Saludable", productionTotal: 7100 },
+                                { id: "#A-114", name: "Mora", breed: "Holstein", age: 5.1, weight: 560, status: "Saludable", productionTotal: 9100 },
+                                { id: "#A-115", name: "Canela", breed: "Brahman", age: 4.3, weight: 515, status: "Saludable", productionTotal: 7200 },
+                                { id: "#A-116", name: "Pinta", breed: "Pardo Suizo", age: 4.0, weight: 525, status: "Saludable", productionTotal: 8100 },
+                                { id: "#A-117", name: "Negrita", breed: "Jersey", age: 3.3, weight: 435, status: "Saludable", productionTotal: 6000 },
+                                { id: "#A-118", name: "Blanca", breed: "Mestiza", age: 4.7, weight: 495, status: "Saludable", productionTotal: 7500 },
+                                { id: "#A-119", name: "Perla", breed: "Carora", age: 3.6, weight: 460, status: "Saludable", productionTotal: 6900 },
+                                { id: "#A-120", name: "Esperanza", breed: "Holstein", age: 5.2, weight: 565, status: "Saludable", productionTotal: 9400 },
+                                { id: "#B-201", name: "Rosa", breed: "Carora", age: 3.7, weight: 455, status: "Saludable", productionTotal: 6700 },
+                                { id: "#B-202", name: "Hermosa", breed: "Holstein", age: 4.8, weight: 540, status: "Saludable", productionTotal: 8900 },
+                                { id: "#B-203", name: "Diamante", breed: "Brahman", age: 4.0, weight: 505, status: "Saludable", productionTotal: 7000 },
+                                { id: "#B-204", name: "Zamurita", breed: "Pardo Suizo", age: 4.3, weight: 535, status: "Saludable", productionTotal: 8300 },
+                                { id: "#B-205", name: "Gaviota", breed: "Jersey", age: 3.1, weight: 445, status: "Saludable", productionTotal: 6200 },
+                                { id: "#B-206", name: "Lucerito", breed: "Mestiza", age: 4.5, weight: 485, status: "Saludable", productionTotal: 7200 },
+                                { id: "#B-207", name: "Tormenta", breed: "Carora", age: 3.6, weight: 450, status: "Saludable", productionTotal: 6600 },
+                                { id: "#B-208", name: "Manea", breed: "Holstein", age: 5.0, weight: 555, status: "Saludable", productionTotal: 9000 },
+                                { id: "#B-209", name: "Consentida", breed: "Brahman", age: 4.2, weight: 510, status: "Saludable", productionTotal: 7300 },
+                                { id: "#B-210", name: "Altagracia", breed: "Pardo Suizo", age: 3.8, weight: 515, status: "Saludable", productionTotal: 7800 },
+                                { id: "#B-211", name: "Sombra", breed: "Jersey", age: 3.4, weight: 440, status: "Saludable", productionTotal: 6100 },
+                                { id: "#B-212", name: "Parda", breed: "Mestiza", age: 4.4, weight: 475, status: "Saludable", productionTotal: 7300 },
+                                { id: "#B-213", name: "Chiquinquirá", breed: "Carora", age: 3.9, weight: 470, status: "Saludable", productionTotal: 7200 },
+                                { id: "#B-214", name: "Lunaria", breed: "Holstein", age: 4.9, weight: 550, status: "Saludable", productionTotal: 8800 },
+                                { id: "#B-215", name: "Reliquia", breed: "Brahman", age: 4.1, weight: 500, status: "Saludable", productionTotal: 6900 },
+                                { id: "#B-216", name: "Pintada", breed: "Pardo Suizo", age: 3.8, weight: 520, status: "Saludable", productionTotal: 7900 },
+                                { id: "#B-217", name: "Pavita", breed: "Jersey", age: 3.2, weight: 425, status: "Saludable", productionTotal: 5900 },
+                                { id: "#B-218", name: "Milagrosa", breed: "Mestiza", age: 4.6, weight: 490, status: "Saludable", productionTotal: 7400 },
+                                { id: "#B-219", name: "Zamana", breed: "Carora", age: 3.5, weight: 455, status: "Saludable", productionTotal: 6800 },
+                                { id: "#B-220", name: "Florinda", breed: "Holstein", age: 5.1, weight: 560, status: "Saludable", productionTotal: 9200 }
+                            ],
+                            milking: [
+                                { date: '2026-05-23', animalId: '#A-101', name: 'Lucero', unitName: 'Lote A', shift: 'Mañana', time: '06:00 AM', liters: 12.5, status: 'VERIFICADO' },
+                                { date: '2026-05-23', animalId: '#A-102', name: 'Mariposa', unitName: 'Lote A', shift: 'Mañana', time: '06:15 AM', liters: 11.0, status: 'VERIFICADO' },
+                                { date: '2026-05-23', animalId: '#B-201', name: 'Rosa', unitName: 'Lote B', shift: 'Mañana', time: '06:30 AM', liters: 13.2, status: 'VERIFICADO' }
+                            ]
+                        };
+                        localStorage.setItem('elmanantial_local_db', JSON.stringify(initialDb));
+                    }
+                } catch (e) {
+                    console.error("Error al inicializar base de datos local:", e);
+                }
+            },
             async loadMilkingRecords() {
                 try {
                     const res = await fetch('/api/milking');
@@ -1053,10 +1115,34 @@ Siguiente
                                 status: r.status || 'VERIFICADO'
                             }));
                             this.calculateStats();
+                            return;
                         }
                     }
                 } catch (err) {
-                    console.error("Error al cargar registros de ordeño desde SQLite:", err);
+                    console.warn("API SQLite3 no disponible, cargando desde localStorage...", err);
+                }
+
+                // Fallback a localStorage si la API no responde
+                try {
+                    const dbStr = localStorage.getItem('elmanantial_local_db');
+                    if (dbStr) {
+                        const db = JSON.parse(dbStr);
+                        if (db.milking && db.milking.length > 0) {
+                            this.milkingRecords = db.milking.map(r => ({
+                                date: r.date,
+                                animalId: r.animalId,
+                                name: r.name,
+                                unitName: r.unitName,
+                                shift: r.shift,
+                                time: r.time,
+                                liters: parseFloat(r.liters) || 0.0,
+                                status: r.status || 'VERIFICADO'
+                            }));
+                            this.calculateStats();
+                        }
+                    }
+                } catch (e) {
+                    console.error("Error al cargar registros desde localStorage:", e);
                 }
             },
             calculateStats() {
