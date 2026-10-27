@@ -628,7 +628,7 @@
 </table>
 </div>
 <div class="p-md flex justify-between items-center bg-[#eff4ff] dark:bg-[#0f172a] text-on-surface dark:text-white">
-<span class="font-label-md text-label-md text-on-surface-variant dark:text-gray-400">Página {{ currentPage }} de {{ totalPages }}</span>
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant dark:text-gray-400" style="font-family: 'Hanken Grotesk', sans-serif;">Página {{ currentPage }} de {{ totalPages }}</span>
 <div class="flex gap-base items-center">
 <button @click="prevPage" :disabled="currentPage === 1" class="px-4 py-2 border border-outline-variant rounded-lg text-sm font-medium hover:bg-surface-container-high disabled:opacity-50 transition-colors cursor-pointer">
 Anterior
@@ -793,7 +793,7 @@ Siguiente
 
         <!-- PIE DE PÁGINA -->
         <footer class="pt-2 border-t border-gray-200 text-left mt-auto">
-            <p class="text-[10px] text-black font-bold">Finca El Manantial — Sistema de Gestión y Control de Producción Láctea (Página {{ pageIndex }} de 4)</p>
+            <p style="font-family: 'Hanken Grotesk', sans-serif; font-size: 13px; font-weight: 600;" class="text-black">Finca El Manantial — Sistema de Gestión y Control de Producción Láctea (Página {{ pageIndex }} de 4)</p>
         </footer>
     </div>
 </div>
