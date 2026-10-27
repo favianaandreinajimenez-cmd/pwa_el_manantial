@@ -4,7 +4,6 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-</head>
 <!-- Configuración PWA -->
 <link rel="manifest" href="/public/manifest.json"/>
 <meta name="theme-color" content="#064e3b"/>
@@ -676,6 +675,91 @@ No hay eventos clínicos registrados para este animal.
         });
     }
 
+    const ALL_ANIMALS_ARRAY = [
+        // --- LOTE A ---
+        {
+            id: "A-101",
+            name: "Lucero",
+            breed: "Carora",
+            age: 4.0,
+            weight: 460,
+            status: "Saludable",
+            productionTotal: 12450,
+            lastVaccination: "10 Sep 2023",
+            pregnancyStatus: "Confirmado (2m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Animal muestra excelente recuperación post-parto. Se recomienda mantener suplementación mineral tipo B hasta el próximo ciclo de ordeño.",
+            events: [
+                { id: 1, type: "Vacunación", details: "Aftosa y Rabia", veterinarian: "Dra. Mendoza", date: "10 Sep 2023" },
+                { id: 2, type: "Chequeo", details: "Diagnóstico de preñez positivo", veterinarian: "Dra. Mendoza", date: "15 Jul 2023" }
+            ]
+        },
+        {
+            id: "A-102",
+            name: "Mariposa",
+            breed: "Holstein",
+            age: 5.0,
+            weight: 550,
+            status: "En Tratamiento",
+            productionTotal: 9200,
+            lastVaccination: "14 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBo0x6Srpgv2-bB9Lxgeaiew9ry2dzO5DEtRIMNJM-xeLTFt4iwgpCIU2V2fNUqozfpTUn0xluL0X7ADBFzNNIFRZw5fL_QdsDtqwlqIrXnyGJO_i0L0HptoKZaXgjweJ10Rp-vmqTsO7xHAgtJEGtq7xiee5ukZ5bgAb46kWpb7KEwtT6iLilqFlTfWy7e13kfTqTiNqCykC2DoKJSnGrlnXsHZ-AURS9PhWmBCo8QVqL3zhzKym4O5PrNTpCwuiE9CoiF1fFpNuo",
+            notes: "En tratamiento por mastitis leve. Aplicación de Cefalexina durante 5 días.",
+            events: [
+                { id: 1, type: "Tratamiento", details: "Mastitis Leve (Cefalexina - 5 días)", veterinarian: "Dra. Mendoza", date: "22 Abr 2026" }
+            ]
+        },
+        {
+            id: "A-103",
+            name: "Gitana",
+            breed: "Brahman",
+            age: 3.5,
+            weight: 500,
+            status: "Bajo Observación",
+            productionTotal: 6500,
+            lastVaccination: "01 Oct 2023",
+            pregnancyStatus: "Confirmado (4m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyoJBk67pMfvNC_TOuqCE0fKENi_YnS8PyuoIZbZzn9-WRIgfhrrIGBV9Qqmz52RbldmJwmWDHMH32NgPw8DM5nDsUbQAiLgwXONDLi3aAUqF6Sj3lGOKVIL1TqA_Bi-0yOrOwHxD78a_R_3NArwCKg6aTBB-6CUys2uX0dQhywQ_3MjavSCf0GkMY2wCn8-O8RoVKaO0EtTLQ4rcfQPHOF4yzJwv4ZxBsb5kseksppsWZVrBmQMapSrXkNaSu5CCMIu6CVE40zT8",
+            notes: "Chequeo mensual de gestación y monitoreo de cojera leve.",
+            events: [
+                { id: 1, type: "Chequeo", details: "Monitoreo de cojera en extremidad posterior", veterinarian: "Dra. Mendoza", date: "05 Oct 2023" }
+            ]
+        },
+        {
+            id: "A-104",
+            name: "Estrella",
+            breed: "Pardo Suizo",
+            age: 4.2,
+            weight: 530,
+            status: "Saludable",
+            productionTotal: 8400,
+            lastVaccination: "11 Sep 2023",
+            pregnancyStatus: "No preñada",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW3EmF97-GFzGrhnrqGjFsGAr4sL8ORhfn7YuOTjQ4FexKQWEsD6JRaC1W78OYdhmKod5pd9l_dPmsvGFeCB8U4mo6-WJYUaKdVyPpmb8NEZjUlRfXLuStBQYLovDZCafPxrpup8AvhmxPJrDSMLKtD2pDBzHtK60nlNHL6yB0xE3-AVTMemxMo7wYAU3AZiPeq53-eC8U_CAXAVBe3X8g8gOwVeBf3uL32E_qMUqjcIM2_9ZqsGrtaRYjIY2qDRLGP8sc81iEfGU",
+            notes: "Comportamiento dócil en sala de ordeño.",
+            events: [
+                { id: 1, type: "Vacunación", details: "Aftosa Dosis Anual", veterinarian: "Dra. Mendoza", date: "11 Sep 2023" }
+            ]
+        },
+        {
+            id: "A-105",
+            name: "Luna",
+            breed: "Jersey",
+            age: 3.0,
+            weight: 440,
+            status: "Saludable",
+            productionTotal: 6100,
+            lastVaccination: "19 Sep 2023",
+            pregnancyStatus: "Confirmado (1m)",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+            notes: "Vaca joven con excelente persistencia.",
+            events: [
+                { id: 1, type: "Chequeo", details: "Palpación positiva gestación 1 mes", veterinarian: "Dra. Mendoza", date: "19 Sep 2023" }
+            ]
+        }
+    ];
+
     const { createApp } = Vue;
     createApp({
         data() {
@@ -795,13 +879,50 @@ No hay eventos clínicos registrados para este animal.
                 try {
                     const res = await fetch(`/api/animals/${encodeURIComponent(id)}`, { method: 'GET' });
                     if (res.ok) {
-                        this.animal = await res.json();
+                        const fetched = await res.json();
+                        this.animal = { ...fetched, events: fetched.events || [] };
                         this.editNotesText = this.animal.notes || '';
                     } else {
-                        console.warn("No se pudo obtener el animal de la API de SQLite3");
+                        this.loadFromLocalFallback(id);
                     }
                 } catch (err) {
-                    console.warn("Error al conectar con la API de SQLite3", err);
+                    console.warn("Error al conectar con API, cargando respaldo local", err);
+                    this.loadFromLocalFallback(id);
+                }
+            },
+            loadFromLocalFallback(id) {
+                const cleanId = id.replace('#', '');
+                let found = null;
+                try {
+                    const localDb = JSON.parse(localStorage.getItem('elmanantial_local_db'));
+                    if (localDb && localDb.animals) {
+                        found = localDb.animals.find(a => a.id === id || a.id === '#' + cleanId || a.id === cleanId);
+                    }
+                } catch (e) {
+                    console.error("Error leyendo base de datos local", e);
+                }
+                if (!found) {
+                    found = ALL_ANIMALS_ARRAY.find(a => a.id === id || a.id === '#' + cleanId || a.id === cleanId);
+                }
+                if (found) {
+                    this.animal = { ...found, events: found.events || [] };
+                    this.editNotesText = this.animal.notes || '';
+                } else {
+                    this.animal = {
+                        id: cleanId,
+                        name: "Animal " + cleanId,
+                        breed: "Mestiza",
+                        age: 4.0,
+                        weight: 480,
+                        status: "Saludable",
+                        productionTotal: 7000,
+                        lastVaccination: "01 Sep 2023",
+                        pregnancyStatus: "No preñada",
+                        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwWqZ3Kx3XSv00tLgzLRl1uFvfESblhpZWXSfqyWFe3FvoJ6fl9Z8Nm41HUU9kPYt0PCupktRONGl02v690o4UstecWzEATEOuzGaihXjqXHpr1qlK3PcKyBiE2IgyqAz6c1IfzsWwDH26TKG3v8i6Av84BtmwyGn2_VM8NUXYPQr1JO7jIM7LK8lyUMFf17nAAguyl-Ejcjw-lO2NOnGsgU8qZqp8f8GmFJWYR2TPLRhSbgNAdHAKyivnZ6lUOZGymjqaW0AV9A8",
+                        notes: "Sin notas registradas.",
+                        events: []
+                    };
+                    this.editNotesText = this.animal.notes || '';
                 }
             },
             getEventColorClass(type) {
@@ -833,6 +954,17 @@ No hay eventos clínicos registrados para este animal.
                 const now = new Date();
                 this.lastNotesUpdate = `Dra. Mendoza (${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()})`;
                 
+                try {
+                    let localDb = JSON.parse(localStorage.getItem('elmanantial_local_db')) || { animals: ALL_ANIMALS_ARRAY };
+                    const idx = localDb.animals.findIndex(a => a.id === id || a.id.replace('#','') === id.replace('#',''));
+                    if (idx !== -1) {
+                        localDb.animals[idx].notes = this.editNotesText;
+                        localStorage.setItem('elmanantial_local_db', JSON.stringify(localDb));
+                    }
+                } catch (e) {
+                    console.error("Error guardando notas en local", e);
+                }
+
                 try {
                     await fetch(`/api/animals/${encodeURIComponent(id)}/notes`, {
                         method: 'PUT',
@@ -871,6 +1003,19 @@ No hay eventos clínicos registrados para este animal.
 
                 if (this.newEvent.status) {
                     this.animal.status = this.newEvent.status;
+                }
+
+                try {
+                    let localDb = JSON.parse(localStorage.getItem('elmanantial_local_db')) || { animals: ALL_ANIMALS_ARRAY };
+                    const idx = localDb.animals.findIndex(a => a.id === this.animal.id || a.id.replace('#','') === this.animal.id.replace('#',''));
+                    if (idx !== -1) {
+                        localDb.animals[idx] = this.animal;
+                    } else {
+                        localDb.animals.push(this.animal);
+                    }
+                    localStorage.setItem('elmanantial_local_db', JSON.stringify(localDb));
+                } catch (e) {
+                    console.error("Error guardando evento localmente", e);
                 }
 
                 try {
