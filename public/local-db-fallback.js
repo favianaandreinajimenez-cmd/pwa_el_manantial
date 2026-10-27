@@ -225,5 +225,6 @@
     return originalFetch.apply(this, arguments);
   };
 
-  console.info("Local DB Fallback initialized successfully with 40 static animals (A-101 to B-220).");
+  console.info("Local DB Fallback initialized successfully with SQLite3 support (40 static animals from A-101 to B-220).");
+})();
 })();
