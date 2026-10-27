@@ -838,13 +838,12 @@
                         return;
                     }
 
-                    // Redirección de rol
                     if (this.currentUser.role === 'Operario' || this.currentUser.role === 'Obrero') {
                         window.location.href = 'ordeno.html';
                         return;
                     }
 
-                    // Carga de la base de datos de animales desde SQLite vía API
+                    // Carga robusta híbrida: intenta API SQLite3 y hace respaldo/fallback en localStorage
                     await this.loadAnimals();
 
                 } else {
@@ -856,20 +855,46 @@
                 async loadAnimals() {
                     try {
                         const response = await fetch('/api/animals');
-                        const data = await response.json();
-                        if (data && data.length > 0) {
-                            this.animals = data.map(a => {
-                                const cleanId = a.id ? a.id.replace('#', '') : '';
-                                return {
-                                    ...a,
-                                    id: cleanId,
-                                    lot: cleanId.startsWith('A') ? 'A' : 'B'
-                                };
-                            });
-                            this.calculateStats();
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data && data.length > 0) {
+                                this.animals = data.map(a => {
+                                    const cleanId = a.id ? a.id.replace('#', '') : '';
+                                    return {
+                                        ...a,
+                                        id: cleanId,
+                                        lot: cleanId.startsWith('A') ? 'A' : 'B',
+                                        events: a.events || []
+                                    };
+                                });
+                                this.calculateStats();
+                                return;
+                            }
                         }
                     } catch (e) {
-                        console.error("Error al cargar lista de animales desde SQLite:", e);
+                        console.warn("API SQLite3 no disponible, cargando desde localStorage...", e);
+                    }
+
+                    // Fallback a localStorage si la API no responde
+                    try {
+                        const dbStr = localStorage.getItem('elmanantial_local_db');
+                        if (dbStr) {
+                            const db = JSON.parse(dbStr);
+                            if (db.animals && db.animals.length > 0) {
+                                this.animals = db.animals.map(a => {
+                                    const cleanId = a.id ? a.id.replace('#', '') : '';
+                                    return {
+                                        ...a,
+                                        id: cleanId,
+                                        lot: cleanId.startsWith('A') ? 'A' : 'B',
+                                        events: a.events || []
+                                    };
+                                });
+                                this.calculateStats();
+                            }
+                        }
+                    } catch (err) {
+                        console.error("Error al cargar lista desde localStorage:", err);
                     }
                 },
 
@@ -909,29 +934,50 @@
                     try {
                         const cleanId = this.newEvent.animalId.replace('#', '');
                         
-                        // 1. Crear el objeto del nuevo evento
                         const eventPayload = {
-                            animalId: '#' + cleanId,
+                            id: Date.now(),
                             type: this.newEvent.type,
                             details: this.newEvent.details,
                             veterinarian: this.newEvent.veterinarian || 'Dra. Maria Mendoza',
                             date: new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
                         };
 
-                        // 2. Enviar evento al backend de SQLite
-                        await fetch(`/api/animals/${cleanId}/events`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(eventPayload)
-                        });
+                        // 1. Actualizar en el almacenamiento local (localStorage) para que el historial refleje el evento de inmediato
+                        try {
+                            let dbStr = localStorage.getItem('elmanantial_local_db');
+                            if (dbStr) {
+                                let db = JSON.parse(dbStr);
+                                let target = db.animals.find(a => a.id === cleanId || a.id === '#' + cleanId);
+                                if (target) {
+                                    if (!target.events) target.events = [];
+                                    target.events.unshift(eventPayload);
+                                    if (this.newEvent.status) {
+                                        target.status = this.newEvent.status;
+                                    }
+                                    localStorage.setItem('elmanantial_local_db', JSON.stringify(db));
+                                }
+                            }
+                        } catch (ex) {
+                            console.warn("No se pudo actualizar localStorage localmente", ex);
+                        }
 
-                        // 3. Si se definió un nuevo estado, actualizarlo mediante PUT o petición correspondiente
-                        if (this.newEvent.status) {
-                            await fetch(`/api/animals/${cleanId}`, {
-                                method: 'PUT',
+                        // 2. Enviar evento al backend SQLite vía API
+                        try {
+                            await fetch(`/api/animals/${cleanId}/events`, {
+                                method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ status: this.newEvent.status })
+                                body: JSON.stringify(eventPayload)
                             });
+
+                            if (this.newEvent.status) {
+                                await fetch(`/api/animals/${cleanId}`, {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ status: this.newEvent.status })
+                                });
+                            }
+                        } catch (apiErr) {
+                            console.warn("Modo offline: Evento guardado localmente en SQLite/Fallback", apiErr);
                         }
 
                         alert("Evento veterinario registrado con éxito e integrado en el historial.");
@@ -944,7 +990,6 @@
                             status: ''
                         };
 
-                        // Recargar animales para refrescar la tabla y estadísticas
                         await this.loadAnimals();
 
                     } catch (err) {
