@@ -1,6 +1,5 @@
-// ==========================================
+
 // MÓDULO DE SINCRONIZACIÓN Y SOPORTE OFFLINE
-// ==========================================
 
 let isSyncing = false;
 
@@ -85,16 +84,6 @@ window.addEventListener('load', () => {
     sincronizarDatosPendientes();
   }
 });
-
-
-// ==========================================
-// EJEMPLO DE USO EN TUS PETICIONES (MÉTODOS VUE)
-// ==========================================
-
-/* 
-  Coloca este bloque dentro de la función de envío de tu componente Vue 
-  (por ejemplo, al registrar un evento clínico o un ordeño).
-*/
 
 async function enviarDatosConRespaldo(endpoint, datos) {
   try {
