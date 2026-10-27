@@ -4,20 +4,24 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-
+</head>
+<!-- Configuración PWA -->
+<link rel="manifest" href="/public/manifest.json"/>
+<meta name="theme-color" content="#064e3b"/>
 <!-- Favicon actualizado con el nuevo SVG -->
-<link rel="icon" :href="isDarkMode ? 'imagenes/1060447.svg' : 'imagenes/1060447.svg'" type="image/svg+xml">
-
+<link rel="icon" :href="isDarkMode ? 'imagenes/icono_logo.svg' : 'imagenes/icono_logo.svg'" type="image/svg+xml">
 <!-- Scripts con respaldo local o CDN estándar -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script>
-    // Respaldo por si Vue o Tailwind no cargan offline en Spck Editor
-    if (typeof Vue === 'undefined') {
-        document.write('<script src="js/vue.global.js"><\/script>');
-    }
-</script>
+<!-- Respaldo local para funcionar sin internet -->
 <script src="local-db-fallback.js"></script>
+<!-- Scripts de Base de Datos SQLite (WASM), Sincronización y App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+<script src="js/db-sqlite.js"></script>
+<!-- Lógica de sincronización cuando vuelve la red -->
+<script src="js/sync.js"></script>
+<!-- Lógica general de la interfaz -->
+<script src="js/app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
@@ -63,6 +67,12 @@
                         "on-primary-fixed-variant": "#23501e",
                         "surface-container-lowest": "#ffffff",
                         "error": "#ba1a1a",
+                        "surface-bright": "#f8f9ff",
+                        "surface-dim": "#ccdbf3",
+                        "tertiary-container": "#7c3a55",
+                        "on-primary-fixed": "#002201",
+                        "tertiary-fixed-dim": "#ffb0cc",
+                        "background": "#f8f9ff",
                         "on-surface": "#0d1c2e",
                         "on-tertiary": "#ffffff",
                         "surface-container-low": "#eff4ff",
@@ -394,14 +404,14 @@
                                 </thead>
                                 <tbody class="divide-y divide-outline-variant">
                                     <tr v-for="record in paginatedMilkingRecords" :key="record.id" class="hover:bg-surface-container-low transition-colors group">
-                                        <td class="px-md py-4 font-data-tabular text-data-tabular font-bold">{{ record.unitName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalId }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.name }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.breed }}</td>
+                                        <td class="px-md py-4 font-data-tabular text-data-tabular font-bold">{{ record.unitName || record.unit_name }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalId || record.animal_id }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.name || record.animalName }}</td>
+                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.breed || 'Carora' }}</td>
                                         <td class="px-md py-4 text-right font-data-tabular text-data-tabular font-bold">{{ record.liters }} Lt</td>
                                         <td class="px-md py-4">
-                                            <span :class="record.status === 'VERIFICADO' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-emerald-950 dark:text-emerald-300' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
-                                                {{ record.status }}
+                                            <span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-emerald-950 dark:text-emerald-300' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
+                                                {{ record.status || 'VERIFICADO' }}
                                             </span>
                                         </td>
                                     </tr>
@@ -641,14 +651,14 @@
                                 </thead>
                                 <tbody class="divide-y divide-outline-variant">
                                     <tr v-for="record in paginatedMilkingRecords" :key="record.id" class="hover:bg-surface-container-low transition-colors group">
-                                        <td class="px-md py-4 font-data-tabular text-data-tabular font-bold">{{ record.unitName }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalId }}</td>
-                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.name }}</td>
-                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.breed }}</td>
+                                        <td class="px-md py-4 font-data-tabular text-data-tabular font-bold">{{ record.unitName || record.unit_name }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm font-bold">{{ record.animalId || record.animal_id }}</td>
+                                        <td class="px-md py-4 text-on-surface font-body-sm text-body-sm">{{ record.name || record.animalName }}</td>
+                                        <td class="px-md py-4 text-on-surface-variant font-body-sm text-body-sm">{{ record.breed || 'Carora' }}</td>
                                         <td class="px-md py-4 text-right font-data-tabular text-data-tabular font-bold">{{ record.liters }} Lt</td>
                                         <td class="px-md py-4">
-                                            <span :class="record.status === 'VERIFICADO' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-emerald-950 dark:text-emerald-300' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
-                                                {{ record.status }}
+                                            <span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'bg-[#dcfce7] text-[#14532d] dark:bg-emerald-950 dark:text-emerald-300' : 'bg-error-container text-on-error-container'" class="px-3 py-1 rounded-full font-label-md text-label-md">
+                                                {{ record.status || 'VERIFICADO' }}
                                             </span>
                                         </td>
                                     </tr>
@@ -719,7 +729,7 @@
                     currentUser: null,
                     showSidebar: false,
                     todayLiters: 1248,
-                    activeUnits: 14,
+                    activeUnits: 2,
                     criticalStockAlerts: 3,
                     healthyPercentage: 98,
                     milkingRecords: [],
@@ -764,13 +774,19 @@
 
                 const userStr = localStorage.getItem('loggedInUser');
                 if (userStr) {
-                    const localUser = JSON.parse(userStr);
-                    if (localUser.status !== 'Activo') {
+                    try {
+                        const localUser = JSON.parse(userStr);
+                        if (localUser.status !== 'Activo') {
+                            localStorage.removeItem('loggedInUser');
+                            window.location.href = 'login.html';
+                            return;
+                        }
+                        this.currentUser = localUser; 
+                    } catch (e) {
                         localStorage.removeItem('loggedInUser');
                         window.location.href = 'login.html';
                         return;
                     }
-                    this.currentUser = localUser; 
                 } else {
                     window.location.href = 'login.html';
                     return;
@@ -791,7 +807,7 @@
                             }
                         }
                     })
-                    .catch(err => console.warn("Modo offline", err));
+                    .catch(err => console.warn("Modo offline o SQLite local", err));
 
                 this.fetchData();
             },
@@ -849,7 +865,7 @@
                             }
                         }
                     } catch (err) {
-                        console.warn("Error fetching dashboard data, loading fallback", err);
+                        console.warn("Error fetching dashboard data from SQLite API, loading fallback", err);
                         this.localDashboardFallback();
                     } finally {
                         if (this.currentUser.role !== 'Veterinario') {
@@ -867,42 +883,42 @@
                         { id: 3, date: "2026-05-23", animalId: "#A-103", name: "Gitana", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "06:15 AM", liters: 29.0, status: "VERIFICADO" },
                         { id: 4, date: "2026-05-23", animalId: "#A-104", name: "Estrella", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "06:22 AM", liters: 33.6, status: "VERIFICADO" },
                         { id: 5, date: "2026-05-23", animalId: "#A-105", name: "Luna", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "06:30 AM", liters: 28.4, status: "VERIFICADO" },
-                        { id: 6, date: "2026-05-23", animalId: "#A-106", name: "Paloma", breed: "Mestiza", unitName: "Lote A", shift: "Mañana", time: "06:37 AM", liters: 31.1, status: "VERIFICADO" },
-                        { id: 7, date: "2026-05-23", animalId: "#A-107", name: "Rosilla", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "06:45 AM", liters: 30.2, status: "VERIFICADO" },
-                        { id: 8, date: "2026-05-23", animalId: "#A-108", name: "Morena", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "06:52 AM", liters: 39.5, status: "VERIFICADO" },
-                        { id: 9, date: "2026-05-23", animalId: "#A-109", name: "Margarita", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "07:00 AM", liters: 31.8, status: "VERIFICADO" },
-                        { id: 10, date: "2026-05-23", animalId: "#A-110", name: "Princesa", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "07:07 AM", liters: 35.0, status: "VERIFICADO" },
-                        { id: 11, date: "2026-05-23", animalId: "#A-111", name: "Flor", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "07:15 AM", liters: 27.6, status: "VERIFICADO" },
-                        { id: 12, date: "2026-05-23", animalId: "#A-112", name: "Reina", breed: "Mestiza", unitName: "Lote A", shift: "Mañana", time: "07:22 AM", liters: 32.4, status: "VERIFICADO" },
-                        { id: 13, date: "2026-05-23", animalId: "#A-113", name: "Bonita", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "07:30 AM", liters: 31.0, status: "VERIFICADO" },
-                        { id: 14, date: "2026-05-23", animalId: "#A-114", name: "Mora", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "07:37 AM", liters: 37.9, status: "VERIFICADO" },
-                        { id: 15, date: "2026-05-23", animalId: "#A-115", name: "Canela", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "07:45 AM", liters: 31.5, status: "VERIFICADO" },
-                        { id: 16, date: "2026-05-23", animalId: "#A-116", name: "Pinta", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "07:52 AM", liters: 34.2, status: "VERIFICADO" },
-                        { id: 17, date: "2026-05-23", animalId: "#A-117", name: "Negrita", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "08:00 AM", liters: 28.0, status: "VERIFICADO" },
-                        { id: 18, date: "2026-05-23", animalId: "#A-118", name: "Blanca", breed: "Mestiza", unitName: "Lote A", shift: "Mañana", time: "08:07 AM", liters: 33.1, status: "VERIFICADO" },
-                        { id: 19, date: "2026-05-23", animalId: "#A-119", name: "Perla", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "08:15 AM", liters: 30.4, status: "VERIFICADO" },
-                        { id: 20, date: "2026-05-23", animalId: "#A-120", name: "Esperanza", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "08:22 AM", liters: 38.8, status: "VERIFICADO" },
+                        { id: 6, date: "2026-05-23", animalId: "#A-106", name: "Paloma", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "06:37 AM", liters: 31.1, status: "VERIFICADO" },
+                        { id: 7, date: "2026-05-23", animalId: "#A-107", name: "Rosilla", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "06:45 AM", liters: 30.2, status: "VERIFICADO" },
+                        { id: 8, date: "2026-05-23", animalId: "#A-108", name: "Flor", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "06:52 AM", liters: 39.5, status: "VERIFICADO" },
+                        { id: 9, date: "2026-05-23", animalId: "#A-109", name: "Rosilla", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "07:00 AM", liters: 31.8, status: "VERIFICADO" },
+                        { id: 10, date: "2026-05-23", animalId: "#A-110", name: "Esperanza", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "07:07 AM", liters: 35.0, status: "VERIFICADO" },
+                        { id: 11, date: "2026-05-23", animalId: "#A-111", name: "Bravia", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "07:15 AM", liters: 27.6, status: "VERIFICADO" },
+                        { id: 12, date: "2026-05-23", animalId: "#A-112", name: "Consentida", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "07:22 AM", liters: 32.4, status: "VERIFICADO" },
+                        { id: 13, date: "2026-05-23", animalId: "#A-113", name: "Castaña", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "07:30 AM", liters: 31.0, status: "VERIFICADO" },
+                        { id: 14, date: "2026-05-23", animalId: "#A-114", name: "Reina", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "07:37 AM", liters: 37.9, status: "VERIFICADO" },
+                        { id: 15, date: "2026-05-23", animalId: "#A-115", name: "Prieta", breed: "Pardo Suizo", unitName: "Lote A", shift: "Mañana", time: "07:45 AM", liters: 31.5, status: "VERIFICADO" },
+                        { id: 16, date: "2026-05-23", animalId: "#A-116", name: "Linda", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "07:52 AM", liters: 34.2, status: "VERIFICADO" },
+                        { id: 17, date: "2026-05-23", animalId: "#A-117", name: "Perla", breed: "Jersey", unitName: "Lote A", shift: "Mañana", time: "08:00 AM", liters: 28.0, status: "VERIFICADO" },
+                        { id: 18, date: "2026-05-23", animalId: "#A-118", name: "Pinta", breed: "Brahman", unitName: "Lote A", shift: "Mañana", time: "08:07 AM", liters: 33.1, status: "VERIFICADO" },
+                        { id: 19, date: "2026-05-23", animalId: "#A-119", name: "Margarita", breed: "Carora", unitName: "Lote A", shift: "Mañana", time: "08:15 AM", liters: 30.4, status: "VERIFICADO" },
+                        { id: 20, date: "2026-05-23", animalId: "#A-120", name: "Sultana A", breed: "Holstein", unitName: "Lote A", shift: "Mañana", time: "08:22 AM", liters: 38.8, status: "VERIFICADO" },
                         // --- LOTE B ---
-                        { id: 21, date: "2026-05-23", animalId: "#B-201", name: "Rosa", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "08:35 AM", liters: 29.8, status: "VERIFICADO" },
-                        { id: 22, date: "2026-05-23", animalId: "#B-202", name: "Hermosa", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "08:42 AM", liters: 37.1, status: "VERIFICADO" },
-                        { id: 23, date: "2026-05-23", animalId: "#B-203", name: "Diamante", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "08:50 AM", liters: 31.2, status: "VERIFICADO" },
-                        { id: 24, date: "2026-05-23", animalId: "#B-204", name: "Zamurita", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "08:57 AM", liters: 34.0, status: "VERIFICADO" },
+                        { id: 21, date: "2026-05-23", animalId: "#B-201", name: "Ceniza", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "08:35 AM", liters: 29.8, status: "VERIFICADO" },
+                        { id: 22, date: "2026-05-23", animalId: "#B-202", name: "Bonita", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "08:42 AM", liters: 37.1, status: "VERIFICADO" },
+                        { id: 23, date: "2026-05-23", animalId: "#B-203", name: "Rocío", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "08:50 AM", liters: 31.2, status: "VERIFICADO" },
+                        { id: 24, date: "2026-05-23", animalId: "#B-204", name: "Diamante", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "08:57 AM", liters: 34.0, status: "VERIFICADO" },
                         { id: 25, date: "2026-05-23", animalId: "#B-205", name: "Gaviota", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "09:05 AM", liters: 28.5, status: "VERIFICADO" },
-                        { id: 26, date: "2026-05-23", animalId: "#B-206", name: "Lucerito", breed: "Mestiza", unitName: "Lote B", shift: "Mañana", time: "09:12 AM", liters: 32.0, status: "VERIFICADO" },
-                        { id: 27, date: "2026-05-23", animalId: "#B-207", name: "Tormenta", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "09:20 AM", liters: 29.5, status: "VERIFICADO" },
-                        { id: 28, date: "2026-05-23", animalId: "#B-208", name: "Manea", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "09:27 AM", liters: 38.0, status: "VERIFICADO" },
-                        { id: 29, date: "2026-05-23", animalId: "#B-209", name: "Consentida", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "09:35 AM", liters: 32.2, status: "VERIFICADO" },
-                        { id: 30, date: "2026-05-23", animalId: "#B-210", name: "Altagracia", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "09:42 AM", liters: 34.6, status: "VERIFICADO" },
-                        { id: 31, date: "2026-05-23", animalId: "#B-211", name: "Sombra", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "09:50 AM", liters: 27.9, status: "VERIFICADO" },
-                        { id: 32, date: "2026-05-23", animalId: "#B-212", name: "Parda", breed: "Mestiza", unitName: "Lote B", shift: "Mañana", time: "09:57 AM", liters: 32.1, status: "VERIFICADO" },
-                        { id: 33, date: "2026-05-23", animalId: "#B-213", name: "Chiquinquirá", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "10:05 AM", liters: 31.8, status: "VERIFICADO" },
-                        { id: 34, date: "2026-05-23", animalId: "#B-214", name: "Lunaria", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "10:12 AM", liters: 36.9, status: "VERIFICADO" },
-                        { id: 35, date: "2026-05-23", animalId: "#B-215", name: "Reliquia", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "10:20 AM", liters: 30.5, status: "VERIFICADO" },
-                        { id: 36, date: "2026-05-23", animalId: "#B-216", name: "Pintada", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "10:27 AM", liters: 34.3, status: "VERIFICADO" },
-                        { id: 37, date: "2026-05-23", animalId: "#B-217", name: "Pavita", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "10:35 AM", liters: 27.8, status: "VERIFICADO" },
-                        { id: 38, date: "2026-05-23", animalId: "#B-218", name: "Milagrosa", breed: "Mestiza", unitName: "Lote B", shift: "Mañana", time: "10:42 AM", liters: 32.7, status: "VERIFICADO" },
-                        { id: 39, date: "2026-05-23", animalId: "#B-219", name: "Zamana", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "10:50 AM", liters: 30.1, status: "VERIFICADO" },
-                        { id: 40, date: "2026-05-23", animalId: "#B-220", name: "Florinda", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "10:57 AM", liters: 38.5, status: "VERIFICADO" }
+                        { id: 26, date: "2026-05-23", animalId: "#B-206", name: "Sultana", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "09:12 AM", liters: 32.0, status: "VERIFICADO" },
+                        { id: 27, date: "2026-05-23", animalId: "#B-207", name: "Alondra", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "09:20 AM", liters: 29.5, status: "VERIFICADO" },
+                        { id: 28, date: "2026-05-23", animalId: "#B-208", name: "Vainilla", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "09:27 AM", liters: 38.0, status: "VERIFICADO" },
+                        { id: 29, date: "2026-05-23", animalId: "#B-209", name: "Chiquita", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "09:35 AM", liters: 32.2, status: "VERIFICADO" },
+                        { id: 30, date: "2026-05-23", animalId: "#B-210", name: "Furia", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "09:42 AM", liters: 34.6, status: "VERIFICADO" },
+                        { id: 31, date: "2026-05-23", animalId: "#B-211", name: "Esmeralda", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "09:50 AM", liters: 27.9, status: "VERIFICADO" },
+                        { id: 32, date: "2026-05-23", animalId: "#B-212", name: "Venus", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "09:57 AM", liters: 32.1, status: "VERIFICADO" },
+                        { id: 33, date: "2026-05-23", animalId: "#B-213", name: "Zafira", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "10:05 AM", liters: 31.8, status: "VERIFICADO" },
+                        { id: 34, date: "2026-05-23", animalId: "#B-214", name: "Blanquita", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "10:12 AM", liters: 36.9, status: "VERIFICADO" },
+                        { id: 35, date: "2026-05-23", animalId: "#B-215", name: "Tornasol", breed: "Jersey", unitName: "Lote B", shift: "Mañana", time: "10:20 AM", liters: 30.5, status: "VERIFICADO" },
+                        { id: 36, date: "2026-05-23", animalId: "#B-216", name: "Gitana B", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "10:27 AM", liters: 34.3, status: "VERIFICADO" },
+                        { id: 37, date: "2026-05-23", animalId: "#B-217", name: "Milagros", breed: "Holstein", unitName: "Lote B", shift: "Mañana", time: "10:35 AM", liters: 27.8, status: "VERIFICADO" },
+                        { id: 38, date: "2026-05-23", animalId: "#B-218", name: "Encanto", breed: "Carora", unitName: "Lote B", shift: "Mañana", time: "10:42 AM", liters: 32.7, status: "VERIFICADO" },
+                        { id: 39, date: "2026-05-23", animalId: "#B-219", name: "Paz", breed: "Pardo Suizo", unitName: "Lote B", shift: "Mañana", time: "10:50 AM", liters: 30.1, status: "VERIFICADO" },
+                        { id: 40, date: "2026-05-23", animalId: "#B-220", name: "Noble", breed: "Brahman", unitName: "Lote B", shift: "Mañana", time: "10:57 AM", liters: 38.5, status: "VERIFICADO" }
                     ];
                 },
                 localDashboardFallback() {
@@ -925,7 +941,7 @@
                         ];
                     } else {
                         this.todayLiters = 1248;
-                        this.activeUnits = 14;
+                        this.activeUnits = 2;
                         this.criticalStockAlerts = 3;
                         this.healthyPercentage = 98;
                         this.milkingRecords = this.generateMock40Records();
