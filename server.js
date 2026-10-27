@@ -223,7 +223,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ==================== INICIO DEL SERVIDOR ====================
 app.listen(PORT, () => {
   console.log(`pwa_el_manantial running at http://localhost:${PORT}`);
 });
