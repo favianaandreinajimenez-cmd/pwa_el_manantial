@@ -510,7 +510,7 @@
 <section class="lg:col-span-1">
 <div class="flex items-center justify-between mb-6">
 <h3 class="font-headline-md text-headline-md text-on-surface">Próximos Chequeos</h3>
-<button class="text-primary font-label-lg text-label-lg hover:underline underline-offset-4">Ver calendario</button>
+<button @click="showCalendarModal = true" class="text-primary font-label-lg text-label-lg hover:underline underline-offset-4 cursor-pointer">Ver calendario</button>
 </div>
 <div class="space-y-4">
 <!-- Checkup Card Loop -->
@@ -675,6 +675,91 @@
 </div>
 </div>
 
+<!-- Calendario Sanitario Modal Interactivo -->
+<div v-if="showCalendarModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+<div class="bg-white dark:bg-[#162032] rounded-2xl border border-outline-variant p-6 max-w-sm w-full shadow-2xl text-left relative">
+<div class="flex justify-between items-center mb-4">
+    <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">SELECCIONAR FECHA (DD/MM/YYYY)</span>
+    <button @click="showCalendarModal = false" class="text-on-surface-variant hover:text-error text-xl font-bold cursor-pointer">×</button>
+</div>
+
+<!-- Selector Input estético superior sincronizado con la fecha elegida -->
+<div class="border border-outline-variant rounded-xl p-3 flex justify-between items-center mb-5 bg-surface-container-low">
+    <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+        <span class="font-bold text-on-surface text-sm">{{ selectedDateFormatted }}</span>
+    </div>
+    <span class="material-symbols-outlined text-on-surface-variant" data-icon="expand_less">expand_less</span>
+</div>
+
+<!-- Controles de Mes y Año con Desplegables Personalizados (Una sola flecha limpia) -->
+<div class="flex items-center justify-between mb-4 gap-2">
+    <!-- Selector de Mes -->
+    <div class="relative flex-1">
+        <div @click="showMonthDropdown = !showMonthDropdown; showYearDropdown = false" class="bg-surface-container border border-outline-variant rounded-lg px-3 py-2 flex items-center justify-between cursor-pointer select-none">
+            <span class="text-sm font-bold text-on-surface">{{ monthsNames[calendarMonth] }}</span>
+            <span class="material-symbols-outlined text-sm text-on-surface-variant transition-transform" :class="showMonthDropdown ? 'rotate-180' : ''" data-icon="expand_more">expand_more</span>
+        </div>
+        <div v-if="showMonthDropdown" class="absolute left-0 top-full mt-1 w-full bg-white dark:bg-[#162032] border border-outline-variant rounded-lg shadow-lg z-20 max-h-48 overflow-y-auto">
+            <div v-for="(m, index) in monthsNames" :key="index" @click="calendarMonth = index; showMonthDropdown = false" 
+                 class="px-3 py-2 text-sm font-medium hover:bg-primary/10 cursor-pointer text-on-surface"
+                 :class="calendarMonth === index ? 'bg-primary/15 font-bold text-primary' : ''">
+                {{ m }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Selector de Año -->
+    <div class="relative w-32">
+        <div @click="showYearDropdown = !showYearDropdown; showMonthDropdown = false" class="bg-surface-container border border-outline-variant rounded-lg px-3 py-2 flex items-center justify-between cursor-pointer select-none">
+            <span class="text-sm font-bold text-on-surface">{{ calendarYear }}</span>
+            <span class="material-symbols-outlined text-sm text-on-surface-variant transition-transform" :class="showYearDropdown ? 'rotate-180' : ''" data-icon="expand_more">expand_more</span>
+        </div>
+        <div v-if="showYearDropdown" class="absolute left-0 top-full mt-1 w-full bg-white dark:bg-[#162032] border border-outline-variant rounded-lg shadow-lg z-20 max-h-48 overflow-y-auto">
+            <div v-for="y in availableYears" :key="y" @click="calendarYear = y; showYearDropdown = false" 
+                 class="px-3 py-2 text-sm font-medium hover:bg-primary/10 cursor-pointer text-on-surface text-center"
+                 :class="calendarYear === y ? 'bg-primary/15 font-bold text-primary' : ''">
+                {{ y }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cabecera de Días de la Semana -->
+<div class="grid grid-cols-7 text-center font-bold text-xs text-on-surface-variant mb-2">
+    <span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span>
+</div>
+
+<!-- Cuadrícula de Días del Mes -->
+<div class="grid grid-cols-7 text-center gap-y-2 mb-6">
+    <div v-for="(dayObj, idx) in calendarDays" :key="idx" 
+         @click="selectCalendarDate(dayObj)"
+         :class="[
+            'py-1.5 text-sm rounded-full flex items-center justify-center cursor-pointer transition-all',
+            !dayObj.isCurrentMonth ? 'text-on-surface-variant/40' : 'text-on-surface',
+            isDateSelected(dayObj) ? 'bg-primary text-on-primary font-bold shadow-md' : 'hover:bg-surface-container'
+         ]">
+        {{ dayObj.day }}
+    </div>
+</div>
+
+<!-- Pie del Modal con Botones -->
+<div class="flex justify-between items-center pt-3 border-t border-outline-variant">
+    <button @click="selectToday" class="px-4 py-2 border border-outline-variant rounded-xl text-sm font-bold text-on-surface hover:bg-surface-container transition-colors cursor-pointer">
+        Hoy
+    </button>
+    <div class="flex gap-2">
+        <button @click="showCalendarModal = false" class="px-4 py-2 text-sm font-bold text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
+            Cancelar
+        </button>
+        <button @click="confirmCalendarDate" class="px-5 py-2 bg-primary text-on-primary rounded-xl text-sm font-bold shadow-sm hover:brightness-110 active:scale-95 transition-all cursor-pointer">
+            Confirmar
+        </button>
+    </div>
+</div>
+</div>
+</div>
+
 <!-- Bottom Navigation Bar (Mobile only) -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
     <!-- Inicio -->
@@ -734,6 +819,7 @@
         const { createApp } = Vue;
         createApp({
             data() {
+                const now = new Date();
                 return {
                     isDarkMode: false,
                     currentUser: null,
@@ -742,12 +828,22 @@
                     milkingPage: 1,
                     isDesktop: window.innerWidth >= 1024,
                     showAddModal: false,
+                    showCalendarModal: false,
                     submitting: false,
                     healthyPercentage: 95,
                     inTreatment: 1,
                     underObservation: 1,
                     birthsThisMonth: 2,
                     selectedStatusFilter: '',
+                    
+                    // Estado del Calendario Sanitario
+                    calendarMonth: now.getMonth(),
+                    calendarYear: now.getFullYear(),
+                    selectedDate: new Date(),
+                    monthsNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    showMonthDropdown: false,
+                    showYearDropdown: false,
+
                     checkups: [
                         { id: 1, date: '02 Oct', title: 'Vacunación Aftosa', target: 'Lote A y B', priority: 'Urgente' },
                         { id: 2, date: '05 Oct', title: 'Palpación Rutinaria', target: 'Vacas Seleccionadas', priority: 'Normal' }
@@ -764,6 +860,50 @@
                 };
             },
             computed: {
+                availableYears() {
+                    const currentY = new Date().getFullYear();
+                    let years = [];
+                    for(let i = currentY - 5; i <= currentY + 5; i++) {
+                        years.push(i);
+                    }
+                    return years;
+                },
+                selectedDateFormatted() {
+                    const d = String(this.selectedDate.getDate()).padStart(2, '0');
+                    const m = String(this.selectedDate.getMonth() + 1).padStart(2, '0');
+                    const y = this.selectedDate.getFullYear();
+                    return `${d}/${m}/${y}`;
+                },
+                calendarDays() {
+                    let days = [];
+                    const firstDayIndex = new Date(this.calendarYear, this.calendarMonth, 1).getDay();
+                    let startingSpaces = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
+                    
+                    const totalDaysCurrentMonth = new Date(this.calendarYear, this.calendarMonth + 1, 0).getDate();
+                    const totalDaysPrevMonth = new Date(this.calendarYear, this.calendarMonth, 0).getDate();
+
+                    for (let i = startingSpaces - 1; i >= 0; i--) {
+                        let d = totalDaysPrevMonth - i;
+                        let m = this.calendarMonth - 1;
+                        let y = this.calendarYear;
+                        if (m < 0) { m = 11; y--; }
+                        days.push({ day: d, month: m, year: y, isCurrentMonth: false });
+                    }
+
+                    for (let i = 1; i <= totalDaysCurrentMonth; i++) {
+                        days.push({ day: i, month: this.calendarMonth, year: this.calendarYear, isCurrentMonth: true });
+                    }
+
+                    let remainingDays = 42 - days.length;
+                    for (let i = 1; i <= remainingDays; i++) {
+                        let m = this.calendarMonth + 1;
+                        let y = this.calendarYear;
+                        if (m > 11) { m = 0; y++; }
+                        days.push({ day: i, month: m, year: y, isCurrentMonth: false });
+                    }
+
+                    return days;
+                },
                 filteredAnimals() {
                     return this.animals.filter(cow => {
                         const query = this.searchQuery.toLowerCase();
@@ -855,6 +995,25 @@
                 }
             },
             methods: {
+                selectCalendarDate(dayObj) {
+                    this.selectedDate = new Date(dayObj.year, dayObj.month, dayObj.day);
+                    this.calendarMonth = dayObj.month;
+                    this.calendarYear = dayObj.year;
+                },
+                selectToday() {
+                    this.selectedDate = new Date();
+                    this.calendarMonth = this.selectedDate.getMonth();
+                    this.calendarYear = this.selectedDate.getFullYear();
+                },
+                isDateSelected(dayObj) {
+                    return this.selectedDate.getDate() === dayObj.day &&
+                           this.selectedDate.getMonth() === dayObj.month &&
+                           this.selectedDate.getFullYear() === dayObj.year;
+                },
+                confirmCalendarDate() {
+                    this.showCalendarModal = false;
+                },
+
                 initializeLocalDatabase() {
                     try {
                         let dbStr = localStorage.getItem('elmanantial_local_db');
