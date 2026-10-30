@@ -730,14 +730,14 @@
     <span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span>
 </div>
 
-<!-- Cuadrícula de Días del Mes (Con color de texto adaptado a modo claro/oscuro cuando está seleccionado) -->
+<!-- Cuadrícula de Días del Mes (Texto blanco en modo claro y oscuro cuando está seleccionado) -->
 <div class="grid grid-cols-7 text-center gap-y-2 mb-6">
     <div v-for="(dayObj, idx) in calendarDays" :key="idx" 
          @click="selectCalendarDate(dayObj)"
          :class="[
             'py-1.5 text-sm rounded-full flex items-center justify-center cursor-pointer transition-all',
             !dayObj.isCurrentMonth ? 'text-on-surface-variant/40' : 'text-on-surface',
-            isDateSelected(dayObj) ? 'bg-primary text-on-primary dark:text-[#0b0f19] font-bold shadow-md' : 'hover:bg-surface-container'
+            isDateSelected(dayObj) ? 'bg-primary text-white dark:text-[#0b0f19] font-bold shadow-md' : 'hover:bg-surface-container'
          ]">
         {{ dayObj.day }}
     </div>
@@ -752,7 +752,7 @@
         <button @click="showCalendarModal = false" class="px-4 py-2 text-sm font-bold text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
             Cancelar
         </button>
-        <button @click="confirmCalendarDate" class="px-5 py-2 bg-primary text-on-primary dark:text-[#0b0f19] rounded-xl text-sm font-bold shadow-sm hover:brightness-110 active:scale-95 transition-all cursor-pointer">
+        <button @click="confirmCalendarDate" class="px-5 py-2 bg-primary text-white dark:text-[#0b0f19] rounded-xl text-sm font-bold shadow-sm hover:brightness-110 active:scale-95 transition-all cursor-pointer">
             Confirmar
         </button>
     </div>
