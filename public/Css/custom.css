@@ -91,15 +91,11 @@ html.dark .manantial-card {
   padding: 1rem;
 }
 
-/* 6. Corrección para elementos SVG y objetos (Elimina fondos blancos no deseados) */
-object, svg {
+/* 6. Corrección para elementos SVG de logotipos o ilustraciones (Aislado) */
+.logo-container svg,
+.illustration-svg {
   background-color: transparent !important;
   width: 100%;
   height: auto;
   display: block;
-}
-
-.manantial-card object,
-.manantial-card svg {
-  background: transparent !important;
 }
