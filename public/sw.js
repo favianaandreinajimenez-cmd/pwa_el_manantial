@@ -1,24 +1,24 @@
 const CACHE_NAME = 'pwa_el_manantial-v3';
 
-// Rutas ajustadas para coincidir con cómo el servidor sirve los archivos estáticos
+// Rutas ajustadas de forma relativa para coincidir perfectamente con la estructura del repositorio
 const urlsToCache = [
-  '/',
-  '/login.html',
-  '/index.html',
-  '/ordeno.html',
-  '/inventario.html',
-  '/salud.html',
-  '/reportes.html',
-  '/historial.html',
-  '/unidad.html',
-  '/usuarios.html',
-  '/css/custom.css',
-  '/css/input.css',
-  '/local-db-fallback.js',
-  '/js/sync.js',
-  '/js/db-sqlite.js',
-  '/js/app.js',
-  '/manifest.json'
+  './',
+  './login.html',
+  './index.html',
+  './ordeno.html',
+  './inventario.html',
+  './salud.html',
+  './reportes.html',
+  './historial.html',
+  './unidad.html',
+  './usuarios.html',
+  './css/custom.css',
+  './css/input.css',
+  './local-db-fallback.js',
+  './js/sync.js',
+  './js/db-sqlite.js',
+  './js/app.js',
+  './manifest.json'
 ];
 
 // Instalación del Service Worker y almacenamiento en caché robusto
@@ -27,7 +27,6 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Service Worker: Cacheando archivos estáticos...');
-        // Usamos addAll de forma segura o individual si alguna ruta puede opcionalmente fallar
         return Promise.all(
           urlsToCache.map(url => {
             return cache.add(url).catch(err => {
@@ -76,7 +75,7 @@ self.addEventListener('fetch', event => {
           .catch(() => {
             const acceptHeader = event.request.headers.get('accept');
             if (acceptHeader && acceptHeader.includes('text/html')) {
-              return caches.match('/login.html');
+              return caches.match('./login.html');
             }
           });
       })
