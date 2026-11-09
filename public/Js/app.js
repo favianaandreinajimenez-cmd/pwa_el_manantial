@@ -1,4 +1,3 @@
-
 // MÓDULO GENERAL DE LA INTERFAZ - PWA EL MANANTIAL
 
 document.addEventListener('DOMContentLoaded', () => {
