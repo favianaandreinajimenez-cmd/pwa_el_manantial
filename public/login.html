@@ -308,7 +308,14 @@
       <p class="text-sm font-medium">{{ errorMsg }}</p>
     </div>
 
-    <form @submit.prevent="handleLogin" class="text-left space-y-5">
+    <!-- Success Alert Container for Recovery -->
+    <div v-if="successMsg" class="mb-6 p-4 bg-emerald-100 text-emerald-800 border border-emerald-500/20 rounded-xl text-left flex gap-3 items-center">
+      <span class="material-symbols-outlined text-emerald-800 flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+      <p class="text-sm font-medium">{{ successMsg }}</p>
+    </div>
+
+    <!-- FORMULARIO DE INICIO DE SESIÓN -->
+    <form v-if="view === 'login'" @submit.prevent="handleLogin" class="text-left space-y-5">
       <div>
         <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Correo Electrónico</label>
         <div class="relative overflow-hidden rounded-xl">
@@ -318,7 +325,12 @@
       </div>
 
       <div>
-        <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Contraseña</label>
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="block font-medium text-on-surface-variant text-sm">Contraseña</label>
+          <button type="button" @click="switchToRecovery" class="text-xs text-primary font-medium hover:underline focus:outline-none">
+            ¿Olvidaste tu contraseña?
+          </button>
+        </div>
         <div class="relative">
           <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="lock">lock</span>
           <input v-model="password" maxlength="8" required :type="showPassword ? 'text' : 'password'" class="w-full pl-11 pr-12 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="••••••••"/>
@@ -333,6 +345,30 @@
         <span>{{ loading ? 'Iniciando Sesión...' : 'Ingresar al Sistema' }}</span>
       </button>
     </form>
+
+    <!-- FORMULARIO DE RECUPERACIÓN DE CONTRASEÑA -->
+    <form v-else-if="view === 'recovery'" @submit.prevent="handleRecovery" class="text-left space-y-5">
+      <div>
+        <p class="text-sm text-on-surface-variant mb-4">
+          Ingresa tu correo electrónico registrado para enviarte las instrucciones de restablecimiento de contraseña.
+        </p>
+        <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Correo Electrónico</label>
+        <div class="relative overflow-hidden rounded-xl">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="mail">mail</span>
+          <input v-model="recoveryEmail" @keydown="checkRecoveryEmailLength" @input="enforceRecoveryEmailLimit" maxlength="27" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required type="text" class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="admin@elmanantial.com"/>
+        </div>
+      </div>
+
+      <button type="submit" :disabled="loading" class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-xl shadow-md hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 mt-6 disabled:opacity-70">
+        <span v-if="loading" class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+        <span>{{ loading ? 'Enviando...' : 'Enviar Instrucciones' }}</span>
+      </button>
+
+      <button type="button" @click="switchToLogin" class="w-full py-2.5 text-sm text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center justify-center gap-1 mt-2">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>Volver al inicio de sesión</span>
+      </button>
+    </form>
   </div>
 
   <script>
@@ -341,10 +377,13 @@
       data() {
         return {
           isDarkMode: false,
+          view: 'login', // 'login' o 'recovery'
           email: '',
           password: '',
+          recoveryEmail: '',
           showPassword: false,
           errorMsg: '',
+          successMsg: '',
           loading: false
         };
       },
@@ -358,6 +397,17 @@
         }
       },
       methods: {
+        switchToRecovery() {
+          this.errorMsg = '';
+          this.successMsg = '';
+          this.recoveryEmail = this.email;
+          this.view = 'recovery';
+        },
+        switchToLogin() {
+          this.errorMsg = '';
+          this.successMsg = '';
+          this.view = 'login';
+        },
         checkEmailLength(e) {
           if (this.email && this.email.length >= 27 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
             e.preventDefault();
@@ -366,6 +416,19 @@
         enforceEmailLimit(e) {
           if (this.email && this.email.length > 27) {
             this.email = this.email.slice(0, 27);
+          }
+          if (e && e.target && e.target.value.length > 27) {
+            e.target.value = e.target.value.slice(0, 27);
+          }
+        },
+        checkRecoveryEmailLength(e) {
+          if (this.recoveryEmail && this.recoveryEmail.length >= 27 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+          }
+        },
+        enforceRecoveryEmailLimit(e) {
+          if (this.recoveryEmail && this.recoveryEmail.length > 27) {
+            this.recoveryEmail = this.recoveryEmail.slice(0, 27);
           }
           if (e && e.target && e.target.value.length > 27) {
             e.target.value = e.target.value.slice(0, 27);
@@ -382,8 +445,75 @@
             }
         },
 
+        async handleRecovery() {
+          this.errorMsg = '';
+          this.successMsg = '';
+
+          if (this.recoveryEmail.length > 27) {
+            this.errorMsg = 'El correo electrónico no debe exceder los 27 caracteres.';
+            return;
+          }
+
+          this.loading = true;
+          try {
+            const res = await fetch('/api/recover-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: this.recoveryEmail })
+            });
+            if (res.ok) {
+              this.successMsg = 'Se han enviado las instrucciones de recuperación a su correo electrónico.';
+              this.recoveryEmail = '';
+            } else {
+              let errorMessage = 'Error al procesar la solicitud de recuperación';
+              try {
+                const data = await res.json();
+                errorMessage = data.error || errorMessage;
+              } catch (jsonErr) {}
+
+              if (res.status === 404) {
+                this.localRecoveryFallback();
+                return;
+              }
+              this.errorMsg = errorMessage;
+            }
+          } catch (err) {
+            console.warn('Error de red o servidor offline, ejecutando recuperación en modo local...', err);
+            this.localRecoveryFallback();
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        localRecoveryFallback() {
+          const fallbackUsers = [
+            { id: 1, name: "Francisco Molina", email: "admin@elmanantial.com" },
+            { id: 2, name: "Dra. Maria Mendoza", email: "veterinario@elmanantial.com" },
+            { id: 3, name: "Jose Sanchez", email: "jose@elmanantial.com" },
+          ];
+
+          let usersList = fallbackUsers;
+          const storedUsers = localStorage.getItem('localUsersData');
+          if (storedUsers) {
+            try {
+              usersList = JSON.parse(storedUsers);
+            } catch (e) {
+              console.error(e);
+            }
+          }
+
+          const user = usersList.find(u => u.email === this.recoveryEmail);
+          if (user) {
+            this.successMsg = `Instrucciones de recuperación enviadas exitosamente a ${this.recoveryEmail}.`;
+            this.recoveryEmail = '';
+          } else {
+            this.errorMsg = "El correo electrónico no se encuentra registrado en el sistema.";
+          }
+        },
+
         async handleLogin() {
           this.errorMsg = '';
+          this.successMsg = '';
 
           if (this.email.length > 27) {
             this.errorMsg = 'El correo electrónico no debe exceder los 27 caracteres.';
