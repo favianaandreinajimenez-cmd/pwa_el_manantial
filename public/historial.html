@@ -437,12 +437,17 @@
 <div class="px-4 md:px-margin-desktop pt-4 pb-8 max-w-7xl mx-auto">
     
 <!-- Breadcrumbs / Botón Volver Dinámico -->
-<nav class="flex items-center gap-2 mb-4 text-on-surface-variant">
-<a :href="backUrl" class="flex items-center gap-2 font-label-md text-primary font-bold hover:underline">
-<span class="material-symbols-outlined text-sm">arrow_back</span>
-    {{ backText }}
-</a>
-<span class="font-label-md font-bold text-on-surface">/ {{ cleanAnimalId }} {{ animal.name }}</span>
+<nav class="flex items-center justify-between mb-4 text-on-surface-variant">
+<div class="flex items-center gap-2">
+  <a :href="backUrl" class="flex items-center gap-2 font-label-md text-primary font-bold hover:underline">
+    <span class="material-symbols-outlined text-sm">arrow_back</span>
+      {{ backText }}
+  </a>
+  <span class="font-label-md font-bold text-on-surface">/ {{ cleanAnimalId }} {{ animal.name }}</span>
+</div>
+<button @click="openEditAnimalModal" class="w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center hover:brightness-110 active:scale-95 transition-all shadow-sm cursor-pointer" title="Ajustar Datos">
+  <span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
 </nav>
 <!-- Header Section -->
 <section class="mb-6">
@@ -619,7 +624,7 @@ No hay eventos clínicos registrados para este animal.
     </a>
   </nav>
 
-<!-- New Health Event Modal & Vue mount -->
+<!-- New Health Event Modal -->
 <div v-if="showEventModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
   <div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl text-left">
     <h3 class="font-headline-md text-headline-md text-primary mb-md">Registrar Evento Veterinario</h3>
@@ -666,6 +671,67 @@ No hay eventos clínicos registrados para este animal.
   </div>
 </div>
 
+<!-- Modal para Ajustar/Editar Datos Generales de la Vaca -->
+<div v-if="showEditAnimalModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl border border-outline-variant p-md max-w-lg w-full shadow-xl text-left">
+    <h3 class="font-headline-md text-headline-md text-primary mb-md">Ajustar Datos de la Vaca</h3>
+    <form @submit.prevent="submitEditAnimal">
+      <div class="space-y-base max-h-[70vh] overflow-y-auto pr-2">
+        <div class="grid grid-cols-2 gap-sm">
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre</label>
+            <input v-model="editAnimalForm.name" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="text"/>
+          </div>
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Raza</label>
+            <input v-model="editAnimalForm.breed" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="text"/>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-sm">
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Edad (años)</label>
+            <input v-model.number="editAnimalForm.age" required step="0.1" min="0" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number"/>
+          </div>
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Peso (kg)</label>
+            <input v-model.number="editAnimalForm.weight" required step="1" min="0" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number"/>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-sm">
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Estado Clínico</label>
+            <select v-model="editAnimalForm.status" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
+              <option value="Saludable">Saludable</option>
+              <option value="En Tratamiento">En Tratamiento</option>
+              <option value="Bajo Observación">Bajo Observación</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Producción Total (L)</label>
+            <input v-model.number="editAnimalForm.productionTotal" required step="1" min="0" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number"/>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-sm">
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Última Vacunación</label>
+            <input v-model="editAnimalForm.lastVaccination" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="text"/>
+          </div>
+          <div>
+            <label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Estado Preñez</label>
+            <input v-model="editAnimalForm.pregnancyStatus" class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="text"/>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-sm mt-lg">
+        <button type="button" @click="showEditAnimalModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
+        <button type="submit" :disabled="savingAnimalChanges" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">
+          {{ savingAnimalChanges ? 'Guardando...' : 'Guardar Cambios' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
@@ -676,7 +742,6 @@ No hay eventos clínicos registrados para este animal.
     }
 
     const ALL_ANIMALS_ARRAY = [
-        // --- LOTE A ---
         {
             id: "A-101",
             name: "Lucero",
@@ -786,6 +851,18 @@ No hay eventos clínicos registrados para este animal.
                 lastNotesUpdate: 'Dra. Mendoza',
                 showEventModal: false,
                 submittingEvent: false,
+                showEditAnimalModal: false,
+                savingAnimalChanges: false,
+                editAnimalForm: {
+                    name: '',
+                    breed: '',
+                    age: 0,
+                    weight: 0,
+                    status: '',
+                    productionTotal: 0,
+                    lastVaccination: '',
+                    pregnancyStatus: ''
+                },
                 showSidebar: false,
                 newEvent: {
                     type: 'Tratamiento',
@@ -976,6 +1053,56 @@ No hay eventos clínicos registrados para este animal.
                 } finally {
                     this.savingNotes = false;
                     this.isEditingNotes = false;
+                }
+            },
+            openEditAnimalModal() {
+                this.editAnimalForm = {
+                    name: this.animal.name,
+                    breed: this.animal.breed,
+                    age: this.animal.age,
+                    weight: this.animal.weight,
+                    status: this.animal.status,
+                    productionTotal: this.animal.productionTotal,
+                    lastVaccination: this.animal.lastVaccination,
+                    pregnancyStatus: this.animal.pregnancyStatus
+                };
+                this.showEditAnimalModal = true;
+            },
+            async submitEditAnimal() {
+                this.savingAnimalChanges = true;
+                const id = this.animal.id;
+                
+                this.animal.name = this.editAnimalForm.name;
+                this.animal.breed = this.editAnimalForm.breed;
+                this.animal.age = this.editAnimalForm.age;
+                this.animal.weight = this.editAnimalForm.weight;
+                this.animal.status = this.editAnimalForm.status;
+                this.animal.productionTotal = this.editAnimalForm.productionTotal;
+                this.animal.lastVaccination = this.editAnimalForm.lastVaccination;
+                this.animal.pregnancyStatus = this.editAnimalForm.pregnancyStatus;
+
+                try {
+                    let localDb = JSON.parse(localStorage.getItem('elmanantial_local_db')) || { animals: ALL_ANIMALS_ARRAY };
+                    const idx = localDb.animals.findIndex(a => a.id === id || a.id.replace('#','') === id.replace('#',''));
+                    if (idx !== -1) {
+                        localDb.animals[idx] = { ...this.animal };
+                        localStorage.setItem('elmanantial_local_db', JSON.stringify(localDb));
+                    }
+                } catch (e) {
+                    console.error("Error al actualizar datos en localDb", e);
+                }
+
+                try {
+                    await fetch(`/api/animals/${encodeURIComponent(id)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(this.animal)
+                    });
+                } catch (err) {
+                    console.warn("No se pudo sincronizar la actualización con el servidor", err);
+                } finally {
+                    this.savingAnimalChanges = false;
+                    this.showEditAnimalModal = false;
                 }
             },
             openEventModal(type) {
