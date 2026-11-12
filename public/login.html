@@ -4,7 +4,6 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-</head>
 <!-- Configuración PWA -->
 <link rel="manifest" href="/public/manifest.json"/>
 <meta name="theme-color" content="#064e3b"/>
@@ -19,116 +18,45 @@
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
-<style>
-        body { font-family: 'Hanken Grotesk', sans-serif; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-error-container": "#93000a",
-                      "on-primary-container": "#9dd090",
-                      "on-secondary-fixed-variant": "#454747",
-                      "outline": "#72796e",
-                      "primary": "#154212",
-                      "secondary-container": "#dfe0e0",
-                      "outline-variant": "#c2c9bb",
-                      "surface": "#f8f9ff",
-                      "on-surface-variant": "#42493e",
-                      "secondary": "#5d5f5f",
-                      "tertiary-fixed": "#ffd9e4",
-                      "on-background": "#0d1c2e",
-                      "on-tertiary-container": "#ffaac8",
-                      "surface-container": "#e6eeff",
-                      "on-secondary": "#ffffff",
-                      "surface-container-high": "#dce9ff",
-                      "surface-tint": "#3b6934",
-                      "inverse-on-surface": "#eaf1ff",
-                      "inverse-surface": "#233144",
-                      "secondary-fixed-dim": "#c6c6c7",
-                      "tertiary": "#60233e",
-                      "primary-container": "#2d5a27",
-                      "secondary-fixed": "#e2e2e2",
-                      "surface-container-highest": "#d5e3fc",
-                      "on-tertiary-fixed-variant": "#71314c",
-                      "primary-fixed-dim": "#a1d494",
-                      "on-tertiary-fixed": "#3b0520",
-                      "on-secondary-container": "#616363",
-                      "on-error": "#ffffff",
-                      "surface-variant": "#d5e3fc",
-                      "on-secondary-fixed": "#1a1c1c",
-                      "on-primary": "#ffffff",
-                      "on-primary-fixed-variant": "#23501e",
-                      "surface-container-lowest": "#ffffff",
-                      "error": "#ba1a1a",
-                      "surface-bright": "#f8f9ff",
-                      "surface-dim": "#ccdbf3",
-                      "tertiary-container": "#7c3a55",
-                      "on-primary-fixed": "#002201",
-                      "tertiary-fixed-dim": "#ffb0cc",
-                      "background": "#f8f9ff",
-                      "on-surface": "#0d1c2e",
-                      "on-tertiary": "#ffffff",
-                      "surface-container-low": "#eff4ff",
-                      "inverse-primary": "#a1d494",
-                      "primary-fixed": "#bcf0ae",
-                      "error-container": "#ffdad6"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "lg": "40px",
-                      "gutter": "24px",
-                      "md": "24px",
-                      "margin-mobile": "16px",
-                      "margin-desktop": "32px",
-                      "xl": "64px",
-                      "sm": "12px",
-                      "xs": "4px",
-                      "base": "8px"
-              },
-              "fontFamily": {
-                      "label-md": ["Hanken Grotesk"],
-                      "body-sm": ["Hanken Grotesk"],
-                      "headline-lg": ["Work Sans"],
-                      "data-tabular": ["Hanken Grotesk"],
-                      "display-lg": ["Work Sans"],
-                      "label-lg": ["Hanken Grotesk"],
-                      "body-lg": ["Hanken Grotesk"],
-                      "body-md": ["Hanken Grotesk"],
-                      "headline-md": ["Work Sans"]
-              },
-              "fontSize": {
-                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                      "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                      "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "0.05em", "fontWeight": "600"}],
-                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
-              }
-            },
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#154212",
+            "primary-container": "#2d5a27",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c2c9bb",
+            "surface": "#f8f9ff",
+            "on-surface": "#0d1c2e",
+            "on-surface-variant": "#42493e",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
           },
+          "borderRadius": {
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem"
+          },
+          "fontFamily": {
+            "body": ["Hanken Grotesk"],
+            "display": ["Work Sans"]
+          }
         }
-      </script>
-<style>
+      }
+    }
+  </script>
+  <style>
     body {
-      min-height: max(884px, 100dvh);
+      font-family: 'Hanken Grotesk', sans-serif;
+      background-color: #f8f9ff;
+      min-height: 100vh;
     }
 
         /* Custom styles for dark mode */
@@ -351,592 +279,332 @@
         html.dark ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
-    </style>
-  </head>
-<body class="font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
-<!-- Navigation Drawer Backdrop -->
-<div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
-<!-- Navigation Drawer -->
-<aside :class="showSidebar ? 'w-80 translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20'" class="hidden lg:flex flex-col h-[calc(100vh-4rem)] fixed left-0 top-16 z-50 border-r border-outline-variant bg-surface-container-low transition-all duration-300 ease-in-out">
-<div v-if="showSidebar" class="px-6 py-4 border-b border-outline-variant/30">
-<p class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">El Manantial</p>
-<p class="text-[11px] text-on-surface-variant">Gestión Láctea</p>
-</div>
-<nav class="flex-1 mt-4 px-2 overflow-y-auto custom-scrollbar flex flex-col gap-1">
-      <a v-if="currentUser" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('index.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="index.html">
-        <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="ordeno.html">
-        <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="unidad.html">
-        <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="inventario.html">
-        <span class="material-symbols-outlined" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Control Inventario</span>
-      </a>
-      <a v-if="currentUser && currentUser.role === 'Administrador'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('reportes.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="reportes.html">
-        <span class="material-symbols-outlined" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Reportes Producción</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('salud.html') || isActive('historial.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="salud.html">
-        <span class="material-symbols-outlined" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Salud Animal</span>
-      </a>
-    </nav>
-</aside>
+        /* Filtro CSS para convertir el SVG al color #0b0f19 en modo oscuro */
+        html.dark .logo-dark-filter {
+            filter: brightness(0) saturate(100%) invert(3%) sepia(21%) saturate(2200%) hue-rotate(190deg) brightness(95%) contrast(98%);
+        }
+  </style>
+</head>
+<body class="flex items-center justify-center p-4">
+  <div id="app" class="w-full max-w-md bg-white border border-outline-variant/60 rounded-2xl shadow-xl p-8 text-center relative overflow-hidden">
+    <button @click="toggleTheme" class="fixed top-4 right-4 w-10 h-10 rounded-full bg-white dark:bg-[#162032] border border-outline-variant/60 dark:border-[#25354e] shadow-md hover:scale-105 active:scale-95 text-on-surface-variant dark:text-gray-300 transition-all flex items-center justify-center cursor-pointer z-50" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
+      <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
+    </button>
 
-<!-- Main Content Area -->
-<main class="lg:ml-20 pt-16 pb-24 md:pb-8">
-<!-- Top App Bar -->
-<header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
-<div class="flex items-center h-full min-w-0 flex-1">
-    <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
-        <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-[#f8f9ff] dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm overflow-hidden p-1">
-            <img src="imagenes/icono_logo.svg" alt="Logo" class="w-full h-full object-contain dark:brightness-0 dark:invert-[0.05]" />
+    <!-- Header decoration -->
+    <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
+
+    <div class="mb-8">
+      <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary mx-auto mb-4 shadow-md overflow-hidden p-2">
+        <img src="imagenes/icono_logo.svg" alt="Logo El Manantial" class="w-full h-full object-contain logo-dark-filter" />
+      </div>
+      <h2 class="font-display text-2xl font-bold text-primary">El Manantial</h2>
+      <p class="text-on-surface-variant text-sm mt-1">Gestión de Producción Láctea</p>
+    </div>
+
+    <!-- Error Alert Container -->
+    <div v-if="errorMsg" class="mb-6 p-4 bg-error-container text-on-error-container border border-error/20 rounded-xl text-left flex gap-3 items-center">
+      <span class="material-symbols-outlined text-error flex-shrink-0" style="font-variation-settings: 'FILL' 1;">error</span>
+      <p class="text-sm font-medium">{{ errorMsg }}</p>
+    </div>
+
+    <!-- Success Alert Container for Recovery -->
+    <div v-if="successMsg" class="mb-6 p-4 bg-emerald-100 text-emerald-800 border border-emerald-500/20 rounded-xl text-left flex gap-3 items-center">
+      <span class="material-symbols-outlined text-emerald-800 flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+      <p class="text-sm font-medium">{{ successMsg }}</p>
+    </div>
+
+    <!-- FORMULARIO DE INICIO DE SESIÓN -->
+    <form v-if="view === 'login'" @submit.prevent="handleLogin" class="text-left space-y-5">
+      <div>
+        <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Correo Electrónico</label>
+        <div class="relative overflow-hidden rounded-xl">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="mail">mail</span>
+          <input v-model="email" @keydown="checkEmailLength" @input="enforceEmailLimit" maxlength="27" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required type="text" class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="@elmanantial.com"/>
         </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="block font-medium text-on-surface-variant text-sm">Contraseña</label>
+          <button type="button" @click="switchToRecovery" class="text-xs text-primary font-medium hover:underline focus:outline-none">
+            ¿Olvidaste tu contraseña?
+          </button>
         </div>
-        <h2 class="font-headline-md text-base md:text-2xl font-bold text-[#154212] dark:text-[#10b981] ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
-    </div>
-  <div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
-  <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
-    <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
-  </button>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="lock">lock</span>
+          <input v-model="password" maxlength="8" required :type="showPassword ? 'text' : 'password'" class="w-full pl-11 pr-12 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="••••••••"/>
+          <button type="button" @click="showPassword = !showPassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[20px]">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+      </div>
 
-<button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
-    <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
-  </button>
-  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser && currentUser.role === 'Veterinario' ? 'VET' : (currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US') }}</span>
-  </a>
-</div>
-</header>
-<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
-    
-<!-- Header Section -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-[#154212] dark:text-emerald-500">Control Inventario</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Gestión y monitoreo de suministros críticos para la producción Láctea.</p>
-</div>
-</div>
+      <button type="submit" :disabled="loading" class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-xl shadow-md hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 mt-8 disabled:opacity-70">
+        <span v-if="loading" class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+        <span>{{ loading ? 'Iniciando Sesión...' : 'Ingresar al Sistema' }}</span>
+      </button>
+    </form>
 
-<!-- Inventory Dashboard Stats (Bento Grid Style) -->
-<div class="space-y-4 mb-10">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div @click="selectedStatusFilter = ''" :class="selectedStatusFilter === '' ? 'ring-2 ring-primary border-transparent' : 'border-outline-variant hover:border-primary/50'" class="bg-surface-container-low p-6 rounded-xl border flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-on-surface-variant font-label-md text-label-md">TOTAL ITEMS</span>
-      <span class="text-4xl font-bold text-primary mt-2">{{ totalItems }}</span>
-    </div>
-    <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant flex flex-col justify-between">
-      <span class="text-on-surface-variant font-label-md text-label-md">PRÓXIMA ENTREGA</span>
-      <span class="text-xl font-bold text-primary mt-2">Mañana, 08:00</span>
-    </div>
+    <!-- FORMULARIO DE RECUPERACIÓN DE CONTRASEÑA -->
+    <form v-else-if="view === 'recovery'" @submit.prevent="handleRecovery" class="text-left space-y-5">
+      <div>
+        <p class="text-sm text-on-surface-variant mb-4">
+          Ingresa tu correo electrónico registrado para enviarte las instrucciones de restablecimiento de contraseña.
+        </p>
+        <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Correo Electrónico</label>
+        <div class="relative overflow-hidden rounded-xl">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="mail">mail</span>
+          <input v-model="recoveryEmail" @keydown="checkRecoveryEmailLength" @input="enforceRecoveryEmailLimit" maxlength="27" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required type="text" class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="@elmanantial.com"/>
+        </div>
+      </div>
+
+      <button type="submit" :disabled="loading" class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-xl shadow-md hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 mt-6 disabled:opacity-70">
+        <span v-if="loading" class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+        <span>{{ loading ? 'Enviando...' : 'Enviar Instrucciones' }}</span>
+      </button>
+
+      <button type="button" @click="switchToLogin" class="w-full py-2.5 text-sm text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center justify-center gap-1 mt-2">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>Volver al inicio de sesión</span>
+      </button>
+    </form>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'CRÍTICO' ? '' : 'CRÍTICO')" :class="selectedStatusFilter === 'CRÍTICO' ? 'ring-2 ring-error border-transparent' : 'border-outline-variant hover:border-error/50'" class="bg-rose-100/50 dark:bg-rose-950/40 p-6 rounded-xl border border-rose-300 dark:border-rose-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-rose-800 dark:text-rose-300 font-label-md text-label-md flex items-center gap-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> CRÍTICO
-      </span>
-      <span class="text-4xl font-bold text-rose-800 dark:text-rose-300 mt-2">{{ String(criticalCount).padStart(2, '0') }}</span>
-    </div>
-    <div @click="selectedStatusFilter = (selectedStatusFilter === 'BAJO' ? '' : 'BAJO')" :class="selectedStatusFilter === 'BAJO' ? 'ring-2 ring-tertiary border-transparent' : 'border-outline-variant hover:border-tertiary/50'" class="bg-amber-100/50 dark:bg-amber-950/40 p-6 rounded-xl border border-amber-300 dark:border-amber-700 flex flex-col justify-between cursor-pointer transition-all duration-200">
-      <span class="text-amber-800 dark:text-amber-300 font-label-md text-label-md flex items-center gap-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> BAJO
-      </span>
-      <span class="text-4xl font-bold text-amber-800 dark:text-amber-300 mt-2">{{ String(lowCount).padStart(2, '0') }}</span>
-    </div>
-  </div>
-</div>
-
-<!-- Inventory Lists -->
-<div class="space-y-12">
-<!-- Category: Feed -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="grass">grass</span>
-</div>
-<h3 class="font-headline-md text-headline-md">Alimento y Nutrición</h3>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in feedItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<!-- Category: Medicine -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined" data-icon="vaccines">vaccines</span>
-</div>
-<h3 class="font-headline-md text-headline-md">Medicamentos y Salud</h3>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in medicineItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<!-- Category: Supplies -->
-<section>
-<div class="flex items-center gap-4 mb-4">
-<div class="w-12 h-12 rounded-lg bg-on-surface-variant/10 flex items-center justify-center text-on-surface-variant">
-<span class="material-symbols-outlined" data-icon="sanitizer">sanitizer</span>
-</div>
-<h3 class="font-headline-md text-headline-md">Suministros de Higiene</h3>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
-<table class="w-full text-left border-collapse min-w-[500px]">
-<thead class="bg-surface-container text-on-surface-variant font-label-lg text-label-lg">
-<tr>
-<th class="px-6 py-4">Producto</th>
-<th class="px-6 py-4">Inventario Actual</th>
-<th class="px-6 py-4">Estado</th>
-<th class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">Acciones</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr v-for="item in hygieneItems" :key="item.id" class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-bold">{{ item.name }}</td>
-<td class="px-6 py-4 font-data-tabular">{{ item.stock.toLocaleString() }} {{ item.unit }}</td>
-<td class="px-6 py-4">
-<span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700' : (item.status === 'BAJO' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300 dark:border-amber-700' : 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-300 dark:border-rose-700')" class="px-3 py-1 rounded-full text-[12px] font-bold inline-flex items-center gap-1.5">
-  <span :class="item.status === 'OK' || item.status === 'BIEN' ? 'bg-emerald-500' : (item.status === 'BAJO' ? 'bg-amber-500' : 'bg-rose-500')" class="w-2 h-2 rounded-full inline-block"></span>
-  {{ item.status }}
-</span>
-</td>
-<td class="px-6 py-4 text-right" v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')">
-<button @click="openAdjustModal(item)" class="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center ml-auto cursor-pointer shadow-sm" title="Ajustar Inventario">
-  <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
-</div>
-</main>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
-    <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-      <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-    </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-      <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-    </a>
-<a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-   :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
-  <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-  <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-</a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
-      <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
-    </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('salud.html') || isActive('historial.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
-      <span class="text-[10px] mt-0.5 leading-none">Salud</span>
-    </a>
-    <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
-      <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
-    </a>
-    <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
-      <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-    </a>
-  </nav>
-
-<!-- FAB (Floating Action Button) -->
-<button v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showAddModal = true" class="fixed bottom-24 right-6 md:right-10 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
-<span class="material-symbols-outlined" data-icon="add">add</span>
-</button>
-
-<!-- New Item Modal -->
-<div v-if="showAddModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
-<h3 class="font-headline-md text-headline-md text-primary mb-md">Nuevo Artículo de Inventario</h3>
-<form @submit.prevent="addItem">
-<div class="space-y-base">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
-<input v-model="newItem.name" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. Concentrado Lechero 22%" type="text"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Categoría</label>
-<select v-model="newItem.category" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md">
-<option value="feed">Alimento y Nutrición</option>
-<option value="medicine">Medicamentos y Salud</option>
-<option value="galones">Suministros de Higiene</option>
-</select>
-</div>
-<div class="grid grid-cols-2 gap-sm">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Inicial</label>
-<input v-model.number="newItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
-<input v-model="newItem.unit" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" placeholder="Ej. kg, unidades" type="text"/>
-</div>
-</div>
-</div>
-<div class="flex justify-end gap-sm mt-lg">
-<button type="button" @click="showAddModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
-</div>
-</form>
-</div>
-</div>
-
-<!-- Adjust Item Modal -->
-<div v-if="showAdjustModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-<div class="bg-white rounded-xl border border-outline-variant p-md max-w-md w-full shadow-xl">
-<h3 class="font-headline-md text-headline-md text-primary mb-md">Ajustar Artículo</h3>
-<form @submit.prevent="saveAdjustStock">
-<div class="space-y-base">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre del Producto</label>
-<input v-model="adjustItem.name" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-sm">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Inventario Actual</label>
-<input v-model.number="adjustItem.stock" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary outline-none text-body-md" type="number" min="0" step="0.1"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Unidad</label>
-<input v-model="adjustItem.unit" readonly class="w-full bg-surface-container-low border border-outline rounded-lg h-12 px-base outline-none text-body-md text-on-surface-variant cursor-not-allowed" type="text"/>
-</div>
-</div>
-</div>
-<div class="flex justify-end gap-sm mt-lg">
-<button type="button" @click="showAdjustModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-<button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">Guardar</button>
-</div>
-</form>
-</div>
-</div>
-
-<script>
+  <script>
     const { createApp } = Vue;
     createApp({
-        data() {
-            return {
-                isDarkMode: false,
-                currentUser: null,
-                showSidebar: false,
-                items: [
-                    { id: 1, name: 'Concentrado Lechero 22%', category: 'feed', stock: 2450, unit: 'kg', status: 'OK' },
-                    { id: 2, name: 'Sales Minerales Premium', category: 'feed', stock: 45, unit: 'kg', status: 'BAJO' },
-                    { id: 3, name: 'Vacuna Antiaftosa (Frasco 50 ds)', category: 'medicine', stock: 2, unit: 'unidades', status: 'CRÍTICO' },
-                    { id: 4, name: 'Antibiótico Oxitetraciclina', category: 'medicine', stock: 12, unit: 'frascos', status: 'OK' },
-                    { id: 5, name: 'Sellador de Pezones (Post-ordeño)', category: 'galones', stock: 15, unit: 'galones', status: 'BAJO' }
-                ],
-                showAddModal: false,
-                showAdjustModal: false,
-                selectedStatusFilter: '',
-                newItem: {
-                    name: '',
-                    category: 'feed',
-                    stock: 0,
-                    unit: 'kg'
-                },
-                adjustItem: {
-                    id: null,
-                    name: '',
-                    stock: 0,
-                    unit: ''
-                }
-            };
+      data() {
+        return {
+          isDarkMode: false,
+          view: 'login', // 'login' o 'recovery'
+          email: '',
+          password: '',
+          recoveryEmail: '',
+          showPassword: false,
+          errorMsg: '',
+          successMsg: '',
+          loading: false
+        };
+      },
+      mounted() {
+        const theme = localStorage.getItem('theme') || 'light';
+        this.isDarkMode = theme === 'dark';
+        if (this.isDarkMode) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      },
+      methods: {
+        switchToRecovery() {
+          this.errorMsg = '';
+          this.successMsg = '';
+          this.recoveryEmail = this.email;
+          this.view = 'recovery';
         },
-        computed: {
-            totalItems() {
-                return this.items.length;
-            },
-            criticalCount() {
-                return this.items.filter(i => (i.status || '').toUpperCase() === 'CRÍTICO').length;
-            },
-            lowCount() {
-                return this.items.filter(i => (i.status || '').toUpperCase() === 'BAJO').length;
-            },
-            feedItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'feed' || cat.includes('alimento') || cat.includes('nutrición');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => (i.status || '').toUpperCase() === this.selectedStatusFilter);
-                }
-                return res;
-            },
-            medicineItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'medicine' || cat.includes('medicamento') || cat.includes('salud');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => (i.status || '').toUpperCase() === this.selectedStatusFilter);
-                }
-                return res;
-            },
-            hygieneItems() {
-                let res = this.items.filter(i => {
-                    const cat = (i.category || '').toLowerCase();
-                    return cat === 'hygiene' || cat === 'galones' || cat.includes('higiene') || cat.includes('suministro');
-                });
-                if (this.selectedStatusFilter) {
-                    res = res.filter(i => (i.status || '').toUpperCase() === this.selectedStatusFilter);
-                }
-                return res;
-            }
+        switchToLogin() {
+          this.errorMsg = '';
+          this.successMsg = '';
+          this.view = 'login';
         },
-        mounted() {
-            const theme = localStorage.getItem('theme') || 'light';
-            this.isDarkMode = theme === 'dark';
+        checkEmailLength(e) {
+          if (this.email && this.email.length >= 27 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+          }
+        },
+        enforceEmailLimit(e) {
+          if (this.email && this.email.length > 27) {
+            this.email = this.email.slice(0, 27);
+          }
+          if (e && e.target && e.target.value.length > 27) {
+            e.target.value = e.target.value.slice(0, 27);
+          }
+        },
+        checkRecoveryEmailLength(e) {
+          if (this.recoveryEmail && this.recoveryEmail.length >= 27 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+          }
+        },
+        enforceRecoveryEmailLimit(e) {
+          if (this.recoveryEmail && this.recoveryEmail.length > 27) {
+            this.recoveryEmail = this.recoveryEmail.slice(0, 27);
+          }
+          if (e && e.target && e.target.value.length > 27) {
+            e.target.value = e.target.value.slice(0, 27);
+          }
+        },
+        toggleTheme() {
+            this.isDarkMode = !this.isDarkMode;
             if (this.isDarkMode) {
                 document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
             } else {
                 document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
             }
-
-            const userStr = localStorage.getItem('loggedInUser');
-            if (userStr) {
-                try {
-                    this.currentUser = JSON.parse(userStr);
-                    if (this.currentUser.status !== 'Activo') {
-                        localStorage.removeItem('loggedInUser');
-                        window.location.href = 'login.html';
-                        return;
-                    }
-                } catch (e) {
-                    localStorage.removeItem('loggedInUser');
-                    window.location.href = 'login.html';
-                    return;
-                }
-            } else {
-                window.location.href = 'login.html';
-                return;
-            }
-
-            this.fetchItems();
         },
-        methods: {
-            toggleTheme() {
-                this.isDarkMode = !this.isDarkMode;
-                if (this.isDarkMode) {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                }
-            },
 
-            logout() {
-                localStorage.removeItem('loggedInUser');
-                window.location.href = 'login.html';
-            },
+        async handleRecovery() {
+          this.errorMsg = '';
+          this.successMsg = '';
 
-            isActive(page) {
-                const path = window.location.pathname;
-                return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
-            },
-            async fetchItems() {
-                try {
-                    const res = await fetch('/api/inventory');
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (Array.isArray(data) && data.length > 0) {
-                            this.items = data;
-                        }
-                    }
-                } catch (err) {
-                    console.error("Error al conectar con la API de inventario SQLite3", err);
-                }
-            },
-            openAdjustModal(item) {
-                if (!this.currentUser || (this.currentUser.role !== 'Administrador' && this.currentUser.role !== 'Veterinario')) {
-                    alert("No tienes permisos para realizar esta acción.");
-                    return;
-                }
-                this.adjustItem = {
-                    id: item.id,
-                    name: item.name,
-                    stock: item.stock,
-                    unit: item.unit
-                };
-                this.showAdjustModal = true;
-            },
-            async saveAdjustStock() {
-                const newStock = parseFloat(this.adjustItem.stock);
-                if (!isNaN(newStock) && newStock >= 0) {
-                    const item = this.items.find(i => i.id === this.adjustItem.id);
-                    if (item) {
-                        try {
-                            const res = await fetch(`/api/inventory/${item.id}/stock`, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ stock: newStock })
-                            });
-                            if (res.ok) {
-                                const updated = await res.json();
-                                item.stock = updated.stock;
-                                item.status = updated.status;
-                            } else {
-                                item.stock = newStock;
-                                item.status = newStock <= 2 && item.category === 'medicine' ? 'CRÍTICO' : (newStock <= 10 ? 'BAJO' : 'OK');
-                            }
-                        } catch (err) {
-                            item.stock = newStock;
-                            item.status = newStock <= 2 && item.category === 'medicine' ? 'CRÍTICO' : (newStock <= 10 ? 'BAJO' : 'OK');
-                        }
-                    }
-                    this.showAdjustModal = false;
-                } else {
-                    alert("Por favor ingrese un número válido mayor o igual a 0.");
-                }
-            },
-            async addItem() {
-                try {
-                    const payload = {
-                        ...this.newItem,
-                        status: this.newItem.stock <= 2 && this.newItem.category === 'medicine' ? 'CRÍTICO' : (this.newItem.stock <= 10 ? 'BAJO' : 'OK')
-                    };
-                    const res = await fetch('/api/inventory', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (res.ok) {
-                        const created = await res.json();
-                        this.items.push(created);
-                    } else {
-                        this.items.push({
-                            id: Date.now(),
-                            ...payload
-                        });
-                    }
-                    this.showAddModal = false;
-                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
-                } catch (err) {
-                    this.items.push({
-                        id: Date.now(),
-                        ...this.newItem,
-                        status: this.newItem.stock <= 2 && this.newItem.category === 'medicine' ? 'CRÍTICO' : (this.newItem.stock <= 10 ? 'BAJO' : 'OK')
-                    });
-                    this.showAddModal = false;
-                    this.newItem = { name: '', category: 'feed', stock: 0, unit: 'kg' };
-                }
+          if (this.recoveryEmail.length > 27) {
+            this.errorMsg = 'El correo electrónico no debe exceder los 27 caracteres.';
+            return;
+          }
+
+          this.loading = true;
+          try {
+            const res = await fetch('/api/recover-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: this.recoveryEmail })
+            });
+            if (res.ok) {
+              this.successMsg = 'Se han enviado las instrucciones de recuperación a su correo electrónico.';
+              this.recoveryEmail = '';
+            } else {
+              let errorMessage = 'Error al procesar la solicitud de recuperación';
+              try {
+                const data = await res.json();
+                errorMessage = data.error || errorMessage;
+              } catch (jsonErr) {}
+
+              if (res.status === 404) {
+                this.localRecoveryFallback();
+                return;
+              }
+              this.errorMsg = errorMessage;
             }
-        }
-    }).mount('#app');
-</script>
+          } catch (err) {
+            console.warn('Error de red o servidor offline, ejecutando recuperación en modo local...', err);
+            this.localRecoveryFallback();
+          } finally {
+            this.loading = false;
+          }
+        },
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-        .catch(err => console.error('Error al registrar el Service Worker:', err));
-    });
-  }
-</script>
+        localRecoveryFallback() {
+          const fallbackUsers = [
+            { id: 1, name: "Francisco Molina", email: "admin@elmanantial.com" },
+            { id: 2, name: "Dra. Maria Mendoza", email: "veterinario@elmanantial.com" },
+            { id: 3, name: "Jose Sanchez", email: "jose@elmanantial.com" },
+          ];
+
+          let usersList = fallbackUsers;
+          const storedUsers = localStorage.getItem('localUsersData');
+          if (storedUsers) {
+            try {
+              usersList = JSON.parse(storedUsers);
+            } catch (e) {
+              console.error(e);
+            }
+          }
+
+          const user = usersList.find(u => u.email === this.recoveryEmail);
+          if (user) {
+            this.successMsg = `Instrucciones de recuperación enviadas exitosamente a ${this.recoveryEmail}.`;
+            this.recoveryEmail = '';
+          } else {
+            this.errorMsg = "El correo electrónico no se encuentra registrado en el sistema.";
+          }
+        },
+
+        async handleLogin() {
+          this.errorMsg = '';
+          this.successMsg = '';
+
+          if (this.email.length > 27) {
+            this.errorMsg = 'El correo electrónico no debe exceder los 27 caracteres.';
+            return;
+          }
+
+          this.loading = true;
+          try {
+            const res = await fetch('/api/login', {
+              method: 'GET',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: this.email, password: this.password })
+            });
+            if (res.ok) {
+              const user = await res.json();
+              localStorage.setItem('loggedInUser', JSON.stringify(user));
+              window.location.href = 'index.html';
+            } else {
+              let errorMessage = 'Error al iniciar sesión';
+              try {
+                const data = await res.json();
+                errorMessage = data.error || errorMessage;
+              } catch (jsonErr) {
+                // Response body is not JSON
+              }
+
+              if (res.status === 401 || res.status === 403) {
+                this.errorMsg = errorMessage;
+                return;
+              }
+              if (res.status === 404) {
+                this.localLoginFallback();
+                return;
+              }
+
+              this.errorMsg = errorMessage;
+            }
+          } catch (err) {
+            console.warn('Network error or server offline, trying local fallback authentication...', err);
+            this.localLoginFallback();
+          } finally {
+            this.loading = false;
+          }
+        },
+        localLoginFallback() {
+          let email = this.email;
+          let password = this.password;
+
+          if (email === 'operador1@elmanantial.com' && password === 'operador1') {
+            email = 'jose@elmanantial.com';
+            password = 'ope123';
+          } else if (email === 'operador2@elmanantial.com' && password === 'operador2') {
+            email = '';
+          } else if (email === 'veterinario@elmanantial.com' && password === 'veterinario1') {
+            password = 'vet123';
+          }
+
+          const fallbackUsers = [
+            { id: 1, name: "Francisco Molina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "FM" },
+            { id: 2, name: "Dra. Maria Mendoza", role: "Veterinario", status: "Activo", email: "veterinario@elmanantial.com", password: "vet123", avatar: "VET" },
+            { id: 3, name: "Jose Sanchez", role: "Operario", status: "Activo", email: "jose@elmanantial.com", password: "ope123", avatar: "JS" },
+          ];
+
+          let usersList = fallbackUsers;
+          const storedUsers = localStorage.getItem('localUsersData');
+          if (storedUsers) {
+            try {
+              usersList = JSON.parse(storedUsers);
+            } catch (e) {
+              console.error(e);
+            }
+          }
+
+          const user = usersList.find(u => u.email === email && u.password === password);
+          if (user) {
+            if (user.status !== 'Activo') {
+              this.errorMsg = "Por favor comuníquese con el admin.";
+            } else {
+              localStorage.setItem('loggedInUser', JSON.stringify(user));
+              window.location.href = 'index.html';
+            }
+          } else {
+            this.errorMsg = "Credenciales incorrectas (Modo Local)";
+          }
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
+
+Corregir errores 
+
+Sin cambiarle la estructura ni los colores actuales
