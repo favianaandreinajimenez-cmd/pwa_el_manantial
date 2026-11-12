@@ -5,10 +5,10 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
 <!-- Configuración PWA -->
-<link rel="manifest" href="/public/manifest.json"/>
+<link rel="manifest" href="./public/manifest.json"/>
 <meta name="theme-color" content="#064e3b"/>
 <!-- Favicon actualizado con el nuevo SVG -->
-<link rel="icon" :href="isDarkMode ? 'imagenes/icono_logo.svg' : 'imagenes/icono_logo.svg'" type="image/svg+xml">
+<link rel="icon" href="imagenes/icono_logo.svg" type="image/svg+xml">
 <!-- Scripts con respaldo local o CDN estándar -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -31,6 +31,7 @@
         body {
             font-family: 'Hanken Grotesk', sans-serif;
             -webkit-font-smoothing: antialiased;
+            min-height: max(884px, 100dvh);
         }
         h1, h2, h3, .font-headline {
             font-family: 'Work Sans', sans-serif;
@@ -144,9 +145,6 @@
         }
     </script>
 <style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
         html.dark .glass-card {
             background: rgba(22, 32, 50, 0.8) !important;
             border-color: #25354e !important;
@@ -341,7 +339,8 @@
         }
     </style>
   </head>
-<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden text-on-surface">
+<div id="app" class="contents">
 <!-- Navigation Drawer Backdrop -->
 <div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
 <!-- Navigation Drawer -->
@@ -351,7 +350,7 @@
 <p class="text-[11px] text-on-surface-variant">Gestión Láctea</p>
 </div>
 <nav class="flex-1 mt-4 px-2 overflow-y-auto custom-scrollbar flex flex-col gap-1">
-      <a v-if="currentUser" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('index.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -360,7 +359,7 @@
         <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -369,7 +368,7 @@
         <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -378,7 +377,7 @@
         <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -387,7 +386,7 @@
         <span class="material-symbols-outlined" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Control Inventario</span>
       </a>
-      <a v-if="currentUser && currentUser.role === 'Administrador'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && currentUser.role === 'Administrador'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('reportes.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -396,7 +395,7 @@
         <span class="material-symbols-outlined" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
         <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Reportes Producción</span>
       </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
+      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full cursor-pointer"
          :class="[
            showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
            isActive('salud.html') || isActive('historial.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
@@ -505,9 +504,9 @@
 <!-- History Tabs -->
 <div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
 <div class="flex border-b border-outline-variant overflow-x-auto">
-<button class="px-6 py-4 font-label-lg text-label-lg text-primary border-b-2 border-primary whitespace-nowrap">Historial Médico</button>
-<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap">Producción Mensual</button>
-<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap">Genealogía</button>
+<button class="px-6 py-4 font-label-lg text-label-lg text-primary border-b-2 border-primary whitespace-nowrap cursor-pointer">Historial Médico</button>
+<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap cursor-pointer">Producción Mensual</button>
+<button class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap cursor-pointer">Genealogía</button>
 </div>
 <div class="p-6">
 <div class="space-y-8 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
@@ -528,7 +527,7 @@
 No hay eventos clínicos registrados para este animal.
 </div>
 </div>
-<button @click="openEventModal('Chequeo')" class="mt-8 w-full py-3 border border-dashed border-outline text-primary font-bold rounded-lg hover:bg-primary-fixed transition-colors">
+<button @click="openEventModal('Chequeo')" class="mt-8 w-full py-3 border border-dashed border-outline text-primary font-bold rounded-lg hover:bg-primary-fixed transition-colors cursor-pointer">
                                 Registrar Evento de Chequeo
                             </button>
 </div>
@@ -540,11 +539,11 @@ No hay eventos clínicos registrados para este animal.
 <div class="bg-white rounded-xl border border-outline-variant shadow-sm p-6">
 <h3 class="font-headline-md text-label-lg font-bold text-on-surface mb-4">Acciones Rápidas</h3>
 <div class="space-y-3">
-<button @click="openEventModal('Tratamiento')" class="w-full flex items-center justify-center gap-3 bg-primary text-on-primary py-3 rounded-xl font-bold hover:brightness-110 active:scale-[0.98] transition-all">
+<button @click="openEventModal('Tratamiento')" class="w-full flex items-center justify-center gap-3 bg-primary text-on-primary py-3 rounded-xl font-bold hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer">
 <span class="material-symbols-outlined" data-icon="add_moderator">add_moderator</span>
                                 Registrar Tratamiento
                             </button>
-<button @click="openEventModal('Vacunación')" class="w-full flex items-center justify-center gap-3 bg-white border-2 border-primary text-primary py-3 rounded-xl font-bold hover:bg-surface-container transition-all">
+<button @click="openEventModal('Vacunación')" class="w-full flex items-center justify-center gap-3 bg-white border-2 border-primary text-primary py-3 rounded-xl font-bold hover:bg-surface-container transition-all cursor-pointer">
 <span class="material-symbols-outlined" data-icon="event_note">event_note</span>
                                 Registrar Vacunación
                             </button>
@@ -554,7 +553,7 @@ No hay eventos clínicos registrados para este animal.
 <div class="bg-white rounded-xl border border-outline-variant shadow-sm p-6">
 <div class="flex justify-between items-center mb-4">
 <h3 class="font-headline-md text-label-lg font-bold text-on-surface">Notas Veterinarias</h3>
-<button @click="toggleEditNotes" class="text-primary material-symbols-outlined hover:bg-surface-container p-1 rounded transition-colors" data-icon="edit_note">edit_note</button>
+<button @click="toggleEditNotes" class="text-primary material-symbols-outlined hover:bg-surface-container p-1 rounded transition-colors cursor-pointer" data-icon="edit_note">edit_note</button>
 </div>
 <div v-if="!isEditingNotes" class="bg-surface p-4 rounded-lg border border-outline-variant/30 italic text-on-surface-variant font-body-sm whitespace-pre-line">
                             "{{ animal.notes || 'Sin notas registradas.' }}"
@@ -562,8 +561,8 @@ No hay eventos clínicos registrados para este animal.
 <div v-else class="space-y-sm">
 <textarea v-model="editNotesText" class="w-full bg-surface-container-lowest border border-outline rounded-lg p-3 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none h-24" placeholder="Ingrese notas veterinarias..."></textarea>
 <div class="flex justify-end gap-sm">
-<button @click="isEditingNotes = false" class="px-3 py-1 border border-outline rounded-lg text-label-md hover:bg-surface-container">Cancelar</button>
-<button @click="saveNotes" :disabled="savingNotes" class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-md hover:brightness-110 active:scale-95 transition-all">
+<button @click="isEditingNotes = false" class="px-3 py-1 border border-outline rounded-lg text-label-md hover:bg-surface-container cursor-pointer">Cancelar</button>
+<button @click="saveNotes" :disabled="savingNotes" class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-md hover:brightness-110 active:scale-95 transition-all cursor-pointer">
                                 {{ savingNotes ? 'Guardando...' : 'Guardar' }}
                             </button>
 </div>
@@ -587,37 +586,37 @@ No hay eventos clínicos registrados para este animal.
 </main>
 <!-- BottomNavBar (Mobile Only) -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
-    <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
        :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
       <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
        :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
       <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
        :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
       <span class="text-[10px] mt-0.5 leading-none">Finca</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
        :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
       <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
     </a>
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
        :class="isActive('salud.html') || isActive('historial.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
       <span class="text-[10px] mt-0.5 leading-none">Salud</span>
     </a>
-    <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
        :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
       <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
     </a>
-    <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
+    <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 cursor-pointer"
        :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
       <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
       <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
@@ -662,8 +661,8 @@ No hay eventos clínicos registrados para este animal.
         </div>
       </div>
       <div class="flex justify-end gap-sm mt-lg">
-        <button type="button" @click="showEventModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-        <button type="submit" :disabled="submittingEvent" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">
+        <button type="button" @click="showEventModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container cursor-pointer">Cancelar</button>
+        <button type="submit" :disabled="submittingEvent" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all cursor-pointer">
           {{ submittingEvent ? 'Guardando...' : 'Guardar' }}
         </button>
       </div>
@@ -723,19 +722,20 @@ No hay eventos clínicos registrados para este animal.
         </div>
       </div>
       <div class="flex justify-end gap-sm mt-lg">
-        <button type="button" @click="showEditAnimalModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container">Cancelar</button>
-        <button type="submit" :disabled="savingAnimalChanges" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all">
+        <button type="button" @click="showEditAnimalModal = false" class="px-4 py-2 border border-outline rounded-lg font-label-lg hover:bg-surface-container cursor-pointer">Cancelar</button>
+        <button type="submit" :disabled="savingAnimalChanges" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg hover:brightness-110 active:scale-95 transition-all cursor-pointer">
           {{ savingAnimalChanges ? 'Guardando...' : 'Guardar Cambios' }}
         </button>
       </div>
     </form>
   </div>
 </div>
+</div>
 
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('./sw.js')
                 .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
                 .catch(err => console.error('Error al registrar el Service Worker:', err));
         });
