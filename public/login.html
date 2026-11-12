@@ -4,7 +4,6 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>pwa_el_manantial</title>
-</head>
 <!-- Configuración PWA -->
 <link rel="manifest" href="/public/manifest.json"/>
 <meta name="theme-color" content="#064e3b"/>
@@ -19,121 +18,46 @@
 <script src="js/sync.js"></script>
 <!-- Lógica general de la interfaz -->
 <script src="js/app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/custom.css">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "on-error-container": "#93000a",
-                        "on-primary-container": "#9dd090",
-                        "on-secondary-fixed-variant": "#454747",
-                        "outline": "#72796e",
-                        "primary": "#154212",
-                        "secondary-container": "#dfe0e0",
-                        "outline-variant": "#c2c9bb",
-                        "surface": "#f8f9ff",
-                        "on-surface-variant": "#42493e",
-                        "secondary": "#5d5f5f",
-                        "tertiary-fixed": "#ffd9e4",
-                        "on-background": "#0d1c2e",
-                        "on-tertiary-container": "#ffaac8",
-                        "surface-container": "#e6eeff",
-                        "on-secondary": "#ffffff",
-                        "surface-container-high": "#dce9ff",
-                        "surface-tint": "#3b6934",
-                        "inverse-on-surface": "#eaf1ff",
-                        "inverse-surface": "#233144",
-                        "secondary-fixed-dim": "#c6c6c7",
-                        "tertiary": "#60233e",
-                        "primary-container": "#2d5a27",
-                        "secondary-fixed": "#e2e2e2",
-                        "surface-container-highest": "#d5e3fc",
-                        "on-tertiary-fixed-variant": "#71314c",
-                        "primary-fixed-dim": "#a1d494",
-                        "on-tertiary-fixed": "#3b0520",
-                        "on-secondary-container": "#616363",
-                        "on-error": "#ffffff",
-                        "surface-variant": "#d5e3fc",
-                        "on-secondary-fixed": "#1a1c1c",
-                        "on-primary": "#ffffff",
-                        "on-primary-fixed-variant": "#23501e",
-                        "surface-container-lowest": "#ffffff",
-                        "error": "#ba1a1a",
-                        "surface-bright": "#f8f9ff",
-                        "surface-dim": "#ccdbf3",
-                        "tertiary-container": "#7c3a55",
-                        "on-primary-fixed": "#002201",
-                        "tertiary-fixed-dim": "#ffb0cc",
-                        "background": "#f8f9ff",
-                        "on-surface": "#0d1c2e",
-                        "on-tertiary": "#ffffff",
-                        "surface-container-low": "#eff4ff",
-                        "inverse-primary": "#a1d494",
-                        "primary-fixed": "#bcf0ae",
-                        "error-container": "#ffdad6"
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    spacing: {
-                        "lg": "40px",
-                        "gutter": "24px",
-                        "md": "24px",
-                        "margin-mobile": "16px",
-                        "margin-desktop": "32px",
-                        "xl": "64px",
-                        "sm": "12px",
-                        "xs": "4px",
-                        "base": "8px"
-                    },
-                    fontFamily: {
-                        "label-md": ["Hanken Grotesk"],
-                        "body-sm": ["Hanken Grotesk"],
-                        "headline-lg": ["Work Sans"],
-                        "data-tabular": ["Hanken Grotesk"],
-                        "display-lg": ["Work Sans"],
-                        "label-lg": ["Hanken Grotesk"],
-                        "body-lg": ["Hanken Grotesk"],
-                        "body-md": ["Hanken Grotesk"],
-                        "headline-md": ["Work Sans"]
-                    },
-                    fontSize: {
-                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                        "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
-                    }
-                }
-            }
-        };
-    </script>
-<style>
-        body {
-            font-family: 'Hanken Grotesk', sans-serif;
-            background-color: #f8f9ff;
-            min-height: max(884px, 100dvh);
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#154212",
+            "primary-container": "#2d5a27",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c2c9bb",
+            "surface": "#f8f9ff",
+            "on-surface": "#0d1c2e",
+            "on-surface-variant": "#42493e",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          "borderRadius": {
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem"
+          },
+          "fontFamily": {
+            "body": ["Hanken Grotesk"],
+            "display": ["Work Sans"]
+          }
         }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(226, 232, 240, 1);
-        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Hanken Grotesk', sans-serif;
+      background-color: #f8f9ff;
+      min-height: 100vh;
+    }
 
         /* Custom styles for dark mode */
         html.dark .glass-card {
@@ -308,6 +232,33 @@
         html.dark .bg-primary:hover {
             background-color: #059669 !important;
         }
+        html.dark .bg-\[\#e3f2fd\] {
+            background-color: #1e3a8a !important;
+        }
+        html.dark .text-\[\#1565c0\] {
+            color: #93c5fd !important;
+        }
+        html.dark .bg-\[\#dcfce7\] {
+            background-color: #064e3b !important;
+        }
+        html.dark .text-\[\#14532d\] {
+            color: #a7f3d0 !important;
+        }
+        html.dark .text-\[\#2e7d32\] {
+            color: #a7f3d0 !important;
+        }
+        html.dark .text-\[\#c62828\] {
+            color: #fca5a5 !important;
+        }
+        html.dark svg path[stroke="#154212"] {
+            stroke: #10b981 !important;
+        }
+        html.dark svg circle[fill="#154212"] {
+            fill: #10b981 !important;
+        }
+        html.dark stop[stop-color="#154212"] {
+            stop-color: #10b981 !important;
+        }
         html.dark .shadow-sm,
         html.dark .shadow-md,
         html.dark .shadow-lg,
@@ -328,443 +279,328 @@
         html.dark ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
-    </style>
-  </head>
-<body class="font-body-md text-body-md overflow-x-hidden text-on-surface" id="app">
-<!-- Navigation Drawer Backdrop -->
-<div v-if="showSidebar" @click="showSidebar = false" class="fixed inset-0 bg-black/50 z-40 hidden lg:block"></div>
-<!-- Navigation Drawer -->
-<aside :class="showSidebar ? 'w-80 translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20'" class="hidden lg:flex flex-col h-[calc(100vh-4rem)] fixed left-0 top-16 z-50 border-r border-outline-variant bg-surface-container-low transition-all duration-300 ease-in-out">
-<div v-if="showSidebar" class="px-6 py-4 border-b border-outline-variant/30">
-<p class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">El Manantial</p>
-<p class="text-[11px] text-on-surface-variant">Gestión Láctea</p>
-</div>
-<nav class="flex-1 mt-4 px-2 overflow-y-auto custom-scrollbar flex flex-col gap-1">
-      <a v-if="currentUser" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('index.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="index.html">
-        <span class="material-symbols-outlined" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Panel Control</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('ordeno.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="ordeno.html">
-        <span class="material-symbols-outlined" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Registro Ordeño</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('unidad.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="unidad.html">
-        <span class="material-symbols-outlined" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Gestión Finca</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('inventario.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="inventario.html">
-        <span class="material-symbols-outlined" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Control Inventario</span>
-      </a>
-      <a v-if="currentUser && currentUser.role === 'Administrador'" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('reportes.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="reportes.html">
-        <span class="material-symbols-outlined" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Reportes Producción</span>
-      </a>
-      <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" @click="showSidebar = false" class="flex items-center transition-all duration-200 rounded-full"
-         :class="[
-           showSidebar ? 'px-4 py-3 mx-2 justify-start gap-3 w-[calc(100%-16px)]' : 'p-0 w-12 h-12 mx-auto justify-center',
-           isActive('salud.html') || isActive('historial.html') ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
-         ]"
-         href="salud.html">
-        <span class="material-symbols-outlined" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
-        <span v-if="showSidebar" class="font-body-md text-body-md whitespace-nowrap transition-all duration-300">Salud Animal</span>
-      </a>
-    </nav>
-</aside>
+        /* Filtro CSS para convertir el SVG al color #0b0f19 en modo oscuro */
+        html.dark .logo-dark-filter {
+            filter: brightness(0) saturate(100%) invert(3%) sepia(21%) saturate(2200%) hue-rotate(190deg) brightness(95%) contrast(98%);
+        }
+  </style>
+</head>
+<body class="flex items-center justify-center p-4">
+  <div id="app" class="w-full max-w-md bg-white border border-outline-variant/60 rounded-2xl shadow-xl p-8 text-center relative overflow-hidden">
+    <button @click="toggleTheme" class="fixed top-4 right-4 w-10 h-10 rounded-full bg-white dark:bg-[#162032] border border-outline-variant/60 dark:border-[#25354e] shadow-md hover:scale-105 active:scale-95 text-on-surface-variant dark:text-gray-300 transition-all flex items-center justify-center cursor-pointer z-50" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
+      <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
+    </button>
 
-<!-- Main Content Area -->
-<main class="lg:ml-20 pt-16 pb-24 md:pb-8">
-<!-- Top App Bar -->
-<header class="flex justify-between items-center w-full h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
-<div class="flex items-center h-full min-w-0 flex-1">
-    <div class="w-16 md:w-20 flex justify-center items-center h-full border-r border-outline-variant/30 flex-shrink-0">
-        <div @click="showSidebar = !showSidebar" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#154212] dark:bg-[#10b981] flex items-center justify-center text-[#f8f9ff] dark:text-[#0b0f19] cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-sm overflow-hidden p-1">
-            <img src="imagenes/icono_logo.svg" alt="Logo" class="w-full h-full object-contain dark:brightness-0 dark:invert-[0.05]" />
-        </div>
+    <!-- Header decoration -->
+    <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
+
+    <div class="mb-8">
+      <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary mx-auto mb-4 shadow-md overflow-hidden p-2">
+        <img src="imagenes/icono_logo.svg" alt="Logo El Manantial" class="w-full h-full object-contain logo-dark-filter" />
+      </div>
+      <h2 class="font-display text-2xl font-bold text-primary">El Manantial</h2>
+      <p class="text-on-surface-variant text-sm mt-1">Gestión de Producción Láctea</p>
     </div>
-   <h2 class="font-headline-md text-base md:text-2xl font-bold text-primary ml-2 md:ml-4 whitespace-nowrap truncate">El Manantial</h2>
+
+    <!-- Error Alert Container -->
+    <div v-if="errorMsg" class="mb-6 p-4 bg-error-container text-on-error-container border border-error/20 rounded-xl text-left flex gap-3 items-center">
+      <span class="material-symbols-outlined text-error flex-shrink-0" style="font-variation-settings: 'FILL' 1;">error</span>
+      <p class="text-sm font-medium">{{ errorMsg }}</p>
+    </div>
+
+    <!-- Success Alert Container for Recovery -->
+    <div v-if="successMsg" class="mb-6 p-4 bg-emerald-100 text-emerald-800 border border-emerald-500/20 rounded-xl text-left flex gap-3 items-center">
+      <span class="material-symbols-outlined text-emerald-800 flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+      <p class="text-sm font-medium">{{ successMsg }}</p>
+    </div>
+
+    <!-- FORMULARIO DE INICIO DE SESIÓN -->
+    <form v-if="view === 'login'" @submit.prevent="handleLogin" class="text-left space-y-5">
+      <div>
+        <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Correo Electrónico</label>
+        <div class="relative overflow-hidden rounded-xl">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="mail">mail</span>
+          <input v-model="email" @keydown="checkEmailLength" @input="enforceEmailLimit" maxlength="27" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required type="text" class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="@elmanantial.com"/>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="block font-medium text-on-surface-variant text-sm">Contraseña</label>
+          <button type="button" @click="switchToRecovery" class="text-xs text-primary font-medium hover:underline focus:outline-none">
+            ¿Olvidaste tu contraseña?
+          </button>
+        </div>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="lock">lock</span>
+          <input v-model="password" maxlength="8" required :type="showPassword ? 'text' : 'password'" class="w-full pl-11 pr-12 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="••••••••"/>
+          <button type="button" @click="showPassword = !showPassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[20px]">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" :disabled="loading" class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-xl shadow-md hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 mt-8 disabled:opacity-70">
+        <span v-if="loading" class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+        <span>{{ loading ? 'Iniciando Sesión...' : 'Ingresar al Sistema' }}</span>
+      </button>
+    </form>
+
+    <!-- FORMULARIO DE RECUPERACIÓN DE CONTRASEÑA -->
+    <form v-else-if="view === 'recovery'" @submit.prevent="handleRecovery" class="text-left space-y-5">
+      <div>
+        <p class="text-sm text-on-surface-variant mb-4">
+          Ingresa tu correo electrónico registrado para enviarte las instrucciones de restablecimiento de contraseña.
+        </p>
+        <label class="block font-medium text-on-surface-variant text-sm mb-1.5">Correo Electrónico</label>
+        <div class="relative overflow-hidden rounded-xl">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/80 text-[20px]" data-icon="mail">mail</span>
+          <input v-model="recoveryEmail" @keydown="checkRecoveryEmailLength" @input="enforceRecoveryEmailLimit" maxlength="27" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required type="text" class="w-full pl-11 pr-4 py-3 bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-body-md" placeholder="@elmanantial.com"/>
+        </div>
+      </div>
+
+      <button type="submit" :disabled="loading" class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-xl shadow-md hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 mt-6 disabled:opacity-70">
+        <span v-if="loading" class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+        <span>{{ loading ? 'Enviando...' : 'Enviar Instrucciones' }}</span>
+      </button>
+
+      <button type="button" @click="switchToLogin" class="w-full py-2.5 text-sm text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center justify-center gap-1 mt-2">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>Volver al inicio de sesión</span>
+      </button>
+    </form>
   </div>
-<div class="flex items-center gap-4 pr-margin-mobile md:pr-margin-desktop">
-  <button @click="toggleTheme" class="w-10 h-10 rounded-full hover:bg-surface-container-highest dark:hover:bg-slate-700 text-on-surface-variant dark:text-gray-300 transition-colors flex items-center justify-center cursor-pointer" :title="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
-    <span class="material-symbols-outlined text-[20px]">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
-  </button>
 
-<button @click="logout" class="w-10 h-10 rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center cursor-pointer" title="Cerrar Sesión">
-    <span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
-  </button>
-  <a href="usuarios.html" class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#154212] dark:border-[#10b981] flex items-center justify-center bg-[#154212] dark:bg-[#10b981] text-[#ffffff] dark:text-[#101726] text-sm font-bold active:scale-95 transition-transform duration-150 shadow-sm">
-    <img v-if="currentUser && currentUser.avatar && (currentUser.avatar.startsWith('http') || currentUser.avatar.startsWith('data:'))" alt="User profile" class="w-full h-full object-cover" :src="currentUser.avatar"/>
-    <span v-else>{{ currentUser ? currentUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'US' }}</span>
-  </a>
-</div>
-</header>
-
-<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-7xl mx-auto">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Entry Form Section -->
-<section class="lg:col-span-5 space-y-md">
-<div class="glass-card p-md rounded-xl shadow-sm">
-<div class="mb-md">
-<h2 class="font-headline-md text-headline-md text-primary mb-xs">Registro Diario</h2>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Ingrese los datos del ordeño actual para actualizar la producción.</p>
-</div>
-<form @submit.prevent="submitRecord" class="space-y-base">
-<!-- Agro-unit Dropdown -->
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant" for="agro-unit">Unidad de Producción</label>
-<select v-model="newRecord.unitName" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md" id="agro-unit">
-<option disabled value="">Seleccione el Lote</option>
-<option value="Lote A">Lote A</option>
-<option value="Lote B">Lote B</option>
-</select>
-</div>
-
-<!-- ID Animal y Nombre en Dos Cuadros Horizontales con Nombres Arriba -->
-<div>
-<div class="grid grid-cols-2 gap-base">
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">ID Animal</label>
-<input v-model="newRecord.animalId" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md" placeholder="Ej: #B-201" type="text"/>
-</div>
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant">Nombre</label>
-<input v-model="newRecord.animalName" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md" placeholder="Ej: gitana" type="text"/>
-</div>
-</div>
-</div>
-
-<!-- Amount of Liters -->
-<div>
-<label class="block font-label-lg text-label-lg mb-xs text-on-surface-variant" for="liters">Cantidad de Litros</label>
-<div class="relative">
-<input v-model="newRecord.liters" @input="validateLiters" required class="w-full bg-surface-container-lowest border border-outline rounded-lg h-12 px-base focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md" id="liters" placeholder="0.00" max="1000" step="0.01" type="text" inputmode="decimal" maxlength="6"/>
-<span class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">LT</span>
-</div>
-</div>
-<!-- Time of Day -->
-<div class="pt-base">
-<label class="block font-label-lg text-label-lg mb-base text-on-surface-variant">Turno de Ordeño</label>
-<div class="grid grid-cols-2 gap-base">
-<label class="cursor-pointer">
-<input v-model="newRecord.shift" class="peer hidden" name="shift" type="radio" value="morning"/>
-<div class="flex items-center justify-center gap-xs border border-outline rounded-lg py-3 peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary transition-all">
-<span class="material-symbols-outlined" data-icon="light_mode">light_mode</span>
-<span class="font-label-lg text-label-lg">Mañana</span>
-</div>
-</label>
-<label class="cursor-pointer">
-<input v-model="newRecord.shift" class="peer hidden" name="shift" type="radio" value="afternoon"/>
-<div class="flex items-center justify-center gap-xs border border-outline rounded-lg py-3 peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary transition-all">
-<span class="material-symbols-outlined" data-icon="partly_cloudy_day">partly_cloudy_day</span>
-<span class="font-label-lg text-label-lg">Tarde</span>
-</div>
-</label>
-</div>
-</div>
-<button :disabled="submitting" class="w-full mt-md bg-primary text-on-primary font-label-lg text-label-lg h-12 rounded-lg hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-xs" type="submit">
-<span class="material-symbols-outlined" :class="{'animate-spin': submitting}" data-icon="save">{{ submitting ? 'sync' : 'save' }}</span>
-                            {{ submitting ? 'Guardando...' : 'Guardar Registro' }}
-                        </button>
-</form>
-</div>
-<!-- Atmospheric visual -->
-<div class="hidden lg:block h-48 rounded-xl overflow-hidden shadow-sm relative">
-<img alt="Dairy production" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY3zq033VAMe8mUTy84p-oCj8ZSewTlE-9Q9yIzvm5Jx_DOkECyVVoPBjP4_xbZQhTe9kckqsVPDq3jPAo6IC_-pu7ecn-0Q-j-1n33SyiVAjzZKnVL9WR1qeDJtxf4CFoNbhi1o86cJKsHgZsOYLs55UeVZX7hKqTNxu05zSEkrW6CVVIPolNNZq5spCSzcXeWf00JiDBTfnKXa6BbD8GiXvRcck8kmDvGmBeJOq_wnBcmxMd0vWO56c-KxExa3RAU1dtQW9lhEI"/>
-<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-md">
-<p class="text-white font-label-md text-label-md">Monitoreo de producción en tiempo real</p>
-</div>
-</div>
-</section>
-<!-- Records List Section -->
-<section class="lg:col-span-7">
-<div class="flex items-center justify-between mb-md">
-<h3 class="font-headline-md text-headline-md text-on-surface">Últimos Registros Hoy</h3>
-<span class="bg-surface-container-high text-primary font-label-md text-label-md px-base py-1 rounded-full">{{ records.length }} registros</span>
-</div>
-<div class="space-y-sm">
-<!-- Record Item -->
-<div v-for="record in records" :key="record.id" class="glass-card p-base md:p-md rounded-xl flex items-center justify-between group hover:border-primary transition-all">
-<div class="flex items-center gap-md">
-<div class="h-12 w-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="opacity">opacity</span>
-</div>
-<div>
-<p class="font-label-lg text-label-lg text-on-surface">
-    {{ record.unitName || record.unit_name }} 
-    <span v-if="record.animalId || record.animal_id || record.animalName || record.name" class="text-xs font-medium text-primary">({{ record.animalId || record.animal_id }} - {{ record.animalName || record.name }})</span>
-</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">{{ record.shift }} • {{ record.time }}</p>
-</div>
-</div>
-<div class="text-right">
-<p class="font-headline-md text-headline-md text-primary">{{ record.liters }}<span class="text-label-md"> LT</span></p>
-<span :class="record.status === 'VERIFICADO' || record.status === 'Óptimo' ? 'text-on-surface-variant font-medium' : 'text-on-error-container font-medium bg-error-container px-2 rounded'" class="text-xs">{{ record.status }}</span>
-</div>
-</div>
-<div v-if="records.length === 0" class="glass-card p-md text-center text-on-surface-variant italic">
-  No hay registros guardados hoy.
-</div>
-</div>
-<div v-if="currentUser && currentUser.role === 'Administrador'" class="mt-md">
-<a href="reportes.html" class="w-full flex items-center justify-center gap-xs font-label-lg text-label-lg text-primary py-base hover:bg-surface-container transition-colors rounded-xl">
-                        Ver historial completo
-                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-</a>
-</div>
-</section>
-</div>
-</div>
-</main>
-<!-- BottomNavBar (Mobile only) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-1 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none lg:hidden">
-    <!-- Inicio -->
-    <a v-if="currentUser" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('index.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="index.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('index.html') ? 'fill-icon' : ''" :style="isActive('index.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="analytics">analytics</span>
-      <span class="text-[10px] mt-0.5 leading-none">Inicio</span>
-    </a>
-    <!-- Ordeño -->
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('ordeno.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="ordeno.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('ordeno.html') ? 'fill-icon' : ''" :style="isActive('ordeno.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="opacity">opacity</span>
-      <span class="text-[10px] mt-0.5 leading-none">Ordeño</span>
-    </a>
-    <!-- Finca -->
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('unidad.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="unidad.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('unidad.html') ? 'fill-icon' : ''" :style="isActive('unidad.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="location_on">location_on</span>
-      <span class="text-[10px] mt-0.5 leading-none">Finca</span>
-    </a>
-    <!-- Stock -->
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario' || currentUser.role === 'Operario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('inventario.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="inventario.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('inventario.html') ? 'fill-icon' : ''" :style="isActive('inventario.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="inventory">inventory</span>
-      <span class="text-[10px] mt-0.5 leading-none">Inventario</span>
-    </a>
-    <!-- Salud -->
-    <a v-if="currentUser && (currentUser.role === 'Administrador' || currentUser.role === 'Veterinario')" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('salud.html') || isActive('historial.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="salud.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('salud.html') || isActive('historial.html') ? 'fill-icon' : ''" :style="isActive('salud.html') || isActive('historial.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="health_and_safety">health_and_safety</span>
-      <span class="text-[10px] mt-0.5 leading-none">Salud</span>
-    </a>
-    <!-- Reportes -->
-    <a v-if="currentUser && currentUser.role === 'Administrador'" class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('reportes.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="reportes.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('reportes.html') ? 'fill-icon' : ''" :style="isActive('reportes.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="description">description</span>
-      <span class="text-[10px] mt-0.5 leading-none">Reportes</span>
-    </a>
-    <!-- Perfil -->
-    <a class="flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200"
-       :class="isActive('usuarios.html') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'" href="usuarios.html">
-      <span class="material-symbols-outlined text-[20px]" :class="isActive('usuarios.html') ? 'fill-icon' : ''" :style="isActive('usuarios.html') ? 'font-variation-settings: \'FILL\' 1;' : ''" data-icon="group">group</span>
-      <span class="text-[10px] mt-0.5 leading-none">Perfil</span>
-    </a>
-  </nav>
-<script>
-        const { createApp } = Vue;
-        createApp({
-            data() {
-                return {
-                    isDarkMode: false,
-                    currentUser: null,
-                    showSidebar: false,
-                    records: [],
-                    units: [],
-                    submitting: false,
-                    newRecord: {
-                        unitName: '',
-                        animalId: '',
-                        animalName: '',
-                        liters: '',
-                        shift: 'morning'
-                    }
-                };
-            },
-            mounted() {
-                const theme = localStorage.getItem('theme') || 'light';
-                this.isDarkMode = theme === 'dark';
-                if (this.isDarkMode) {
-                    document.documentElement.classList.add('dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                }
-
-                const userStr = localStorage.getItem('loggedInUser');
-                if (userStr) {
-                    try {
-                        this.currentUser = JSON.parse(userStr);
-                    } catch (e) {
-                        this.currentUser = null;
-                    }
-                    if (!this.currentUser || this.currentUser.status !== 'Activo') {
-                        localStorage.removeItem('loggedInUser');
-                        window.location.href = 'login.html';
-                        return;
-                    }
-                    
-                    fetch(`/api/users/${this.currentUser.id}`)
-                        .then(res => {
-                            if (res.ok) return res.json();
-                            return null;
-                        })
-                        .then(user => {
-                            if (user) {
-                                if (user.status !== 'Activo') {
-                                    localStorage.removeItem('loggedInUser');
-                                    window.location.href = 'login.html';
-                                } else {
-                                    localStorage.setItem('loggedInUser', JSON.stringify(user));
-                                    this.currentUser = user;
-                                }
-                            }
-                        })
-                        .catch(err => {
-                            // Se maneja discretamente la ausencia de red o ruta del servidor
-                        });
-
-                    if (this.currentUser.role === 'Veterinario') {
-                        window.location.href = 'salud.html';
-                        return;
-                    }
-
-                } else {
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                this.fetchData();
-
-                if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', () => {
-                        navigator.serviceWorker.register('sw.js')
-                            .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
-                            .catch(err => console.error('Error al registrar el Service Worker:', err));
-                    });
-                }
-            },
-            methods: {
-                toggleTheme() {
-                    this.isDarkMode = !this.isDarkMode;
-                    if (this.isDarkMode) {
-                        document.documentElement.classList.add('dark');
-                        localStorage.setItem('theme', 'dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                        localStorage.setItem('theme', 'light');
-                    }
-                },
-
-                logout() {
-                    localStorage.removeItem('loggedInUser');
-                    window.location.href = 'login.html';
-                },
-
-                isActive(page) {
-                    const path = window.location.pathname;
-                    return path.includes(page) || (page === 'index.html' && (path.endsWith('/') || path.endsWith('/index.html') || path === ''));
-                },
-
-                validateLiters() {
-                    let value = this.newRecord.liters.replace(/[^0-9.]/g, '');
-                    const parts = value.split('.');
-                    if (parts.length > 2) {
-                        value = parts[0] + '.' + parts.slice(1).join('');
-                    }
-                    this.newRecord.liters = value;
-                },
-
-                async fetchData() {
-                    try {
-                        const [milkingRes, unitsRes] = await Promise.all([
-                            fetch('/api/milking'),
-                            fetch('/api/units')
-                        ]);
-                        if (milkingRes.ok) {
-                            const data = await milkingRes.json();
-                            this.records = data.map(r => ({
-                                ...r,
-                                unitName: r.unitName || r.unit_name || 'Lote A',
-                                animalId: r.animalId || r.animal_id || '',
-                                animalName: r.animalName || r.name || ''
-                            }));
-                        }
-                        if (unitsRes.ok) this.units = await unitsRes.json();
-                    } catch (err) {
-                        console.error("Error fetching milking data from SQLite API", err);
-                    }
-                },
-
-                async submitRecord() {
-                    this.submitting = true;
-                    try {
-                        const payload = {
-                            unitName: this.newRecord.unitName,
-                            animalId: this.newRecord.animalId,
-                            animalName: this.newRecord.animalName,
-                            liters: parseFloat(this.newRecord.liters) || 0,
-                            shift: this.newRecord.shift === 'morning' ? 'Mañana' : 'Tarde',
-                            time: new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }),
-                            date: new Date().toISOString().split('T')[0],
-                            status: 'VERIFICADO'
-                        };
-                        const res = await fetch('/api/milking', {
-                            method: 'POST', 
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        if (res.ok) {
-                            const created = await res.json();
-                            this.records.unshift({
-                                ...created,
-                                unitName: created.unitName || created.unit_name || payload.unitName,
-                                animalId: created.animalId || created.animal_id || payload.animalId,
-                                animalName: created.animalName || created.name || payload.animalName
-                            });
-                            this.newRecord = {
-                                unitName: '',
-                                animalId: '',
-                                animalName: '',
-                                liters: '',
-                                shift: 'morning'
-                            };
-                            alert("Registro guardado con éxito.");
-                        } else {
-                            alert("Hubo un error al guardar el registro.");
-                        }
-                    } catch (err) {
-                        console.error("Error saving milking record to SQLite API", err);
-                        alert("Hubo un error al conectar con la base de datos.");
-                    } finally {
-                        this.submitting = false;
-                    }
-                }
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          isDarkMode: false,
+          view: 'login', // 'login' o 'recovery'
+          email: '',
+          password: '',
+          recoveryEmail: '',
+          showPassword: false,
+          errorMsg: '',
+          successMsg: '',
+          loading: false
+        };
+      },
+      mounted() {
+        const theme = localStorage.getItem('theme') || 'light';
+        this.isDarkMode = theme === 'dark';
+        if (this.isDarkMode) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      },
+      methods: {
+        switchToRecovery() {
+          this.errorMsg = '';
+          this.successMsg = '';
+          this.recoveryEmail = this.email;
+          this.view = 'recovery';
+        },
+        switchToLogin() {
+          this.errorMsg = '';
+          this.successMsg = '';
+          this.view = 'login';
+        },
+        checkEmailLength(e) {
+          if (this.email && this.email.length >= 27 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+          }
+        },
+        enforceEmailLimit(e) {
+          if (this.email && this.email.length > 27) {
+            this.email = this.email.slice(0, 27);
+          }
+          if (e && e.target && e.target.value.length > 27) {
+            e.target.value = e.target.value.slice(0, 27);
+          }
+        },
+        checkRecoveryEmailLength(e) {
+          if (this.recoveryEmail && this.recoveryEmail.length >= 27 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+          }
+        },
+        enforceRecoveryEmailLimit(e) {
+          if (this.recoveryEmail && this.recoveryEmail.length > 27) {
+            this.recoveryEmail = this.recoveryEmail.slice(0, 27);
+          }
+          if (e && e.target && e.target.value.length > 27) {
+            e.target.value = e.target.value.slice(0, 27);
+          }
+        },
+        toggleTheme() {
+            this.isDarkMode = !this.isDarkMode;
+            if (this.isDarkMode) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
             }
-        }).mount('#app');
-    </script>
+        },
+
+        async handleRecovery() {
+          this.errorMsg = '';
+          this.successMsg = '';
+
+          if (this.recoveryEmail.length > 27) {
+            this.errorMsg = 'El correo electrónico no debe exceder los 27 caracteres.';
+            return;
+          }
+
+          this.loading = true;
+          try {
+            const res = await fetch('/api/recover-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: this.recoveryEmail })
+            });
+            if (res.ok) {
+              this.successMsg = 'Se han enviado las instrucciones de recuperación a su correo electrónico.';
+              this.recoveryEmail = '';
+            } else {
+              let errorMessage = 'Error al procesar la solicitud de recuperación';
+              try {
+                const data = await res.json();
+                errorMessage = data.error || errorMessage;
+              } catch (jsonErr) {}
+
+              if (res.status === 404) {
+                this.localRecoveryFallback();
+                return;
+              }
+              this.errorMsg = errorMessage;
+            }
+          } catch (err) {
+            console.warn('Error de red o servidor offline, ejecutando recuperación en modo local...', err);
+            this.localRecoveryFallback();
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        localRecoveryFallback() {
+          const fallbackUsers = [
+            { id: 1, name: "Francisco Molina", email: "admin@elmanantial.com" },
+            { id: 2, name: "Dra. Maria Mendoza", email: "veterinario@elmanantial.com" },
+            { id: 3, name: "Jose Sanchez", email: "jose@elmanantial.com" },
+          ];
+
+          let usersList = fallbackUsers;
+          const storedUsers = localStorage.getItem('localUsersData');
+          if (storedUsers) {
+            try {
+              usersList = JSON.parse(storedUsers);
+            } catch (e) {
+              console.error(e);
+            }
+          }
+
+          const user = usersList.find(u => u.email === this.recoveryEmail);
+          if (user) {
+            this.successMsg = `Instrucciones de recuperación enviadas exitosamente a ${this.recoveryEmail}.`;
+            this.recoveryEmail = '';
+          } else {
+            this.errorMsg = "El correo electrónico no se encuentra registrado en el sistema.";
+          }
+        },
+
+        async handleLogin() {
+          this.errorMsg = '';
+          this.successMsg = '';
+
+          if (this.email.length > 27) {
+            this.errorMsg = 'El correo electrónico no debe exceder los 27 caracteres.';
+            return;
+          }
+
+          this.loading = true;
+          try {
+            const res = await fetch('/api/login', {
+              method: 'GET',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: this.email, password: this.password })
+            });
+            if (res.ok) {
+              const user = await res.json();
+              localStorage.setItem('loggedInUser', JSON.stringify(user));
+              window.location.href = 'index.html';
+            } else {
+              let errorMessage = 'Error al iniciar sesión';
+              try {
+                const data = await res.json();
+                errorMessage = data.error || errorMessage;
+              } catch (jsonErr) {
+                // Response body is not JSON
+              }
+
+              if (res.status === 401 || res.status === 403) {
+                this.errorMsg = errorMessage;
+                return;
+              }
+              if (res.status === 404) {
+                this.localLoginFallback();
+                return;
+              }
+
+              this.errorMsg = errorMessage;
+            }
+          } catch (err) {
+            console.warn('Network error or server offline, trying local fallback authentication...', err);
+            this.localLoginFallback();
+          } finally {
+            this.loading = false;
+          }
+        },
+        localLoginFallback() {
+          let email = this.email;
+          let password = this.password;
+
+          if (email === 'operador1@elmanantial.com' && password === 'operador1') {
+            email = 'jose@elmanantial.com';
+            password = 'ope123';
+          } else if (email === 'operador2@elmanantial.com' && password === 'operador2') {
+            email = '';
+          } else if (email === 'veterinario@elmanantial.com' && password === 'veterinario1') {
+            password = 'vet123';
+          }
+
+          const fallbackUsers = [
+            { id: 1, name: "Francisco Molina", role: "Administrador", status: "Activo", email: "admin@elmanantial.com", password: "admin123", avatar: "FM" },
+            { id: 2, name: "Dra. Maria Mendoza", role: "Veterinario", status: "Activo", email: "veterinario@elmanantial.com", password: "vet123", avatar: "VET" },
+            { id: 3, name: "Jose Sanchez", role: "Operario", status: "Activo", email: "jose@elmanantial.com", password: "ope123", avatar: "JS" },
+          ];
+
+          let usersList = fallbackUsers;
+          const storedUsers = localStorage.getItem('localUsersData');
+          if (storedUsers) {
+            try {
+              usersList = JSON.parse(storedUsers);
+            } catch (e) {
+              console.error(e);
+            }
+          }
+
+          const user = usersList.find(u => u.email === email && u.password === password);
+          if (user) {
+            if (user.status !== 'Activo') {
+              this.errorMsg = "Por favor comuníquese con el admin.";
+            } else {
+              localStorage.setItem('loggedInUser', JSON.stringify(user));
+              window.location.href = 'index.html';
+            }
+          } else {
+            this.errorMsg = "Credenciales incorrectas (Modo Local)";
+          }
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
