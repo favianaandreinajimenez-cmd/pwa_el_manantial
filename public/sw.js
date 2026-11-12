@@ -18,7 +18,7 @@ const urlsToCache = [
   './js/sync.js',
   './js/db-sqlite.js',
   './js/app.js',
-  './manifest.json'
+  './public/manifest.json'
 ];
 
 // Instalación del Service Worker y almacenamiento en caché robusto
