@@ -1,6 +1,7 @@
-const CACHE_NAME = 'pwa_el_manantial-v3';
+// Se incrementa la versión para forzar la actualización del caché en el navegador
+const CACHE_NAME = 'pwa_el_manantial-v4';
 
-// Rutas ajustadas de forma relativa para coincidir perfectamente con la estructura del repositorio
+// 1. Archivos locales y recursos CDN indispensables para la interfaz visual
 const urlsToCache = [
   './',
   './login.html',
@@ -12,34 +13,40 @@ const urlsToCache = [
   './historial.html',
   './unidad.html',
   './usuarios.html',
-  './css/custom.css',
-  './css/input.css',
+  './Css/custom.css',
+  './Css/input.css',
+  './imagenes/icono_logo.svg',
+  './manifest.json',
   './local-db-fallback.js',
-  './js/sync.js',
-  './js/db-sqlite.js',
-  './js/app.js',
-  './public/manifest.json'
+  './Js/sync.js',
+  './Js/db-sqlite.js',
+  './Js/app.js',
+  // CDNs visuales esenciales (Tailwind, Vue, Fuentes e Íconos):
+  'https://cdn.tailwindcss.com?plugins=forms,container-queries',
+  'https://unpkg.com/vue@3/dist/vue.global.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js',
+  'https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@600;700&display=swap',
+  'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap'
 ];
 
-// Instalación del Service Worker y almacenamiento en caché robusto
+// Instalación: precachea archivos locales y CDNs
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Service Worker: Cacheando archivos estáticos...');
-        return Promise.all(
-          urlsToCache.map(url => {
-            return cache.add(url).catch(err => {
-              console.warn(`No se pudo cachear el archivo: ${url}`, err);
-            });
-          })
-        );
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      console.log('Service Worker: Cacheando recursos estáticos y visuales...');
+      return Promise.all(
+        urlsToCache.map(url => {
+          return cache.add(url).catch(err => {
+            console.warn(`No se pudo precachear: ${url}`, err);
+          });
+        })
+      );
+    })
   );
   self.skipWaiting();
 });
 
-// Activación y limpieza de cachés antiguas
+// Activación: elimina cachés de versiones viejas
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => {
@@ -56,28 +63,44 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Interceptación de peticiones (Modo Offline con estrategia Cache First)
+// Interceptación de peticiones: Cache First con almacenamiento dinámico
 self.addEventListener('fetch', event => {
+  // Ignora peticiones que no sean GET o que vayan al backend (/api/)
   if (event.request.method !== 'GET' || event.request.url.includes('/api/')) {
     return;
   }
 
   event.respondWith(
-    caches.match(event.request)
-      .then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        return fetch(event.request)
-          .then(networkResponse => {
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      // Si el recurso no estaba en caché previa, lo descarga de internet y guarda una copia
+      return fetch(event.request)
+        .then(networkResponse => {
+          if (
+            !networkResponse ||
+            networkResponse.status !== 200 ||
+            (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')
+          ) {
             return networkResponse;
-          })
-          .catch(() => {
-            const acceptHeader = event.request.headers.get('accept');
-            if (acceptHeader && acceptHeader.includes('text/html')) {
-              return caches.match('./login.html');
-            }
+          }
+
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
           });
-      })
+
+          return networkResponse;
+        })
+        .catch(() => {
+          // Si no hay internet y se intentó cambiar de página HTML, muestra login
+          const acceptHeader = event.request.headers.get('accept');
+          if (acceptHeader && acceptHeader.includes('text/html')) {
+            return caches.match('./login.html');
+          }
+        });
+    })
   );
 });
